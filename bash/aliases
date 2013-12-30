@@ -1,0 +1,11 @@
+# Command Enhancements
+
+# Utility
+alias reload='source ~/.bashrc'
+
+#Make ls pretty
+alias ls="ls -GF"
+
+# Processes
+alias tu='top -o cpu' # cpu
+alias tm='top -o vsize' # memory
