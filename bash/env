@@ -1,2 +1,2 @@
-export PATH=~/bin:$PATH
+export PATH=~/dotfiles:$PATH
 export EDITOR=nano
