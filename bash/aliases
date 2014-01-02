@@ -2,6 +2,7 @@
 
 # Utility
 alias reload='source ~/.bashrc'
+alias edit='$EDITOR'
 
 #Make ls pretty
 alias ls="ls -GF"
