@@ -9,3 +9,6 @@ alias ls="ls -GF"
 # Processes
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
+
+#Brew
+alias brewup="brew update && brew upgrade"
