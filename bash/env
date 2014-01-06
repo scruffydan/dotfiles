@@ -1,3 +1,4 @@
 export EDITOR="subl -w"
 export HISTCONTROL=ignoredups
 export CLICOLOR=1
+export GREP_OPTIONS='--color=auto'
