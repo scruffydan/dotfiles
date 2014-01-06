@@ -39,4 +39,4 @@ BCYAN='\e[46m'
 BWHITE='\e[47m'
 
 # Update the command prompt
-PS1="\n\u@\h:\w \[$YELLOW\]\$(vcprompt)\[$NO_COLOR\] \n$ "
+PS1="\n\u@\h:\w \[$YELLOW\]\$(vcprompt -f [%b:%r])\[$NO_COLOR\] \n$ "
