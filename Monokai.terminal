@@ -232,11 +232,11 @@
 	<key>VisualBell</key>
 	<true/>
 	<key>columnCount</key>
-	<integer>80</integer>
+	<integer>90</integer>
 	<key>name</key>
 	<string>Monokai</string>
 	<key>rowCount</key>
-	<integer>24</integer>
+	<integer>30</integer>
 	<key>shellExitAction</key>
 	<integer>1</integer>
 	<key>type</key>
