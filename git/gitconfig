@@ -19,5 +19,7 @@
 	excludesfile = /Users/dan/.gitignore_global
 
 [alias]
-	# Log display from screencast, with train tracks.
+	# Pretty log with train tracks.
 	l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+	s = status -s
+	a = add -A
