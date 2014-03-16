@@ -1,5 +1,7 @@
 # Set path
-export PATH=~/dotfiles/bin:$PATH
+path=('~/dotfiles/bin' $path)
+typeset -U path
+export path
 
 # Enable forward delete
 bindkey "^[[3~" delete-char
