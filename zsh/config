@@ -5,9 +5,14 @@ colors
 # Enable advanced prompt support
 autoload -U promptinit 
 promptinit
+# Enable colors
+autoload -U colors
+colors
+
+local vcinfo='$(vcprompt -f \[%b:%r\])'
 
 # Update the command prompt
+RPROMPT="%{$fg[blue]%}${vcinfo}"
 PROMPT="
-$fg[yellow]%n$fg[red]@%m$fg[yellow]:%~
-$reset_color$ "
-RPROMPT="$(vcprompt -f \[%b:%r\])"
+%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[yellow]%}:%~%{$reset_color%}
+$ "
