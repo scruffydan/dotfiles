@@ -1,3 +1,0 @@
-[submodule "lib/vcprompt"]
-	path = lib/vcprompt
-	url = git@github.com:dmoutal/vcprompt.git
