@@ -14,6 +14,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt share_history
 
+# Enable prompt subsitutions
+setopt prompt_subst
+
 # Enable Advanced Tab-completion
 autoload -U compinit 
 compinit
@@ -64,9 +67,6 @@ export CLICOLOR=1
 # The default is "exfxcxdxbxegedabagacad"
 
 export LSCOLORS=bxfxcxdxbxegedabagacad
-
-# Set ls colors in linux
-export LS_COLORS='di=33:fi=0:ln=95:pi=5:so=5:bd=5:cd=5:or=37:mi=0:ex=31:*.rpm=90'
 
 # Add some color to grep
 export GREP_OPTIONS='--color=auto'

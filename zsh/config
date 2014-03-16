@@ -10,4 +10,4 @@ promptinit
 PROMPT="
 $fg[yellow]%n$fg[red]@%m$fg[yellow]:%~
 $reset_color$ "
-RPROMPT=""
+RPROMPT="$(vcprompt -f \[%b:%r\])"
