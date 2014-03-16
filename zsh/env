@@ -21,9 +21,10 @@ compinit
 # Zsh spelling correction options
 setopt CORRECT
 
+# Enable color
+export CLICOLOR=1
 
 # Customize the colors of ls
-
 # The value of this variable describes what color to use for which attribute when colors are enabled with CLICOLOR.  This string is a concatenation of pairs of the format fb, where f is the foreground color and b is the background color.
 #
 # The color designators are as follows:
@@ -63,6 +64,9 @@ setopt CORRECT
 # The default is "exfxcxdxbxegedabagacad"
 
 export LSCOLORS=bxfxcxdxbxegedabagacad
+
+# Set ls colors in linux
+export LS_COLORS='di=33:fi=0:ln=95:pi=5:so=5:bd=5:cd=5:or=37:mi=0:ex=31:*.rpm=90'
 
 # Add some color to grep
 export GREP_OPTIONS='--color=auto'
