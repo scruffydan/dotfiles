@@ -1,5 +1,5 @@
 # Set path
-PATH=~/dotfiles/bin:$PATH
+PATH=~/dotfiles/bin:~/bin:$PATH
 typeset -U path
 export PATH
 
