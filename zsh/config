@@ -9,7 +9,7 @@ promptinit
 autoload -U colors
 colors
 
-local vcinfo='%{$fg[blue]%}$(vcprompt -f \[%b:)%{$fg[yellow]%}$(vcprompt -f %r)%{$fg[blue]%}]%{$reset_color%}'
+local vcinfo='%{$fg[blue]%}$(vcprompt -f \%b:)%{$fg[yellow]%}$(vcprompt -f %r)%{$fg[blue]%}%{$reset_color%}'
 
 # Update the command prompt
 PROMPT="
