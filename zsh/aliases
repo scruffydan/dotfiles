@@ -3,7 +3,6 @@
 ##########################
 # Utility
 alias reload='source ~/.zshrc'
-alias edit='$EDITOR'
 
 # Brew
 alias brewup="brew update && brew upgrade"
