@@ -21,6 +21,8 @@ RPROMPT="%{$fg[blue]%}${vcinfo}%{$reset_color%}"
 ## Colors ##
 ############
 # Customize the colors of ls
+
+### OSX and BSD use LSCOLORS
 # The value of this variable describes what color to use for which attribute when colors are enabled with CLICOLOR.  This string is a concatenation of pairs of the format fb, where f is the foreground color and b is the background color.
 #
 # The color designators are as follows:
@@ -57,9 +59,42 @@ RPROMPT="%{$fg[blue]%}${vcinfo}%{$reset_color%}"
 # 10.   directory writable to others, with sticky bit
 # 11.   directory writable to others, without sticky bit
 # 
-# For MAC and BSD The default is "exfxcxdxbxegedabagacad"
+# For OSX The default is "exfxcxdxbxegedabagacad"
 export LSCOLORS=bxexcxdxfxegedabagacad
-# For Linux
+
+### Linux Uses LS _COLORS
+# The parameters for LS_COLORS (di, fi, ln, pi, etc) refer to different file types:
+# di   Directory
+# fi   File
+# ln   Symbolic Link
+# pi   Fifo file
+# so   Socket file
+# bd   Block (buffered) special file
+# cd   Character (unbuffered) special file
+# or   Symbolic Link pointing to a non-existent file (orphan)
+# mi   Non-existent file pointed to by a symbolic link (visible when you type ls -l)
+# ex   File which is executable (ie. has 'x' set in permissions).
+# 
+# Color codes
+# 0  =  Default Colour
+# 1  =  Bold
+# 4  =  Underlined
+# 5  =  Flashing Text
+# 7  =  Reverse Field
+# 31 =   Red
+# 32 =   Green
+# 34 =   Blue
+# 35 =   Magenta
+# 36 =   Cyan
+# 40 =   Black Background
+# 41 =   Red Background
+# 42 =   Green Background
+# 44 =   Blue Background
+# 46 =   Cyan Background
+# 93 =   Yellow
+# 103 =  Yellow Background
+# 
+# There is no defaults for Linux
 export LS_COLORS="di=00;31:ln=00;34:ex=00;35"
 
 # Make ls use LSCOLORS or LS_COLORS
