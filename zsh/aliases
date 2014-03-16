@@ -1,7 +1,7 @@
 # Command Enhancements
 
 # Utility
-alias reload='source ~/.bashrc'
+alias reload='source ~/.zshrc'
 alias edit='$EDITOR'
 
 #Make ls pretty

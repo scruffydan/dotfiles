@@ -1,0 +1,13 @@
+# Enable colors
+autoload -U colors
+colors
+
+# Enable advanced prompt support
+autoload -U promptinit 
+promptinit
+
+# Update the command prompt
+PROMPT="
+$fg[yellow]%n$fg[red]@%m$fg[yellow]:%~
+$reset_color$ "
+RPROMPT=""
