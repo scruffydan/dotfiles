@@ -28,3 +28,7 @@ setopt completealiases
 
 # Zsh spelling correction options
 setopt CORRECT
+
+# Bind history search to up and down arrows
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
