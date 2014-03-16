@@ -6,7 +6,7 @@ alias reload='source ~/.zshrc'
 alias edit='$EDITOR'
 
 # Make ls pretty
-alias ls="ls -GF"
+alias ls="ls -GF --color"
 
 # Brew
 alias brewup="brew update && brew upgrade"
