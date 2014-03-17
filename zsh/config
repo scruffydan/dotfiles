@@ -13,7 +13,7 @@ local vcinfo='%{$fg[blue]%}$(vcprompt -f \%b:)%{$fg[yellow]%}$(vcprompt -f %r)%{
 
 # Update the command prompt
 PROMPT="
-%{$fg[yellow]%}%n%{$fg[green]%}@%m%{$fg[yellow]%}:%~%{$reset_color%}
+%{$fg[yellow]%}%n@%{$fg[green]%}%m%{$fg[yellow]%}:%~%{$reset_color%}
 $ "
 RPROMPT="${vcinfo}"
 
