@@ -146,11 +146,3 @@ bindkey "\e[B" history-beginning-search-forward-end
 
 # Add some color to grep
 export GREP_OPTIONS='--color=auto'
-
-#Run logout script on exit
-TRAPEXIT() {
-    if [[ ! -o login ]]; then
-        # don't do this in a login shell because it happens anyway
-        . ~/dotfiles/zsh/logout
-    fi
-}
