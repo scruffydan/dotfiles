@@ -1,3 +1,6 @@
+############
+## Prompt ##
+############
 # Enable colors
 autoload -U colors
 colors
@@ -104,5 +107,50 @@ else
     alias ls="ls -GF"
 fi
 
+##############
+## Settings ##
+##############
+# Enable forward delete
+bindkey "^[[3~" delete-char
+
+#History
+export HISTSIZE=25000
+export HISTFILE=~/.history
+export SAVEHIST=25000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+setopt share_history
+
+# Enable command substitution
+setopt prompt_subst
+
+# Enable Advanced Tab-completion
+autoload -U compinit 
+compinit
+setopt completealiases
+
+# Enable Zsh spelling correction
+setopt CORRECT
+
+# Bind smart history search to up and down arrows
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "\e[A" history-beginning-search-backward-end
+bindkey "\e[B" history-beginning-search-forward-end
+
 # Add some color to grep
 export GREP_OPTIONS='--color=auto'
+
+#Run logout script on exit
+TRAPEXIT() {
+    if [[ ! -o login ]]; then
+        # don't do this in a login shell because it happens anyway
+        . ~/dotfiles/zsh/logout
+    fi
+}
