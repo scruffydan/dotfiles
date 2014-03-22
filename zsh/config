@@ -12,7 +12,7 @@ promptinit
 autoload -U colors
 colors
 
-local vcinfo='%{$fg[blue]%}$(vcprompt -f \%b:)%{$fg[yellow]%}$(vcprompt -f %r)%{$fg[blue]%}%{$reset_color%}'
+local vcinfo='%{$fg[blue]%}$(vcprompt -f %b:%{$fg[yellow]%}%r)%{$reset_color%}'
 
 # Update the command prompt
 PROMPT="
@@ -63,7 +63,7 @@ RPROMPT="${vcinfo}"
 # 11.   directory writable to others, without sticky bit
 # 
 # For OSX The default is "exfxcxdxbxegedabagacad"
-export LSCOLORS=dxexcxdxbxegedabagacad
+export LSCOLORS=dxgxcxdxbxegedabagacad
 
 ### Linux Uses LS _COLORS
 # The parameters for LS_COLORS (di, fi, ln, pi, etc) refer to different file types:
@@ -79,26 +79,26 @@ export LSCOLORS=dxexcxdxbxegedabagacad
 # ex   File which is executable (ie. has 'x' set in permissions).
 # 
 # Color codes
-# 0  =  Default Colour
-# 1  =  Bold
-# 4  =  Underlined
-# 5  =  Flashing Text
-# 7  =  Reverse Field
-# 31 =   Red
-# 32 =   Green
-# 34 =   Blue
-# 35 =   Magenta
-# 36 =   Cyan
-# 40 =   Black Background
-# 41 =   Red Background
-# 42 =   Green Background
-# 44 =   Blue Background
-# 46 =   Cyan Background
-# 93 =   Yellow
-# 103 =  Yellow Background
+# 0   =   Default Colour
+# 1   =   Bold
+# 4   =   Underlined
+# 5   =   Flashing Text
+# 7   =   Reverse Field
+# 31  =   Red
+# 32  =   Green
+# 34  =   Blue
+# 35  =   Magenta
+# 36  =   Cyan
+# 40  =   Black Background
+# 41  =   Red Background
+# 42  =   Green Background
+# 44  =   Blue Background
+# 46  =   Cyan Background
+# 93  =   Yellow
+# 103 =   Yellow Background
 # 
 # There is no defaults for Linux
-export LS_COLORS="di=00;93:ln=00;34:ex=00;31"
+export LS_COLORS="di=00;93:ln=00;36:ex=00;31"
 
 # Make ls use LSCOLORS or LS_COLORS
 if [[ $(uname) == Linux ]]; then

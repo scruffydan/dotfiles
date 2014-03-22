@@ -2,5 +2,5 @@
 . ~/dotfiles/zsh/config
 . ~/dotfiles/zsh/aliases
 
-#Run `uptime` command at launch 
+#Run uptime command at launch 
 uptime
