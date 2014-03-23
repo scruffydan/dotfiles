@@ -6,6 +6,19 @@ alias reload='source ~/.zshrc'
 
 # Brew
 alias brewup="brew update && brew upgrade"
+brewrm() {
+  formula="$*"
+ 
+  if [ "x$formula" = "x" ]
+  then
+     echo "Invalid empty parameter"
+  else
+     echo "Removing" "$formula" "and all its deps.."
+     brew rm $formula
+     brew rm $(join <(brew leaves) <(brew deps "$formula"))
+     brew cleanup -s
+  fi
+}
 # Apt
 alias aptup="sudo apt-get update && sudo apt-get upgrade"
 
