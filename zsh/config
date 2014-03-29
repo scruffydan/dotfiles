@@ -12,13 +12,19 @@ promptinit
 autoload -U colors
 colors
 
-local vcinfo='%{$fg[blue]%}$(vcprompt -f %b:%{$fg[yellow]%}%r)%{$reset_color%}'
+# Turn on and configure the version control system information
+autoload -Uz vcs_info
+precmd () { vcs_info }
+zstyle ':vcs_info:*' get-revision true
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' formats "%{$fg[blue]%}%b:%{$fg[yellow]%}%.7i%{$reset_color%}"
+
 
 # Update the command prompt
 PROMPT="
 %{$fg[yellow]%}%n@%{$fg[green]%}%m%{$fg[yellow]%}:%~%{$reset_color%}
 $ "
-RPROMPT="${vcinfo}"
+RPROMPT='${vcs_info_msg_0_}'
 
 ############
 ## Colors ##
