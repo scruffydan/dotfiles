@@ -1,6 +1,8 @@
 [user]
 	name = Dan Moutal
 	email = dan@moutal.ca
+[push]
+	default = simple
 [mergetool]
 	keepBackup = true
 	prompt = false
