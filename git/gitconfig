@@ -18,7 +18,7 @@
 [merge]
 	tool = Kaleidoscope
 [core]
-	excludesfile = gitignore_global
+	excludesfile = ~/dotfiles/git/gitignore_global
 
 [alias]
 	# Pretty log with train tracks.
