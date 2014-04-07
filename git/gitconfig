@@ -1,6 +1,8 @@
 [user]
 	name = Dan Moutal
 	email = dan@moutal.ca
+[core]
+	excludesfile = /Users/dan/dotfiles/git/gitignore_global
 [push]
 	default = simple
 [mergetool]
@@ -17,12 +19,10 @@
 	trustExitCode = true
 [merge]
 	tool = Kaleidoscope
-[core]
-	excludesfile = ~/dotfiles/git/gitignore_global
-
 [alias]
 	# Pretty log with train tracks.
 	l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(green) %an, %ar%Creset'
+
 	s = status -s
 	a = add -A
 	g = gc --prune=now --aggressive
