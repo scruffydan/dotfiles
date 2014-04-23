@@ -17,12 +17,12 @@ autoload -Uz vcs_info
 precmd () { vcs_info }
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' formats "%{$fg[blue]%}%b:%{$fg[yellow]%}%.7i%{$reset_color%}"
+zstyle ':vcs_info:*' formats "%{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}"
 
 
 # Update the command prompt
 PROMPT="
-%{$fg[yellow]%}%n@%{$fg[green]%}%m%{$fg[yellow]%}:%~%{$reset_color%}
+%{$fg[green]%}%n@%{$fg[yellow]%}%m%{$fg[green]%}:%~%{$reset_color%}
 $ "
 RPROMPT='${vcs_info_msg_0_}'
 
@@ -69,7 +69,7 @@ RPROMPT='${vcs_info_msg_0_}'
 # 11.   directory writable to others, without sticky bit
 # 
 # For OSX The default is "exfxcxdxbxegedabagacad"
-export LSCOLORS=dxgxcxdxbxegedabagacad
+export LSCOLORS=cxgxcxdxbxegedabagacad
 
 ### Linux Uses LS _COLORS
 # The parameters for LS_COLORS (di, fi, ln, pi, etc) refer to different file types:
@@ -104,7 +104,7 @@ export LSCOLORS=dxgxcxdxbxegedabagacad
 # 103 =   Yellow Background
 # 
 # There is no defaults for Linux
-export LS_COLORS="di=00;93:ln=00;36:ex=00;31"
+export LS_COLORS="di=00;32:ln=00;36:ex=00;31"
 
 # Make ls use LSCOLORS or LS_COLORS
 if [[ $(uname) == Linux ]]; then
