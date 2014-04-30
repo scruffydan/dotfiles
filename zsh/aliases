@@ -25,6 +25,7 @@ alias aptup="sudo apt-get update && sudo apt-get upgrade"
 # Common folders (some do a short git status check)
 alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Documents/Articles && git status -s"
+alias resume="cd ~/Documents/Resume && git status -s"
 
 # Wakeonlan
 alias wols="wakeonlan 00:1f:d0:d1:49:b5"
