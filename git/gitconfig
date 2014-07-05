@@ -5,24 +5,9 @@
 	excludesfile = /Users/dan/dotfiles/git/gitignore_global
 [push]
 	default = simple
-[mergetool]
-	keepBackup = true
-	prompt = false
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[diff]
-	tool = Kaleidoscope
-[difftool]
-	prompt = false
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-[merge]
-	tool = Kaleidoscope
 [alias]
 	# Pretty log with train tracks.
 	l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(green) %an, %ar%Creset'
-
 	s = status -s
 	a = add -A
 	g = gc --prune=now --aggressive

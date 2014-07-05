@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Set up `.zshenv` file. Appends source `~/dotfile/zsh/env`
 printf "
