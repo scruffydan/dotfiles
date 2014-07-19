@@ -28,5 +28,5 @@ alias articles="cd ~/Documents/Articles && git status -s"
 alias resume="cd ~/Documents/Resume && git status -s"
 
 # Wakeonlan
-alias wols="wakeonlan 00:1f:d0:d1:49:b5"
-alias wolh="wakeonlan f4:6d:04:05:68:92"
+alias wols="wakeonlan -i 10.0.0.255 00:1f:d0:d1:49:b5"
+alias wolh="wakeonlan -i 10.0.0.255 f4:6d:04:05:68:92"
