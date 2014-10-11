@@ -19,6 +19,10 @@ brewrm() {
      brew cleanup -s
   fi
 }
+
+# Ports
+alias portup="sudo portsnap fetch update && sudo portmaster -ab"
+
 # Apt
 alias aptup="sudo apt-get update && sudo apt-get upgrade"
 
