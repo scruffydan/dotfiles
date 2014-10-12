@@ -21,7 +21,8 @@ brewrm() {
 }
 
 # Ports
-alias portup="sudo portsnap fetch update && sudo ezjail-admin update -P  && sudo portmaster -ab"
+alias portup="sudo portsnap fetch update && sudo portmaster -ab"
+alias jailup="sudo ezjail-admin update -P  && ezjail-admin console MCP_JAIL"
 
 # Apt
 alias aptup="sudo apt-get update && sudo apt-get upgrade"
