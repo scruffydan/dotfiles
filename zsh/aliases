@@ -6,9 +6,15 @@ alias reload='source ~/.zshrc'
 
 # Brew
 alias brewup="brew update && brew upgrade"
+brewdeps() {
+  brew list | while read cask;
+    do echo -n $fg[blue] $cask $fg[white];
+    brew deps $cask | awk '{printf(" %s ", $0)}';
+    echo "";
+  done
+}
 brewrm() {
   formula="$*"
- 
   if [ "x$formula" = "x" ]
   then
      echo "Invalid empty parameter"
