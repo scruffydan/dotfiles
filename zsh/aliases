@@ -27,7 +27,7 @@ brewrm() {
 }
 
 # FreeBSD
-alias freeup="sudo freebsd-update fetch && sudo freebsd-update install"
+alias bsdup="sudo freebsd-update fetch && sudo freebsd-update install"
 
 # Ports
 alias portup="sudo portsnap fetch update && sudo portmaster -ab"
