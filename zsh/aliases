@@ -27,8 +27,7 @@ brewrm() {
 }
 
 # FreeBSD
-alias bsdup="sudo freebsd-update fetch && sudo freebsd-update install"
-alias portup="sudo portsnap fetch update && sudo portmaster -ab"
+alias bsdup="sudo freebsd-update fetch && sudo freebsd-update install && sudo portsnap fetch update && sudo portmaster -ab"
 alias jailup="sudo ezjail-admin update -P && sudo ezjail-admin update -u && sudo ezjail-admin console MCP_JAIL"
 
 # Apt
