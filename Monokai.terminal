@@ -318,7 +318,7 @@
 	AAAAABwAAAAAAAAAAAAAAAAAAADY
 	</data>
 	<key>FontAntialias</key>
-	<false/>
+	<true/>
 	<key>FontWidthSpacing</key>
 	<integer>1</integer>
 	<key>Linewrap</key>
@@ -367,7 +367,7 @@
 	ABkAAAAAAAAAAAAAAAAAAADY
 	</data>
 	<key>UseBoldFonts</key>
-	<true/>
+	<false/>
 	<key>UseBrightBold</key>
 	<true/>
 	<key>VisualBell</key>
