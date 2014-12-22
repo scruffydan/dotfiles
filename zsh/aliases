@@ -13,21 +13,9 @@ brewdeps() {
     echo "";
   done
 }
-brewrm() {
-  formula="$*"
-  if [ "x$formula" = "x" ]
-  then
-     echo "Invalid empty parameter"
-  else
-     echo "Removing" "$formula" "and all its deps.."
-     brew rm $formula
-     brew rm $(join <(brew leaves) <(brew deps "$formula"))
-     brew cleanup -s
-  fi
-}
 
 # FreeBSD
-alias bsdup="sudo portsnap fetch update && sudo portmaster -ab && sudo freebsd-update fetch && sudo freebsd-update install"
+alias bsdup="sudo portsnap fetch update && sudo portmaster -aB && sudo freebsd-update fetch && sudo freebsd-update install"
 alias jailup="sudo ezjail-admin update -P && sudo ezjail-admin update -u && sudo ezjail-admin console MCP_JAIL"
 
 # Apt
@@ -46,5 +34,5 @@ alias wdev="sudo apachectl restart && mysql.server restart"
 alias wdevoff="sudo apachectl stop && mysql.server stop"
 
 # SSH tunnels
-alias rdp="ssh -L 2345:10.0.0.12:3389 -g mcp"
+alias rdp="ssh -L 2345:10.0.2.2:3389 -g mcp"
 alias crashplan="ssh -L 4200:localhost:4243 mcp"
