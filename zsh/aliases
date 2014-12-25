@@ -36,3 +36,4 @@ alias wdevoff="sudo apachectl stop && mysql.server stop"
 # SSH tunnels
 alias rdp="ssh -L 2345:10.0.2.2:3389 -g mcp"
 alias crashplan="ssh -L 4200:localhost:4243 mcp"
+alias router="ssh -L 4430:10.0.0.1:443 -g mcp"
