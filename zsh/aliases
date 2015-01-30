@@ -4,6 +4,9 @@
 # Utility
 alias reload='source ~/.zshrc'
 
+#OSX flush DNS
+alias flushdns='sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches;echo "DNS flushed"'
+
 # Brew
 alias brewup="brew update && brew upgrade"
 brewdeps() {
