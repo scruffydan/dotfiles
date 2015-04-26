@@ -8,7 +8,7 @@ alias reload='source ~/.zshrc'
 alias flushdns='sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches;echo "DNS flushed"'
 
 # Brew
-alias brewup="brew update && brew upgrade"
+alias brewup="brew update && brew upgrade --all"
 brewdeps() {
   brew list | while read cask;
     do echo -n $fg[blue] $cask $fg[white];
