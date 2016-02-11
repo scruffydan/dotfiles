@@ -3,6 +3,7 @@
 ##########################
 # Utility
 alias reload='source ~/.zshrc'
+alias ..='cd ..'
 
 #OSX flush DNS
 alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;echo "DNS flushed"'
@@ -19,9 +20,14 @@ brewdeps() {
 
 # FreeBSD
 alias bsdup="sudo portsnap fetch update && sudo portmaster -aB && sudo freebsd-update fetch && sudo freebsd-update install"
-alias jailup="sudo ezjail-admin update -P && sudo jexec MCP_JAIL portmaster -aB && sudo ezjail-admin update -u"
-alias bsdaudit="echo 'Checking packeges installed on main system' && sudo pkg audit -F && echo 'Checking packeges installed on jails' && sudo jexec MCP_JAIL pkg audit -F"
-
+function jailup() {
+    sudo ezjail-admin update -P
+    for jail in `jls name`
+        do
+            sudo jexec $jail portmaster -aB
+        done
+    sudo ezjail-admin update -u
+}
 # Apt
 alias aptup="sudo apt-get update && sudo apt-get upgrade"
 
@@ -40,5 +46,4 @@ alias wdevoff="sudo apachectl stop && mysql.server stop"
 
 # SSH tunnels
 alias rdp="ssh -L 2345:10.0.2.2:3389 -g mcp"
-alias crashplan="ssh -L 4200:localhost:4357 mcp"
 alias router="ssh -L 4430:10.0.0.1:443 -g mcp"
