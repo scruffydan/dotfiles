@@ -28,6 +28,16 @@ function jailup() {
         done
     sudo ezjail-admin update -u
 }
+function bsdaudit() {
+    echo "Checking packages on main system"
+    sudo pkg audit -F
+    for jail in `jls name`
+        do
+           echo "\n\nChecking packages on $jail" 
+           sudo jexec $jail pkg audit -F 
+        done
+}
+
 # Apt
 alias aptup="sudo apt-get update && sudo apt-get upgrade"
 
