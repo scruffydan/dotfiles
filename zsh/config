@@ -154,9 +154,6 @@ bindkey "^[[B" history-beginning-search-forward-end
 [[ -n "${key[Up]}"      ]] && bindkey "${key[Up]}"      history-beginning-search-backward-end
 [[ -n "${key[Down]}"    ]] && bindkey "${key[Down]}"    history-beginning-search-forward-end
 
-# Add some color to grep
-alias grep="grep --color=auto"
-
 #######################
 ## Syntax highliting ##
 #######################

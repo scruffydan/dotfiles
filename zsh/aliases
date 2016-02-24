@@ -5,6 +5,9 @@
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
 
+# Add some color to grep
+alias grep="grep --color=auto"
+
 #OSX flush DNS
 alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;echo "DNS flushed"'
 
