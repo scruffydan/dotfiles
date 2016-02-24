@@ -155,7 +155,7 @@ bindkey "^[[B" history-beginning-search-forward-end
 [[ -n "${key[Down]}"    ]] && bindkey "${key[Down]}"    history-beginning-search-forward-end
 
 # Add some color to grep
-export GREP_OPTIONS='--color=auto'
+alias grep="grep --color=auto"
 
 #######################
 ## Syntax highliting ##
