@@ -22,14 +22,15 @@ brewdeps() {
 }
 
 # FreeBSD
-alias bsdup="sudo portsnap fetch update && sudo portmaster -aB && sudo freebsd-update fetch && sudo freebsd-update install"
+alias bsdup="sudo freebsd-update fetch && sudo freebsd-update install; sudo portsnap fetch update && sudo synth upgrade-system"
 function jailup() {
-    sudo ezjail-admin update -P
+    sudo ezjail-admin update -u
     for jail in `jls name`
         do
-            sudo jexec $jail portmaster -aB
+            echo "\n\nUpdating packages on $jail" 
+            sudo jexec $jail pkg upgrade
         done
-    sudo ezjail-admin update -u
+
 }
 function bsdaudit() {
     echo "Checking packages on main system"
