@@ -27,7 +27,7 @@ function jailup() {
     sudo ezjail-admin update -u
     for jail in `jls name`
         do
-            echo "\n\nUpdating packages on $jail" 
+            echo "\nUpdating packages on $jail" 
             sudo jexec $jail pkg upgrade
         done
 
@@ -37,7 +37,7 @@ function bsdaudit() {
     sudo pkg audit -F
     for jail in `jls name`
         do
-           echo "\n\nChecking packages on $jail" 
+           echo "\nChecking packages on $jail" 
            sudo jexec $jail pkg audit -F 
         done
 }
