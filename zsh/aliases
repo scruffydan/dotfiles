@@ -22,7 +22,11 @@ brewdeps() {
 }
 
 # FreeBSD
-alias bsdup="sudo freebsd-update fetch && sudo freebsd-update install; sudo portsnap fetch update && sudo synth upgrade-system"
+alias bsdup="sudo freebsd-update fetch &&
+             sudo freebsd-update install;
+             sudo portsnap fetch update &&
+             sudo synth prepare-system &&
+             sudo pkg upgrade"
 function jailup() {
     sudo ezjail-admin update -u
     for jail in `jls name`
