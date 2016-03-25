@@ -22,11 +22,26 @@ brewdeps() {
 }
 
 # FreeBSD
-alias bsdup="sudo freebsd-update fetch &&
-             sudo freebsd-update install;
-             sudo portsnap fetch update &&
-             sudo synth prepare-system &&
-             sudo pkg upgrade"
+function bsdup() {
+    sudo freebsd-update fetch
+    sudo freebsd-update install
+    sudo portsnap fetch update
+
+    #Get all packages installed on the main system
+    pkg_all=`pkg query -e '%a = 0' %o`
+    #Get all packages installed on all jails
+    for jail in `jls name`
+        do
+           pkg_jail=`sudo jexec $jail pkg query -e '%a = 0' %o`
+           pkg_all="$pkg_all\n$pkg_jail"
+        done
+    #Remove duplicates and export to a file
+    echo -e "$pkg_all" | awk '!x[$0]++' > ~/.synth_ports
+
+    sudo synth just-build ~/.synth_ports; rm ~/.synth_ports
+    sudo synth rebuild-repository 
+    sudo pkg upgrade
+}
 function jailup() {
     sudo ezjail-admin update -u
     for jail in `jls name`
@@ -34,7 +49,6 @@ function jailup() {
             echo "\nUpdating packages on $jail" 
             sudo jexec $jail pkg upgrade
         done
-
 }
 function bsdaudit() {
     echo "Checking packages on main system"
