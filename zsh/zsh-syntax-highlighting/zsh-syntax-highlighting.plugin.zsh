@@ -1,1 +1,1 @@
-source ${0:A:h}/zsh-syntax-highlighting.zsh
+zsh-syntax-highlighting.zsh

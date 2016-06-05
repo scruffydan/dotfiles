@@ -27,8 +27,9 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
+ZSH_HIGHLIGHT_STYLES[command]=$unused_highlight
 BUFFER='\sh'
 
 expected_region_highlight=(
-  "1 3 command" # \sh (runs 'sh', bypassing aliases)
+  "1 3 $ZSH_HIGHLIGHT_STYLES[command]" # \sh (runs 'sh', bypassing aliases)
 )
