@@ -12,7 +12,7 @@ alias grep="grep --color=auto"
 alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;echo "DNS flushed"'
 
 # Brew
-alias brewup="brew update && brew upgrade --all"
+alias brewup="brew update && brew upgrade"
 brewdeps() {
   brew list | while read cask;
     do echo -n $fg[blue] $cask $fg[white];
@@ -39,14 +39,14 @@ function bsdup() {
     echo -e "$pkg_all" | awk '!x[$0]++' > ~/.synth_ports
 
     sudo synth just-build ~/.synth_ports; rm ~/.synth_ports
-    sudo synth rebuild-repository 
+    sudo synth rebuild-repository
     sudo pkg upgrade
 }
 function jailup() {
     sudo ezjail-admin update -u
     for jail in `jls name`
         do
-            echo "\nUpdating packages on $jail" 
+            echo "\nUpdating packages on $jail"
             sudo jexec $jail pkg upgrade
         done
 }
@@ -55,8 +55,8 @@ function bsdaudit() {
     sudo pkg audit -F
     for jail in `jls name`
         do
-           echo "\nChecking packages on $jail" 
-           sudo jexec $jail pkg audit -F 
+           echo "\nChecking packages on $jail"
+           sudo jexec $jail pkg audit -F
         done
 }
 
