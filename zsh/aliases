@@ -23,8 +23,14 @@ brewdeps() {
 
 # FreeBSD
 function bsdup() {
+    # Update base system
     sudo freebsd-update fetch
     sudo freebsd-update install
+
+    # Update ezjail jails
+    sudo ezjail-admin update -u
+}
+function portup() {
     sudo portsnap fetch update
 
     #Get all packages installed on the main system
@@ -41,9 +47,8 @@ function bsdup() {
     sudo synth just-build ~/.synth_ports; rm ~/.synth_ports
     sudo synth rebuild-repository
     sudo pkg upgrade
-}
-function jailup() {
-    sudo ezjail-admin update -u
+
+    # Update ports in Jails
     for jail in `jls name`
         do
             echo "\nUpdating packages on $jail"
@@ -74,5 +79,5 @@ alias wdev="sudo apachectl restart && mysql.server restart"
 alias wdevoff="sudo apachectl stop && mysql.server stop"
 
 # SSH tunnels
-alias rdp="ssh -L 2345:10.0.2.10:3389 -g mcp"
+alias rdp="ssh -L 2345:10.0.2.2:3389 -g mcp"
 alias router="ssh -L 4430:10.0.0.1:443 -g mcp"
