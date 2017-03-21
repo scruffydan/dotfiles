@@ -47,12 +47,14 @@ function portup() {
     sudo synth just-build ~/.synth_ports; rm ~/.synth_ports
     sudo synth rebuild-repository
     sudo pkg upgrade
+    sudo pkg autoremove 
 
     # Update ports in Jails
     for jail in `jls name`
         do
             echo "\nUpdating packages on $jail"
             sudo jexec $jail pkg upgrade
+            sudo jexec $jail pkg autoremove 
         done
 }
 function bsdaudit() {
