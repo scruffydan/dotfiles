@@ -9,7 +9,7 @@ case $input in
 	YES)
 		echo "WARNING: Deleting all pool snapshots in 10 seconds. Hit ctrl+c to cancel"
 		sleep 10
-		zfs list -H -o name -t snapshot | xargs -n1 -t zfs destroy 
+		zfs list -H -o name -t snapshot -r | xargs -n1 -t zfs destroy 
 		;;
 	*)
 	echo "Cowardly refusing to proceed any further!"
