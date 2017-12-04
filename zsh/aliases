@@ -33,19 +33,22 @@ function bsdup() {
 function portup() {
     sudo portsnap fetch update
 
-    #Get all packages installed on the main system
-    pkg_all=`pkg query -e '%a = 0' %o`
-    #Get all packages installed on all jails
-    for jail in `jls name`
-        do
-           pkg_jail=`sudo jexec $jail pkg query -e '%a = 0' %o`
-           pkg_all="$pkg_all\n$pkg_jail"
-        done
-    #Remove duplicates and export to a file
-    echo -e "$pkg_all" | awk '!x[$0]++' > ~/.synth_ports
 
-    sudo synth just-build ~/.synth_ports; rm ~/.synth_ports
-    sudo synth rebuild-repository
+# Section needed to generate a package list for Synth
+#    #Get all packages installed on the main system
+#    pkg_all=`pkg query -e '%a = 0' %o`
+#    #Get all packages installed on all jails
+#    for jail in `jls name`
+#        do
+#           pkg_jail=`sudo jexec $jail pkg query -e '%a = 0' %o`
+#           pkg_all="$pkg_all\n$pkg_jail"
+#        done
+#    #Remove duplicates and export to a file
+#    echo -e "$pkg_all" | awk '!x[$0]++' > ~/.synth_ports
+#    sudo synth just-build ~/.synth_ports; rm ~/.synth_ports
+#    sudo synth rebuild-repository
+
+
     sudo pkg upgrade
     sudo pkg autoremove 
 
