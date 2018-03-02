@@ -4,4 +4,4 @@ typeset -U path
 export PATH
 
 # Set charset to UTF8
-export LANG=en_US.UTF-8
+#export LANG=en_US.UTF-8
