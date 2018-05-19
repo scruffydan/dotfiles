@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Set up `.gitconfig` file. Appends source `~/.gitconfig
+# Setup `.gitconfig` file. Appends source `~/.gitconfig
 touch ~/.gitconfig;
 printf "
 [include]
