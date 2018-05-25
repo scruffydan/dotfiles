@@ -10,7 +10,7 @@ call plug#end()
 " Setup Theme
 syntax on
 colorscheme submonokai
-set termguicolors
+"set termguicolors
 "set cursorline
 "hi CursorLine guibg=NONE ctermbg=NONE
 set guicursor=
