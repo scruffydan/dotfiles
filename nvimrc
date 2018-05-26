@@ -23,7 +23,11 @@ colorscheme submonokai
 " Set background color to transparent
 "hi NORMAL ctermbg=NONE
 
-" Allow Custom color for cursor line
-set cursorline
+" Enable corsorline color when entering Insert Mode
+autocmd InsertEnter * set cursorline 
+" Disable cursorline color to default when leaving Insert Mode
+autocmd InsertLeave * set nocursorline 
+
+
 " Pervent cursor from changing when switching modes
 set guicursor=
