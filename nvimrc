@@ -11,5 +11,6 @@ call plug#end()
 syntax on
 colorscheme submonokai
 "set termguicolors
+"hi NORMAL ctermbg=NONE
 set cursorline
 set guicursor=
