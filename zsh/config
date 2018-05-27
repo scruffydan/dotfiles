@@ -132,6 +132,11 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt share_history
 
+# Enable Vi Bindings
+bindkey -v
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
+
 # Enable command substitution
 setopt prompt_subst
 
