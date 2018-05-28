@@ -12,6 +12,18 @@ promptinit
 autoload -U colors
 colors
 
+# Updates editor information when the keymap changes.
+function zle-keymap-select() {
+  zle reset-prompt
+  zle -R
+}
+
+zle -N zle-keymap-select
+
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/[Vi] }/(main|viins)/}"
+}
+
 # Turn on and configure the version control system information
 autoload -Uz vcs_info
 precmd () { vcs_info }
@@ -21,9 +33,9 @@ zstyle ':vcs_info:*' formats "%{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}
 
 
 # Update the command prompt
-PROMPT="
-%{$fg[green]%}%n@%{$fg[yellow]%}%m%{$fg[green]%}:%~%{$reset_color%}
-$ "
+PROMPT='
+%{$fg[red]%}$(vi_mode_prompt_info)%{$fg[green]%}%n@%{$fg[yellow]%}%m%{$fg[green]%}:%~%{$reset_color%}
+$ ' 
 RPROMPT='${vcs_info_msg_0_}'
 
 ############
