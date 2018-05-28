@@ -3,6 +3,7 @@ set nu
 
 " Vim-Plug
 call plug#begin()
+" Install theme and theme related plugins 
 Plug 'scruffydan/submonokai-vim'
 Plug 'pangloss/vim-javascript'
 
@@ -25,3 +26,6 @@ colorscheme submonokai
 
 " Pervent cursor from changing when switching modes
 set guicursor=
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
