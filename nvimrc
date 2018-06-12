@@ -20,6 +20,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
+" close preview window on leaving the insert mode
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 call plug#end()
 
@@ -45,6 +47,10 @@ set hidden
 "Language Servers are listed here
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'html': ['html-languageserver', '--stdio'],
+    \ 'css': ['css-languageserver', '--stdio'],
+    \ 'sass': ['css-languageserver', '--stdio'],
+    \ 'scss': ['css-languageserver', '--stdio'],
     \ }
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
