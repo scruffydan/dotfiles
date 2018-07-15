@@ -29,6 +29,9 @@ call plug#end()
 syntax on
 colorscheme submonokai
 
+" Set text wrapping behaviour
+set wrap linebreak nolist
+
 " Set enable truecolor
 "set termguicolors
 " Set background color to transparent
