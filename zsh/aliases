@@ -72,7 +72,7 @@ function bsdaudit() {
 
 # Common folders (some do a short git status check)
 alias dotfiles="cd ~/dotfiles && git status -s"
-alias articles="cd ~/Documents/Articles && git status -s"
+alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
 
 # Wakeonlan
 alias wols="wakeonlan -i 10.0.3.255 00:1f:d0:d1:49:b5"
