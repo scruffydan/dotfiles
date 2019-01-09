@@ -29,6 +29,11 @@ call plug#end()
 syntax on
 colorscheme submonokai
 
+" Set tab as 4 spaces
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " Set text wrapping behaviour
 set wrap linebreak nolist
 
