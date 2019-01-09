@@ -23,6 +23,8 @@ let g:deoplete#enable_at_startup = 1
 " close preview window on leaving the insert mode
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+Plug 'Yggdroot/indentLine'
+
 call plug#end()
 
 " Setup Theme
