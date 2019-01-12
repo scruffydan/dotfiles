@@ -23,7 +23,7 @@ let g:deoplete#enable_at_startup = 1
 " close preview window on leaving the insert mode
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -68,6 +68,11 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 "nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-"Show Invisible characters
+" Show Invisible characters
 set listchars=eol:¬,tab:>·,trail:·,extends:>,precedes:<
 set list
+
+" Dont conceal characters
+set conceallevel=0
+
+
