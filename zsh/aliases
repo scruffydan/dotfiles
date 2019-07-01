@@ -75,13 +75,5 @@ alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
 
 # Wakeonlan
-alias wols="wakeonlan -i 10.0.3.255 00:1f:d0:d1:49:b5"
-alias wolh="wakeonlan -i 10.0.3.255 f4:6d:04:05:68:92"
+alias wolh="wakeonlan -i 10.8.3.255 f4:6d:04:05:68:92"
 
-# Local web development
-alias wdev="sudo apachectl restart && mysql.server restart"
-alias wdevoff="sudo apachectl stop && mysql.server stop"
-
-# SSH tunnels
-alias rdp="ssh -L 2345:10.0.2.10:3389 -g mcp"
-alias router="ssh -L 4430:10.0.0.1:443 -g mcp"
