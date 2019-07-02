@@ -75,5 +75,6 @@ alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
 
 # Wakeonlan
-alias wolh="wakeonlan -i 10.8.3.61 f4:6d:04:05:68:92"
+# Also need to add a static arp config to your USG via the config.gateway.json.
+alias wolh="wakeonlan -i 10.8.3.254 f4:6d:04:05:68:92"
 
