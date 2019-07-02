@@ -75,5 +75,5 @@ alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
 
 # Wakeonlan
-alias wolh="wakeonlan -i 10.8.3.255 f4:6d:04:05:68:92"
+alias wolh="wakeonlan -i 10.8.3.61 f4:6d:04:05:68:92"
 
