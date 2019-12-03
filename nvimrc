@@ -36,6 +36,7 @@ command T4 :set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set expandtab
 
 " Set text wrapping behaviour
 set wrap linebreak nolist
+set breakindent
 
 " Set enable truecolor
 "set termguicolors
