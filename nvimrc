@@ -24,10 +24,14 @@ call plug#end()
 syntax on
 colorscheme submonokai
 
-" Set tab as 4 spaces
-set tabstop=4
-set shiftwidth=4
+" Set tab as 2 spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
+
+command T2 :set tabstop=2 | set softtabstop=2 | set shiftwidth=2 | set expandtab"
+command T4 :set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set expandtab"
 
 " Set text wrapping behaviour
 set wrap linebreak nolist
