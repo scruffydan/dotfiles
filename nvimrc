@@ -30,6 +30,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" Command to make :T2 and T4 set tab widths respectively
 command T2 :set tabstop=2 | set softtabstop=2 | set shiftwidth=2 | set expandtab"
 command T4 :set tabstop=4 | set softtabstop=4 | set shiftwidth=4 | set expandtab"
 
