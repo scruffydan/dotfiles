@@ -184,6 +184,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 source ~/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=YES
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#75715E"
 
 # Have commands starting with `rm -rf` in red:
