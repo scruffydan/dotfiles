@@ -6,6 +6,7 @@ call plug#begin()
 " Install theme and theme related plugins 
 Plug 'scruffydan/submonokai-vim'
 Plug 'pangloss/vim-javascript'
+Plug 'crusoexia/vim-javascript-lib'
 
 " Setup fuzzy finder (fzf) 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -23,6 +24,7 @@ call plug#end()
 " Setup Theme
 syntax on
 colorscheme submonokai
+
 
 " Set tab as 2 spaces
 set tabstop=2
