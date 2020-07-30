@@ -12,7 +12,7 @@ alias grep="grep --color=auto"
 alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;echo "DNS flushed"'
 
 # Brew
-alias brewup="brew update && brew upgrade && brew cask upgrade"
+alias brewup="brew update && brew upgrade"
 brewdeps() {
   brew list | while read cask;
     do echo -n $fg[blue] $cask $fg[white];
