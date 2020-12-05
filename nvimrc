@@ -15,7 +15,7 @@ Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :FZF<CR>
 
 " Setup coc.nvim
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Plug 'Yggdroot/indentLine'
 
