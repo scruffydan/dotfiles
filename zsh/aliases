@@ -32,15 +32,15 @@ function bsdup() {
 }
 function portup() {
 #    sudo portsnap fetch update
-
-
-# Section needed to generate a package list for Synth
+#
+#
+## Section needed to generate a package list for Synth
 #    #Get all packages installed on the main system
-#    pkg_all=`pkg query -e '%a = 0' %o`
+#    pkg_all=`pkg prime-origins`
 #    #Get all packages installed on all jails
 #    for jail in `jls name`
 #        do
-#           pkg_jail=`sudo jexec $jail pkg query -e '%a = 0' %o`
+#           pkg_jail=`sudo jexec $jail pkg prime-origins`
 #           pkg_all="$pkg_all\n$pkg_jail"
 #        done
 #    #Remove duplicates and export to a file
