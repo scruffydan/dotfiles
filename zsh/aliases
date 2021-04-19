@@ -56,8 +56,8 @@ function portup() {
     for jail in `jls name`
         do
             echo "\nUpdating packages on $jail"
-            sudo setfib 1 jexec $jail pkg upgrade
-            sudo setfib 1 jexec $jail pkg autoremove 
+            sudo jexec $jail pkg upgrade
+            sudo jexec $jail pkg autoremove 
         done
 }
 function bsdaudit() {
