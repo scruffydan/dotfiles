@@ -66,7 +66,7 @@ function bsdaudit() {
     for jail in `jls name`
         do
            echo "\nChecking packages on $jail"
-           sudo setfib 1 jexec $jail pkg audit -F
+           sudo jexec $jail pkg audit -F
         done
 }
 
