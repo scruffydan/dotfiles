@@ -51,11 +51,11 @@ function portup() {
         done
 }
 function bsdaudit() {
-    echo "Checking packages on main system"
+    echo "\e[1;32m[Checking Packages on Base System]\e[0m"
     sudo pkg audit -F
     for jail in `jls name`
         do
-           echo "\nChecking packages on $jail"
+           echo "\n\e[1;32m[Checking Packages on $jail]\e[0m"
            sudo jexec $jail pkg audit -F
         done
 }
