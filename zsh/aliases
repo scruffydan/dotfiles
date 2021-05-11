@@ -24,12 +24,12 @@ brewdeps() {
 # FreeBSD
 function bsdup() {
     # Update base system
-    echo "\e[1;32m[Updating Base System]\e[0m"
+    echo "\e[1;32m[Updating Base System]:\e[0m"
     sudo freebsd-update fetch
     sudo freebsd-update install
 
     for d in `/bin/ls /usr/local/bastille/releases/` ; do
-        echo "\n\e[1;32m[Updating Base Jail $d]\e[0m"
+        echo "\n\e[1;32m[Updating Base Jail $d]:\e[0m"
         sudo bastille update $d
     done
     echo ""
@@ -38,14 +38,14 @@ function bsdup() {
 function portup() {
 #    sudo portsnap fetch update
 
-    echo "\e[1;32m[Updating Packages on Base System]\e[0m"
+    echo "\e[1;32m[Updating Packages on Base System]:\e[0m"
     sudo pkg upgrade -y
     sudo pkg autoremove -y
 
     # Update ports in Jails
     for jail in `jls name`
         do
-            echo "\n\e[1;32m[Updating Packages on $jail]\e[0m"
+            echo "\n\e[1;32m[Updating Packages on $jail]:\e[0m"
             sudo jexec $jail pkg upgrade -y
             sudo jexec $jail pkg autoremove -y
         done
