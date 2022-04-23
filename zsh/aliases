@@ -4,6 +4,7 @@
 # Utility
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
+alias pub-ip='dig +short myip.opendns.com @resolver1.opendns.com' # Get Public IP:
 
 # Add some color to grep
 alias grep="grep --color=auto"
