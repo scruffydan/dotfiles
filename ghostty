@@ -1,0 +1,41 @@
+# This is the configuration file for Ghostty.
+
+#############
+### Theme ###
+#############
+# Colors
+palette = 0=#1D1E19
+palette = 1=#ED3A2C
+palette = 2=#E6DC6D
+palette = 3=#FF9800
+palette = 4=#0097F3
+palette = 5=#FB2B71
+palette = 6=#00DFF3
+palette = 7=#F6EDEE
+palette = 8=#E0D75A
+palette = 9=#ED3A2C
+palette = 10=#E6DC6D
+palette = 11=#FF9800
+palette = 12=#0097F3
+palette = 13=#FB2B71
+palette = 14=#00DFF3
+palette = 15=#F6EDEE
+background = #272822
+foreground = #F8F8F2
+cursor-color = #F8F8F2
+selection-background = #39382F
+selection-foreground = #F8F8F2
+# Font
+font-family = Source Code Pro
+font-size = 14
+font-thicken = true
+# Window Size
+window-height = 45
+window-width = 110
+
+##########################
+### Custom Keybindings ###
+##########################
+# Set ctrl+c to SIGINT
+# this is not working on macOS
+#keybind = ctrl+c=text:\x03
