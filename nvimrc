@@ -14,8 +14,11 @@ Plug 'junegunn/fzf.vim'
 " Setup <C-p> fzf shortcut
 nnoremap <C-p> :FZF<CR>
 
+" Setup Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " Setup coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Plug 'Yggdroot/indentLine'
 
