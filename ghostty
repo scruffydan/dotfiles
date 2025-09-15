@@ -26,9 +26,16 @@ cursor-color = #F8F8F2
 selection-background = #39382F
 selection-foreground = #F8F8F2
 # Font
-#font-family = Source Code Pro
+font-family = Source Code Pro
 font-size = 14
+font-thicken = true
 # Window Size
 window-height = 45
 window-width = 110
 
+##########################
+### Custom Keybindings ###
+##########################
+# Set ctrl+c to SIGINT
+# this is not working on macOS
+#keybind = ctrl+c=text:\x03
