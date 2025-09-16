@@ -19,7 +19,6 @@ palette = 11=#FF9800
 palette = 12=#0097F3
 palette = 13=#FB2B71
 palette = 14=#00DFF3
-palette = 15=#F6EDEE
 background = #272822
 foreground = #F8F8F2
 cursor-color = #F8F8F2
@@ -36,6 +35,13 @@ window-width = 110
 ##########################
 ### Custom Keybindings ###
 ##########################
-# Set ctrl+c to SIGINT
-# this is not working on macOS
-#keybind = ctrl+c=text:\x03
+# On macOS by default, the option key plus a character will sometimes produce a Unicode character.
+# In order to stop this for all keyboard layouts we set the following
+# More info https://ghostty.org/docs/config/reference#macos-option-as-alt
+macos-option-as-alt = true
+
+############################
+### Quick Terminal Setup ###
+############################
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+quick-terminal-position = top
