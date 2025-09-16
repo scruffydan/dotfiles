@@ -43,5 +43,6 @@ macos-option-as-alt = true
 ############################
 ### Quick Terminal Setup ###
 ############################
+# ctrl+` for quick terminal toggle
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 quick-terminal-position = top
