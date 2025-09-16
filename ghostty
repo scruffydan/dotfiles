@@ -46,3 +46,5 @@ macos-option-as-alt = true
 # ctrl+` for quick terminal toggle
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 quick-terminal-position = top
+quick-terminal-size = 25%,1000px
+
