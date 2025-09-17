@@ -28,9 +28,16 @@ selection-foreground = #F8F8F2
 font-family = Source Code Pro
 font-size = 14
 font-thicken = true
+
+################
+### Settings ###
+################
 # Window Size
 window-height = 45
 window-width = 110
+# Resize the window in discrete increments aliging with text cells
+window-step-resize = true
+shell-integration-features = ssh-env
 
 ##########################
 ### Custom Keybindings ###
