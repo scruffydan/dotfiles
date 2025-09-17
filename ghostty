@@ -38,6 +38,8 @@ window-width = 110
 # Resize the window in discrete increments aliging with text cells
 window-step-resize = true
 shell-integration-features = ssh-env
+# Do not display a nitification badge when the bell is triggered
+bell-features = no-attention
 
 ##########################
 ### Custom Keybindings ###
