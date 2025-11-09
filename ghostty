@@ -33,7 +33,8 @@ font-thicken = true
 ### Settings ###
 ################
 # Window Size
-window-height = 45
+# Add Padding of 2 to height to account for title and tab bars
+window-height = 47
 window-width = 110
 # Resize the window in discrete increments aliging with text cells
 window-step-resize = true
