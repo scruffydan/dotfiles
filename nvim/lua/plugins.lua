@@ -60,13 +60,4 @@ require("lazy").setup({
       })
     end,
   },
-
-  -- Uncomment if you want to use coc.nvim
-  -- {
-  --   "neoclide/coc.nvim",
-  --   branch = "release",
-  -- },
-
-  -- Uncomment if you want indent lines
-  -- "Yggdroot/indentLine",
 })
