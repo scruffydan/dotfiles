@@ -50,19 +50,19 @@ require("lazy").setup({
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
           -- Web
-          "javascript", "typescript", "tsx", "html", "css", "scss",
+          "javascript", "typescript", "tsx", "html", "css", "scss", "svelte", "vue",
           -- Data formats
-          "json", "yaml", "toml", "xml",
+          "json", "yaml", "toml", "xml", "proto", "prisma",
           -- Scripting
-          "lua", "python", "bash", "zsh", "fish",
+          "lua", "python", "bash", "zsh", "fish", "jq",
           -- Systems
-          "c", "cpp", "rust", "go", "zig",
+          "c", "cpp", "rust", "go", "zig", "swift",
           -- JVM
           "java", "kotlin",
           -- Other
-          "ruby", "php", "sql", "graphql",
+          "ruby", "php", "sql", "graphql", "elixir",
           -- Config/Doc
-          "vim", "vimdoc", "markdown", "dockerfile", "terraform", "make", "regex",
+          "vim", "vimdoc", "markdown", "dockerfile", "terraform", "hcl", "make", "regex", "nginx", "cmake", "nix",
           -- Git
           "git_config", "gitcommit", "gitignore", "diff",
         },
