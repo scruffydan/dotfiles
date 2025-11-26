@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Setup `.gitconfig` file. Appends source `~/.gitconfig
 touch ~/.gitconfig;

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Set up `.gitconfig` file. Appends source `~/.gitconfig
 touch ~/.tmux.conf;

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 mkdir -p ~/.config/ghostty;
 touch ~/.config/ghostty/config;
 printf "

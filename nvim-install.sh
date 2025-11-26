@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Setup neovim config file
 mkdir -p ~/.config/nvim/ && touch ~/.config/nvim/init.vim;
