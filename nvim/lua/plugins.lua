@@ -48,7 +48,24 @@ require("lazy").setup({
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "javascript", "typescript", "lua", "vim", "vimdoc", "json", "html", "css" },
+        ensure_installed = {
+          -- Web
+          "javascript", "typescript", "tsx", "html", "css", "scss",
+          -- Data formats
+          "json", "yaml", "toml", "xml",
+          -- Scripting
+          "lua", "python", "bash", "zsh", "fish",
+          -- Systems
+          "c", "cpp", "rust", "go", "zig",
+          -- JVM
+          "java", "kotlin",
+          -- Other
+          "ruby", "php", "sql", "graphql",
+          -- Config/Doc
+          "vim", "vimdoc", "markdown", "dockerfile", "terraform", "make", "regex",
+          -- Git
+          "git_config", "gitcommit", "gitignore", "diff",
+        },
         auto_install = true,
         highlight = {
           enable = true,
