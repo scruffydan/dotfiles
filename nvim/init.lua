@@ -33,6 +33,13 @@ vim.opt.updatetime = 250  -- Faster completion and git signs
 vim.opt.timeoutlen = 300  -- Faster key sequence completion
 vim.opt.lazyredraw = false  -- Don't use with modern terminals
 
+-- Search settings
+vim.opt.ignorecase = true  -- Case insensitive search
+vim.opt.smartcase = true   -- Unless uppercase used
+vim.opt.incsearch = true   -- Incremental search
+vim.opt.hlsearch = true    -- Highlight matches
+vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true })  -- Clear highlights
+
 -- Custom commands for tab width switching
 vim.api.nvim_create_user_command('T2', function()
   vim.opt.tabstop = 2
