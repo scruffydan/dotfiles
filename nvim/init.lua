@@ -60,5 +60,8 @@ end, {})
 vim.keymap.set('n', '<C-p>', ':FZF<CR>', { noremap = true })
 vim.keymap.set('n', '<F5>', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 
+-- Add dotfiles nvim lua directory to package path
+package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
+
 -- Load plugins
 require('plugins')
