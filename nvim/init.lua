@@ -1,5 +1,8 @@
--- Basic Settings
+-- UI Settings
 vim.opt.number = true
+vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
+vim.opt.conceallevel = 0  -- Don't conceal characters
+vim.cmd('syntax on')  -- Enable syntax highlighting
 
 -- Tab settings (2 spaces)
 vim.opt.tabstop = 2
@@ -10,14 +13,7 @@ vim.opt.expandtab = true
 -- Text wrapping behavior
 vim.opt.wrap = true
 vim.opt.linebreak = true
-vim.opt.list = false  -- This would interfere with linebreak
 vim.opt.breakindent = true
-
--- Prevent cursor from changing when switching modes
-vim.opt.guicursor = ""
-
--- Required for operations modifying multiple buffers like rename
-vim.opt.hidden = true
 
 -- Show invisible characters
 vim.opt.listchars = {
@@ -29,11 +25,13 @@ vim.opt.listchars = {
 }
 vim.opt.list = true
 
--- Don't conceal characters
-vim.opt.conceallevel = 0
+-- Buffer settings
+vim.opt.hidden = true  -- Required for operations modifying multiple buffers
 
--- Enable syntax highlighting
-vim.cmd('syntax on')
+-- Performance settings
+vim.opt.updatetime = 250  -- Faster completion and git signs
+vim.opt.timeoutlen = 300  -- Faster key sequence completion
+vim.opt.lazyredraw = false  -- Don't use with modern terminals
 
 -- Custom commands for tab width switching
 vim.api.nvim_create_user_command('T2', function()
@@ -56,9 +54,8 @@ vim.api.nvim_create_user_command('W', function()
   vim.cmd('edit!')
 end, {})
 
--- Keymappings
-vim.keymap.set('n', '<C-p>', ':FZF<CR>', { noremap = true })
-vim.keymap.set('n', '<F5>', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+-- Keymappings (FZF keymap moved to lazy loading config in plugins.lua)
+vim.keymap.set('n', '<F5>', vim.lsp.buf.hover, { noremap = true, silent = true, desc = "LSP Hover" })
 
 -- Add dotfiles nvim lua directory to package path
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')

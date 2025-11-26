@@ -24,10 +24,6 @@ require("lazy").setup({
     end,
   },
 
-  -- JavaScript syntax
-  "pangloss/vim-javascript",
-  "crusoexia/vim-javascript-lib",
-
   -- FZF fuzzy finder
   {
     "junegunn/fzf",
@@ -35,21 +31,28 @@ require("lazy").setup({
       vim.fn.system("./install --all")
     end,
     dir = "~/.fzf",
+    lazy = true,
   },
   {
     "junegunn/fzf.vim",
     dependencies = { "junegunn/fzf" },
+    keys = {
+      { "<C-p>", ":FZF<CR>", desc = "Open FZF" },
+    },
   },
 
-  -- Treesitter
+  -- Treesitter (handles syntax highlighting, replaces vim-javascript)
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "javascript", "typescript", "lua", "vim", "vimdoc" },
+        ensure_installed = { "javascript", "typescript", "lua", "vim", "vimdoc", "json", "html", "css" },
+        auto_install = true,
         highlight = {
           enable = true,
+          additional_vim_regex_highlighting = false,
         },
         indent = {
           enable = true,
