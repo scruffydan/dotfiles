@@ -47,7 +47,6 @@ vim.opt.hidden = true  -- Required for operations modifying multiple buffers
 -- Performance settings
 vim.opt.updatetime = 250  -- Faster completion and git signs
 vim.opt.timeoutlen = 300  -- Faster key sequence completion
-vim.opt.lazyredraw = false  -- Don't use with modern terminals
 
 -- Search settings
 vim.opt.ignorecase = true  -- Case insensitive search
