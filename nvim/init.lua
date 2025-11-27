@@ -3,6 +3,22 @@ vim.opt.number = true
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
 vim.opt.conceallevel = 0  -- Don't conceal characters
 vim.cmd('syntax on')  -- Enable syntax highlighting
+vim.opt.cursorline = true  -- Highlight current line
+
+-- Change cursor line color in insert mode
+vim.api.nvim_create_autocmd('InsertEnter', {
+  pattern = '*',
+  callback = function()
+    vim.cmd('highlight CursorLine guibg=#1D1E19 ctermbg=236')
+  end,
+})
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+  pattern = '*',
+  callback = function()
+    vim.cmd('highlight CursorLine guibg=NONE ctermbg=NONE')
+  end,
+})
 
 -- Tab settings (2 spaces)
 vim.opt.tabstop = 2
