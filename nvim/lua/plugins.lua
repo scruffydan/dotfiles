@@ -54,9 +54,9 @@ require("lazy").setup({
           -- Data formats
           "json", "yaml", "toml", "xml", "proto", "prisma",
           -- Scripting
-          "lua", "python", "bash", "zsh", "fish", "jq",
+          "lua", "python", "bash", "fish", "jq",
           -- Systems
-          "c", "cpp", "rust", "go", "zig", "swift",
+          "c", "cpp", "rust", "go",
           -- JVM
           "java", "kotlin",
           -- Other
