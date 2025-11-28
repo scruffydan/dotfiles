@@ -72,6 +72,15 @@ require("lazy").setup({
     end,
   },
 
+  -- Auto-close brackets/quotes
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  },
+
   -- Treesitter (handles syntax highlighting, replaces vim-javascript)
   {
     "nvim-treesitter/nvim-treesitter",
