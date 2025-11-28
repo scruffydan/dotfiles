@@ -72,6 +72,15 @@ require("lazy").setup({
     end,
   },
 
+  -- Which-key (shows available keybindings)
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("which-key").setup({})
+    end,
+  },
+
   -- Treesitter (handles syntax highlighting, replaces vim-javascript)
   {
     "nvim-treesitter/nvim-treesitter",
