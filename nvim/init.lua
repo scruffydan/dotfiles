@@ -1,12 +1,29 @@
+-- Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- UI Settings
 vim.opt.number = true
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
 vim.opt.conceallevel = 0  -- Don't conceal characters
-vim.cmd('syntax on')  -- Enable syntax highlighting
 vim.opt.cursorline = true  -- Highlight current line
+vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
+vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
+
+-- Enable true color only if terminal supports it
+if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" then
+  vim.opt.termguicolors = true
+end
+
+-- Split behavior
+vim.opt.splitright = true  -- Open vertical splits to the right
+vim.opt.splitbelow = true  -- Open horizontal splits below
 
 -- Change cursor line color in insert mode
+local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+
 vim.api.nvim_create_autocmd('InsertEnter', {
+  group = augroup,
   pattern = '*',
   callback = function()
     vim.cmd('highlight CursorLine guibg=#1D1E19 ctermbg=236')
@@ -14,6 +31,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 })
 
 vim.api.nvim_create_autocmd('InsertLeave', {
+  group = augroup,
   pattern = '*',
   callback = function()
     vim.cmd('highlight CursorLine guibg=NONE ctermbg=NONE')
@@ -69,15 +87,6 @@ vim.api.nvim_create_user_command('T4', function()
   vim.opt.shiftwidth = 4
   vim.opt.expandtab = true
 end, {})
-
--- Allow saving of files as sudo when I forgot to start vim using sudo
-vim.api.nvim_create_user_command('W', function()
-  vim.cmd('silent w !sudo tee % > /dev/null')
-  vim.cmd('edit!')
-end, {})
-
--- Keymappings (FZF keymap moved to lazy loading config in plugins.lua)
-vim.keymap.set('n', '<F5>', vim.lsp.buf.hover, { noremap = true, silent = true, desc = "LSP Hover" })
 
 -- Add dotfiles nvim lua directory to package path
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
