@@ -6,7 +6,6 @@ vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
 vim.opt.conceallevel = 0  -- Don't conceal characters
-vim.cmd('syntax on')  -- Enable syntax highlighting
 vim.opt.cursorline = true  -- Highlight current line
 vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
 vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
