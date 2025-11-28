@@ -50,6 +50,7 @@ require("lazy").setup({
           width = 30,
         },
         renderer = {
+          highlight_opened_files = "name",
           icons = {
             show = {
               file = true,
