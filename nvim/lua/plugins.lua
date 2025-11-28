@@ -57,8 +57,6 @@ require("lazy").setup({
           "lua", "python", "bash", "jq",
           -- Systems
           "c", "cpp", "rust", "go",
-          -- JVM
-          "java", "kotlin",
           -- Other
           "ruby", "php", "sql", "graphql",
           -- Config/Doc
