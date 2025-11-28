@@ -10,11 +10,7 @@ Your config is minimal and well-organized with two files:
 ## Suggested Improvements
 
 ### 1. Add a Leader Key - DONE
-~~You don't have a leader key defined. This is fundamental for custom keymaps:~~
-```lua
-vim.g.mapleader = " "      -- Space as leader
-vim.g.maplocalleader = " "
-```
+~~You don't have a leader key defined.~~ - Added space as leader.
 
 ### 2. Missing Essential Options - DONE (partial)
 Added scrolloff, sidescrolloff, splitright, splitbelow, conditional termguicolors, and clipboard.
@@ -24,22 +20,23 @@ Skipped:
 - `undofile` - not wanted
 
 ### 3. Redundant Setting - DONE
-~~Line 5: `vim.cmd('syntax on')` is unnecessary~~ - Removed.
+~~`vim.cmd('syntax on')` is unnecessary~~ - Removed.
 
 ### 4. Package Path Manipulation
-Line 83 is unnecessary. Lazy.nvim and Neovim's `rtp` handle lua module loading. This line can be removed:
+The `package.path` line is unnecessary. Lazy.nvim and Neovim's `rtp` handle lua module loading. This line can be removed:
 ```lua
 -- REMOVE THIS LINE:
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 ```
 
-### 5. Plugin Suggestions
+### 5. Plugin Suggestions - PARTIAL
+Added:
+- `telescope.nvim` - Fuzzy finder (Ctrl-P, Space+ff/fg/fb/fh)
+- `nvim-tree.lua` - File explorer (Space+e toggle, Space+o focus)
 
-Your plugin set is minimal. Consider adding:
-
+Still available to add:
 | Plugin | Purpose |
 |--------|---------|
-| `telescope.nvim` | Modern fuzzy finder (better than fzf.vim in Neovim) |
 | `nvim-lspconfig` | LSP support |
 | `gitsigns.nvim` | Git integration in signcolumn |
 | `which-key.nvim` | Shows available keybindings |
@@ -47,10 +44,10 @@ Your plugin set is minimal. Consider adding:
 | `Comment.nvim` | Easy commenting with `gc` |
 
 ### 6. LSP Hover Keymap Issue - DONE
-~~Line 80 maps `<F5>` to `vim.lsp.buf.hover`, but you have no LSP configured.~~ - Removed.
+~~Dead keymap with no LSP configured~~ - Removed.
 
 ### 7. Better Autocommand Grouping - DONE
-~~Wrap your autocommands in an augroup to prevent duplicates on config reload.~~ - Added augroup.
+~~Wrap autocommands in an augroup~~ - Added augroup.
 
 ### 8. File Organization
 Consider splitting into separate files as the config grows:
@@ -64,11 +61,11 @@ nvim/
     └── plugins/
         ├── init.lua
         ├── treesitter.lua
-        └── fzf.lua
+        └── telescope.lua
 ```
 
 ### 9. FZF Directory Hardcoding - DONE
-~~Line 34: `dir = "~/.fzf"` assumes fzf is installed via the fzf repo's install script.~~ - Now managed by lazy.nvim.
+~~Hardcoded ~/.fzf path~~ - Replaced with Telescope.
 
 ### 10. Consistent Keymap Style - SKIPPED
 Current approach is fine: plugin-specific keys in lazy specs, general keys in init.lua.
@@ -78,5 +75,5 @@ Current approach is fine: plugin-specific keys in lazy specs, general keys in in
 ## Remaining Items
 
 1. Remove unnecessary `package.path` line (option 4)
-2. Consider adding suggested plugins (option 5)
+2. Consider adding more plugins (option 5): LSP, gitsigns, which-key, autopairs, Comment
 3. Consider file organization as config grows (option 8)
