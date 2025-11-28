@@ -34,7 +34,7 @@ zstyle ':vcs_info:*' formats "%{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}
 
 # Update the command prompt
 PROMPT='
-%{$fg[red]%}$(vi_mode_prompt_info)%{$fg[green]%}%n@%{$fg[yellow]%}%m%%:%{$fg[cyan]%}%~%{$reset_color%}
+%{$fg[red]%}$(vi_mode_prompt_info)%{$fg[green]%}%n@%{$fg[yellow]%}%m:%{$fg[cyan]%}%~%{$reset_color%}
 $ ' 
 RPROMPT='${vcs_info_msg_0_}'
 
