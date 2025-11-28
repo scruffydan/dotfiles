@@ -17,12 +17,11 @@ vim.g.maplocalleader = " "
 ```
 
 ### 2. Missing Essential Options - DONE (partial)
-Added scrolloff, sidescrolloff, splitright, splitbelow, and conditional termguicolors.
+Added scrolloff, sidescrolloff, splitright, splitbelow, conditional termguicolors, and clipboard.
 
 Skipped:
 - `signcolumn` - not wanted
 - `undofile` - not wanted
-- `clipboard` - may not work over SSH
 
 ### 3. Redundant Setting - DONE
 ~~Line 5: `vim.cmd('syntax on')` is unnecessary~~ - Removed.

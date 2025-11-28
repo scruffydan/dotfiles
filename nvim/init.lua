@@ -19,6 +19,9 @@ end
 vim.opt.splitright = true  -- Open vertical splits to the right
 vim.opt.splitbelow = true  -- Open horizontal splits below
 
+-- Use system clipboard (fails silently over SSH without clipboard provider)
+vim.opt.clipboard = "unnamedplus"
+
 -- Change cursor line color in insert mode
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 
