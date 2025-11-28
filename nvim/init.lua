@@ -90,9 +90,6 @@ vim.api.nvim_create_user_command('W', function()
   vim.cmd('edit!')
 end, {})
 
--- Keymappings (FZF keymap moved to lazy loading config in plugins.lua)
-vim.keymap.set('n', '<F5>', vim.lsp.buf.hover, { noremap = true, silent = true, desc = "LSP Hover" })
-
 -- Add dotfiles nvim lua directory to package path
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 
