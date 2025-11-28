@@ -8,6 +8,17 @@ vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
 vim.opt.conceallevel = 0  -- Don't conceal characters
 vim.cmd('syntax on')  -- Enable syntax highlighting
 vim.opt.cursorline = true  -- Highlight current line
+vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
+vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
+
+-- Enable true color only if terminal supports it
+if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" then
+  vim.opt.termguicolors = true
+end
+
+-- Split behavior
+vim.opt.splitright = true  -- Open vertical splits to the right
+vim.opt.splitbelow = true  -- Open horizontal splits below
 
 -- Change cursor line color in insert mode
 vim.api.nvim_create_autocmd('InsertEnter', {
