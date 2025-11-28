@@ -20,7 +20,10 @@ vim.opt.splitright = true  -- Open vertical splits to the right
 vim.opt.splitbelow = true  -- Open horizontal splits below
 
 -- Change cursor line color in insert mode
+local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+
 vim.api.nvim_create_autocmd('InsertEnter', {
+  group = augroup,
   pattern = '*',
   callback = function()
     vim.cmd('highlight CursorLine guibg=#1D1E19 ctermbg=236')
@@ -28,6 +31,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 })
 
 vim.api.nvim_create_autocmd('InsertLeave', {
+  group = augroup,
   pattern = '*',
   callback = function()
     vim.cmd('highlight CursorLine guibg=NONE ctermbg=NONE')
