@@ -27,11 +27,7 @@ require("lazy").setup({
   -- FZF fuzzy finder
   {
     "junegunn/fzf",
-    build = function()
-      vim.fn.system("./install --all")
-    end,
-    dir = "~/.fzf",
-    lazy = true,
+    build = ":call fzf#install()",
   },
   {
     "junegunn/fzf.vim",
