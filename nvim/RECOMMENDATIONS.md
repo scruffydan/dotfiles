@@ -9,27 +9,23 @@ Your config is minimal and well-organized with two files:
 
 ## Suggested Improvements
 
-### 1. Add a Leader Key
-You don't have a leader key defined. This is fundamental for custom keymaps:
+### 1. Add a Leader Key - DONE
+~~You don't have a leader key defined. This is fundamental for custom keymaps:~~
 ```lua
 vim.g.mapleader = " "      -- Space as leader
 vim.g.maplocalleader = " "
 ```
 
-### 2. Missing Essential Options
-```lua
-vim.opt.termguicolors = true   -- True color support (important for themes)
-vim.opt.signcolumn = "yes"     -- Always show signcolumn (prevents text shift)
-vim.opt.scrolloff = 8          -- Keep 8 lines visible above/below cursor
-vim.opt.sidescrolloff = 8      -- Keep 8 columns visible left/right
-vim.opt.splitright = true      -- Open vertical splits to the right
-vim.opt.splitbelow = true      -- Open horizontal splits below
-vim.opt.undofile = true        -- Persistent undo history
-vim.opt.clipboard = "unnamedplus"  -- Use system clipboard
-```
+### 2. Missing Essential Options - DONE (partial)
+Added scrolloff, sidescrolloff, splitright, splitbelow, and conditional termguicolors.
 
-### 3. Redundant Setting
-Line 5: `vim.cmd('syntax on')` is unnecessary - Neovim enables syntax highlighting by default, and you're using Treesitter anyway.
+Skipped:
+- `signcolumn` - not wanted
+- `undofile` - not wanted
+- `clipboard` - may not work over SSH
+
+### 3. Redundant Setting - DONE
+~~Line 5: `vim.cmd('syntax on')` is unnecessary~~ - Removed.
 
 ### 4. Package Path Manipulation
 Line 83 is unnecessary. Lazy.nvim and Neovim's `rtp` handle lua module loading. This line can be removed:
@@ -45,38 +41,17 @@ Your plugin set is minimal. Consider adding:
 | Plugin | Purpose |
 |--------|---------|
 | `telescope.nvim` | Modern fuzzy finder (better than fzf.vim in Neovim) |
-| `nvim-lspconfig` | LSP support (you have `vim.lsp.buf.hover` mapped but no LSP configured) |
+| `nvim-lspconfig` | LSP support |
 | `gitsigns.nvim` | Git integration in signcolumn |
 | `which-key.nvim` | Shows available keybindings |
 | `nvim-autopairs` | Auto-close brackets/quotes |
 | `Comment.nvim` | Easy commenting with `gc` |
 
-### 6. LSP Hover Keymap Issue
-Line 80 maps `<F5>` to `vim.lsp.buf.hover`, but you have no LSP configured. This keymap will do nothing. Either:
-- Remove the keymap, or
-- Add `nvim-lspconfig` and configure language servers
+### 6. LSP Hover Keymap Issue - DONE
+~~Line 80 maps `<F5>` to `vim.lsp.buf.hover`, but you have no LSP configured.~~ - Removed.
 
-### 7. Better Autocommand Grouping
-Wrap your autocommands in an augroup to prevent duplicates on config reload:
-```lua
-local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
-
-vim.api.nvim_create_autocmd('InsertEnter', {
-  group = augroup,
-  pattern = '*',
-  callback = function()
-    vim.cmd('highlight CursorLine guibg=#1D1E19 ctermbg=236')
-  end,
-})
-
-vim.api.nvim_create_autocmd('InsertLeave', {
-  group = augroup,
-  pattern = '*',
-  callback = function()
-    vim.cmd('highlight CursorLine guibg=NONE ctermbg=NONE')
-  end,
-})
-```
+### 7. Better Autocommand Grouping - DONE
+~~Wrap your autocommands in an augroup to prevent duplicates on config reload.~~ - Added augroup.
 
 ### 8. File Organization
 Consider splitting into separate files as the config grows:
@@ -93,18 +68,16 @@ nvim/
         └── fzf.lua
 ```
 
-### 9. FZF Directory Hardcoding
-Line 34: `dir = "~/.fzf"` assumes fzf is installed via the fzf repo's install script. If you use Homebrew, this path won't exist. Consider removing the `dir` option and letting lazy.nvim manage it.
+### 9. FZF Directory Hardcoding - DONE
+~~Line 34: `dir = "~/.fzf"` assumes fzf is installed via the fzf repo's install script.~~ - Now managed by lazy.nvim.
 
-### 10. Consistent Keymap Style
-You mix `vim.keymap.set` (line 56, 80) with keys in lazy plugin specs (line 39-41). Both work, but consolidating to one style improves maintainability.
+### 10. Consistent Keymap Style - SKIPPED
+Current approach is fine: plugin-specific keys in lazy specs, general keys in init.lua.
 
 ---
 
-## Priority Fixes
+## Remaining Items
 
-1. Add leader key (`vim.g.mapleader = " "`)
-2. Add `vim.opt.termguicolors = true`
-3. Remove dead LSP keymap or add LSP config
-4. Remove redundant `vim.cmd('syntax on')`
-5. Remove unnecessary `package.path` line
+1. Remove unnecessary `package.path` line (option 4)
+2. Consider adding suggested plugins (option 5)
+3. Consider file organization as config grows (option 8)
