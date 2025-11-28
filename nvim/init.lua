@@ -1,3 +1,7 @@
+-- Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- UI Settings
 vim.opt.number = true
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
