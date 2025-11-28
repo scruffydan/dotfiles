@@ -24,10 +24,10 @@ require("lazy").setup({
     end,
   },
 
-  -- FZF fuzzy finder
+  -- FZF fuzzy finder (only install binary on macOS/Linux, FreeBSD uses pkg)
   {
     "junegunn/fzf",
-    build = ":call fzf#install()",
+    build = (vim.fn.has("mac") == 1 or vim.fn.has("linux") == 1) and ":call fzf#install()" or nil,
   },
   {
     "junegunn/fzf.vim",
