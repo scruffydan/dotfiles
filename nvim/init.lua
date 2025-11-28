@@ -88,12 +88,6 @@ vim.api.nvim_create_user_command('T4', function()
   vim.opt.expandtab = true
 end, {})
 
--- Allow saving of files as sudo when I forgot to start vim using sudo
-vim.api.nvim_create_user_command('W', function()
-  vim.cmd('silent w !sudo tee % > /dev/null')
-  vim.cmd('edit!')
-end, {})
-
 -- Add dotfiles nvim lua directory to package path
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 
