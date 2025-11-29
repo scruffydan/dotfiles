@@ -10,6 +10,7 @@ vim.opt.cursorline = true  -- Highlight current line
 vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
 vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
 vim.opt.showmode = false  -- Don't show mode (lualine displays it)
+vim.opt.cmdheight = 0  -- Hide command line when not in use
 
 -- Enable true color only if terminal supports it
 if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" then
