@@ -41,6 +41,9 @@ window-step-resize = true
 shell-integration-features = ssh-env
 # Do not display a nitification badge when the bell is triggered
 bell-features = no-attention
+# New tabs/windows open in home directory
+working-directory = home
+window-inherit-working-directory = false
 
 ##########################
 ### Custom Keybindings ###
