@@ -12,7 +12,7 @@ return {
         changedelete = { text = "▎" },
         untracked    = { text = "┆" },
       },
-      signcolumn = "yes:1",
+      signcolumn = true,
       numhl      = false,
       linehl     = false,
       word_diff  = false,
