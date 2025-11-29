@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- Theme
   {
-    "scruffydan/submonokai-vim",
+    "scruffydan/submonokai-nvim",
     lazy = false,
     priority = 1000,
     config = function()
