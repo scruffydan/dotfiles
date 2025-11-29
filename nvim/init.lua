@@ -24,8 +24,21 @@ vim.opt.splitbelow = true  -- Open horizontal splits below
 -- Use system clipboard (fails silently over SSH without clipboard provider)
 vim.opt.clipboard = "unnamedplus"
 
--- Change cursor line color in insert mode
+-- Auto-detect git repo and set signcolumn
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+
+vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    local git_dir = vim.fn.finddir('.git', vim.fn.expand('%:p:h') .. ';')
+    if git_dir ~= '' then
+      vim.opt_local.signcolumn = 'yes:1'
+    else
+      vim.opt_local.signcolumn = 'no'
+    end
+  end,
+})
 
 vim.api.nvim_create_autocmd('InsertEnter', {
   group = augroup,
