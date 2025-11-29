@@ -167,6 +167,19 @@ require("lazy").setup({
     end,
   },
 
+  -- Markdown rendering
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    ft = "markdown",
+    config = function()
+      require("render-markdown").setup({})
+    end,
+  },
+
   -- Treesitter (handles syntax highlighting, replaces vim-javascript)
   {
     "nvim-treesitter/nvim-treesitter",
