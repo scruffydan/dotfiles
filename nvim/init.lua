@@ -93,7 +93,8 @@ vim.api.nvim_create_user_command('T4', function()
   vim.opt.expandtab = true
 end, {})
 
--- Add dotfiles nvim lua directory to package path
+-- Add dotfiles nvim directory to runtime path and package path
+vim.opt.rtp:prepend(vim.fn.expand('~/dotfiles/nvim'))
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 
 -- Load plugins
