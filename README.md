@@ -4,7 +4,7 @@ This is my personal dotfiles repository. These configurations are tailored speci
 
 ## ⚠️ Warning
 
-**Breaking changes may occur at any time without notice.** This repository is actively maintained for my personal needs, and I make changes whenever they suit my workflow.
+**Breaking changes may occur at any time without notice.** This repository is maintained for my personal needs, and I make changes whenever they suit my workflow.
 
 These dotfiles are designed for my personal use and are unlikely to be useful to anyone else. They contain configurations specific to my machine, workflow, and preferences.
 
