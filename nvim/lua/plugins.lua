@@ -17,6 +17,7 @@ local plugins = {
   require("plugins.theme"),
   require("plugins.telescope"),
   require("plugins.nvim-tree"),
+  require("plugins.oil"),
   require("plugins.autopairs"),
   require("plugins.which-key"),
   require("plugins.lualine"),
