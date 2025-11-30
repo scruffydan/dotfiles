@@ -8,6 +8,15 @@ return {
   },
   config = function()
     require("oil").setup({
+      columns = {
+        "icon",
+        "permissions",
+        "size",
+        "mtime",
+      },
+      view_options = {
+        show_hidden = true,
+      },
       win_options = {
         signcolumn = "yes:2",
       },
