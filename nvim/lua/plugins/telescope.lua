@@ -36,21 +36,8 @@ return {
     })
 
     -- Try to load fzf extension, fall back to native finder if it fails
-    local ok, _ = pcall(require('telescope').load_extension, 'fzf')
-    if not ok then
-      -- Only show notification once per session
-      local notified_key = 'telescope_fzf_notified'
-      if not vim.g[notified_key] then
-        -- Schedule notification to show after Neovim fully loads
-        vim.schedule(function()
-          vim.notify(
-            "telescope-fzf-native not available, using native finder. Install make/cmake for better performance.",
-            vim.log.levels.INFO
-          )
-        end)
-        vim.g[notified_key] = true
-      end
-    end
+    -- Silently falls back to native finder if fzf-native is not available
+    pcall(require('telescope').load_extension, 'fzf')
   end,
   keys = {
     { "<C-p>", "<cmd>Telescope find_files<CR>", desc = "Find files" },

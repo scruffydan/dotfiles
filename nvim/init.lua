@@ -121,3 +121,37 @@ package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 
 -- Load plugins
 require('plugins')
+
+-- Notify user if telescope-fzf-native won't be available due to missing build tools
+-- This runs at startup (VimEnter), before telescope is lazy-loaded, so the user
+-- sees the notification immediately rather than when they first use telescope
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Check which build tools are available on the system
+    local has_cmake = vim.fn.executable('cmake') == 1
+    local has_gmake = vim.fn.executable('gmake') == 1
+    local has_make = vim.fn.executable('make') == 1
+    local is_bsd = vim.fn.has('bsd') == 1
+
+    -- Determine if we can build telescope-fzf-native
+    -- On BSD: only cmake or gmake work (BSD's default make is incompatible)
+    -- On other platforms: cmake, gmake, or make all work
+    local can_build_fzf = false
+    if is_bsd then
+      can_build_fzf = has_cmake or has_gmake
+    else
+      can_build_fzf = has_cmake or has_gmake or has_make
+    end
+
+    -- If no compatible build tools are found, notify the user
+    -- The 100ms delay ensures Neovim is fully loaded and the message is visible
+    if not can_build_fzf then
+      vim.defer_fn(function()
+        vim.notify(
+          "telescope-fzf-native not available (missing build tools). Using native finder. Install make/cmake for better performance.",
+          vim.log.levels.INFO
+        )
+      end, 100)
+    end
+  end,
+})
