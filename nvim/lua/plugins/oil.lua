@@ -4,7 +4,7 @@ return {
   lazy = false,
   keys = {
     { "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
-    { "<leader>o", "<CMD>Oil<CR>", desc = "Open oil" },
+    { "<leader>e", "<CMD>Oil<CR>", desc = "Open oil" },
   },
   config = function()
     require("oil").setup({
