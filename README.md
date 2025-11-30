@@ -26,6 +26,16 @@ Seriously though, you're probably better off starting from scratch or finding a 
 - Git settings
 - Other development environment customizations
 
+## Requirements
+
+### Neovim Configuration
+
+- **make** (or cmake/gmake) - Required for building telescope-fzf-native plugin
+- **ripgrep (rg)** - Required for telescope live grep functionality
+- **C compiler** (gcc/clang) - Required for treesitter parser compilation (typically pre-installed on macOS and FreeBSD)
+- **git** - Required for lazy.nvim plugin manager and gitsigns
+- **awk** - Used in tmux status bar (typically pre-installed on macOS, Linux, and FreeBSD)
+
 ## Usage
 
 This repository is managed as my personal configuration. If you're me and setting up a new machine, you know what to do. If you're not me, you probably want to look elsewhere.
