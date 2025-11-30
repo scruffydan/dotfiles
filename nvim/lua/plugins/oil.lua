@@ -16,6 +16,9 @@ return {
       },
       view_options = {
         show_hidden = true,
+        sort = {
+          { "name", "asc" },
+        },
       },
       win_options = {
         signcolumn = "yes:2",
