@@ -25,6 +25,9 @@ vim.opt.splitbelow = true  -- Open horizontal splits below
 vim.opt.clipboard = "unnamedplus"
 
 -- Auto-detect git repo and set signcolumn
+-- This walks up the directory tree from the current file to find a .git directory
+-- If found, enables signcolumn for git signs (additions, deletions, modifications)
+-- If not in a git repo, hides signcolumn to save screen space
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
@@ -40,6 +43,7 @@ vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
   end,
 })
 
+-- Highlight the cursor line with a subtle background when entering insert mode
 vim.api.nvim_create_autocmd('InsertEnter', {
   group = augroup,
   pattern = '*',
@@ -48,6 +52,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
   end,
 })
 
+-- Remove the cursor line highlight when leaving insert mode
 vim.api.nvim_create_autocmd('InsertLeave', {
   group = augroup,
   pattern = '*',
@@ -91,7 +96,9 @@ vim.opt.incsearch = true   -- Incremental search
 vim.opt.hlsearch = true    -- Highlight matches
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true })  -- Clear highlights
 
--- Custom commands for tab width switching
+-- Custom commands for quick tab width switching
+-- :T2 switches to 2-space indentation (default for most projects)
+-- :T4 switches to 4-space indentation (useful for Python, Java, etc.)
 vim.api.nvim_create_user_command('T2', function()
   vim.opt.tabstop = 2
   vim.opt.softtabstop = 2
@@ -107,6 +114,8 @@ vim.api.nvim_create_user_command('T4', function()
 end, {})
 
 -- Add dotfiles nvim directory to runtime path and package path
+-- This allows nvim to find plugins and config files in ~/dotfiles/nvim
+-- even when nvim is started from a different directory
 vim.opt.rtp:prepend(vim.fn.expand('~/dotfiles/nvim'))
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 
