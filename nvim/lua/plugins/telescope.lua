@@ -21,8 +21,11 @@ return {
       },
     })
 
-    -- Load fzf extension
-    require('telescope').load_extension('fzf')
+    -- Try to load fzf extension, fall back to native finder if it fails
+    local ok, _ = pcall(require('telescope').load_extension, 'fzf')
+    if not ok then
+      vim.notify("telescope-fzf-native failed to load, using native finder", vim.log.levels.WARN)
+    end
   end,
   keys = {
     { "<C-p>", "<cmd>Telescope find_files<CR>", desc = "Find files" },
