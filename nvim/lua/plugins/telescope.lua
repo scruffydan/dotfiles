@@ -7,6 +7,20 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       -- Try cmake first, fall back to gmake (FreeBSD), then make (macOS/Linux)
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release || gmake || make",
+      cond = function()
+        -- Check if we have build tools available
+        local has_cmake = vim.fn.executable('cmake') == 1
+        local has_gmake = vim.fn.executable('gmake') == 1
+        local has_make = vim.fn.executable('make') == 1
+
+        -- On FreeBSD, default make won't work - need gmake or cmake
+        if vim.fn.has('bsd') == 1 then
+          return has_cmake or has_gmake
+        end
+
+        -- On other platforms, any build tool works
+        return has_cmake or has_gmake or has_make
+      end,
     },
   },
   config = function()
