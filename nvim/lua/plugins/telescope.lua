@@ -38,7 +38,15 @@ return {
     -- Try to load fzf extension, fall back to native finder if it fails
     local ok, _ = pcall(require('telescope').load_extension, 'fzf')
     if not ok then
-      vim.notify("telescope-fzf-native failed to load, using native finder", vim.log.levels.WARN)
+      -- Only show notification once per session
+      local notified_key = 'telescope_fzf_notified'
+      if not vim.g[notified_key] then
+        vim.notify(
+          "telescope-fzf-native not available, using native finder. Install make/cmake for better performance.",
+          vim.log.levels.INFO
+        )
+        vim.g[notified_key] = true
+      end
     end
   end,
   keys = {
