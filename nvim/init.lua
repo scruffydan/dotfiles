@@ -148,7 +148,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     if not can_build_fzf then
       vim.defer_fn(function()
         vim.notify(
-          "telescope-fzf-native not available (missing build tools). Using native finder. Install make/cmake for better performance.",
+          "telescope: using native finder (install make/cmake/gmake for fzf)",
           vim.log.levels.INFO
         )
       end, 100)
