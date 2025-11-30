@@ -7,6 +7,10 @@ return {
     { "<leader>o", "<CMD>Oil<CR>", desc = "Open oil" },
   },
   config = function()
-    require("oil").setup()
+    require("oil").setup({
+      win_options = {
+        signcolumn = "yes:2",
+      },
+    })
   end,
 }
