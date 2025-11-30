@@ -3,8 +3,8 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   lazy = false,
   keys = {
-    { "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
-    { "<leader>e", "<CMD>Oil<CR>", desc = "Open oil" },
+    { "-", "<CMD>Oil --float<CR>", desc = "Open parent directory" },
+    { "<leader>e", "<CMD>Oil --float<CR>", desc = "Open oil" },
   },
   config = function()
     require("oil").setup({
@@ -19,6 +19,12 @@ return {
         sort = {
           { "name", "asc" },
         },
+      },
+      float = {
+        padding = 2,
+        max_width = 0.8,
+        max_height = 0.8,
+        border = "rounded",
       },
       win_options = {
         signcolumn = "yes:2",
