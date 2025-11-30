@@ -22,7 +22,6 @@ local plugins = {
   require("plugins.which-key"),
   require("plugins.lualine"),
   require("plugins.gitsigns"),
-  require("plugins.render-markdown"),
   require("plugins.treesitter"),
 }
 
