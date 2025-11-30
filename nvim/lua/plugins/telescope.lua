@@ -5,7 +5,8 @@ return {
     "nvim-lua/plenary.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
+      -- Try cmake first, fall back to gmake (FreeBSD), then make (macOS/Linux)
+      build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release || gmake || make",
     },
   },
   config = function()
