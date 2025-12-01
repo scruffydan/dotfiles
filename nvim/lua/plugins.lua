@@ -22,6 +22,7 @@ local plugins = {
   require("plugins.which-key"),
   require("plugins.lualine"),
   require("plugins.gitsigns"),
+  require("plugins.treesitter"),
 }
 
 require("lazy").setup(plugins)
