@@ -11,6 +11,9 @@ return {
       columns = {
         "icon",
       },
+      keymaps = {
+        ["<leader>h"] = "actions.toggle_hidden",
+      },
       view_options = {
         show_hidden = true,
         sort = {
