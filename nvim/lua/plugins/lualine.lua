@@ -24,8 +24,19 @@ return {
         },
         lualine_c = {
           {
+            "searchcount",
+            maxcount = 999,
+            timeout = 500,
+            cond = function()
+              return vim.v.hlsearch ~= 0
+            end,
+          },
+          {
             "filename",
             symbols = { modified = "● ", readonly = "", unnamed = "[No Name]" },
+            cond = function()
+              return vim.v.hlsearch == 0
+            end,
           },
           {
             function()
@@ -35,7 +46,17 @@ return {
             padding = 0,
           },
         },
-        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_x = {
+          {
+            function()
+              return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+            end,
+            icon = '',
+          },
+          "encoding",
+          "fileformat",
+          "filetype",
+        },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
