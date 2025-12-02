@@ -15,14 +15,6 @@ return {
       sections = {
         lualine_a = { "mode" },
         lualine_b = {
-          "branch",
-          {
-            "diff",
-            symbols = { added = "● ", modified = "● ", removed = "● " },
-          },
-          "diagnostics",
-        },
-        lualine_c = {
           {
             "searchcount",
             maxcount = 999,
@@ -45,6 +37,14 @@ return {
             color = 'LualineReadonly',
             padding = 0,
           },
+        },
+        lualine_c = {
+          "branch",
+          {
+            "diff",
+            symbols = { added = "● ", modified = "● ", removed = "● " },
+          },
+          "diagnostics",
         },
         lualine_x = {
           {
