@@ -15,6 +15,7 @@ vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
 vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
 vim.opt.showmode = false  -- Don't show mode (lualine displays it)
 vim.opt.cmdheight = 0  -- Hide command line when not in use
+vim.opt.signcolumn = "yes"  -- Always show signcolumn
 
 -- Enable true color only if terminal supports it
 if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" then
@@ -28,24 +29,7 @@ vim.opt.splitbelow = true  -- Open horizontal splits below
 -- Use system clipboard (fails silently over SSH without clipboard provider)
 vim.opt.clipboard = "unnamedplus"
 
--- Auto-detect git repo and set signcolumn
--- This walks up the directory tree from the current file to find a .git directory
--- If found, enables signcolumn for git signs (additions, deletions, modifications)
--- If not in a git repo, hides signcolumn to save screen space
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
-
-vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {
-  group = augroup,
-  pattern = '*',
-  callback = function()
-    local git_dir = vim.fn.finddir('.git', vim.fn.expand('%:p:h') .. ';')
-    if git_dir ~= '' then
-      vim.opt_local.signcolumn = 'yes:1'
-    else
-      vim.opt_local.signcolumn = 'no'
-    end
-  end,
-})
 
 -- Highlight the cursor line with a subtle background when entering insert mode
 vim.api.nvim_create_autocmd('InsertEnter', {
