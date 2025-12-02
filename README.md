@@ -30,8 +30,11 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ### Neovim Configuration
 
-- **make** (or cmake/gmake) - Required for building telescope-fzf-native plugin
-- **ripgrep (rg)** - Required for telescope live grep functionality
+- **fzf** - Required for fzf-lua fuzzy finder (falls back to native Lua if not installed)
+  - macOS: `brew install fzf`
+  - FreeBSD: `pkg install fzf`
+  - Ubuntu/Debian: `apt install fzf`
+- **ripgrep (rg)** - Recommended for fzf-lua live grep (falls back to grep if not installed)
 - **C compiler** (gcc/clang) - Required for treesitter parser compilation (typically pre-installed on macOS and FreeBSD)
 - **tree-sitter-cli** (0.25.0 or later) - Required for nvim-treesitter main branch
   - macOS: `brew install tree-sitter-cli`
