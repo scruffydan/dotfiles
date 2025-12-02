@@ -8,6 +8,7 @@ return {
   },
   config = function()
     require("oil").setup({
+      watch_for_changes = true,
       columns = {
         "icon",
       },
