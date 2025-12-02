@@ -4,14 +4,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("fzf-lua").setup({
-      "default",
-      winopts = {
-        preview = {
-          default = "bat",
-        },
-      },
-    })
+    require("fzf-lua").setup({})
   end,
   keys = {
     { "<C-p>", "<cmd>FzfLua files<CR>", desc = "Find files" },
