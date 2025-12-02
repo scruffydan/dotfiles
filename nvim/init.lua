@@ -3,7 +3,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- UI Settings
-vim.opt.number = true
+vim.opt.number = true -- Add line numbers
+-- Toggle relative line numbers
+vim.keymap.set('n', '<leader>n', function()
+  vim.wo.relativenumber = not vim.wo.relativenumber
+end)
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
 vim.opt.conceallevel = 0  -- Don't conceal characters
 vim.opt.cursorline = true  -- Highlight current line
