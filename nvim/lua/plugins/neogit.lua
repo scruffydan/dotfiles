@@ -11,5 +11,9 @@ return {
     { "<leader>dc", "<cmd>DiffviewClose<CR>", desc = "Close DiffView" },
     { "<leader>gp", "<cmd>Neogit pull<CR>", desc = "Git pull" },
   },
-  config = true,
+  config = function()
+    require("neogit").setup({
+      auto_close_console = false,
+    })
+  end,
 }
