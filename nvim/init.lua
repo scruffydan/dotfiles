@@ -37,6 +37,10 @@ vim.keymap.set('n', '<leader>-', '<C-w>s', { desc = 'Create horizontal split' })
 vim.keymap.set('n', '<leader>|', '<C-w>v', { desc = 'Create vertical split' })
 vim.keymap.set('n', '<leader>\\', '<C-w>v', { desc = 'Create vertical split' })
 
+-- Tab navigation
+vim.keymap.set('n', '<C-n>', 'gt', { desc = 'Next tab' })
+vim.keymap.set('n', '<C-p>', 'gT', { desc = 'Previous tab' })
+
 -- Terminal mode
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<Esc><Esc>', '<Esc>', { desc = 'Send Esc to terminal' })
