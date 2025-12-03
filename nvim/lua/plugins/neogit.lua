@@ -8,6 +8,7 @@ return {
   keys = {
     { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
     { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
+    { "<leader>dc", "<cmd>DiffviewClose<CR>", desc = "Close DiffView" },
   },
   config = function()
     require("neogit").setup({
