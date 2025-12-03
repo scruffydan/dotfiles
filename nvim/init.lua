@@ -37,6 +37,10 @@ vim.keymap.set('n', '<leader>-', '<C-w>s', { desc = 'Create horizontal split' })
 vim.keymap.set('n', '<leader>|', '<C-w>v', { desc = 'Create vertical split' })
 vim.keymap.set('n', '<leader>\\', '<C-w>v', { desc = 'Create vertical split' })
 
+-- Terminal mode
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc><Esc>', '<Esc>', { desc = 'Send Esc to terminal' })
+
 -- Use system clipboard (fails silently over SSH without clipboard provider)
 vim.opt.clipboard = "unnamedplus"
 
