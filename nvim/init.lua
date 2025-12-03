@@ -26,6 +26,17 @@ end
 vim.opt.splitright = true  -- Open vertical splits to the right
 vim.opt.splitbelow = true  -- Open horizontal splits below
 
+-- Split navigation
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left split' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to split below' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to split above' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right split' })
+
+-- Split creation
+vim.keymap.set('n', '<leader>-', '<C-w>s', { desc = 'Create horizontal split' })
+vim.keymap.set('n', '<leader>|', '<C-w>v', { desc = 'Create vertical split' })
+vim.keymap.set('n', '<leader>\\', '<C-w>v', { desc = 'Create vertical split' })
+
 -- Use system clipboard (fails silently over SSH without clipboard provider)
 vim.opt.clipboard = "unnamedplus"
 
