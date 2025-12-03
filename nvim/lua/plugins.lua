@@ -23,6 +23,7 @@ local plugins = {
   require("plugins.lualine"),
   require("plugins.gitsigns"),
   require("plugins.treesitter"),
+  require("plugins.neogit"),
 }
 
 require("lazy").setup(plugins)
