@@ -7,6 +7,11 @@ return {
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
+    { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
   },
-  config = true,
+  config = function()
+    require("neogit").setup({
+      kind = "floating",
+    })
+  end,
 }
