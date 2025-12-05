@@ -7,7 +7,7 @@ vim.opt.number = true -- Add line numbers
 -- Toggle relative line numbers
 vim.keymap.set('n', '<leader>n', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
-end)
+end, { desc = 'Toggle relative line numbers' })
 -- Toggle spell checking
 vim.keymap.set('n', '<leader>s', function()
   vim.wo.spell = not vim.wo.spell
