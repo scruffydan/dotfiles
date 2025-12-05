@@ -24,6 +24,7 @@ local plugins = {
   require("plugins.gitsigns"),
   require("plugins.treesitter"),
   require("plugins.neogit"),
+  require("plugins.vim-tmux-navigator"),
 }
 
 require("lazy").setup(plugins)
