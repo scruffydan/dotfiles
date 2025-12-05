@@ -14,6 +14,7 @@ return {
     { "<leader>fh", "<cmd>FzfLua help_tags<CR>", desc = "Help tags" },
     { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Recent files" },
     { "<leader>fd", "<cmd>FzfLua diagnostics_document<CR>", desc = "Diagnostics" },
+    { "<leader>fk", "<cmd>FzfLua keymaps<CR>", desc = "Keymaps" },
     { "<leader>/", "<cmd>FzfLua blines<CR>", desc = "Search buffer" },
     {
       "<leader>fs",
