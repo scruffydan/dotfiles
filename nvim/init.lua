@@ -8,6 +8,10 @@ vim.opt.number = true -- Add line numbers
 vim.keymap.set('n', '<leader>n', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end)
+-- Toggle spell checking
+vim.keymap.set('n', '<leader>s', function()
+  vim.wo.spell = not vim.wo.spell
+end, { desc = 'Toggle spell checking' })
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
 vim.opt.conceallevel = 0  -- Don't conceal characters
 vim.opt.cursorline = true  -- Highlight current line
