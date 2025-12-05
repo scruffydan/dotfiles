@@ -1,2 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+Desktop.ini
+
 # Compiled spell files
 *.spl
+
