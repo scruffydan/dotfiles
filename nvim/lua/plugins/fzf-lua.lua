@@ -15,5 +15,35 @@ return {
     { "<leader>fr", "<cmd>FzfLua oldfiles<CR>", desc = "Recent files" },
     { "<leader>fd", "<cmd>FzfLua diagnostics_document<CR>", desc = "Diagnostics" },
     { "<leader>/", "<cmd>FzfLua blines<CR>", desc = "Search buffer" },
+    {
+      "<leader>fs",
+      function()
+        local word = vim.fn.expand('<cword>')
+        local suggestions = vim.fn.spellsuggest(word)
+
+        if #suggestions == 0 then
+          vim.notify("No spelling suggestions for '" .. word .. "'", vim.log.levels.INFO)
+          return
+        end
+
+        require('fzf-lua').fzf_exec(suggestions, {
+          prompt = 'Spelling> ',
+          winopts = {
+            height = 0.3,
+            width = 0.4,
+            row = 0.5,
+            col = 0.5,
+          },
+          actions = {
+            ['default'] = function(selected)
+              if selected and selected[1] then
+                vim.cmd('normal! ciw' .. selected[1])
+              end
+            end,
+          },
+        })
+      end,
+      desc = "Spell check word under cursor"
+    },
   },
 }
