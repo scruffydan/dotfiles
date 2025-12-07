@@ -25,6 +25,7 @@ local plugins = {
   require("plugins.treesitter"),
   require("plugins.neogit"),
   require("plugins.vim-tmux-navigator"),
+  require("plugins.indentmini"),
 }
 
 require("lazy").setup(plugins)
