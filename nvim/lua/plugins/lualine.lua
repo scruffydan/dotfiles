@@ -49,6 +49,14 @@ return {
         lualine_x = {
           {
             function()
+              return vim.g.whitespace_status or ""
+            end,
+            cond = function()
+              return (vim.g.whitespace_status or "") ~= ""
+            end,
+          },
+          {
+            function()
               return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
             end,
             icon = '',

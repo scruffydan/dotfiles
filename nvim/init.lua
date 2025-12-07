@@ -89,16 +89,56 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 
--- Show invisible characters
-vim.opt.listchars = {
-  eol = '¬',
-  tab = '>·',
-  trail = '·',
-  extends = '>',
-  precedes = '<',
-  lead = '·'
-}
-vim.opt.list = true
+-- Whitespace display modes (used by lualine and toggle keymap)
+-- 1 = default (lead/trail/tab/eol), 2 = all spaces, 3 = off
+vim.g.whitespace_mode = 1
+
+local function set_whitespace_mode(mode)
+  vim.g.whitespace_mode = mode
+  if mode == 1 then
+    vim.opt.listchars = {
+      eol = '¬',
+      tab = '>·',
+      trail = '·',
+      extends = '>',
+      precedes = '<',
+      lead = '·'
+    }
+    vim.opt.list = true
+  elseif mode == 2 then
+    vim.opt.listchars = {
+      eol = '¬',
+      tab = '>·',
+      trail = '·',
+      extends = '>',
+      precedes = '<',
+      lead = '·',
+      space = '·'
+    }
+    vim.opt.list = true
+  else
+    vim.opt.list = false
+  end
+end
+
+-- Initialize with default mode
+set_whitespace_mode(1)
+
+-- Temporary status display for whitespace mode
+vim.g.whitespace_status = ""
+
+-- Toggle whitespace display with <leader>w
+vim.keymap.set('n', '<leader>w', function()
+  local next_mode = (vim.g.whitespace_mode % 3) + 1
+  set_whitespace_mode(next_mode)
+  -- Show temporary status
+  local labels = { "WS:default", "WS:all", "WS:off" }
+  vim.g.whitespace_status = labels[next_mode]
+  -- Clear after 2 seconds
+  vim.defer_fn(function()
+    vim.g.whitespace_status = ""
+  end, 2000)
+end, { desc = 'Toggle whitespace display' })
 
 -- Buffer settings
 vim.opt.hidden = true  -- Required for operations modifying multiple buffers
