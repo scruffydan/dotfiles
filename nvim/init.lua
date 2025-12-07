@@ -10,14 +10,27 @@ vim.keymap.set('n', '<leader>n', function()
 end, { desc = 'Toggle relative line numbers' })
 -- Toggle spell checking with temporary lualine status message
 -- NOTE: This works in conjunction with lualine.lua which displays vim.g.spell_status
+local spell_timer = nil
 vim.keymap.set('n', '<leader>s', function()
   vim.wo.spell = not vim.wo.spell
+
+  -- Cancel any pending timer to prevent premature clearing
+  if spell_timer then
+    vim.fn.timer_stop(spell_timer)
+  end
+
   -- Set global status variable (displayed by lualine.lua)
   vim.g.spell_status = vim.wo.spell and "Spell:on" or "Spell:off"
+
+  -- Force lualine to refresh immediately
+  pcall(require('lualine').refresh)
+
   -- Clear status message after 2 seconds
-  vim.defer_fn(function()
+  spell_timer = vim.fn.timer_start(2000, function()
     vim.g.spell_status = ""
-  end, 2000)
+    pcall(require('lualine').refresh)
+    spell_timer = nil
+  end)
 end, { desc = 'Toggle spell checking' })
 -- Spell file location
 vim.opt.spellfile = vim.fn.expand('~/dotfiles/nvim/spell/en.utf-8.add')
@@ -133,19 +146,32 @@ set_whitespace_mode(1)
 
 -- Temporary status display for whitespace mode (displayed by lualine.lua)
 vim.g.whitespace_status = ""
+local whitespace_timer = nil
 
 -- Toggle whitespace display with temporary lualine status message
 -- NOTE: This works in conjunction with lualine.lua which displays vim.g.whitespace_status
 vim.keymap.set('n', '<leader>w', function()
   local next_mode = (vim.g.whitespace_mode % 3) + 1
   set_whitespace_mode(next_mode)
+
+  -- Cancel any pending timer to prevent premature clearing
+  if whitespace_timer then
+    vim.fn.timer_stop(whitespace_timer)
+  end
+
   -- Set global status variable (displayed by lualine.lua)
   local labels = { "WS:default", "WS:all", "WS:off" }
   vim.g.whitespace_status = labels[next_mode]
+
+  -- Force lualine to refresh immediately
+  pcall(require('lualine').refresh)
+
   -- Clear status message after 2 seconds
-  vim.defer_fn(function()
+  whitespace_timer = vim.fn.timer_start(2000, function()
     vim.g.whitespace_status = ""
-  end, 2000)
+    pcall(require('lualine').refresh)
+    whitespace_timer = nil
+  end)
 end, { desc = 'Toggle whitespace display' })
 
 -- Buffer settings
