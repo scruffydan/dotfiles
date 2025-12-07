@@ -8,9 +8,16 @@ vim.opt.number = true -- Add line numbers
 vim.keymap.set('n', '<leader>n', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = 'Toggle relative line numbers' })
--- Toggle spell checking
+-- Toggle spell checking with temporary lualine status message
+-- NOTE: This works in conjunction with lualine.lua which displays vim.g.spell_status
 vim.keymap.set('n', '<leader>s', function()
   vim.wo.spell = not vim.wo.spell
+  -- Set global status variable (displayed by lualine.lua)
+  vim.g.spell_status = vim.wo.spell and "Spell:on" or "Spell:off"
+  -- Clear status message after 2 seconds
+  vim.defer_fn(function()
+    vim.g.spell_status = ""
+  end, 2000)
 end, { desc = 'Toggle spell checking' })
 -- Spell file location
 vim.opt.spellfile = vim.fn.expand('~/dotfiles/nvim/spell/en.utf-8.add')
@@ -124,17 +131,18 @@ end
 -- Initialize with default mode
 set_whitespace_mode(1)
 
--- Temporary status display for whitespace mode
+-- Temporary status display for whitespace mode (displayed by lualine.lua)
 vim.g.whitespace_status = ""
 
--- Toggle whitespace display with <leader>w
+-- Toggle whitespace display with temporary lualine status message
+-- NOTE: This works in conjunction with lualine.lua which displays vim.g.whitespace_status
 vim.keymap.set('n', '<leader>w', function()
   local next_mode = (vim.g.whitespace_mode % 3) + 1
   set_whitespace_mode(next_mode)
-  -- Show temporary status
+  -- Set global status variable (displayed by lualine.lua)
   local labels = { "WS:default", "WS:all", "WS:off" }
   vim.g.whitespace_status = labels[next_mode]
-  -- Clear after 2 seconds
+  -- Clear status message after 2 seconds
   vim.defer_fn(function()
     vim.g.whitespace_status = ""
   end, 2000)
