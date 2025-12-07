@@ -17,6 +17,9 @@ return {
       linehl     = false,
       word_diff  = false,
       current_line_blame = false,
+      preview_config = {
+        border = 'rounded',
+      },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -38,6 +41,10 @@ return {
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
         end, {expr=true, desc="Previous hunk"})
+
+        -- Actions
+        map('n', '<leader>gp', gs.preview_hunk, {desc="Preview hunk"})
+        map('n', '<leader>gb', gs.toggle_current_line_blame, {desc="Toggle git blame"})
       end
     })
   end,
