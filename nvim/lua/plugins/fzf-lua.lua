@@ -4,7 +4,11 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("fzf-lua").setup({})
+    require("fzf-lua").setup({
+      files = {
+        formatter = "path.dirname_first",
+      },
+    })
   end,
   keys = {
     { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Find files" },
