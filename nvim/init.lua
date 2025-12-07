@@ -95,7 +95,8 @@ vim.opt.listchars = {
   tab = '>·',
   trail = '·',
   extends = '>',
-  precedes = '<'
+  precedes = '<',
+  lead = '·'
 }
 vim.opt.list = true
 
