@@ -44,7 +44,7 @@ return {
 
         -- Actions
         map('n', '<leader>gp', gs.preview_hunk, {desc="Preview hunk"})
-        map('n', '<leader>gb', gs.toggle_current_line_blame, {desc="Toggle git blame"})
+        map('n', '<leader>gb', gs.blame, {desc="Git blame"})
       end
     })
   end,
