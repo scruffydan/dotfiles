@@ -25,7 +25,7 @@ local plugins = {
   require("plugins.treesitter"),
   require("plugins.neogit"),
   require("plugins.vim-tmux-navigator"),
-  require("plugins.indentmini"),
+  require("plugins.snacks"),
   require("plugins.csvview"),
 }
 
