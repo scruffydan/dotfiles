@@ -125,6 +125,7 @@ local function set_whitespace_mode(mode)
       lead = '·'
     }
     vim.opt.list = true
+    vim.g.snacks_indent = true
   elseif mode == 2 then
     vim.opt.listchars = {
       eol = '¬',
@@ -136,9 +137,13 @@ local function set_whitespace_mode(mode)
       space = '·'
     }
     vim.opt.list = true
+    vim.g.snacks_indent = true
   else
     vim.opt.list = false
+    vim.g.snacks_indent = false
   end
+  -- Refresh snacks indent if available
+  pcall(function() require('snacks.indent').enable() end)
 end
 
 -- Initialize with default mode
