@@ -8,6 +8,9 @@ return {
       timeout = 3000,
       style = "compact",
     },
+    gitbrowse = {
+      notify = true,
+    },
     indent = {
       enabled = true,
       char = "│",
@@ -32,5 +35,6 @@ return {
   end,
   keys = {
     { "<leader>fn", function() Snacks.notifier.show_history() end, desc = "Notification history" },
+    { "<leader>go", function() Snacks.gitbrowse() end, desc = "Open in browser (GitHub)" },
   },
 }
