@@ -47,26 +47,6 @@ return {
           "diagnostics",
         },
         lualine_x = {
-          -- Temporary status message for whitespace toggle (<leader>w)
-          -- NOTE: vim.g.whitespace_status is set/cleared in init.lua
-          {
-            function()
-              return vim.g.whitespace_status or ""
-            end,
-            cond = function()
-              return (vim.g.whitespace_status or "") ~= ""
-            end,
-          },
-          -- Temporary status message for spell checker toggle (<leader>s)
-          -- NOTE: vim.g.spell_status is set/cleared in init.lua
-          {
-            function()
-              return vim.g.spell_status or ""
-            end,
-            cond = function()
-              return (vim.g.spell_status or "") ~= ""
-            end,
-          },
           {
             function()
               return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')

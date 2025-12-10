@@ -8,29 +8,10 @@ vim.opt.number = true -- Add line numbers
 vim.keymap.set('n', '<leader>n', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = 'Toggle relative line numbers' })
--- Toggle spell checking with temporary lualine status message
--- NOTE: This works in conjunction with lualine.lua which displays vim.g.spell_status
-local spell_timer = nil
+-- Toggle spell checking
 vim.keymap.set('n', '<leader>s', function()
   vim.wo.spell = not vim.wo.spell
-
-  -- Cancel any pending timer to prevent premature clearing
-  if spell_timer then
-    vim.fn.timer_stop(spell_timer)
-  end
-
-  -- Set global status variable (displayed by lualine.lua)
-  vim.g.spell_status = vim.wo.spell and "Spell:on" or "Spell:off"
-
-  -- Force lualine to refresh immediately
-  pcall(require('lualine').refresh)
-
-  -- Clear status message after 2 seconds
-  spell_timer = vim.fn.timer_start(2000, function()
-    vim.g.spell_status = ""
-    pcall(require('lualine').refresh)
-    spell_timer = nil
-  end)
+  vim.notify(vim.wo.spell and "Spell: on" or "Spell: off", vim.log.levels.INFO)
 end, { desc = 'Toggle spell checking' })
 -- Spell file location
 vim.opt.spellfile = vim.fn.expand('~/dotfiles/nvim/spell/en.utf-8.add')
@@ -149,34 +130,12 @@ end
 -- Initialize with default mode
 set_whitespace_mode(1)
 
--- Temporary status display for whitespace mode (displayed by lualine.lua)
-vim.g.whitespace_status = ""
-local whitespace_timer = nil
-
--- Toggle whitespace display with temporary lualine status message
--- NOTE: This works in conjunction with lualine.lua which displays vim.g.whitespace_status
+-- Toggle whitespace display
 vim.keymap.set('n', '<leader>w', function()
   local next_mode = (vim.g.whitespace_mode % 3) + 1
   set_whitespace_mode(next_mode)
-
-  -- Cancel any pending timer to prevent premature clearing
-  if whitespace_timer then
-    vim.fn.timer_stop(whitespace_timer)
-  end
-
-  -- Set global status variable (displayed by lualine.lua)
-  local labels = { "WS:default", "WS:all", "WS:off" }
-  vim.g.whitespace_status = labels[next_mode]
-
-  -- Force lualine to refresh immediately
-  pcall(require('lualine').refresh)
-
-  -- Clear status message after 2 seconds
-  whitespace_timer = vim.fn.timer_start(2000, function()
-    vim.g.whitespace_status = ""
-    pcall(require('lualine').refresh)
-    whitespace_timer = nil
-  end)
+  local labels = { "Whitespace: default", "Whitespace: all", "Whitespace: off" }
+  vim.notify(labels[next_mode], vim.log.levels.INFO)
 end, { desc = 'Toggle whitespace display' })
 
 -- Buffer settings
