@@ -3,6 +3,11 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    notifier = {
+      enabled = true,
+      timeout = 3000,
+      style = "compact",
+    },
     indent = {
       enabled = true,
       char = "│",
@@ -25,4 +30,7 @@ return {
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "NonText" })
   end,
+  keys = {
+    { "<leader>fn", function() Snacks.notifier.show_history() end, desc = "Notification history" },
+  },
 }
