@@ -1,9 +1,15 @@
 [core]
   excludesfile = ~/dotfiles/git/gitignore_global
+[init]
+  defaultBranch = main
 [push]
   default = simple
 [pull]
   rebase = false
+[diff]
+  colorMoved = default
+[rerere]
+  enabled = true
 [alias]
   # Pretty log with train tracks.
   l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(green) %an, %ar%Creset'
