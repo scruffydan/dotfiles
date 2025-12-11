@@ -79,6 +79,24 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end,
 })
 
+-- Dim nvim background when tmux pane loses focus
+vim.api.nvim_create_autocmd('FocusLost', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    vim.cmd('highlight Normal guibg=#1D1E19')
+  end,
+})
+
+-- Restore nvim background when tmux pane gains focus
+vim.api.nvim_create_autocmd('FocusGained', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    vim.cmd('highlight Normal guibg=#272822')
+  end,
+})
+
 -- Tab settings (2 spaces)
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
