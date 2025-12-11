@@ -170,17 +170,26 @@ bindkey "^[[B" history-beginning-search-forward-end
 ## Syntax highliting ##
 #######################
 
-source ~/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+# Lazy load syntax highlighting after first prompt
+function _load_syntax_highlighting() {
+  source ~/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
-# Have commands starting with `rm -rf` in red:
-ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+  # Have commands starting with `rm -rf` in red:
+  ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
 
-# Define styles for nested brackets up to level 4
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
+  # Define styles for nested brackets up to level 4
+  ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
+  ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
+  ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
+  ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
+
+  # Remove this hook after first run
+  add-zsh-hook -d precmd _load_syntax_highlighting
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _load_syntax_highlighting
 
 
 #####################
