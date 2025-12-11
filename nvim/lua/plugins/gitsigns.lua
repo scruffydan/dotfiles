@@ -43,7 +43,7 @@ return {
         end, {expr=true, desc="Previous hunk"})
 
         -- Actions
-        map('n', '<leader>gp', gs.preview_hunk, {desc="Preview hunk"})
+        map('n', '<leader>gh', gs.preview_hunk, {desc="Preview hunk"})
         map('n', '<leader>gb', gs.blame, {desc="Git blame"})
       end
     })
