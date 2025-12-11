@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd('InsertLeave', {
 })
 
 -- Dim nvim background when tmux pane loses focus
+-- Requires `set -g focus-events on` in tmux.conf
 vim.api.nvim_create_autocmd('FocusLost', {
   group = augroup,
   pattern = '*',
