@@ -2,6 +2,10 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
+    -- Hide native mode/command display (lualine handles these)
+    vim.opt.showmode = false
+    vim.opt.cmdheight = 0
+
     -- Define custom highlight for readonly
     vim.api.nvim_set_hl(0, 'LualineReadonly', { fg = '#ff9500', bold = true })
 

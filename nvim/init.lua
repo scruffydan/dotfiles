@@ -20,9 +20,6 @@ vim.opt.conceallevel = 0  -- Don't conceal characters
 vim.opt.cursorline = true  -- Highlight current line
 vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
 vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
-vim.opt.showmode = false  -- Don't show mode (lualine displays it)
-vim.opt.cmdheight = 0  -- Hide command line when not in use
-vim.opt.showcmdloc = "statusline"  -- Show partial commands in statusline (since cmdheight=0)
 vim.opt.signcolumn = "yes"  -- Always show signcolumn
 
 -- Enable true color only if terminal supports it
