@@ -13,7 +13,16 @@ return {
         globalstatus = true,
       },
       sections = {
-        lualine_a = { "mode" },
+        lualine_a = {
+          "mode",
+          {
+            function()
+              local reg = vim.fn.reg_recording()
+              return reg ~= "" and "recording @" .. reg or ""
+            end,
+            color = { fg = "#ff6666", gui = "bold" },
+          },
+        },
         lualine_b = {
           {
             "searchcount",
