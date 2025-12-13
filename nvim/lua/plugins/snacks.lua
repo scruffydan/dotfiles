@@ -47,6 +47,10 @@ return {
     explorer = {
       replace_netrw = true,
     },
+    bigfile = {
+      size = 1024 * 1024, -- 1MB
+    },
+    input = {},
   },
   init = function()
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
@@ -67,6 +71,14 @@ return {
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Search buffer" },
     { "<leader>fs", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
     { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git status" },
+    { "<leader>gB", function() Snacks.picker.git_branches() end, desc = "Git branches" },
+    { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git log" },
+    { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git log (line)" },
+    { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git log (file)" },
+    { "<leader>gD", function() Snacks.picker.git_diff() end, desc = "Git diff hunks" },
+    { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git stash" },
+    { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
+    { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
     { "<leader>e", function() Snacks.explorer() end, desc = "File explorer" },
   },
 }
