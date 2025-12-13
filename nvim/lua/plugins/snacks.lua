@@ -34,6 +34,15 @@ return {
           filename_first = true,
         },
       },
+      sources = {
+        explorer = {
+          layout = {
+            preset = "sidebar",
+            preview = false,
+            hidden = { "input" },
+          },
+        },
+      },
     },
     explorer = {
       replace_netrw = true,
