@@ -37,6 +37,10 @@ Seriously though, you're probably better off starting from scratch or finding a 
   - FreeBSD: `pkg install tree-sitter-cli`
   - Ubuntu/Debian: Download binary from [GitHub releases](https://github.com/tree-sitter/tree-sitter/releases) or `cargo install tree-sitter-cli`
 - **git** - Required for lazy.nvim plugin manager and gitsigns
+- **ImageMagick** - Required for snacks.nvim image viewer (non-PNG formats)
+  - macOS: `brew install imagemagick`
+  - FreeBSD: `pkg install ImageMagick7`
+  - Ubuntu/Debian: `apt install imagemagick`
 - **awk** - Used in tmux status bar (typically pre-installed on macOS, Linux, and FreeBSD)
 
 ## Usage

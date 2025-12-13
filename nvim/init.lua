@@ -101,7 +101,7 @@ local function set_whitespace_mode(mode)
       trail = '·',
       extends = '>',
       precedes = '<',
-      lead = '·'
+      -- lead = '·'
     }
     vim.opt.list = true
     vim.g.snacks_indent = true
@@ -149,6 +149,14 @@ vim.opt.smartcase = true   -- Unless uppercase used
 vim.opt.incsearch = true   -- Incremental search
 vim.opt.hlsearch = true    -- Highlight matches
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true })  -- Clear highlights
+
+-- Folding with treesitter
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99  -- Start with all folds open
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.opt.foldtext = ""  -- Show first line of fold as-is
 
 -- Custom commands for quick tab width switching
 -- :T2 switches to 2-space indentation (default for most projects)
