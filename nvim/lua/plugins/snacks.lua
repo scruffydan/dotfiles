@@ -52,6 +52,7 @@ return {
     },
     input = {},
     image = {},
+    statuscolumn = {},
   },
   init = function()
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
@@ -61,7 +62,6 @@ return {
   keys = {
     { "<leader>fn", function() Snacks.notifier.show_history() end, desc = "Notification history" },
     { "<leader>go", function() Snacks.gitbrowse() end, desc = "Open in browser (GitHub)" },
-    -- Picker keybindings (replacing fzf-lua)
     { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
     { "<leader>fg", function() Snacks.picker.grep() end, desc = "Live grep" },
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
