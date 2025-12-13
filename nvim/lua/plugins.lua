@@ -15,7 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Load all plugin specifications from plugins/ directory
 local plugins = {
   require("plugins.theme"),
-  require("plugins.fzf-lua"),
   require("plugins.oil"),
   require("plugins.oil-git-status"),
   require("plugins.autopairs"),
