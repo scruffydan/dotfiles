@@ -101,7 +101,7 @@ local function set_whitespace_mode(mode)
       trail = '·',
       extends = '>',
       precedes = '<',
-      lead = '·'
+      -- lead = '·'
     }
     vim.opt.list = true
     vim.g.snacks_indent = true
