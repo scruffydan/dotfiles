@@ -35,6 +35,9 @@ return {
         },
       },
     },
+    explorer = {
+      replace_netrw = true,
+    },
   },
   init = function()
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
@@ -55,5 +58,6 @@ return {
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Search buffer" },
     { "<leader>fs", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
     { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git status" },
+    { "<leader>e", function() Snacks.explorer() end, desc = "File explorer" },
   },
 }
