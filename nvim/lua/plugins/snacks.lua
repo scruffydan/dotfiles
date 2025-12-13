@@ -51,6 +51,7 @@ return {
       size = 1024 * 1024, -- 1MB
     },
     input = {},
+    image = {},
   },
   init = function()
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
