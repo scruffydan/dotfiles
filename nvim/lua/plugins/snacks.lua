@@ -42,6 +42,15 @@ return {
             hidden = { "input" },
           },
         },
+        spelling = {
+          layout = {
+            preset = "select",
+          },
+          win = {
+            input = { border = "rounded" },
+            list = { border = "rounded" },
+          },
+        },
       },
     },
     explorer = {
