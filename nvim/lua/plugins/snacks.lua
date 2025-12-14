@@ -35,13 +35,6 @@ return {
         },
       },
       sources = {
-        explorer = {
-          layout = {
-            preset = "sidebar",
-            preview = false,
-            hidden = { "input" },
-          },
-        },
         spelling = {
           layout = {
             preset = "select",
@@ -52,9 +45,6 @@ return {
           },
         },
       },
-    },
-    explorer = {
-      replace_netrw = true,
     },
     bigfile = {
       size = 1024 * 1024, -- 1MB
@@ -102,6 +92,5 @@ return {
     { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git stash" },
     { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
     { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
-    { "<leader>e", function() Snacks.explorer() end, desc = "File explorer" },
   },
 }
