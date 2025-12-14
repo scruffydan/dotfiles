@@ -42,10 +42,6 @@ vim.keymap.set('n', '<leader>-', '<C-w>s', { desc = 'Create horizontal split' })
 vim.keymap.set('n', '<leader>|', '<C-w>v', { desc = 'Create vertical split' })
 vim.keymap.set('n', '<leader>\\', '<C-w>v', { desc = 'Create vertical split' })
 
--- Tab navigation
-vim.keymap.set('n', '<C-n>', 'gt', { desc = 'Next tab' })
-vim.keymap.set('n', '<C-p>', 'gT', { desc = 'Previous tab' })
-
 -- Keep cursor centered when scrolling
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half page (centered)' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half page (centered)' })
