@@ -74,6 +74,12 @@ return {
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
+    -- Disable left statuscolumn component (signs appear on right of line numbers)
+    vim.api.nvim_create_autocmd("BufEnter", {
+      callback = function()
+        vim.b.snacks_statuscolumn_left = false
+      end,
+    })
   end,
   keys = {
     { "<leader>fn", function() Snacks.notifier.show_history() end, desc = "Notification history" },
