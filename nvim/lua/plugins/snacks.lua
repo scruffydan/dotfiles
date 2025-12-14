@@ -62,6 +62,13 @@ return {
     input = {},
     image = {},
     statuscolumn = {},
+    scroll = {
+      enabled = true,
+      animate = {
+        duration = { step = 15, total = 150 },
+        easing = "linear",
+      },
+    },
   },
   init = function()
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
