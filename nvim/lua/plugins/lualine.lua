@@ -6,12 +6,10 @@ return {
     vim.opt.showmode = false
     vim.opt.cmdheight = 0
 
-    -- Define custom highlight for readonly
-    vim.api.nvim_set_hl(0, 'LualineReadonly', { fg = '#ff9500', bold = true })
 
     require("lualine").setup({
       options = {
-        theme = "auto",
+        theme = "submonokai",
         component_separators = { left = "|", right = "|" },
         section_separators = { left = "", right = "" },
         globalstatus = true,
@@ -24,7 +22,6 @@ return {
               local reg = vim.fn.reg_recording()
               return reg ~= "" and "recording @" .. reg or ""
             end,
-            color = { fg = "#ff6666", gui = "bold" },
           },
         },
         lualine_b = {
@@ -47,7 +44,7 @@ return {
             function()
               return vim.bo.readonly and "[RO]" or ""
             end,
-            color = 'LualineReadonly',
+            color = { fg = "#ff9500", gui = "bold" },
             padding = 0,
           },
         },
