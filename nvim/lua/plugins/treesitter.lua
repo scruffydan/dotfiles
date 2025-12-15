@@ -21,114 +21,20 @@ return {
     -- Setup treesitter (uses default install_dir)
     ts.setup()
 
-    -- Parsers to ensure are installed
-    local ensure_installed = {
-      "awk",
-      "bash",
-      "c",
-      "c_sharp",
-      "cmake",
-      "cpp",
-      "css",
-      "csv",
-      "dart",
-      "diff",
-      "disassembly",
-      "dockerfile",
-      "editorconfig",
-      "elixir",
-      "fish",
-      "git_config",
-      "git_rebase",
-      "gitattributes",
-      "gitcommit",
-      "gitignore",
-      "go",
-      "gpg",
-      "gotmpl",
-      "graphql",
-      "groovy",
-      "haskell",
-      "hcl",
-      "helm",
-      "html",
-      "htmldjango",
-      "http",
-      "ini",
-      "java",
-      "javascript",
-      "jinja",
-      "jinja_inline",
-      "jq",
-      "jsdoc",
-      "json",
-      "json5",
-      "jsonc",
-      "kconfig",
-      "kdl",
-      "kotlin",
-      "latex",
-      "linkerscript",
-      "llvm",
-      "lua",
-      "luadoc",
-      "luau",
-      "make",
-      "markdown",
-      "markdown_inline",
-      "meson",
-      "nasm",
-      "nginx",
-      "nix",
-      "nu",
-      "objdump",
-      "passwd",
-      "pem",
-      "perl",
-      "php",
-      "powershell",
-      "prisma",
-      "proto",
-      "puppet",
-      "python",
-      "query",
-      "regex",
-      "rst",
-      "ruby",
-      "rust",
-      "scala",
-      "scss",
-      "slint",
-      "sql",
-      "ssh_config",
-      "starlark",
-      "strace",
-      "svelte",
-      "swift",
-      "sxhkdrc",
-      "tcl",
-      "terraform",
-      "tmux",
-      "todotxt",
-      "toml",
-      "tsx",
-      "typescript",
-      "udev",
-      "vim",
-      "vimdoc",
-      "vue",
-      "xml",
-      "yaml",
-      "zig",
-      "zsh",
-    }
-
-    -- Install parsers (no-op if already installed)
-    ts.install(ensure_installed)
-
-    -- Enable highlighting and indentation for all filetypes with a parser
+    -- Install parsers on-demand and enable highlighting/indentation
     vim.api.nvim_create_autocmd("FileType", {
       callback = function()
+        local ft = vim.bo.filetype
+        if ft == "" then return end
+
+        local lang = vim.treesitter.language.get_lang(ft) or ft
+
+        -- Install parser if not already installed
+        if not pcall(vim.treesitter.language.inspect, lang) then
+          ts.install(lang)
+        end
+
+        -- Enable highlighting and indentation
         if pcall(vim.treesitter.start) then
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
