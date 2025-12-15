@@ -3,15 +3,15 @@ set -euo pipefail
 
 # Deletes ALL zfs snapshots. Use with care!
 
-# Validate pool name parameter
+# Validate pool/dataset parameter
 if [ -z "${1:-}" ]; then
-    echo "Usage: $(basename "$0") <pool_name>"
+    echo "Usage: $(basename "$0") <pool_name|dataset>"
     exit 1
 fi
 
-# Verify pool exists
-if ! zpool list -H "$1" >/dev/null 2>&1; then
-    echo "Error: ZFS pool '$1' does not exist"
+# Verify pool or dataset exists
+if ! zfs list -H "$1" >/dev/null 2>&1; then
+    echo "Error: ZFS pool or dataset '$1' does not exist"
     exit 1
 fi
 
