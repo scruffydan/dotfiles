@@ -2,8 +2,6 @@ return {
   'stevearc/oil.nvim',
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
-    { "<leader>o", "<CMD>Oil<CR>", desc = "Open oil" },
     { "<S-Tab>", "<CMD>Oil<CR>", mode = "n", desc = "Open oil" }, -- pairs with <Tab> in oil keymaps
   },
   config = function()
