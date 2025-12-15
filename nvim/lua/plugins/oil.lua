@@ -22,6 +22,13 @@ return {
         sort = {
           { "name", "asc" },
         },
+        highlight_filename = function(entry, is_hidden, is_link_target, is_link_orphan)
+          if entry.type == "directory" then return end
+          local oil_dir = require("oil").get_current_dir()
+          if oil_dir and vim.fn.bufnr(oil_dir .. entry.name) ~= -1 then
+            return "Special"
+          end
+        end,
       },
       win_options = {
         signcolumn = "yes:2",
