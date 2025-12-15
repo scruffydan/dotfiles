@@ -21,7 +21,49 @@ return {
     -- Setup treesitter (uses default install_dir)
     ts.setup()
 
-    -- Install parsers on-demand and enable highlighting/indentation
+    -- Pre-install common parsers
+    ts.install({
+      "bash",
+      "css",
+      "csv",
+      "diff",
+      "dockerfile",
+      "git_config",
+      "git_rebase",
+      "gitattributes",
+      "gitcommit",
+      "gitignore",
+      "go",
+      "gotmpl",
+      "gpg",
+      "hcl",
+      "helm",
+      "html",
+      "http",
+      "ini",
+      "javascript",
+      "jinja",
+      "jinja_inline",
+      "jq",
+      "json",
+      "lua",
+      "make",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "regex",
+      "ssh_config",
+      "terraform",
+      "tmux",
+      "toml",
+      "vim",
+      "vimdoc",
+      "xml",
+      "yaml",
+      "zsh",
+    })
+
+    -- Install other parsers on-demand and enable highlighting/indentation
     vim.api.nvim_create_autocmd("FileType", {
       callback = function()
         local ft = vim.bo.filetype
