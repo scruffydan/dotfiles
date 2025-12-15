@@ -1,7 +1,11 @@
 #!/bin/sh
 set -euo pipefail
 
-# Deletes ALL zfs snapshots. Use with care!
+# Deletes ALL ZFS snapshots recursively from the specified pool or dataset
+# Examples:
+#   - Pool: 'tank' deletes ALL snapshots in the entire pool
+#   - Dataset: 'tank/data/home' deletes snapshots for that dataset and all children
+# Use with extreme care!
 
 # Validate pool/dataset parameter
 if [ -z "${1:-}" ]; then
@@ -15,12 +19,20 @@ if ! zfs list -H "$1" >/dev/null 2>&1; then
     exit 1
 fi
 
+# Count snapshots to be deleted
+snapshot_count=$(zfs list -H -o name -t snapshot -r "$1" 2>/dev/null | wc -l | tr -d ' ')
+
+echo "Target: $1"
+echo "Snapshots found (recursive): $snapshot_count"
+echo ""
+echo "WARNING: This will delete ALL $snapshot_count snapshots for '$1' and its children"
 echo "Are You Sure?"
-read -r -p "Selecting yes will delete ALL snapshots [YES/NO] " input
+read -r -p "Type 'YES' (all caps) to confirm [YES/NO] " input
 
 case $input in
     YES)
-        echo "WARNING: Deleting all snapshots in 10 seconds. Hit ctrl+c to cancel"
+        echo ""
+        echo "WARNING: Deleting all snapshots in 10 seconds. Hit Ctrl+C to cancel"
         sleep 10
         zfs list -H -o name -t snapshot -r "$1" | xargs -n1 -t zfs destroy
         ;;
