@@ -24,7 +24,7 @@ return {
           if entry.type == "directory" then return end
           local oil_dir = require("oil").get_current_dir()
           if oil_dir and vim.fn.bufnr(oil_dir .. entry.name) ~= -1 then
-            return "Special"
+            return "String"
           end
         end,
       },
