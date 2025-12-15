@@ -33,9 +33,9 @@ function bsdup() {
     sudo freebsd-update fetch
     sudo freebsd-update install
 
-    for d in `/bin/ls /usr/local/bastille/releases/` ; do
-        echo "\n\e[1;32m[Updating Base Jail $d]:\e[0m"
-        sudo bastille update $d
+    for d in /usr/local/bastille/releases/*; do
+        echo "\n\e[1;32m[Updating Base Jail $(basename "$d")]:\e[0m"
+        sudo bastille update "$(basename "$d")"
     done
     echo ""
 
@@ -48,21 +48,19 @@ function portup() {
     sudo pkg autoremove -y
 
     # Update ports in Jails
-    for jail in `jls name`
-        do
-            echo "\n\e[1;32m[Updating Packages on $jail]:\e[0m"
-            sudo jexec $jail pkg upgrade -y
-            sudo jexec $jail pkg autoremove -y
-        done
+    for jail in $(jls name); do
+        echo "\n\e[1;32m[Updating Packages on $jail]:\e[0m"
+        sudo jexec "$jail" pkg upgrade -y
+        sudo jexec "$jail" pkg autoremove -y
+    done
 }
 function bsdaudit() {
     echo "\e[1;32m[Checking Packages on Base System]:\e[0m"
     sudo pkg audit -F
-    for jail in `jls name`
-        do
-           echo "\n\e[1;32m[Checking Packages on $jail]:\e[0m"
-           sudo jexec $jail pkg audit -F
-        done
+    for jail in $(jls name); do
+        echo "\n\e[1;32m[Checking Packages on $jail]:\e[0m"
+        sudo jexec "$jail" pkg audit -F
+    done
 }
 
 # Common folders (some do a short git status check)
