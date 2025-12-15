@@ -15,6 +15,9 @@ function zle-keymap-select() {
 zle -N zle-keymap-select
 
 function vi_mode_prompt_info() {
+  # Display "[vi] " when in vi command mode, empty string otherwise
+  # ${KEYMAP/vicmd/[vi] } replaces "vicmd" with "[vi] "
+  # ${.../(main|viins)/} removes "main" or "viins" (insert modes)
   echo "${${KEYMAP/vicmd/[vi] }/(main|viins)/}"
 }
 
@@ -44,7 +47,7 @@ RPROMPT='${vcs_info_msg_0_}'
 # a     black
 # b     red
 # c     green
-# d     brown (acctually ANSI yellow)
+# d     brown (actually ANSI yellow)
 # e     blue
 # f     magenta
 # g     cyan
@@ -136,7 +139,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
-setopt HIST_find_no_dups
+setopt HIST_FIND_NO_DUPS
 setopt share_history
 
 # Enable Vi Bindings
@@ -167,7 +170,7 @@ bindkey "^[[B" history-beginning-search-forward-end
 [[ -n "${key[Down]}"    ]] && bindkey "${key[Down]}"    history-beginning-search-forward-end
 
 #######################
-## Syntax highliting ##
+## Syntax highlighting ##
 #######################
 
 # Lazy load syntax highlighting after first prompt

@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
-
-# Set up `.gitconfig` file. Appends source `~/.gitconfig
-touch ~/.tmux.conf;
-printf "
+#
+# Tmux configuration installer
+# Usage: ./tmux-install.sh
+# Creates ~/.tmux.conf that sources ~/dotfiles/tmux.conf
+#
+touch ~/.tmux.conf
+printf "\
 source-file ~/dotfiles/tmux.conf
-" >> ~/.tmux.conf;
+" >> ~/.tmux.conf

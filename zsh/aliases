@@ -16,6 +16,8 @@ alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;ech
 
 # Brew
 alias brewup="brew update && brew upgrade"
+
+# Display all installed brew packages and their dependencies
 brewdeps() {
   brew list | while read cask;
     do echo -n $fg[blue] $cask $fg[white];
@@ -66,8 +68,4 @@ function bsdaudit() {
 # Common folders (some do a short git status check)
 alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
-
-# Wakeonlan
-# Also need to add a static arp config to your USG via the config.gateway.json.
-alias wolw="wakeonlan -i 10.8.3.254 b4:2e:99:3b:fe:35"
 
