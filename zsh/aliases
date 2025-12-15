@@ -6,6 +6,7 @@ alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias :q='exit'
 alias pub-ip='dig +short myip.opendns.com @resolver1.opendns.com' # Get Public IP:
+alias nvim-clean='rm -rf ~/.local/share/nvim ~/.cache/nvim ~/.config/nvim/lazy-lock.json'
 
 # Add some color to grep
 alias grep="grep --color=auto"
