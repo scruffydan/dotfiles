@@ -30,7 +30,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ### Neovim Configuration
 
-- **ripgrep (rg)** - Recommended for snacks.nvim picker grep (falls back to grep if not installed)
+- **ripgrep (rg)** - Required for snacks.nvim picker grep
 - **C compiler** (gcc/clang) - Required for treesitter parser compilation (typically pre-installed on macOS and FreeBSD)
 - **tree-sitter-cli** (0.25.0 or later) - Required for nvim-treesitter main branch
   - macOS: `brew install tree-sitter-cli`
