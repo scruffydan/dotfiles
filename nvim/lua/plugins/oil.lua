@@ -10,6 +10,15 @@ return {
       columns = {
         "icon",
       },
+      float = {
+        border = "rounded",
+      },
+      confirmation = {
+        border = "rounded",
+      },
+      progress = {
+        border = "rounded",
+      },
       keymaps = {
         ["<leader>h"] = "actions.toggle_hidden",
         ["<Tab>"] = "actions.select", -- <S-Tab> global keymap in keys section
