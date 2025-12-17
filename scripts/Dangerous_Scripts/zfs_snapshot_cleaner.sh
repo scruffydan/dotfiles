@@ -34,7 +34,7 @@ case $input in
         echo ""
         echo "WARNING: Deleting all snapshots in 10 seconds. Hit Ctrl+C to cancel"
         sleep 10
-        zfs list -H -o name -t snapshot -r "$1" | xargs -n1 -t zfs destroy
+        zfs list -H -o name -t snapshot -r "$1" | xargs -n1 -t zfs destroy --
         ;;
     *)
     echo "Cowardly refusing to proceed any further!"
