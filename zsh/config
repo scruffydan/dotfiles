@@ -169,9 +169,9 @@ bindkey "^[[B" history-beginning-search-forward-end
 [[ -n "${key[Up]}"      ]] && bindkey "${key[Up]}"      history-beginning-search-backward-end
 [[ -n "${key[Down]}"    ]] && bindkey "${key[Down]}"    history-beginning-search-forward-end
 
-#######################
+#########################
 ## Syntax highlighting ##
-#######################
+#########################
 
 # Lazy load syntax highlighting after first prompt
 function _load_syntax_highlighting() {
