@@ -178,5 +178,5 @@ vim.opt.rtp:prepend(vim.fn.expand('~/dotfiles/nvim'))
 package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 
 -- Load plugins
-require('plugins')
+require('lazy-setup')
 
