@@ -41,7 +41,7 @@ window-step-resize = true
 # Balance extra padding on all sides when window doesn't align to cell grid
 window-padding-balance = true
 shell-integration-features = ssh-env
-# Do not display a nitification badge when the bell is triggered
+# Do not display a notification badge when the bell is triggered
 bell-features = no-attention
 # New tabs/windows open in home directory
 working-directory = home

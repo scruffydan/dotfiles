@@ -7,5 +7,5 @@
 touch ~/.gitconfig
 printf "\
 [include]
-    path = dotfiles/git/gitconfig
+    path = ~/dotfiles/git/gitconfig
 " >> ~/.gitconfig
