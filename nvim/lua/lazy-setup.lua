@@ -32,4 +32,8 @@ local plugins = {
   require("plugins.csvview"),
 }
 
-require("lazy").setup(plugins)
+require("lazy").setup(plugins, {
+  ui = {
+    border = "rounded",
+  },
+})
