@@ -17,7 +17,7 @@ local plugins = {
   require("plugins.theme"),
   require("plugins.oil"),
   require("plugins.oil-git-status"),
-  require("plugins.autopairs"),
+  require("plugins.mini-pairs"),
   require("plugins.which-key"),
   require("plugins.lualine"),
   require("plugins.gitsigns"),
