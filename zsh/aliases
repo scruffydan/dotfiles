@@ -6,7 +6,10 @@ alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias :q='exit'
 alias pub-ip='dig +short myip.opendns.com @resolver1.opendns.com' # Get Public IP:
-alias nvim-clean='rm -rf ~/.local/share/nvim ~/.cache/nvim ~/.config/nvim/lazy-lock.json'
+nvim-clean() {
+    echo "This will delete nvim data, cache, and lazy-lock.json"
+    read -q "?Continue? (y/n) " && echo && rm -rf ~/.local/share/nvim ~/.cache/nvim ~/.config/nvim/lazy-lock.json
+}
 
 # Add some color to grep
 alias grep="grep --color=auto"
@@ -19,9 +22,9 @@ alias brewup="brew update && brew upgrade"
 
 # Display all installed brew packages and their dependencies
 brewdeps() {
-  brew list | while read cask;
-    do echo -n $fg[blue] $cask $fg[white];
-    brew deps $cask | awk '{printf(" %s ", $0)}';
+  brew list | while read -r cask; do
+    echo -n "$fg[blue] $cask $fg[white]"
+    brew deps "$cask" | awk '{printf(" %s ", $0)}'
     echo "";
   done
 }
@@ -48,7 +51,7 @@ function portup() {
     sudo pkg autoremove -y
 
     # Update ports in Jails
-    for jail in $(jls name); do
+    jls name | while IFS= read -r jail; do
         echo "\n\e[1;32m[Updating Packages on $jail]:\e[0m"
         sudo jexec "$jail" pkg upgrade -y
         sudo jexec "$jail" pkg autoremove -y
@@ -57,7 +60,7 @@ function portup() {
 function bsdaudit() {
     echo "\e[1;32m[Checking Packages on Base System]:\e[0m"
     sudo pkg audit -F
-    for jail in $(jls name); do
+    jls name | while IFS= read -r jail; do
         echo "\n\e[1;32m[Checking Packages on $jail]:\e[0m"
         sudo jexec "$jail" pkg audit -F
     done
