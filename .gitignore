@@ -30,3 +30,7 @@ $RECYCLE.BIN/
 # Compiled spell files
 *.spl
 
+# Neovim log files
+*.nvimlog
+.nvimlog
+
