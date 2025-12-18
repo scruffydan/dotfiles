@@ -29,6 +29,10 @@ return {
       end,
     },
     picker = {
+      matcher = {
+        frecency = true, -- Boost recently/frequently accessed files
+        sort_empty = true, -- Sort by frecency even before typing
+      },
       formatters = {
         file = {
           filename_first = true,
