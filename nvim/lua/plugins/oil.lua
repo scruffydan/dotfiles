@@ -23,6 +23,7 @@ return {
         ["<leader>h"] = "actions.toggle_hidden",
         ["<Tab>"] = "actions.select", -- <S-Tab> global keymap in keys section
         ["<S-Tab>"] = "actions.parent",
+        ["<leader>cd"] = "actions.cd",
       },
       view_options = {
         show_hidden = true,
