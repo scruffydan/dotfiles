@@ -66,6 +66,14 @@ function bsdaudit() {
     done
 }
 
+# Tmux
+# Create two sessions: "quick" and "main", attach to main
+tmux-start() {
+    tmux new-session -d -s quick
+    tmux new-session -d -s main
+    tmux attach -t main
+}
+
 # Common folders (some do a short git status check)
 alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
