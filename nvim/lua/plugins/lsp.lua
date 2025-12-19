@@ -1,3 +1,16 @@
+-- Check if we're on a supported platform for Mason binaries
+local function is_supported_platform()
+  local uname = vim.loop.os_uname()
+  local sysname = uname.sysname:lower()
+  -- Mason provides binaries for Linux, macOS, and Windows
+  return sysname == "linux" or sysname == "darwin" or sysname:match("windows")
+end
+
+if not is_supported_platform() then
+  -- Return empty config on unsupported platforms (e.g., FreeBSD)
+  return {}
+end
+
 return {
   {
     "neovim/nvim-lspconfig",

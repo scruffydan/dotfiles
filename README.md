@@ -42,6 +42,21 @@ Seriously though, you're probably better off starting from scratch or finding a 
   - Ubuntu/Debian: `apt install imagemagick`
 - **awk** - Used in tmux status bar (typically pre-installed on macOS, Linux, and FreeBSD)
 
+### LSP Support
+
+LSP (Language Server Protocol) support is available on macOS, Linux, and Windows via Mason. FreeBSD is not supported as Mason doesn't provide FreeBSD binaries.
+
+**Auto-installed LSPs:**
+- `lua_ls` - Lua language server
+
+**Adding more LSPs:**
+1. Open Mason UI: `:Mason`
+2. Search for desired LSP (e.g., `/pyright`)
+3. Press `i` to install
+4. Restart Neovim - mason-lspconfig auto-enables installed servers
+
+**Note:** Most LSPs (pyright, ts_ls, bashls, jsonls, yamlls) require Node.js to be installed.
+
 ## Usage
 
 This repository is managed as my personal configuration. If you're me and setting up a new machine, you know what to do. If you're not me, you probably want to look elsewhere.
