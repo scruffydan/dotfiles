@@ -6,6 +6,7 @@ return {
   },
   config = function()
     require("oil").setup({
+      delete_to_trash = vim.fn.has("macunix") == 1,
       watch_for_changes = true,
       columns = {
         "icon",
