@@ -6,7 +6,7 @@ if not vim.env.PATH:find(mason_bin, 1, true) then
 end
 
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   lazy = false,
   priority = 100, -- Load before plugins that depend on Mason-installed tools
   config = function()

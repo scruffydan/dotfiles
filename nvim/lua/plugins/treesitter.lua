@@ -3,7 +3,7 @@ return {
   branch = "main",
   lazy = false,
   build = ":TSUpdate",
-  dependencies = { "williamboman/mason.nvim" }, -- Mason provides tree-sitter-cli
+  dependencies = { "mason-org/mason.nvim" }, -- Mason provides tree-sitter-cli
   cond = function()
     -- Requires tree-sitter-cli and a C compiler
     local has_tree_sitter = vim.fn.executable("tree-sitter") == 1
