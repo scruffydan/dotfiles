@@ -87,7 +87,9 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         automatic_enable = true, -- Auto-enable installed LSP servers
-        ensure_installed = { "lua_ls" }, -- Install lua_ls by default
+        ensure_installed = {
+          "lua_ls",
+        },
       })
     end,
   },
