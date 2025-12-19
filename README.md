@@ -75,6 +75,13 @@ Leader key is `<Space>`.
 | `<leader>-` | Create horizontal split |
 | `<leader>\|` | Create vertical split |
 
+### Tabs
+
+| Keymap | Action |
+|--------|--------|
+| `gt` | Next tab |
+| `gT` | Previous tab |
+
 ### File Explorer (Oil)
 
 | Keymap | Action |
@@ -168,13 +175,6 @@ Leader key is `<Space>`.
 |--------|--------|
 | `<Esc>` | Exit terminal mode |
 | `<Esc><Esc>` | Send Esc to terminal |
-
-### Tabs
-
-| Keymap | Action |
-|--------|--------|
-| `gt` | Next tab |
-| `gT` | Previous tab |
 
 ### Misc
 
