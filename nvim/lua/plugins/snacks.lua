@@ -55,7 +55,10 @@ return {
     },
     input = {},
     image = {},
-    statuscolumn = {},
+    statuscolumn = {
+      left = { "sign" }, -- Show diagnostic/other signs
+      right = { "fold", "git" }, -- Git signs on right
+    },
     scroll = {
       enabled = true,
       animate = {
@@ -68,10 +71,16 @@ return {
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
-    -- Disable left statuscolumn component (signs appear on right of line numbers)
-    vim.api.nvim_create_autocmd("BufEnter", {
+    -- Disable mini.completion in snacks picker/input buffers
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "InsertEnter" }, {
+      pattern = "*",
       callback = function()
-        vim.b.snacks_statuscolumn_left = false
+        local ft = vim.bo.filetype
+        local bt = vim.bo.buftype
+        if ft:match("^snacks") or bt == "prompt" then
+          vim.b.minicompletion_disable = true
+          vim.b.minipairs_disable = true
+        end
       end,
     })
   end,
@@ -83,7 +92,7 @@ return {
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fh", function() Snacks.picker.recent() end, desc = "Recent files" },
     { "<leader>fr", function() Snacks.picker.registers() end, desc = "Registers" },
-    { "<leader>fd", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics" },
+    { "<leader>ld", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics" },
     { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Search buffer" },
     { "<leader>fs", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
@@ -96,5 +105,8 @@ return {
     { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git stash" },
     { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
     { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
+    -- LSP
+    { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
+    { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
   },
 }
