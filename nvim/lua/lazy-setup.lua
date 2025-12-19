@@ -24,6 +24,7 @@ local plugins = {
   require("plugins.which-key"),
   require("plugins.lualine"),
   require("plugins.gitsigns"),
+  require("plugins.mason"),
   require("plugins.treesitter"),
   require("plugins.neogit"),
   require("plugins.vim-tmux-navigator"),
