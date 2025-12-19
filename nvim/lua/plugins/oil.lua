@@ -31,6 +31,7 @@ return {
         sort = {
           { "name", "asc" },
         },
+        -- Highlight files that are currently open in a buffer
         highlight_filename = function(entry, is_hidden, is_link_target, is_link_orphan)
           if entry.type == "directory" then return end
           local oil_dir = require("oil").get_current_dir()

@@ -1,6 +1,6 @@
 # Set path
 PATH=~/bin:~/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
-typeset -U path
+typeset -U path  # Remove duplicate entries from PATH
 export PATH
 
 # Set charset to UTF8

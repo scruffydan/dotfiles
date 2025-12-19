@@ -30,7 +30,6 @@ zstyle ':vcs_info:*' stagedstr '%F{yellow}+%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red}*%f'
 zstyle ':vcs_info:git:*' formats "%{$fg[yellow]%}| %{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}%c%u"
 zstyle ':vcs_info:git:*' actionformats "%{$fg[yellow]%}| %{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}%c%u %{$fg[red]%}(%a)%{$reset_color%}"
-zstyle ':vcs_info:*' formats "%{$fg[yellow]%}| %{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}%c%u"
 
 
 # Update the command prompt

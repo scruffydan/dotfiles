@@ -14,7 +14,7 @@ nvim-clean() {
 # Add some color to grep
 alias grep="grep --color=auto"
 
-#OSX flush DNS
+# macOS flush DNS
 alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;echo "DNS flushed"'
 
 # Brew
@@ -22,15 +22,22 @@ alias brewup="brew update && brew upgrade"
 
 # Display all installed brew packages and their dependencies
 brewdeps() {
-  brew list | while read -r cask; do
-    echo -n "$fg[blue] $cask $fg[white]"
-    brew deps "$cask" | awk '{printf(" %s ", $0)}'
-    echo "";
+  echo "$fg[cyan]== Formulas ==$fg[white]"
+  brew list --formula | while read -r pkg; do
+    echo -n "$fg[blue] $pkg $fg[white]"
+    brew deps "$pkg" 2>/dev/null | awk '{printf(" %s ", $0)}'
+    echo ""
+  done
+  echo "\n$fg[cyan]== Casks ==$fg[white]"
+  brew list --cask | while read -r pkg; do
+    echo -n "$fg[blue] $pkg $fg[white]"
+    brew deps --cask "$pkg" 2>/dev/null | awk '{printf(" %s ", $0)}'
+    echo ""
   done
 }
 
 # FreeBSD
-function bsdup() {
+bsdup() {
     # Update base system
     echo "\e[1;32m[Updating Base System]:\e[0m"
     sudo freebsd-update fetch
@@ -43,7 +50,7 @@ function bsdup() {
     echo ""
 
 }
-function portup() {
+portup() {
 #    sudo portsnap fetch update
 
     echo "\e[1;32m[Updating Packages on Base System]:\e[0m"
@@ -57,7 +64,7 @@ function portup() {
         sudo jexec "$jail" pkg autoremove -y
     done
 }
-function bsdaudit() {
+bsdaudit() {
     echo "\e[1;32m[Checking Packages on Base System]:\e[0m"
     sudo pkg audit -F
     jls name | while IFS= read -r jail; do
@@ -77,4 +84,3 @@ tmux-start() {
 # Common folders (some do a short git status check)
 alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
-
