@@ -20,7 +20,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   require("plugins.theme"),
   require("plugins.oil"),
-  require("plugins.oil-git-status"),
   require("plugins.mini-pairs"),
   require("plugins.which-key"),
   require("plugins.lualine"),
