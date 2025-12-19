@@ -27,22 +27,5 @@ return {
     vim.keymap.set("i", "<C-Space>", function()
       return vim.fn.pumvisible() == 1 and "" or "<C-x><C-o>"
     end, { expr = true, desc = "Trigger completion" })
-
-    -- Disable completion for certain filetypes/buftypes
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "snacks_input", "snacks_picker_input" },
-      callback = function()
-        vim.b.minicompletion_disable = true
-      end,
-    })
-
-    vim.api.nvim_create_autocmd("BufEnter", {
-      callback = function()
-        local buftype = vim.bo.buftype
-        if buftype == "prompt" or buftype == "nofile" then
-          vim.b.minicompletion_disable = true
-        end
-      end,
-    })
   end,
 }

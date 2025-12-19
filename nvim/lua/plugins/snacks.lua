@@ -74,6 +74,18 @@ return {
         vim.b.snacks_statuscolumn_left = false
       end,
     })
+    -- Disable mini.completion in snacks picker/input buffers
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "InsertEnter" }, {
+      pattern = "*",
+      callback = function()
+        local ft = vim.bo.filetype
+        local bt = vim.bo.buftype
+        if ft:match("^snacks") or bt == "prompt" then
+          vim.b.minicompletion_disable = true
+          vim.b.minipairs_disable = true
+        end
+      end,
+    })
   end,
   keys = {
     { "<leader>fn", function() Snacks.notifier.show_history() end, desc = "Notification history" },
