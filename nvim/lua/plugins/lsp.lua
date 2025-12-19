@@ -60,12 +60,12 @@ return {
           map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
 
           -- Actions
-          map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
-          map("v", "<leader>ca", vim.lsp.buf.code_action, "Code action")
-          map("n", "<leader>cr", vim.lsp.buf.rename, "Rename symbol")
+          map("n", "<leader>la", vim.lsp.buf.code_action, "Code action")
+          map("v", "<leader>la", vim.lsp.buf.code_action, "Code action")
+          map("n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol")
 
           -- Diagnostics
-          map("n", "<leader>cd", vim.diagnostic.open_float, "Show diagnostics")
+          map("n", "<leader>lD", vim.diagnostic.open_float, "Show diagnostics")
           map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Previous diagnostic")
           map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, "Next diagnostic")
         end,

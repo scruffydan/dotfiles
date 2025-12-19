@@ -92,7 +92,7 @@ return {
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fh", function() Snacks.picker.recent() end, desc = "Recent files" },
     { "<leader>fr", function() Snacks.picker.registers() end, desc = "Registers" },
-    { "<leader>fd", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics" },
+    { "<leader>ld", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics" },
     { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Search buffer" },
     { "<leader>fs", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
@@ -105,5 +105,8 @@ return {
     { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git stash" },
     { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
     { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
+    -- LSP
+    { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
+    { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
   },
 }
