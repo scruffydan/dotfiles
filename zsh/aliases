@@ -24,13 +24,13 @@ alias brewup="brew update && brew upgrade"
 brewdeps() {
   echo "$fg[cyan]== Formulas ==$fg[white]"
   brew list --formula | while read -r pkg; do
-    echo -n "$fg[blue] $pkg $fg[white]"
+    echo -n "$fg[green] $pkg $fg[white]"
     brew deps "$pkg" 2>/dev/null | awk '{printf(" %s ", $0)}'
     echo ""
   done
   echo "\n$fg[cyan]== Casks ==$fg[white]"
   brew list --cask | while read -r pkg; do
-    echo -n "$fg[blue] $pkg $fg[white]"
+    echo -n "$fg[green] $pkg $fg[white]"
     brew deps --cask "$pkg" 2>/dev/null | awk '{printf(" %s ", $0)}'
     echo ""
   done
