@@ -57,6 +57,131 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 **Note:** Most LSPs (pyright, ts_ls, bashls, jsonls, yamlls) require Node.js to be installed.
 
+## Neovim Keymaps
+
+Leader key is `<Space>`.
+
+### Navigation
+
+| Keymap | Action |
+|--------|--------|
+| `<C-h>` | Navigate to left split/pane |
+| `<C-j>` | Navigate to split/pane below |
+| `<C-k>` | Navigate to split/pane above |
+| `<C-l>` | Navigate to right split/pane |
+| `<C-\>` | Navigate to previous split/pane |
+| `<C-d>` | Scroll down half page (centered) |
+| `<C-u>` | Scroll up half page (centered) |
+| `<leader>-` | Create horizontal split |
+| `<leader>\|` | Create vertical split |
+
+### File Explorer (Oil)
+
+| Keymap | Action |
+|--------|--------|
+| `<S-Tab>` | Open Oil file explorer |
+| `<Tab>` | Select file/directory (in Oil) |
+| `<S-Tab>` | Go to parent directory (in Oil) |
+| `<leader>th` | Toggle hidden files (in Oil) |
+| `<leader>cd` | Change directory (in Oil) |
+
+### Pickers (Snacks)
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>ff` | Find files |
+| `<leader>fg` | Live grep |
+| `<leader>fb` | Buffers |
+| `<leader>fh` | Recent files |
+| `<leader>fr` | Registers |
+| `<leader>fk` | Keymaps |
+| `<leader>fn` | Notification history |
+| `<leader>fs` | Spell suggestions |
+| `<leader>/` | Search current buffer |
+
+### LSP
+
+| Keymap | Action |
+|--------|--------|
+| `gd` | Go to definition |
+| `gD` | Go to declaration |
+| `gi` | Go to implementation |
+| `gy` | Go to type definition |
+| `gr` | References |
+| `K` | Hover documentation |
+| `<C-k>` | Signature help |
+| `<leader>la` | Code action |
+| `<leader>lr` | Rename symbol |
+| `<leader>ld` | Diagnostics picker |
+| `<leader>lD` | Diagnostic float (at cursor) |
+| `<leader>ls` | Document symbols |
+| `<leader>lS` | Workspace symbols |
+| `[d` | Previous diagnostic |
+| `]d` | Next diagnostic |
+
+### Git
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>gg` | Open Neogit |
+| `<leader>gd` | Open DiffView |
+| `<leader>dc` | Close DiffView |
+| `<leader>gp` | Git pull |
+| `<leader>gs` | Git status picker |
+| `<leader>gB` | Git branches picker |
+| `<leader>gl` | Git log |
+| `<leader>gL` | Git log (line) |
+| `<leader>gf` | Git log (file) |
+| `<leader>gD` | Git diff hunks |
+| `<leader>gS` | Git stash |
+| `<leader>gh` | Preview hunk |
+| `<leader>gb` | Git blame |
+| `<leader>go` | Open in browser (GitHub) |
+| `<leader>ghi` | GitHub issues |
+| `<leader>ghp` | GitHub PRs |
+| `]c` | Next hunk |
+| `[c` | Previous hunk |
+
+### Toggles
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>tn` | Toggle relative line numbers |
+| `<leader>ts` | Toggle spell checking |
+| `<leader>tw` | Toggle whitespace display |
+| `<leader>th` | Toggle hidden files (Oil) |
+| `<leader>tc` | Toggle completion |
+
+### Completion (mini.completion)
+
+| Keymap | Action |
+|--------|--------|
+| `<C-n>` | Next item |
+| `<C-p>` | Previous item |
+| `<C-y>` | Confirm selection |
+| `<C-e>` | Cancel completion |
+| `<C-Space>` | Trigger completion manually |
+
+### Terminal
+
+| Keymap | Action |
+|--------|--------|
+| `<Esc>` | Exit terminal mode |
+| `<Esc><Esc>` | Send Esc to terminal |
+
+### Tabs
+
+| Keymap | Action |
+|--------|--------|
+| `gt` | Next tab |
+| `gT` | Previous tab |
+
+### Misc
+
+| Keymap | Action |
+|--------|--------|
+| `<Esc>` | Clear search highlights |
+
 ## Usage
 
 This repository is managed as my personal configuration. If you're me and setting up a new machine, you know what to do. If you're not me, you probably want to look elsewhere.
