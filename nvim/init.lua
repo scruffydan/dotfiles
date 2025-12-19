@@ -5,11 +5,11 @@ vim.g.maplocalleader = " "
 -- UI Settings
 vim.opt.number = true -- Add line numbers
 -- Toggle relative line numbers
-vim.keymap.set('n', '<leader>n', function()
+vim.keymap.set('n', '<leader>tn', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = 'Toggle relative line numbers' })
 -- Toggle spell checking
-vim.keymap.set('n', '<leader>s', function()
+vim.keymap.set('n', '<leader>ts', function()
   vim.wo.spell = not vim.wo.spell
   vim.notify(vim.wo.spell and "Spell: on" or "Spell: off", vim.log.levels.INFO)
 end, { desc = 'Toggle spell checking' })
@@ -125,7 +125,7 @@ end
 set_whitespace_mode(1)
 
 -- Toggle whitespace display
-vim.keymap.set('n', '<leader>w', function()
+vim.keymap.set('n', '<leader>tw', function()
   local next_mode = (vim.g.whitespace_mode % 3) + 1
   set_whitespace_mode(next_mode)
   local labels = { "Whitespace: default", "Whitespace: all", "Whitespace: off" }
