@@ -55,7 +55,10 @@ return {
     },
     input = {},
     image = {},
-    statuscolumn = {},
+    statuscolumn = {
+      left = { "sign" }, -- Show diagnostic/other signs
+      right = { "fold", "git" }, -- Git signs on right
+    },
     scroll = {
       enabled = true,
       animate = {
@@ -68,12 +71,6 @@ return {
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
-    -- Disable left statuscolumn component (signs appear on right of line numbers)
-    vim.api.nvim_create_autocmd("BufEnter", {
-      callback = function()
-        vim.b.snacks_statuscolumn_left = false
-      end,
-    })
     -- Disable mini.completion in snacks picker/input buffers
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "InsertEnter" }, {
       pattern = "*",

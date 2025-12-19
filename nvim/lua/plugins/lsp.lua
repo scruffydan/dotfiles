@@ -9,10 +9,7 @@ return {
     config = function()
       -- Diagnostics configuration
       vim.diagnostic.config({
-        virtual_text = {
-          prefix = "",
-          spacing = 2,
-        },
+        virtual_text = false,
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = "E",
@@ -22,7 +19,7 @@ return {
           },
         },
         underline = true,
-        update_in_insert = false,
+        update_in_insert = true,
         severity_sort = true,
         float = {
           border = "rounded",
