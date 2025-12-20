@@ -102,6 +102,7 @@ return {
         automatic_enable = true, -- Auto-enable installed LSP servers
         ensure_installed = {
           "lua_ls",
+          "marksman",
         },
       })
     end,
