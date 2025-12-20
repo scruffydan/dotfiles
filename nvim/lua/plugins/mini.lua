@@ -9,7 +9,7 @@ return {
     -- LSP completion with signature help
     require("mini.completion").setup({
       delay = {
-        completion = 100,
+        completion = 1000,
         info = 100,
         signature = 50,
       },
