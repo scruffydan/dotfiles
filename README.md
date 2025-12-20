@@ -57,6 +57,77 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 **Note:** Most LSPs (pyright, ts_ls, bashls, jsonls, yamlls) require Node.js to be installed.
 
+## Tmux Keybindings
+
+Prefix key is `<C-a>`.
+
+### General
+
+| Keymap | Action |
+|--------|--------|
+| `<C-a>` | Prefix key |
+| `<C-a> <C-a>` | Send prefix to application |
+| `<C-a> r` | Reload tmux config and resync client |
+| `<C-a> m` | Toggle mouse mode |
+
+### Sessions
+
+| Keymap | Action |
+|--------|--------|
+| `<C-a> .` | Rename session |
+
+### Windows
+
+| Keymap | Action |
+|--------|--------|
+| `<C-a> c` | Create new window (in current directory) |
+| `<C-a> n` | Next window (repeatable) |
+| `<C-a> N` | Previous window (repeatable) |
+| `<C-a> ,` | Rename window (default tmux binding) |
+
+### Panes
+
+| Keymap | Action |
+|--------|--------|
+| `<C-a> \|` or `<C-a> \` | Split pane vertically (in current directory) |
+| `<C-a> -` | Split pane horizontally (in current directory) |
+| `<C-a> h` | Select pane left (repeatable) |
+| `<C-a> j` | Select pane down (repeatable) |
+| `<C-a> k` | Select pane up (repeatable) |
+| `<C-a> l` | Select pane right (repeatable) |
+| `<C-a> H` | Resize pane left (repeatable) |
+| `<C-a> J` | Resize pane down (repeatable) |
+| `<C-a> K` | Resize pane up (repeatable) |
+| `<C-a> L` | Resize pane right (repeatable) |
+
+### Vim-Tmux Navigator Integration
+
+| Keymap | Action |
+|--------|--------|
+| `<C-h>` | Navigate to left pane/split (vim-aware) |
+| `<C-j>` | Navigate to pane/split below (vim-aware) |
+| `<C-k>` | Navigate to pane/split above (vim-aware) |
+| `<C-l>` | Navigate to right pane/split (vim-aware) |
+| `<C-\>` | Navigate to previous pane/split (vim-aware) |
+
+### Copy Mode (Vi)
+
+| Keymap | Action |
+|--------|--------|
+| `<C-a> Escape` | Enter copy mode |
+| `<C-a> p` | Paste from buffer |
+| `<C-a> P` | Choose buffer to paste |
+| `v` (in copy mode) | Begin selection |
+| `y` (in copy mode) | Copy selection |
+| `<C-c>` (in copy mode) | Copy selection |
+
+### Popup
+
+| Keymap | Action |
+|--------|--------|
+| `<C-a> `` ` | Display popup terminal (90% size, current directory) |
+| `<C-a> ~` | Display popup terminal (90% size, current directory) |
+
 ## Neovim Keymaps
 
 Leader key is `<Space>`.
@@ -73,7 +144,7 @@ Leader key is `<Space>`.
 | `<C-d>` | Scroll down half page (centered) |
 | `<C-u>` | Scroll up half page (centered) |
 | `<leader>-` | Create horizontal split |
-| `<leader>\|` | Create vertical split |
+| `<leader>\|` or `<leader>\` | Create vertical split |
 
 ### Tabs
 
@@ -114,12 +185,12 @@ Leader key is `<Space>`.
 | `gD` | Go to declaration |
 | `gi` | Go to implementation |
 | `gy` | Go to type definition |
-| `gr` | References |
+| `gr` | References (picker) |
 | `K` | Hover documentation |
-| `<C-k>` | Signature help |
-| `<leader>la` | Code action |
+| `<C-k>` | Signature help (normal and insert mode) |
+| `<leader>la` | Code action (normal and visual mode) |
 | `<leader>lr` | Rename symbol |
-| `<leader>ld` | Diagnostics picker |
+| `<leader>ld` | Diagnostics picker (buffer) |
 | `<leader>lD` | Diagnostic float (at cursor) |
 | `<leader>ls` | Document symbols |
 | `<leader>lS` | Workspace symbols |
@@ -139,8 +210,8 @@ Leader key is `<Space>`.
 | `<leader>gl` | Git log |
 | `<leader>gL` | Git log (line) |
 | `<leader>gf` | Git log (file) |
-| `<leader>gD` | Git diff hunks |
-| `<leader>gS` | Git stash |
+| `<leader>gD` | Git diff hunks picker |
+| `<leader>gS` | Git stash picker |
 | `<leader>gh` | Preview hunk |
 | `<leader>gb` | Git blame |
 | `<leader>go` | Open in browser (GitHub) |
@@ -155,7 +226,7 @@ Leader key is `<Space>`.
 |--------|--------|
 | `<leader>tn` | Toggle relative line numbers |
 | `<leader>ts` | Toggle spell checking |
-| `<leader>tw` | Toggle whitespace display |
+| `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
 | `<leader>th` | Toggle hidden files (Oil) |
 | `<leader>tc` | Toggle completion |
 
