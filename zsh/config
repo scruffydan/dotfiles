@@ -42,10 +42,10 @@ function +vi-git-aheadbehind() {
   behind=$(git rev-list --count HEAD..${hook_com[branch]}@{upstream} 2>/dev/null)
 
   if [[ -n "$ahead" && "$ahead" -gt 0 ]]; then
-    gitstatus+=("%{$fg[yellow]%}↑${ahead}")
+    gitstatus+=("%{$fg[cyan]%}↑${ahead}")
   fi
   if [[ -n "$behind" && "$behind" -gt 0 ]]; then
-    gitstatus+=("%{$fg[cyan]%}↓${behind}")
+    gitstatus+=("%{$fg[yellow]%}↓${behind}")
   fi
 
   if [[ ${#gitstatus[@]} -gt 0 ]]; then
