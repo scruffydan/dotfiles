@@ -21,6 +21,9 @@ vim.opt.cursorline = true  -- Highlight current line
 vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
 vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
 vim.opt.signcolumn = "yes"  -- Always show signcolumn
+if vim.fn.has("nvim-0.12") == 1 then
+  vim.opt.pumborder = "rounded"  -- Rounded border on completion popup
+end
 
 -- Enable true color only if terminal supports it
 if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" then
