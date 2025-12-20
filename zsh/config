@@ -23,13 +23,37 @@ function vi_mode_prompt_info() {
 
 # Turn on and configure the version control system information
 autoload -Uz vcs_info
-precmd () { vcs_info }
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%F{yellow}+%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red}*%f'
-zstyle ':vcs_info:git:*' formats "%{$fg[yellow]%}| %{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}%c%u"
-zstyle ':vcs_info:git:*' actionformats "%{$fg[yellow]%}| %{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}%c%u %{$fg[red]%}(%a)%{$reset_color%}"
+zstyle ':vcs_info:git:*' formats "%{$fg[yellow]%}| %{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}%c%u%m"
+zstyle ':vcs_info:git:*' actionformats "%{$fg[yellow]%}| %{$fg[blue]%}%b:%{$fg[green]%}%.7i%{$reset_color%}%c%u%m %{$fg[red]%}(%a)%{$reset_color%}"
+
+# Enable git hooks for ahead/behind info
+zstyle ':vcs_info:git*+set-message:*' hooks git-aheadbehind
+
+# Hook to show ahead/behind remote tracking branch
+function +vi-git-aheadbehind() {
+  local ahead behind
+  local -a gitstatus
+
+  ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null)
+  behind=$(git rev-list --count HEAD..${hook_com[branch]}@{upstream} 2>/dev/null)
+
+  if [[ -n "$ahead" && "$ahead" -gt 0 ]]; then
+    gitstatus+=("%{$fg[yellow]%}↑${ahead}")
+  fi
+  if [[ -n "$behind" && "$behind" -gt 0 ]]; then
+    gitstatus+=("%{$fg[cyan]%}↓${behind}")
+  fi
+
+  if [[ ${#gitstatus[@]} -gt 0 ]]; then
+    hook_com[misc]+="${(j::)gitstatus}"
+  fi
+}
+
+precmd () { vcs_info }
 
 
 # Update the command prompt
