@@ -35,22 +35,21 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-aheadbehind
 
 # Hook to show ahead/behind remote tracking branch
 function +vi-git-aheadbehind() {
-  local ahead behind
   local -a gitstatus
+  local ab ahead behind
 
-  ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null)
-  behind=$(git rev-list --count HEAD..${hook_com[branch]}@{upstream} 2>/dev/null)
+  # Single git command returns "+N -M" for ahead/behind
+  ab=$(git status --porcelain=2 --branch 2>/dev/null | grep -m1 '^# branch.ab ')
+  [[ -z "$ab" ]] && return
 
-  if [[ -n "$ahead" && "$ahead" -gt 0 ]]; then
-    gitstatus+=("%{$fg[cyan]%}↑${ahead}")
-  fi
-  if [[ -n "$behind" && "$behind" -gt 0 ]]; then
-    gitstatus+=("%{$fg[yellow]%}↓${behind}")
-  fi
+  # Parse: "# branch.ab +5 -3" → ahead=5, behind=3
+  ahead=${ab#*+}; ahead=${ahead%% *}
+  behind=${ab#*-}; behind=${behind%% *}
 
-  if [[ ${#gitstatus[@]} -gt 0 ]]; then
-    hook_com[misc]+="${(j::)gitstatus}"
-  fi
+  (( ahead > 0 )) && gitstatus+=("%{$fg[cyan]%}↑${ahead}")
+  (( behind > 0 )) && gitstatus+=("%{$fg[yellow]%}↓${behind}")
+
+  (( ${#gitstatus[@]} )) && hook_com[misc]+="${(j::)gitstatus}"
 }
 
 precmd () { vcs_info }
