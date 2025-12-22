@@ -5,3 +5,6 @@ export PATH
 
 # Set charset to UTF8
 #export LANG=en_US.UTF-8
+
+# Set default editor to nvim, fallback to vim
+export EDITOR="$(command -v nvim || command -v vim)"
