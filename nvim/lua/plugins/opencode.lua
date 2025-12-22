@@ -1,6 +1,11 @@
 return {
   "NickvanDyke/opencode.nvim",
 
+  -- Only load if opencode CLI is installed
+  cond = function()
+    return vim.fn.executable("opencode") == 1
+  end,
+
   event = "VeryLazy",
 
   config = function()
