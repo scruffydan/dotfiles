@@ -105,7 +105,7 @@ $ '
 # For OSX The default is "exfxcxdxbxegedabagacad"
 export LSCOLORS="gxdxcxdxcxegedabagacad"
 
-### Linux Uses LS _COLORS
+### Linux Uses LS_COLORS
 # The parameters for LS_COLORS (di, fi, ln, pi, etc) refer to different file types:
 # di   Directory
 # fi   File

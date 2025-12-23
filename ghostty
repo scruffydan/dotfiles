@@ -36,7 +36,7 @@ font-thicken = true
 # Add Padding of 2 to height to account for title and tab bars
 window-height = 47
 window-width = 110
-# Resize the window in discrete increments aliging with text cells
+# Resize the window in discrete increments aligning with text cells
 window-step-resize = true
 # Balance extra padding on all sides when window doesn't align to cell grid
 window-padding-balance = true
