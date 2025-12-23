@@ -30,8 +30,13 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ### Neovim Configuration
 
-- **SauceCodePro Nerd Font** - Required for icons in which-key, Oil, and other plugins
+- **SauceCodePro Nerd Font** - Recommended for icons in which-key, Oil, and other plugins (falls back to Source Code Pro, Menlo, Consolas, DejaVu Sans Mono, or system monospace)
   - macOS: `brew install --cask font-sauce-code-pro-nerd-font`
+  - Linux/Windows/FreeBSD: Download from [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+
+### Ghostty Terminal
+
+- **SauceCodePro Nerd Font** - Recommended for icons (same fallback chain as Neovim)
 - **ripgrep (rg)** - Required for snacks.nvim picker grep
 - **C compiler** (gcc/clang) - Required for treesitter parser compilation (typically pre-installed on macOS and FreeBSD)
 - **tree-sitter-cli** (0.25.0 or later) - Required for nvim-treesitter main branch

@@ -26,6 +26,11 @@ selection-background = #39382F
 selection-foreground = #F8F8F2
 # Font
 font-family = SauceCodePro Nerd Font Mono
+font-family = Source Code Pro
+font-family = Menlo
+font-family = Consolas
+font-family = DejaVu Sans Mono
+font-family = monospace
 font-size = 14
 font-thicken = true
 
