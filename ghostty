@@ -25,7 +25,7 @@ cursor-color = #F8F8F2
 selection-background = #39382F
 selection-foreground = #F8F8F2
 # Font
-font-family = Source Code Pro
+font-family = SauceCodePro Nerd Font Mono
 font-size = 14
 font-thicken = true
 
