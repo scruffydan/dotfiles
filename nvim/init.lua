@@ -46,7 +46,20 @@ if vim.g.neovide then
   vim.keymap.set('n', '<D-0>', function()
     vim.g.neovide_scale_factor = 1.0
   end)
+  -- Cmd+V to paste from system clipboard
+  vim.keymap.set({'n', 'v'}, '<D-v>', '"+p', { desc = 'Paste from clipboard' })
+  vim.keymap.set('i', '<D-v>', '<C-r>+', { desc = 'Paste from clipboard' })
+  vim.keymap.set('c', '<D-v>', '<C-r>+', { desc = 'Paste from clipboard' })
+  -- Cmd+C to copy to system clipboard
+  vim.keymap.set('v', '<D-c>', '"+y', { desc = 'Copy to clipboard' })
+  -- Cmd+X to cut to system clipboard
+  vim.keymap.set('v', '<D-x>', '"+d', { desc = 'Cut to clipboard' })
+  -- Cmd+A to select all
+  vim.keymap.set('n', '<D-a>', 'ggVG', { desc = 'Select all' })
 end
+
+-- Tabs
+vim.keymap.set('n', '<leader>T', '<cmd>tabnew<CR>', { desc = 'New tab' })
 
 -- Split behavior
 vim.opt.splitright = true  -- Open vertical splits to the right

@@ -150,6 +150,7 @@ Leader key is `<Space>`.
 
 | Keymap | Action |
 |--------|--------|
+| `<leader>T` | New tab |
 | `gt` | Next tab |
 | `gT` | Previous tab |
 
@@ -246,6 +247,18 @@ Leader key is `<Space>`.
 |--------|--------|
 | `<Esc>` | Exit terminal mode |
 | `<Esc><Esc>` | Send Esc to terminal |
+
+### Neovide (GUI)
+
+| Keymap | Action |
+|--------|--------|
+| `<D-v>` | Paste from clipboard |
+| `<D-c>` | Copy to clipboard |
+| `<D-x>` | Cut to clipboard |
+| `<D-a>` | Select all |
+| `<D-=>` | Zoom in |
+| `<D-->` | Zoom out |
+| `<D-0>` | Reset zoom |
 
 ### Misc
 
