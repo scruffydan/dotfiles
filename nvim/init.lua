@@ -30,6 +30,24 @@ if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" th
   vim.opt.termguicolors = true
 end
 
+-- GUI font for Neovide (and other GUI clients)
+vim.opt.guifont = "Source Code Pro:h14"
+
+-- Neovide-specific settings
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0
+  -- Cmd+= to zoom in, Cmd+- to zoom out, Cmd+0 to reset
+  vim.keymap.set('n', '<D-=>', function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
+  end)
+  vim.keymap.set('n', '<D-->', function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor / 1.1
+  end)
+  vim.keymap.set('n', '<D-0>', function()
+    vim.g.neovide_scale_factor = 1.0
+  end)
+end
+
 -- Split behavior
 vim.opt.splitright = true  -- Open vertical splits to the right
 vim.opt.splitbelow = true  -- Open horizontal splits below
