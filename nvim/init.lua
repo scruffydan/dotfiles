@@ -31,7 +31,7 @@ if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" th
 end
 
 -- GUI font for Neovide (and other GUI clients)
-vim.opt.guifont = "SauceCodePro Nerd Font Mono,Source Code Pro,Menlo,Consolas,DejaVu Sans Mono,monospace:h14"
+vim.opt.guifont = "SauceCodePro NFM:h14"
 
 -- Neovide-specific settings
 if vim.g.neovide then
