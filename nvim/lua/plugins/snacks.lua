@@ -92,7 +92,7 @@ return {
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fh", function() Snacks.picker.recent() end, desc = "Recent files" },
     { "<leader>fr", function() Snacks.picker.registers() end, desc = "Registers" },
-    { "<leader>lD", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics" },
+    { "<leader>lD", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics (picker)" },
     { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Search buffer" },
     { "<leader>fs", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
