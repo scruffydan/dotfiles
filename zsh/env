@@ -1,5 +1,5 @@
 # Set path
-PATH=/opt/homebrew/bin:/opt/homebrew/sbin:~/bin:~/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
+PATH=~/bin:~/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 typeset -U path  # Remove duplicate entries from PATH
 export PATH
 
