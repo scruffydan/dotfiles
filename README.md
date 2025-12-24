@@ -271,7 +271,6 @@ Leader key is `<Space>`.
 
 | Keymap | Action |
 |--------|--------|
-| `<Tab>` | Goto/Apply Next Edit Suggestion (Copilot NES) |
 | `<C-.>` | Toggle Sidekick CLI |
 | `<leader>ao` | Open OpenCode |
 | `<leader>ac` | Open Claude |
