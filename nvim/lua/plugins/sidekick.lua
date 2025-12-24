@@ -71,5 +71,63 @@ return {
       mode = { "n", "x" },
       desc = "Sidekick Select Prompt",
     },
+    -- Direct access to specific CLI tools
+    {
+      "<leader>ao",
+      function() require("sidekick.cli").show({ name = "opencode", focus = true }) end,
+      desc = "Sidekick Open OpenCode",
+    },
+    {
+      "<leader>ac",
+      function() require("sidekick.cli").show({ name = "claude", focus = true }) end,
+      desc = "Sidekick Open Claude",
+    },
+    -- Context-aware prompts (similar to opencode.nvim)
+    {
+      "<leader>ae",
+      function() require("sidekick.cli").send({ msg = "Explain {this}" }) end,
+      mode = { "n", "x" },
+      desc = "Sidekick Explain",
+    },
+    {
+      "<leader>ar",
+      function() require("sidekick.cli").send({ msg = "Can you review {file} for any issues or improvements?" }) end,
+      mode = { "n", "x" },
+      desc = "Sidekick Review",
+    },
+    {
+      "<leader>aF",
+      function() require("sidekick.cli").send({ msg = "Can you fix {this}?" }) end,
+      mode = { "n", "x" },
+      desc = "Sidekick Fix",
+    },
+    {
+      "<leader>ad",
+      function() require("sidekick.cli").send({ msg = "Can you help me fix the diagnostics in {file}?\n{diagnostics}" }) end,
+      desc = "Sidekick Fix Diagnostics (buffer)",
+    },
+    {
+      "<leader>aD",
+      function() require("sidekick.cli").send({ msg = "Can you help me fix these diagnostics?\n{diagnostics_all}" }) end,
+      desc = "Sidekick Fix Diagnostics (all)",
+    },
+    {
+      "<leader>ai",
+      function() require("sidekick.cli").send({ msg = "Add documentation to {this}" }) end,
+      mode = { "n", "x" },
+      desc = "Sidekick Document",
+    },
+    {
+      "<leader>az",
+      function() require("sidekick.cli").send({ msg = "How can {this} be optimized?" }) end,
+      mode = { "n", "x" },
+      desc = "Sidekick Optimize",
+    },
+    {
+      "<leader>aT",
+      function() require("sidekick.cli").send({ msg = "Can you write tests for {this}?" }) end,
+      mode = { "n", "x" },
+      desc = "Sidekick Write Tests",
+    },
   },
 }
