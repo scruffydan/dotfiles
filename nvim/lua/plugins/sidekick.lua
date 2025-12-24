@@ -34,19 +34,9 @@ return {
     },
     -- Leader keymaps using <leader>a prefix
     {
-      "<leader>aa",
-      function() require("sidekick.cli").toggle() end,
-      desc = "Sidekick Toggle CLI",
-    },
-    {
       "<leader>as",
       function() require("sidekick.cli").select() end,
       desc = "Sidekick Select CLI",
-    },
-    {
-      "<leader>ad",
-      function() require("sidekick.cli").close() end,
-      desc = "Sidekick Detach CLI Session",
     },
     {
       "<leader>at",
