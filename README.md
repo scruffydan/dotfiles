@@ -267,6 +267,28 @@ Leader key is `<Space>`.
 | `<D-->` | Zoom out |
 | `<D-0>` | Reset zoom |
 
+### Sidekick (AI CLI Integration)
+
+| Keymap | Action |
+|--------|--------|
+| `<Tab>` | Goto/Apply Next Edit Suggestion (Copilot NES) |
+| `<C-.>` | Toggle Sidekick CLI |
+| `<leader>ao` | Open OpenCode |
+| `<leader>ac` | Open Claude |
+| `<leader>as` | Select CLI tool |
+| `<leader>ap` | Select prompt |
+| `<leader>at` | Send this (selection/position) |
+| `<leader>af` | Send file |
+| `<leader>av` | Send visual selection |
+| `<leader>ae` | Explain this |
+| `<leader>ar` | Review file |
+| `<leader>aF` | Fix this |
+| `<leader>ad` | Fix diagnostics (buffer) |
+| `<leader>aD` | Fix diagnostics (all) |
+| `<leader>ai` | Document this |
+| `<leader>az` | Optimize this |
+| `<leader>aT` | Write tests for this |
+
 ### Misc
 
 | Keymap | Action |

@@ -31,7 +31,7 @@ local plugins = {
   require("plugins.vim-tmux-navigator"),
   require("plugins.snacks"),
   require("plugins.csvview"),
-  require("plugins.opencode"),
+  require("plugins.sidekick"),
 }
 
 require("lazy").setup(plugins, {
