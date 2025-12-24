@@ -93,6 +93,11 @@ return {
       version = tostring(vim.version()),
     },
   },
+  settings = {
+    telemetry = {
+      telemetryLevel = 'off',
+    },
+  },
   on_attach = function(client, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, 'LspCopilotSignIn', function()
       sign_in(bufnr, client)
@@ -182,16 +187,12 @@ Add the `<Tab>` keybinding for NES to the `keys` table:
 
 ---
 
-## Open Questions
+## Decisions Made
 
-### 1. Telemetry
-The default copilot config has `telemetryLevel = "all"`. Options:
-- Keep as-is (default)
-- Add `settings = { telemetry = { telemetryLevel = "off" } }` to disable
-
-### 2. Tab Keybinding Mode
-Current plan uses normal mode only (`mode = { "n" }`). Alternative:
-- Both normal and insert mode (`mode = { "n", "i" }`) - more convenient but may conflict with snippets or other tab behaviors
+| Decision | Choice |
+|----------|--------|
+| Telemetry | `"off"` - disabled |
+| Tab keybinding | Normal mode only (`mode = { "n" }`) |
 
 ---
 
@@ -209,6 +210,18 @@ Current plan uses normal mode only (`mode = { "n" }`). Alternative:
 1. Verify Mason installed it: `:Mason` then search for `copilot`
 2. Check the binary exists: `~/.local/share/nvim/mason/bin/copilot-language-server`
 3. Check LSP logs: `:lua vim.cmd('edit ' .. vim.lsp.get_log_path())`
+
+---
+
+## Phase 2: Inline Completions (Future)
+
+Once NES is working, inline completions (ghost text suggestions as you type) can be enabled by:
+
+1. Adding `vim.lsp.inline_completion.enable(true, { bufnr = bufnr })` in the copilot `on_attach`
+2. Adding keybindings for `vim.lsp.inline_completion.get` and `vim.lsp.inline_completion.select`
+3. Optionally integrating with blink.cmp or other completion plugins
+
+This is separate from NES and provides the traditional Copilot "autocomplete as you type" experience.
 
 ---
 
