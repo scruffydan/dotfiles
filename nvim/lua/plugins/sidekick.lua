@@ -14,7 +14,7 @@ return {
     },
   },
   keys = {
-    -- NES (Next Edit Suggestions) keybinding
+    -- NES (Next Edit Suggestions) keybindings
     {
       "<tab>",
       function()
@@ -26,6 +26,15 @@ return {
       expr = true,
       desc = "Goto/Apply Next Edit Suggestion",
       mode = { "n" },
+    },
+    {
+      "<leader>an",
+      function()
+        local nes = require("sidekick.nes")
+        nes.toggle()
+        vim.notify("NES " .. (nes.enabled and "enabled" or "disabled"), vim.log.levels.INFO)
+      end,
+      desc = "Toggle NES (Next Edit Suggestions)",
     },
     -- Toggle sidekick CLI
     {
