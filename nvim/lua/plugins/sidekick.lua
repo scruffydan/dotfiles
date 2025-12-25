@@ -3,7 +3,7 @@ return {
   dependencies = {
     "folke/snacks.nvim",
   },
-  event = "VeryLazy",
+  event = { "BufReadPre", "BufNewFile" },
   opts = {
     cli = {
       mux = {
