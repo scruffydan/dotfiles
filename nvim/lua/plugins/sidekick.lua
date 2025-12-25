@@ -70,7 +70,7 @@ return {
       "<leader>ap",
       function() require("sidekick.cli").prompt() end,
       mode = { "n", "x" },
-      desc = "Sidekick Select Prompt",
+      desc = "Select Prompt Sidekick",
     },
     -- Direct access to specific CLI tools
     {
@@ -88,19 +88,19 @@ return {
       "<leader>ae",
       function() require("sidekick.cli").send({ msg = "Explain {this}" }) end,
       mode = { "n", "x" },
-      desc = "Explain",
+      desc = "AI Explain",
     },
     {
       "<leader>ar",
       function() require("sidekick.cli").send({ msg = "Can you review {file} for any issues or improvements?" }) end,
       mode = { "n", "x" },
-      desc = "Review",
+      desc = "AI Review",
     },
     {
       "<leader>aF",
       function() require("sidekick.cli").send({ msg = "Can you fix {this}?" }) end,
       mode = { "n", "x" },
-      desc = "Fix",
+      desc = "AI Fix",
     },
     {
       "<leader>ad",
@@ -122,13 +122,13 @@ return {
       "<leader>az",
       function() require("sidekick.cli").send({ msg = "How can {this} be optimized?" }) end,
       mode = { "n", "x" },
-      desc = "Sidekick Optimize",
+      desc = "AI Optimize",
     },
     {
       "<leader>aT",
       function() require("sidekick.cli").send({ msg = "Can you write tests for {this}?" }) end,
       mode = { "n", "x" },
-      desc = "Sidekick Write Tests",
+      desc = "AI Write Tests",
     },
   },
 }
