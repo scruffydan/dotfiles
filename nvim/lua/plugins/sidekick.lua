@@ -3,7 +3,7 @@ return {
   dependencies = {
     "folke/snacks.nvim",
   },
-  event = "VeryLazy",
+  event = { "BufReadPre", "BufNewFile" },
   opts = {
     cli = {
       mux = {
@@ -14,6 +14,19 @@ return {
     },
   },
   keys = {
+    -- NES (Next Edit Suggestions) keybinding
+    {
+      "<tab>",
+      function()
+        -- Jump to next edit suggestion, or apply if at the edit location
+        if not require("sidekick").nes_jump_or_apply() then
+          return "<Tab>"  -- fallback to normal tab
+        end
+      end,
+      expr = true,
+      desc = "Goto/Apply Next Edit Suggestion",
+      mode = { "n" },
+    },
     -- Toggle sidekick CLI
     {
       "<c-.>",

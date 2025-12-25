@@ -71,6 +71,15 @@ return {
         end,
       })
 
+      -- Source copilot config from dotfiles location
+      local copilot_config_path = vim.fn.expand('~/dotfiles/nvim/lsp/copilot.lua')
+      if vim.fn.filereadable(copilot_config_path) == 1 then
+        vim.lsp.config('copilot', dofile(copilot_config_path))
+      end
+
+      -- Enable copilot LSP globally
+      vim.lsp.enable('copilot')
+
       -- Configure lua_ls
       vim.lsp.config("lua_ls", {
         settings = {
@@ -103,6 +112,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "marksman",
+          "copilot",
         },
       })
     end,
