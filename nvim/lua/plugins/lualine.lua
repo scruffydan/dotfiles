@@ -55,6 +55,25 @@ return {
             symbols = { added = "● ", modified = "● ", removed = "● " },
           },
           "diagnostics",
+          -- Sidekick NES status
+          {
+            function()
+              local ok, nes = pcall(require, "sidekick.nes")
+              if ok and nes.enabled then
+                local count = nes.get and nes.get() and #nes.get() or 0
+                if count > 0 then
+                  return "NES:" .. count
+                end
+                return "NES"
+              end
+              return ""
+            end,
+            cond = function()
+              local ok, nes = pcall(require, "sidekick.nes")
+              return ok and nes.enabled
+            end,
+            color = { fg = "#a6e22e" },
+          },
         },
         lualine_x = {
           {
