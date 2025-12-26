@@ -19,7 +19,8 @@ return {
       if require("sidekick").nes_jump_or_apply() then
         return ""
       end
-      return "<Tab>"
+      -- Use vim.api to get the actual tab keycode
+      return vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
     end, { expr = true, replace_keycodes = false, desc = "Accept Copilot or Tab" })
   end,
 }
