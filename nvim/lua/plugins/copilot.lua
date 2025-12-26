@@ -1,6 +1,6 @@
 return {
   "github/copilot.vim",
-  event = { "InsertEnter", "CmdlineEnter" },
+  event = "InsertEnter",
   cmd = { "Copilot" },
   init = function()
     -- Disable default Tab mapping, we'll use our own
