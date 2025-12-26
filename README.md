@@ -286,10 +286,19 @@ Leader key is `<Space>`.
 | `<leader>aF` | Fix this |
 | `<leader>ad` | Fix diagnostics (buffer) |
 | `<leader>aD` | Fix diagnostics (all) |
-| `<leader>ai` | Document this |
+| `<leader>aI` | Document this |
 | `<leader>az` | Optimize this |
 | `<leader>aT` | Write tests for this |
 | `<leader>an` | Toggle NES (Next Edit Suggestions) |
+| `<leader>ai` | Toggle inline completion |
+
+### Copilot Inline Completion (Insert Mode)
+
+| Keymap | Action |
+|--------|--------|
+| `<Tab>` | Accept inline completion (or NES, or normal Tab) |
+| `<C-e>` | Trigger inline completion |
+| `<C-]>` | Dismiss inline completion |
 
 ### Misc
 
