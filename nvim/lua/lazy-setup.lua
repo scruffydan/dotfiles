@@ -32,6 +32,7 @@ local plugins = {
   require("plugins.snacks"),
   require("plugins.csvview"),
   require("plugins.sidekick"),
+  require("plugins.copilot"),
 }
 
 require("lazy").setup(plugins, {
