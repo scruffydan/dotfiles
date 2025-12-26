@@ -15,6 +15,11 @@ return {
       commit_editor = {
         staged_diff_split_kind = "auto",
       },
+      mappings = {
+        popup = {
+          ["d"] = false,  -- Disable built-in diff popup (use <leader>dd instead)
+        },
+      },
     })
   end,
 }
