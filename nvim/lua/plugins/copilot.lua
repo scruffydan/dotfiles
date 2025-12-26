@@ -5,8 +5,7 @@ return {
   init = function()
     -- Disable default Tab mapping, we'll use our own
     vim.g.copilot_no_tab_map = true
-    -- Default state controlled by vim.g.completion_mode (set in mini.lua)
-    -- Start enabled, mini.lua will set correct state on first toggle
+    -- Default state controlled by vim.g.completion_mode (set in init.lua)
     vim.g.copilot_enabled = (vim.g.completion_mode or "copilot") == "copilot"
   end,
   config = function()
