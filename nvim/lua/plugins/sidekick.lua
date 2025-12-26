@@ -5,6 +5,10 @@ return {
   },
   event = { "BufReadPre", "BufNewFile" },
   opts = {
+    nes = {
+      -- Disable NES if copilot-language-server not available
+      enabled = vim.fn.executable("copilot-language-server") == 1,
+    },
     cli = {
       mux = {
         backend = "tmux",
