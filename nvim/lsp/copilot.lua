@@ -3,6 +3,11 @@
 -- Sign in with :LspCopilotSignIn
 -- Sign out with :LspCopilotSignOut
 
+-- Requires copilot-language-server; skip if not available
+if vim.fn.executable("copilot-language-server") ~= 1 then
+  return {}
+end
+
 local function sign_in(bufnr, client)
   client:request('signIn', vim.empty_dict(), function(err, result)
     if err then

@@ -29,9 +29,11 @@ return {
     if registry.refresh then
       registry.refresh(function()
         ensure_installed("tree-sitter-cli")
+        ensure_installed("copilot-language-server")
       end)
     else
       ensure_installed("tree-sitter-cli")
+      ensure_installed("copilot-language-server")
     end
   end,
 }
