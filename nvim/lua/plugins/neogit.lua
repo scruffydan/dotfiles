@@ -2,14 +2,10 @@ return {
   "NeogitOrg/neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "sindrets/diffview.nvim",
     "folke/snacks.nvim",
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
-    { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
-    { "<leader>dd", "<cmd>DiffviewOpen<CR>", desc = "DiffView" },
-    { "<leader>dc", "<cmd>DiffviewClose<CR>", desc = "Close DiffView" },
     { "<leader>gp", "<cmd>Neogit pull<CR>", desc = "Git pull" },
   },
   config = function()
@@ -18,6 +14,11 @@ return {
       graph_style = "unicode",
       commit_editor = {
         staged_diff_split_kind = "auto",
+      },
+      mappings = {
+        popup = {
+          ["d"] = false,  -- Disable built-in diff popup (use <leader>dd instead)
+        },
       },
     })
   end,

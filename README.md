@@ -211,9 +211,6 @@ Leader key is `<Space>`.
 | Keymap | Action |
 |--------|--------|
 | `<leader>gg` | Open Neogit |
-| `<leader>gd` | Open DiffView |
-| `<leader>dd` | Open DiffView |
-| `<leader>dc` | Close DiffView |
 | `<leader>gp` | Git pull |
 | `<leader>gs` | Git status picker |
 | `<leader>gB` | Git branches picker |
@@ -229,6 +226,23 @@ Leader key is `<Space>`.
 | `<leader>ghp` | GitHub PRs |
 | `]c` | Next hunk |
 | `[c` | Previous hunk |
+
+### Diff (vscode-diff.nvim)
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>dd` | Diff explorer (git status) |
+| `<leader>df` | Diff current file vs HEAD |
+| `<leader>dh` | Diff current file vs HEAD~1 |
+| `<leader>db` | Diff vs default branch (main/master) |
+| `]c` | Next hunk (in diff view) |
+| `[c` | Previous hunk (in diff view) |
+| `]f` | Next file (in explorer) |
+| `[f` | Previous file (in explorer) |
+| `do` | Get change from other buffer |
+| `dp` | Put change to other buffer |
+| `e` | Toggle list/tree view (in explorer) |
+| `q` | Close diff view (in diff tab) |
 
 ### Toggles
 
