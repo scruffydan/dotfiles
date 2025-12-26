@@ -2,6 +2,15 @@ return {
   "github/copilot.vim",
   event = "InsertEnter",
   cmd = { "Copilot" },
+  cond = function()
+    if vim.fn.executable("node") ~= 1 then
+      vim.defer_fn(function()
+        vim.notify("copilot.vim: node not found in PATH", vim.log.levels.WARN)
+      end, 100)
+      return false
+    end
+    return true
+  end,
   init = function()
     -- Disable default Tab mapping, we'll use our own
     vim.g.copilot_no_tab_map = true
