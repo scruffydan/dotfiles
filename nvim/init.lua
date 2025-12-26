@@ -215,8 +215,15 @@ package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 require('lazy-setup')
 
 -- Completion mode: "copilot" | "native" | "off"
--- Default to copilot inline completions
-vim.g.completion_mode = vim.g.completion_mode or "copilot"
+-- Default to copilot inline completions (if available)
+local function copilot_available()
+  local ok, lazy_config = pcall(require, "lazy.core.config")
+  if not ok then return false end
+  local plugin = lazy_config.plugins["copilot.vim"]
+  return plugin and plugin._.cond ~= false
+end
+
+vim.g.completion_mode = vim.g.completion_mode or (copilot_available() and "copilot" or "native")
 
 -- Disable mini.completion by default when in copilot mode
 if vim.g.completion_mode == "copilot" then
@@ -224,8 +231,9 @@ if vim.g.completion_mode == "copilot" then
 end
 
 -- Toggle completion mode: copilot -> native -> off -> copilot
+-- (skips copilot if node not available)
 vim.keymap.set("n", "<leader>tc", function()
-  local modes = { "copilot", "native", "off" }
+  local modes = copilot_available() and { "copilot", "native", "off" } or { "native", "off" }
   local current = vim.g.completion_mode or "copilot"
   local idx = 1
   for i, mode in ipairs(modes) do
