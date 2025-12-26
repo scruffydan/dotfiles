@@ -2,6 +2,9 @@ return {
   "hat0uma/csvview.nvim",
   ft = { "csv", "tsv" },
   opts = {
+    parser = {
+      comments = { "#", "//" },
+    },
     view = {
       display_mode = "border",
     },
