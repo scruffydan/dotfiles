@@ -1,4 +1,5 @@
 -- Copilot Language Server configuration for NES (Next Edit Suggestions)
+-- Inline completions are handled by github/copilot.vim plugin
 -- Sign in with :LspCopilotSignIn
 -- Sign out with :LspCopilotSignOut
 

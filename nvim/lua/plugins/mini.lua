@@ -7,6 +7,7 @@ return {
     require("mini.pairs").setup({})
 
     -- LSP completion with signature help
+    -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
     require("mini.completion").setup({
       delay = {
         completion = 1000,
@@ -27,11 +28,5 @@ return {
     vim.keymap.set("i", "<C-Space>", function()
       return vim.fn.pumvisible() == 1 and "" or "<C-x><C-o>"
     end, { expr = true, desc = "Trigger completion" })
-
-    -- Toggle autocompletion
-    vim.keymap.set("n", "<leader>tc", function()
-      vim.b.minicompletion_disable = not vim.b.minicompletion_disable
-      vim.notify(vim.b.minicompletion_disable and "Completion: off" or "Completion: on", vim.log.levels.INFO)
-    end, { desc = "Toggle completion" })
   end,
 }

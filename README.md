@@ -238,7 +238,7 @@ Leader key is `<Space>`.
 | `<leader>ts` | Toggle spell checking |
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
 | `<leader>th` | Toggle hidden files (Oil) |
-| `<leader>tc` | Toggle completion |
+| `<leader>tc` | Cycle completion (copilot/native/off) |
 
 ### Completion (mini.completion)
 
@@ -290,6 +290,18 @@ Leader key is `<Space>`.
 | `<leader>az` | Optimize this |
 | `<leader>aT` | Write tests for this |
 | `<leader>an` | Toggle NES (Next Edit Suggestions) |
+
+### Copilot Inline Completion
+
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<Tab>` | Insert | Accept full completion (or NES, or normal Tab) |
+| `<M-w>` | Insert | Accept next word only |
+| `<M-l>` | Insert | Accept next line only |
+| `<M-]>` | Insert | Next suggestion |
+| `<M-[>` | Insert | Previous suggestion |
+| `<M-Esc>` | Insert | Dismiss suggestion |
+| `<leader>cp` | Normal | Open Copilot panel (shows up to 10 completions) |
 
 ### Misc
 
