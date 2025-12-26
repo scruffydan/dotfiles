@@ -291,14 +291,17 @@ Leader key is `<Space>`.
 | `<leader>aT` | Write tests for this |
 | `<leader>an` | Toggle NES (Next Edit Suggestions) |
 
-### Copilot Inline Completion (Insert Mode)
+### Copilot Inline Completion
 
-| Keymap | Action |
-|--------|--------|
-| `<Tab>` | Accept inline completion (or NES, or normal Tab) |
-| `<C-]>` | Dismiss suggestion |
-| `<M-]>` | Next suggestion |
-| `<M-[>` | Previous suggestion |
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<Tab>` | Insert | Accept full completion (or NES, or normal Tab) |
+| `<M-w>` | Insert | Accept next word only |
+| `<M-l>` | Insert | Accept next line only |
+| `<M-]>` | Insert | Next suggestion |
+| `<M-[>` | Insert | Previous suggestion |
+| `<M-Esc>` | Insert | Dismiss suggestion |
+| `<leader>cp` | Normal | Open Copilot panel (shows up to 10 completions) |
 
 ### Misc
 
