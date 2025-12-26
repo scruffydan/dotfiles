@@ -2,6 +2,9 @@
 -- Sign in with :LspCopilotSignIn
 -- Sign out with :LspCopilotSignOut
 
+-- Enable inline completion by default
+vim.g.copilot_inline_enabled = vim.g.copilot_inline_enabled == nil and true or vim.g.copilot_inline_enabled
+
 local function sign_in(bufnr, client)
   client:request('signIn', vim.empty_dict(), function(err, result)
     if err then
@@ -76,11 +79,13 @@ return {
 
     -- Inline completion keymaps
     vim.keymap.set('i', '<C-e>', function()
-      vim.lsp.completion.trigger()
+      if vim.g.copilot_inline_enabled then
+        vim.lsp.completion.trigger()
+      end
     end, { buffer = bufnr, desc = 'Trigger inline completion' })
 
     vim.keymap.set('i', '<Tab>', function()
-      if vim.lsp.completion.get() then
+      if vim.g.copilot_inline_enabled and vim.lsp.completion.get() then
         vim.lsp.completion.accept()
         return ''
       end
