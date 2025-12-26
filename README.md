@@ -198,10 +198,11 @@ Leader key is `<Space>`.
 | `<C-k>` | Signature help (normal and insert mode) |
 | `<leader>la` | Code action (normal and visual mode) |
 | `<leader>lr` | Rename symbol |
-| `<leader>ld` | Diagnostics picker (buffer) |
-| `<leader>lD` | Diagnostic float (at cursor) |
+| `<leader>ld` | Diagnostic float (at cursor) |
+| `<leader>lD` | Diagnostics picker (buffer) |
 | `<leader>ls` | Document symbols |
 | `<leader>lS` | Workspace symbols |
+| `<leader>lc` | Toggle CSV view |
 | `[d` | Previous diagnostic |
 | `]d` | Next diagnostic |
 
@@ -211,6 +212,7 @@ Leader key is `<Space>`.
 |--------|--------|
 | `<leader>gg` | Open Neogit |
 | `<leader>gd` | Open DiffView |
+| `<leader>dd` | Open DiffView |
 | `<leader>dc` | Close DiffView |
 | `<leader>gp` | Git pull |
 | `<leader>gs` | Git status picker |
@@ -287,12 +289,14 @@ Leader key is `<Space>`.
 | `<leader>ai` | Document this |
 | `<leader>az` | Optimize this |
 | `<leader>aT` | Write tests for this |
+| `<leader>an` | Toggle NES (Next Edit Suggestions) |
 
 ### Misc
 
 | Keymap | Action |
 |--------|--------|
 | `<Esc>` | Clear search highlights |
+| `<leader>?` | Buffer local keymaps |
 
 ## Usage
 
