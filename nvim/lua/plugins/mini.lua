@@ -32,6 +32,11 @@ return {
     -- Default to copilot inline completions
     vim.g.completion_mode = vim.g.completion_mode or "copilot"
 
+    -- Disable mini.completion by default when in copilot mode
+    if vim.g.completion_mode == "copilot" then
+      vim.g.minicompletion_disable = true
+    end
+
     -- Toggle completion mode: copilot -> native -> off -> copilot
     vim.keymap.set("n", "<leader>tc", function()
       local modes = { "copilot", "native", "off" }
@@ -49,13 +54,13 @@ return {
       -- Update copilot and mini.completion states
       if next_mode == "copilot" then
         vim.g.copilot_enabled = true
-        vim.b.minicompletion_disable = true
+        vim.g.minicompletion_disable = true
       elseif next_mode == "native" then
         vim.g.copilot_enabled = false
-        vim.b.minicompletion_disable = false
+        vim.g.minicompletion_disable = false
       else -- off
         vim.g.copilot_enabled = false
-        vim.b.minicompletion_disable = true
+        vim.g.minicompletion_disable = true
       end
 
       vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
