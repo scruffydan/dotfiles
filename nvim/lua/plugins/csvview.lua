@@ -18,6 +18,6 @@ return {
     },
   },
   keys = {
-    { "<leader>pc", "<cmd>CsvViewToggle<cr>", desc = "Toggle CSV view" },
+    { "<leader>tc", "<cmd>CsvViewToggle<cr>", desc = "Toggle CSV view" },
   },
 }
