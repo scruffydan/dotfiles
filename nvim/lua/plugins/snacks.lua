@@ -66,6 +66,8 @@ return {
         easing = "linear",
       },
     },
+    scope = { enabled = true },
+    words = { enabled = true },
   },
   init = function()
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
