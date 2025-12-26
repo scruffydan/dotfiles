@@ -297,8 +297,9 @@ Leader key is `<Space>`.
 | Keymap | Action |
 |--------|--------|
 | `<Tab>` | Accept inline completion (or NES, or normal Tab) |
-| `<C-e>` | Trigger inline completion |
-| `<C-]>` | Dismiss inline completion |
+| `<C-]>` | Dismiss suggestion |
+| `<M-]>` | Next suggestion |
+| `<M-[>` | Previous suggestion |
 
 ### Misc
 

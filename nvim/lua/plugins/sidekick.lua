@@ -121,8 +121,8 @@ return {
     {
       "<leader>ai",
       function()
-        vim.g.copilot_inline_enabled = not vim.g.copilot_inline_enabled
-        vim.notify("Inline completion " .. (vim.g.copilot_inline_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
+        vim.g.copilot_enabled = not vim.g.copilot_enabled
+        vim.notify("Copilot inline completion " .. (vim.g.copilot_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
       end,
       desc = "Toggle Inline Completion",
     },

@@ -1,9 +1,7 @@
 -- Copilot Language Server configuration for NES (Next Edit Suggestions)
+-- Inline completions are handled by github/copilot.vim plugin
 -- Sign in with :LspCopilotSignIn
 -- Sign out with :LspCopilotSignOut
-
--- Enable inline completion by default
-vim.g.copilot_inline_enabled = vim.g.copilot_inline_enabled == nil and true or vim.g.copilot_inline_enabled
 
 local function sign_in(bufnr, client)
   client:request('signIn', vim.empty_dict(), function(err, result)
@@ -76,28 +74,5 @@ return {
     vim.api.nvim_buf_create_user_command(bufnr, 'LspCopilotSignOut', function()
       sign_out(bufnr, client)
     end, { desc = 'Sign out of Copilot' })
-
-    -- Inline completion keymaps
-    vim.keymap.set('i', '<C-e>', function()
-      if vim.g.copilot_inline_enabled then
-        vim.lsp.completion.trigger()
-      end
-    end, { buffer = bufnr, desc = 'Trigger inline completion' })
-
-    vim.keymap.set('i', '<Tab>', function()
-      if vim.g.copilot_inline_enabled and vim.lsp.completion.get() then
-        vim.lsp.completion.accept()
-        return ''
-      end
-      -- Check sidekick NES
-      if require('sidekick').nes_jump_or_apply() then
-        return ''
-      end
-      return '<Tab>'
-    end, { buffer = bufnr, expr = true, desc = 'Accept inline completion or Tab' })
-
-    vim.keymap.set('i', '<C-]>', function()
-      vim.lsp.completion.dismiss()
-    end, { buffer = bufnr, desc = 'Dismiss inline completion' })
   end,
 }
