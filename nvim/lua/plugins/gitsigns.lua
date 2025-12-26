@@ -12,6 +12,7 @@ return {
         changedelete = { text = "▎" },
         untracked    = { text = "┆" },
       },
+      signs_staged_enable = true,
       signcolumn = true,
       numhl      = false,
       linehl     = false,
@@ -32,19 +33,22 @@ return {
         -- Navigation
         map('n', ']c', function()
           if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.next_hunk() end)
+          vim.schedule(function() gs.nav_hunk('next') end)
           return '<Ignore>'
         end, {expr=true, desc="Next hunk"})
 
         map('n', '[c', function()
           if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.prev_hunk() end)
+          vim.schedule(function() gs.nav_hunk('prev') end)
           return '<Ignore>'
         end, {expr=true, desc="Previous hunk"})
 
         -- Actions
         map('n', '<leader>gh', gs.preview_hunk, {desc="Preview hunk"})
         map('n', '<leader>gb', gs.blame, {desc="Git blame"})
+
+        -- Text object
+        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', {desc="Select hunk"})
       end
     })
   end,
