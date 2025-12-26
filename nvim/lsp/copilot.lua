@@ -73,5 +73,26 @@ return {
     vim.api.nvim_buf_create_user_command(bufnr, 'LspCopilotSignOut', function()
       sign_out(bufnr, client)
     end, { desc = 'Sign out of Copilot' })
+
+    -- Inline completion keymaps
+    vim.keymap.set('i', '<C-e>', function()
+      vim.lsp.completion.trigger()
+    end, { buffer = bufnr, desc = 'Trigger inline completion' })
+
+    vim.keymap.set('i', '<Tab>', function()
+      if vim.lsp.completion.get() then
+        vim.lsp.completion.accept()
+        return ''
+      end
+      -- Check sidekick NES
+      if require('sidekick').nes_jump_or_apply() then
+        return ''
+      end
+      return '<Tab>'
+    end, { buffer = bufnr, expr = true, desc = 'Accept inline completion or Tab' })
+
+    vim.keymap.set('i', '<C-]>', function()
+      vim.lsp.completion.dismiss()
+    end, { buffer = bufnr, desc = 'Dismiss inline completion' })
   end,
 }
