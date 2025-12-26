@@ -33,6 +33,7 @@ local plugins = {
   require("plugins.csvview"),
   require("plugins.sidekick"),
   require("plugins.copilot"),
+  require("plugins.vscode-diff"),
 }
 
 require("lazy").setup(plugins, {
