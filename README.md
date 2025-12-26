@@ -233,6 +233,15 @@ Leader key is `<Space>`.
 |--------|--------|
 | `<leader>dd` | Diff explorer (git status) |
 | `<leader>df` | Diff current file vs HEAD |
+| `<leader>dh` | Diff current file vs HEAD~1 |
+| `<leader>db` | Diff vs default branch (main/master) |
+| `]c` | Next hunk (in diff view) |
+| `[c` | Previous hunk (in diff view) |
+| `]f` | Next file (in explorer) |
+| `[f` | Previous file (in explorer) |
+| `do` | Get change from other buffer |
+| `dp` | Put change to other buffer |
+| `e` | Toggle list/tree view (in explorer) |
 | `q` | Close diff view (in diff tab) |
 
 ### Toggles
