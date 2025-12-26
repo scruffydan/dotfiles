@@ -28,10 +28,37 @@ return {
       return vim.fn.pumvisible() == 1 and "" or "<C-x><C-o>"
     end, { expr = true, desc = "Trigger completion" })
 
-    -- Toggle autocompletion
+    -- Completion mode: "copilot" | "native" | "off"
+    -- Default to copilot inline completions
+    vim.g.completion_mode = vim.g.completion_mode or "copilot"
+
+    -- Toggle completion mode: copilot -> native -> off -> copilot
     vim.keymap.set("n", "<leader>tc", function()
-      vim.b.minicompletion_disable = not vim.b.minicompletion_disable
-      vim.notify(vim.b.minicompletion_disable and "Completion: off" or "Completion: on", vim.log.levels.INFO)
-    end, { desc = "Toggle completion" })
+      local modes = { "copilot", "native", "off" }
+      local current = vim.g.completion_mode or "copilot"
+      local idx = 1
+      for i, mode in ipairs(modes) do
+        if mode == current then
+          idx = i
+          break
+        end
+      end
+      local next_mode = modes[(idx % #modes) + 1]
+      vim.g.completion_mode = next_mode
+
+      -- Update copilot and mini.completion states
+      if next_mode == "copilot" then
+        vim.g.copilot_enabled = true
+        vim.b.minicompletion_disable = true
+      elseif next_mode == "native" then
+        vim.g.copilot_enabled = false
+        vim.b.minicompletion_disable = false
+      else -- off
+        vim.g.copilot_enabled = false
+        vim.b.minicompletion_disable = true
+      end
+
+      vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
+    end, { desc = "Cycle completion (copilot/native/off)" })
   end,
 }

@@ -238,7 +238,7 @@ Leader key is `<Space>`.
 | `<leader>ts` | Toggle spell checking |
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
 | `<leader>th` | Toggle hidden files (Oil) |
-| `<leader>tc` | Toggle completion |
+| `<leader>tc` | Cycle completion (copilot/native/off) |
 
 ### Completion (mini.completion)
 
@@ -286,11 +286,10 @@ Leader key is `<Space>`.
 | `<leader>aF` | Fix this |
 | `<leader>ad` | Fix diagnostics (buffer) |
 | `<leader>aD` | Fix diagnostics (all) |
-| `<leader>aI` | Document this |
+| `<leader>ai` | Document this |
 | `<leader>az` | Optimize this |
 | `<leader>aT` | Write tests for this |
 | `<leader>an` | Toggle NES (Next Edit Suggestions) |
-| `<leader>ai` | Toggle inline completion |
 
 ### Copilot Inline Completion (Insert Mode)
 

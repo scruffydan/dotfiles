@@ -113,18 +113,10 @@ return {
       desc = "Fix Diagnostics (all)",
     },
     {
-      "<leader>aI",
+      "<leader>ai",
       function() require("sidekick.cli").send({ msg = "Add documentation to {this}" }) end,
       mode = { "n", "x" },
       desc = "Add Documentation",
-    },
-    {
-      "<leader>ai",
-      function()
-        vim.g.copilot_enabled = not vim.g.copilot_enabled
-        vim.notify("Copilot inline completion " .. (vim.g.copilot_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
-      end,
-      desc = "Toggle Inline Completion",
     },
     {
       "<leader>az",
