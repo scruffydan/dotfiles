@@ -14,6 +14,10 @@ return {
   config = function()
     require("neogit").setup({
       auto_close_console = false,
+      graph_style = "unicode",
+      commit_editor = {
+        staged_diff_split_kind = "auto",
+      },
     })
   end,
 }

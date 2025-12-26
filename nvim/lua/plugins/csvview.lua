@@ -2,6 +2,9 @@ return {
   "hat0uma/csvview.nvim",
   ft = { "csv", "tsv" },
   opts = {
+    parser = {
+      comments = { "#", "//" },
+    },
     view = {
       display_mode = "border",
     },
@@ -15,6 +18,6 @@ return {
     },
   },
   keys = {
-    { "<leader>pc", "<cmd>CsvViewToggle<cr>", desc = "Toggle CSV view" },
+    { "<leader>lc", "<cmd>CsvViewToggle<cr>", desc = "Toggle CSV view" },
   },
 }
