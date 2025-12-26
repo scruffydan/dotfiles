@@ -7,6 +7,7 @@ return {
     require("mini.pairs").setup({})
 
     -- LSP completion with signature help
+    -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
     require("mini.completion").setup({
       delay = {
         completion = 1000,
