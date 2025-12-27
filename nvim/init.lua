@@ -223,6 +223,7 @@ local function copilot_available()
   return plugin and plugin._.cond ~= false
 end
 
+-- Initialize completion mode: preserve existing value, or default to "copilot" if available, else "native"
 vim.g.completion_mode = vim.g.completion_mode or (copilot_available() and "copilot" or "native")
 
 -- Disable mini.completion by default when in copilot mode
