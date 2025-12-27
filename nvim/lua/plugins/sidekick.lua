@@ -17,7 +17,7 @@ return {
     nes = {
       -- Disable NES if copilot-language-server not available or not authenticated
       enabled = copilot_nes_available(),
-      debounce = 500, -- wait 500ms after typing stops before fetching suggestions
+      debounce = 100, -- wait 100ms after typing stops before fetching suggestions
     },
     cli = {
       watch = true, -- auto-reload files modified by AI CLI tools
