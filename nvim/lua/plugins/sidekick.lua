@@ -19,6 +19,7 @@ return {
       enabled = copilot_nes_available(),
     },
     cli = {
+      watch = true, -- auto-reload files modified by AI CLI tools
       mux = {
         backend = "tmux",
         enabled = true,
@@ -27,18 +28,29 @@ return {
     },
   },
   keys = {
-    -- NES (Next Edit Suggestions) keybindings
+    -- Tab handling for both insert and normal mode
+    -- Insert: Accept copilot.vim suggestion > Apply NES > Normal Tab
+    -- Normal: Jump to/apply NES > Normal Tab
     {
       "<tab>",
       function()
-        -- Jump to next edit suggestion, or apply if at the edit location
-        if not require("sidekick").nes_jump_or_apply() then
-          return "<Tab>"  -- fallback to normal tab
+        -- In insert mode, first check for copilot.vim inline suggestion
+        if vim.fn.mode() == "i" then
+          if vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
+            return vim.fn["copilot#Accept"]()
+          end
         end
+        -- Then check sidekick NES (works in both insert and normal mode)
+        if require("sidekick").nes_jump_or_apply() then
+          return ""
+        end
+        -- Fall back to normal tab
+        return vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
       end,
       expr = true,
-      desc = "Goto/Apply Next Edit Suggestion",
-      mode = { "n" },
+      replace_keycodes = false,
+      desc = "Accept Copilot / Apply NES / Tab",
+      mode = { "i", "n" },
     },
     {
       "<leader>an",
@@ -77,7 +89,7 @@ return {
       "<leader>av",
       function() require("sidekick.cli").send({ msg = "{selection}" }) end,
       mode = { "x" },
-      desc = " Send Visual Selection",
+      desc = "Send Visual Selection",
     },
     {
       "<leader>ap",
