@@ -1,3 +1,12 @@
+-- Check if Copilot is available and authenticated
+local function copilot_nes_available()
+  if vim.fn.executable("copilot-language-server") ~= 1 then
+    return false
+  end
+  local copilot_config_dir = vim.fn.expand("~/.config/github-copilot")
+  return vim.fn.isdirectory(copilot_config_dir) == 1
+end
+
 return {
   "folke/sidekick.nvim",
   dependencies = {
@@ -6,8 +15,8 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     nes = {
-      -- Disable NES if copilot-language-server not available
-      enabled = vim.fn.executable("copilot-language-server") == 1,
+      -- Disable NES if copilot-language-server not available or not authenticated
+      enabled = copilot_nes_available(),
     },
     cli = {
       mux = {

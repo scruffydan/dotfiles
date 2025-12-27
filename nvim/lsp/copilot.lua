@@ -1,57 +1,16 @@
 -- Copilot Language Server configuration for NES (Next Edit Suggestions)
 -- Inline completions are handled by github/copilot.vim plugin
--- Sign in with :LspCopilotSignIn
--- Sign out with :LspCopilotSignOut
+-- Sign in with :Copilot auth (via copilot.vim), then restart Neovim
 
 -- Requires copilot-language-server; skip if not available
 if vim.fn.executable("copilot-language-server") ~= 1 then
   return {}
 end
 
-local function sign_in(bufnr, client)
-  client:request('signIn', vim.empty_dict(), function(err, result)
-    if err then
-      vim.notify(err.message, vim.log.levels.ERROR)
-      return
-    end
-    if result.command then
-      local code = result.userCode
-      vim.fn.setreg('+', code)
-      vim.fn.setreg('*', code)
-      local continue = vim.fn.confirm(
-        'Copied your one-time code to clipboard.\nOpen the browser to complete the sign-in process?',
-        '&Yes\n&No'
-      )
-      if continue == 1 then
-        client:exec_cmd(result.command, { bufnr = bufnr }, function(cmd_err, cmd_result)
-          if cmd_err then
-            vim.notify(cmd_err.message, vim.log.levels.ERROR)
-            return
-          end
-          if cmd_result.status == 'OK' then
-            vim.notify('Signed in as ' .. cmd_result.user .. '.')
-          end
-        end)
-      end
-    end
-    if result.status == 'PromptUserDeviceFlow' then
-      vim.notify('Enter your one-time code ' .. result.userCode .. ' in ' .. result.verificationUri)
-    elseif result.status == 'AlreadySignedIn' then
-      vim.notify('Already signed in as ' .. result.user .. '.')
-    end
-  end)
-end
-
-local function sign_out(_, client)
-  client:request('signOut', vim.empty_dict(), function(err, result)
-    if err then
-      vim.notify(err.message, vim.log.levels.ERROR)
-      return
-    end
-    if result.status == 'NotSignedIn' then
-      vim.notify('Not signed in.')
-    end
-  end)
+-- Skip if not authenticated (use :Copilot auth to sign in, then restart)
+local copilot_config_dir = vim.fn.expand("~/.config/github-copilot")
+if vim.fn.isdirectory(copilot_config_dir) ~= 1 then
+  return {}
 end
 
 return {
@@ -72,12 +31,4 @@ return {
       telemetryLevel = 'off',
     },
   },
-  on_attach = function(client, bufnr)
-    vim.api.nvim_buf_create_user_command(bufnr, 'LspCopilotSignIn', function()
-      sign_in(bufnr, client)
-    end, { desc = 'Sign in to Copilot with GitHub' })
-    vim.api.nvim_buf_create_user_command(bufnr, 'LspCopilotSignOut', function()
-      sign_out(bufnr, client)
-    end, { desc = 'Sign out of Copilot' })
-  end,
 }
