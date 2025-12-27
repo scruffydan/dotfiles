@@ -235,8 +235,42 @@ Leader key is `<Space>`.
 | `<leader>go` | Open in browser (GitHub) |
 | `<leader>ghi` | GitHub issues |
 | `<leader>ghp` | GitHub PRs |
-| `]c` | Next hunk |
-| `[c` | Previous hunk |
+| `]h` | Next hunk |
+| `[h` | Previous hunk |
+
+### Treesitter Text Objects
+
+Provides syntax-aware text objects using treesitter. These work with any operator (`d`, `y`, `c`, `v`, etc.) and allow you to select, delete, yank, or change code structures based on their semantic meaning rather than just brackets or whitespace.
+
+**Selection modes:** Functions and classes use linewise selection (`V`) for outer objects, making `daf` delete the entire function including surrounding blank lines. Parameters use charwise selection (`v`).
+
+**Text Object Selection** (use with operators like `d`, `y`, `c`, or in visual mode):
+
+| Keymap | Action |
+|--------|--------|
+| `af`/`if` | Outer/inner function (outer is linewise) |
+| `ac`/`ic` | Outer/inner class (outer is linewise) |
+| `aa`/`ia` | Outer/inner parameter/argument |
+| `al`/`il` | Outer/inner loop |
+| `ai`/`ii` | Outer/inner conditional |
+| `a/`/`i/` | Outer/inner comment |
+
+**Movement** (jump between text objects, works in normal, visual, and operator-pending modes):
+
+| Keymap | Action |
+|--------|--------|
+| `]f`/`[f` | Next/previous function start |
+| `]F`/`[F` | Next/previous function end |
+| `]c`/`[c` | Next/previous class start |
+| `]C`/`[C` | Next/previous class end |
+| `]a`/`[a` | Next/previous parameter |
+
+**Swap** (reorder parameters/arguments):
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>sn` | Swap parameter with next |
+| `<leader>sp` | Swap parameter with previous |
 
 ### Diff (vscode-diff.nvim)
 
