@@ -45,5 +45,27 @@ return {
         signcolumn = "yes:2",
       },
     })
+
+    -- Workaround for oil.nvim bug: preview window doesn't update after error
+    -- When a preview fails (e.g., PDF without ghostscript), the error message
+    -- stays displayed. This patches open_preview to force buffer replacement.
+    local oil = require("oil")
+    local oil_util = require("oil.util")
+    local original_open_preview = oil.open_preview
+    oil.open_preview = function(opts, callback)
+      local preview_win = oil_util.get_preview_win()
+      if preview_win then
+        -- Clear modified flag on current buffer so we can replace it
+        local cur_buf = vim.api.nvim_win_get_buf(preview_win)
+        vim.bo[cur_buf].modified = false
+        -- Create a fresh empty buffer to clear any previous error state
+        local empty_buf = vim.api.nvim_create_buf(false, true)
+        vim.bo[empty_buf].bufhidden = "wipe"
+        vim.api.nvim_win_set_buf(preview_win, empty_buf)
+        -- Clear the entry ID to ensure oil thinks it needs to update
+        vim.w[preview_win].oil_entry_id = nil
+      end
+      return original_open_preview(opts, callback)
+    end
   end,
 }
