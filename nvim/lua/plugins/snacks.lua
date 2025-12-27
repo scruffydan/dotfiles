@@ -105,8 +105,8 @@ return {
     { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git log (file)" },
     { "<leader>gD", function() Snacks.picker.git_diff() end, desc = "Git diff hunks" },
     { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git stash" },
-    { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
-    { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
+    { "<leader>gHi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
+    { "<leader>gHp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
     -- LSP
     { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
     { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },

@@ -233,8 +233,8 @@ Leader key is `<Space>`.
 | `<leader>gh` | Preview hunk |
 | `<leader>gb` | Git blame |
 | `<leader>go` | Open in browser (GitHub) |
-| `<leader>ghi` | GitHub issues |
-| `<leader>ghp` | GitHub PRs |
+| `<leader>gHi` | GitHub issues |
+| `<leader>gHp` | GitHub PRs |
 | `]h` | Next hunk |
 | `[h` | Previous hunk |
 
