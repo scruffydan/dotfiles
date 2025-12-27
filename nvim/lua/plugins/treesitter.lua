@@ -12,13 +12,20 @@ return {
         require("nvim-treesitter-textobjects").setup({
           select = {
             lookahead = true, -- Jump forward to matching text object
+            selection_modes = {
+              ["@parameter.outer"] = "v", -- charwise
+              ["@function.outer"] = "V",  -- linewise
+              ["@class.outer"] = "V",     -- linewise
+              ["@loop.outer"] = "V",      -- linewise
+              ["@conditional.outer"] = "V", -- linewise
+            },
           },
           move = {
             set_jumps = true, -- Set jumps in the jumplist
           },
         })
 
-        local select = require("nvim-treesitter-textobjects.select")
+        local ts_select = require("nvim-treesitter-textobjects.select")
         local move = require("nvim-treesitter-textobjects.move")
         local swap = require("nvim-treesitter-textobjects.swap")
 
@@ -39,7 +46,7 @@ return {
         }
         for key, query in pairs(select_keymaps) do
           vim.keymap.set({ "x", "o" }, key, function()
-            select.select_textobject(query, "textobjects")
+            ts_select.select_textobject(query, "textobjects")
           end, { desc = "Select " .. query })
         end
 
