@@ -17,6 +17,7 @@ return {
     nes = {
       -- Disable NES if copilot-language-server not available or not authenticated
       enabled = copilot_nes_available(),
+      debounce = 500, -- wait 500ms after typing stops before fetching suggestions
     },
     cli = {
       watch = true, -- auto-reload files modified by AI CLI tools
@@ -120,6 +121,11 @@ return {
       function() require("sidekick.cli").send({ msg = "Can you review {file} for any issues or improvements?" }) end,
       mode = { "n", "x" },
       desc = "AI Review",
+    },
+    {
+      "<leader>ag",
+      function() require("sidekick.cli").send({ msg = "{changes}" }) end,
+      desc = "Review Changes (git diff)",
     },
     {
       "<leader>aF",
