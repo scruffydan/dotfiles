@@ -51,10 +51,12 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ### LSP Support
 
-LSP (Language Server Protocol) support is available on macOS, Linux, and Windows via Mason. FreeBSD is not supported as Mason doesn't provide FreeBSD binaries.
+LSP (Language Server Protocol) support is available on macOS, Linux, and Windows via Mason. FreeBSD is not supported as Mason doesn't provide FreeBSD binaries - the LSP configuration is automatically skipped on unsupported platforms.
 
 **Auto-installed LSPs:**
 - `lua_ls` - Lua language server
+- `marksman` - Markdown language server
+- `copilot` - GitHub Copilot language server (requires Node.js)
 
 **Adding more LSPs:**
 1. Open Mason UI: `:Mason`
@@ -63,6 +65,13 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 4. Restart Neovim - mason-lspconfig auto-enables installed servers
 
 **Note:** Most LSPs (pyright, ts_ls, bashls, jsonls, yamlls) require Node.js to be installed.
+
+### Optional Dependencies
+
+- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). If Node.js is not installed:
+  - Copilot LSP is automatically skipped (not added to Mason's install list)
+  - `copilot.vim` plugin shows a warning and doesn't load
+  - All other Neovim functionality works normally
 
 ## Tmux Keybindings
 

@@ -107,13 +107,14 @@ return {
       "neovim/nvim-lspconfig",
     },
     config = function()
+      local ensure_installed = { "lua_ls", "marksman" }
+      if vim.fn.executable("node") == 1 then
+        table.insert(ensure_installed, "copilot")
+      end
+
       require("mason-lspconfig").setup({
         automatic_enable = true, -- Auto-enable installed LSP servers
-        ensure_installed = {
-          "lua_ls",
-          "marksman",
-          "copilot",
-        },
+        ensure_installed = ensure_installed,
       })
     end,
   },
