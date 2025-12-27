@@ -10,7 +10,7 @@ return {
     local has_cc = vim.fn.executable("cc") == 1 or vim.fn.executable("gcc") == 1 or vim.fn.executable("clang") == 1
     if not has_tree_sitter or not has_cc then
       vim.defer_fn(function()
-        vim.notify("nvim-treesitter: missing requirements (tree-sitter-cli and/or C compiler)", vim.log.levels.WARN)
+        vim.notify("nvim-treesitter: missing requirements\n(tree-sitter-cli and/or C compiler)", vim.log.levels.WARN)
       end, 100)
       return false
     end
