@@ -238,6 +238,24 @@ Leader key is `<Space>`.
 | `]c` | Next hunk |
 | `[c` | Previous hunk |
 
+### Treesitter Text Objects
+
+| Keymap | Action |
+|--------|--------|
+| `af`/`if` | Outer/inner function |
+| `ac`/`ic` | Outer/inner class |
+| `aa`/`ia` | Outer/inner parameter |
+| `al`/`il` | Outer/inner loop |
+| `ai`/`ii` | Outer/inner conditional |
+| `a/`/`i/` | Outer/inner comment |
+| `]f`/`[f` | Next/previous function start |
+| `]F`/`[F` | Next/previous function end |
+| `]c`/`[c` | Next/previous class start |
+| `]C`/`[C` | Next/previous class end |
+| `]a`/`[a` | Next/previous parameter |
+| `<leader>sn` | Swap parameter with next |
+| `<leader>sp` | Swap parameter with previous |
+
 ### Diff (vscode-diff.nvim)
 
 | Keymap | Action |

@@ -3,7 +3,64 @@ return {
   branch = "main",
   lazy = false,
   build = ":TSUpdate",
-  dependencies = { "mason-org/mason.nvim" }, -- Mason provides tree-sitter-cli
+  dependencies = {
+    "mason-org/mason.nvim", -- Mason provides tree-sitter-cli
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      config = function()
+        require("nvim-treesitter-textobjects").setup({
+          select = {
+            -- Enable text object selection
+            lookahead = true, -- Jump forward to matching text object
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
+              ["al"] = "@loop.outer",
+              ["il"] = "@loop.inner",
+              ["ai"] = "@conditional.outer",
+              ["ii"] = "@conditional.inner",
+              ["a/"] = "@comment.outer",
+              ["i/"] = "@comment.inner",
+            },
+          },
+          move = {
+            -- Enable movement between text objects
+            goto_next_start = {
+              ["]f"] = "@function.outer",
+              ["]c"] = "@class.outer",
+              ["]a"] = "@parameter.inner",
+            },
+            goto_next_end = {
+              ["]F"] = "@function.outer",
+              ["]C"] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[f"] = "@function.outer",
+              ["[c"] = "@class.outer",
+              ["[a"] = "@parameter.inner",
+            },
+            goto_previous_end = {
+              ["[F"] = "@function.outer",
+              ["[C"] = "@class.outer",
+            },
+          },
+          swap = {
+            -- Enable swapping of text objects
+            swap_next = {
+              ["<leader>sn"] = "@parameter.inner",
+            },
+            swap_previous = {
+              ["<leader>sp"] = "@parameter.inner",
+            },
+          },
+        })
+      end,
+    },
+  },
   cond = function()
     -- Requires tree-sitter-cli and a C compiler
     local has_tree_sitter = vim.fn.executable("tree-sitter") == 1
