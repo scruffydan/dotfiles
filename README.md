@@ -230,11 +230,11 @@ Leader key is `<Space>`.
 | `<leader>gf` | Git log (file) |
 | `<leader>gD` | Git diff hunks picker |
 | `<leader>gS` | Git stash picker |
-| `<leader>gh` | Preview hunk |
+| `<leader>gH` | Preview hunk |
 | `<leader>gb` | Git blame |
 | `<leader>go` | Open in browser (GitHub) |
-| `<leader>gHi` | GitHub issues |
-| `<leader>gHp` | GitHub PRs |
+| `<leader>ghi` | GitHub issues |
+| `<leader>ghp` | GitHub PRs |
 | `]h` | Next hunk |
 | `[h` | Previous hunk |
 
