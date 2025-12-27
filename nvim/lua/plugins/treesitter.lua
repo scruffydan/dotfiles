@@ -51,44 +51,23 @@ return {
         end
 
         -- Movement keymaps
-        local goto_next_start = {
-          ["]f"] = "@function.outer",
-          ["]c"] = "@class.outer",
-          ["]a"] = "@parameter.inner",
+        local move_keymaps = {
+          ["]f"] = { move.goto_next_start, "@function.outer", "Next function start" },
+          ["]F"] = { move.goto_next_end, "@function.outer", "Next function end" },
+          ["[f"] = { move.goto_previous_start, "@function.outer", "Previous function start" },
+          ["[F"] = { move.goto_previous_end, "@function.outer", "Previous function end" },
+          ["]c"] = { move.goto_next_start, "@class.outer", "Next class start" },
+          ["]C"] = { move.goto_next_end, "@class.outer", "Next class end" },
+          ["[c"] = { move.goto_previous_start, "@class.outer", "Previous class start" },
+          ["[C"] = { move.goto_previous_end, "@class.outer", "Previous class end" },
+          ["]a"] = { move.goto_next_start, "@parameter.inner", "Next parameter" },
+          ["[a"] = { move.goto_previous_start, "@parameter.inner", "Previous parameter" },
         }
-        local goto_next_end = {
-          ["]F"] = "@function.outer",
-          ["]C"] = "@class.outer",
-        }
-        local goto_previous_start = {
-          ["[f"] = "@function.outer",
-          ["[c"] = "@class.outer",
-          ["[a"] = "@parameter.inner",
-        }
-        local goto_previous_end = {
-          ["[F"] = "@function.outer",
-          ["[C"] = "@class.outer",
-        }
-
-        for key, query in pairs(goto_next_start) do
+        for key, mapping in pairs(move_keymaps) do
+          local fn, query, desc = mapping[1], mapping[2], mapping[3]
           vim.keymap.set({ "n", "x", "o" }, key, function()
-            move.goto_next_start(query, "textobjects")
-          end, { desc = "Next " .. query .. " start" })
-        end
-        for key, query in pairs(goto_next_end) do
-          vim.keymap.set({ "n", "x", "o" }, key, function()
-            move.goto_next_end(query, "textobjects")
-          end, { desc = "Next " .. query .. " end" })
-        end
-        for key, query in pairs(goto_previous_start) do
-          vim.keymap.set({ "n", "x", "o" }, key, function()
-            move.goto_previous_start(query, "textobjects")
-          end, { desc = "Previous " .. query .. " start" })
-        end
-        for key, query in pairs(goto_previous_end) do
-          vim.keymap.set({ "n", "x", "o" }, key, function()
-            move.goto_previous_end(query, "textobjects")
-          end, { desc = "Previous " .. query .. " end" })
+            fn(query, "textobjects")
+          end, { desc = desc })
         end
 
         -- Swap keymaps
