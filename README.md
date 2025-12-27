@@ -30,7 +30,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ### Neovim Configuration
 
-- **SauceCodePro Nerd Font** - Required for Neovide and icons in which-key, Oil, and other plugins
+- **Nerd Font** - Required for Neovide and icons in which-key, Oil, and other plugins
   - macOS: `brew install --cask font-sauce-code-pro-nerd-font`
   - Linux/Windows/FreeBSD: Download from [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
@@ -47,6 +47,8 @@ Seriously though, you're probably better off starting from scratch or finding a 
   - macOS: `brew install imagemagick`
   - FreeBSD: `pkg install ImageMagick7`
   - Ubuntu/Debian: `apt install imagemagick`
+- **bash** - Required on FreeBSD for vscode-diff.nvim build script
+  - FreeBSD: `pkg install bash`
 - **awk** - Used in tmux status bar (typically pre-installed on macOS, Linux, and FreeBSD)
 
 ### LSP Support
