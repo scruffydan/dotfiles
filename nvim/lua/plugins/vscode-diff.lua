@@ -28,6 +28,10 @@ return {
       explorer = {
         toggle_view_mode = "e",  -- Toggle between list/tree views
       },
+      diff = {
+        next_hunk = { "]c", "]h" },
+        prev_hunk = { "[c", "[h" },
+      },
     },
   },
 }
