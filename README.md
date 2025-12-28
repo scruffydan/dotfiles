@@ -242,18 +242,21 @@ Leader key is `<Space>`.
 
 Provides syntax-aware text objects using treesitter. These work with any operator (`d`, `y`, `c`, `v`, etc.) and allow you to select, delete, yank, or change code structures based on their semantic meaning rather than just brackets or whitespace.
 
-**Selection modes:** Functions and classes use linewise selection (`V`) for outer objects, making `daf` delete the entire function including surrounding blank lines. Parameters use charwise selection (`v`).
-
 **Text Object Selection** (use with operators like `d`, `y`, `c`, or in visual mode):
 
 | Keymap | Action |
 |--------|--------|
-| `af`/`if` | Outer/inner function (outer is linewise) |
-| `ac`/`ic` | Outer/inner class (outer is linewise) |
-| `aa`/`ia` | Outer/inner parameter/argument |
+| `af`/`if` | Outer/inner function |
+| `ac`/`ic` | Outer/inner class |
+| `ap`/`ip` | Outer/inner parameter |
+| `aa`/`ia` | Outer/inner attribute (decorators, annotations) |
 | `al`/`il` | Outer/inner loop |
 | `ai`/`ii` | Outer/inner conditional |
 | `a/`/`i/` | Outer/inner comment |
+| `ab`/`ib` | Outer/inner block |
+| `a=`/`i=` | Outer/inner assignment |
+| `in` | Number |
+| `ar`/`ir` | Outer/inner return statement |
 
 **Movement** (jump between text objects, works in normal, visual, and operator-pending modes):
 
@@ -263,14 +266,19 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `]F`/`[F` | Next/previous function end |
 | `]c`/`[c` | Next/previous class start |
 | `]C`/`[C` | Next/previous class end |
-| `]a`/`[a` | Next/previous parameter |
-
-**Swap** (reorder parameters/arguments):
-
-| Keymap | Action |
-|--------|--------|
-| `<leader>sn` | Swap parameter with next |
-| `<leader>sp` | Swap parameter with previous |
+| `]p`/`[p` | Next/previous parameter |
+| `]a`/`[a` | Next/previous attribute |
+| `]b`/`[b` | Next/previous block start |
+| `]B`/`[B` | Next/previous block end |
+| `]l`/`[l` | Next/previous loop start |
+| `]L`/`[L` | Next/previous loop end |
+| `]i`/`[i` | Next/previous conditional start |
+| `]I`/`[I` | Next/previous conditional end |
+| `]/`/`[/` | Next/previous comment start |
+| `]?`/`[?` | Next/previous comment end |
+| `]=`/`[=` | Next/previous assignment |
+| `]n`/`[n` | Next/previous number |
+| `]r`/`[r` | Next/previous return |
 
 ### Diff (vscode-diff.nvim)
 

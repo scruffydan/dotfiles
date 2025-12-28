@@ -12,13 +12,6 @@ return {
         require("nvim-treesitter-textobjects").setup({
           select = {
             lookahead = true, -- Jump forward to matching text object
-            selection_modes = {
-              ["@parameter.outer"] = "v", -- charwise
-              ["@function.outer"] = "V",  -- linewise
-              ["@class.outer"] = "V",     -- linewise
-              ["@loop.outer"] = "V",      -- linewise
-              ["@conditional.outer"] = "V", -- linewise
-            },
           },
           move = {
             set_jumps = true, -- Set jumps in the jumplist
@@ -27,7 +20,6 @@ return {
 
         local ts_select = require("nvim-treesitter-textobjects.select")
         local move = require("nvim-treesitter-textobjects.move")
-        local swap = require("nvim-treesitter-textobjects.swap")
 
         -- Text object selection keymaps
         local select_keymaps = {
@@ -35,14 +27,23 @@ return {
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
           ["ic"] = "@class.inner",
-          ["aa"] = "@parameter.outer",
-          ["ia"] = "@parameter.inner",
+          ["ap"] = "@parameter.outer",
+          ["ip"] = "@parameter.inner",
+          ["aa"] = "@attribute.outer",
+          ["ia"] = "@attribute.inner",
           ["al"] = "@loop.outer",
           ["il"] = "@loop.inner",
           ["ai"] = "@conditional.outer",
           ["ii"] = "@conditional.inner",
           ["a/"] = "@comment.outer",
           ["i/"] = "@comment.inner",
+          ["ab"] = "@block.outer",
+          ["ib"] = "@block.inner",
+          ["a="] = "@assignment.outer",
+          ["i="] = "@assignment.inner",
+          ["in"] = "@number.inner",
+          ["ar"] = "@return.outer",
+          ["ir"] = "@return.inner",
         }
         for key, query in pairs(select_keymaps) do
           vim.keymap.set({ "x", "o" }, key, function()
@@ -60,8 +61,32 @@ return {
           ["]C"] = { move.goto_next_end, "@class.outer", "Next class end" },
           ["[c"] = { move.goto_previous_start, "@class.outer", "Previous class start" },
           ["[C"] = { move.goto_previous_end, "@class.outer", "Previous class end" },
-          ["]a"] = { move.goto_next_start, "@parameter.inner", "Next parameter" },
-          ["[a"] = { move.goto_previous_start, "@parameter.inner", "Previous parameter" },
+          ["]p"] = { move.goto_next_start, "@parameter.inner", "Next parameter" },
+          ["[p"] = { move.goto_previous_start, "@parameter.inner", "Previous parameter" },
+          ["]a"] = { move.goto_next_start, "@attribute.outer", "Next attribute" },
+          ["[a"] = { move.goto_previous_start, "@attribute.outer", "Previous attribute" },
+          ["]b"] = { move.goto_next_start, "@block.outer", "Next block" },
+          ["[b"] = { move.goto_previous_start, "@block.outer", "Previous block" },
+          ["]B"] = { move.goto_next_end, "@block.outer", "Next block end" },
+          ["[B"] = { move.goto_previous_end, "@block.outer", "Previous block end" },
+          ["]l"] = { move.goto_next_start, "@loop.outer", "Next loop" },
+          ["[l"] = { move.goto_previous_start, "@loop.outer", "Previous loop" },
+          ["]L"] = { move.goto_next_end, "@loop.outer", "Next loop end" },
+          ["[L"] = { move.goto_previous_end, "@loop.outer", "Previous loop end" },
+          ["]i"] = { move.goto_next_start, "@conditional.outer", "Next conditional" },
+          ["[i"] = { move.goto_previous_start, "@conditional.outer", "Previous conditional" },
+          ["]I"] = { move.goto_next_end, "@conditional.outer", "Next conditional end" },
+          ["[I"] = { move.goto_previous_end, "@conditional.outer", "Previous conditional end" },
+          ["]/"] = { move.goto_next_start, "@comment.outer", "Next comment" },
+          ["[/"] = { move.goto_previous_start, "@comment.outer", "Previous comment" },
+          ["]?"] = { move.goto_next_end, "@comment.outer", "Next comment end" },
+          ["[?"] = { move.goto_previous_end, "@comment.outer", "Previous comment end" },
+          ["]="] = { move.goto_next_start, "@assignment.outer", "Next assignment" },
+          ["[="] = { move.goto_previous_start, "@assignment.outer", "Previous assignment" },
+          ["]n"] = { move.goto_next_start, "@number.inner", "Next number" },
+          ["[n"] = { move.goto_previous_start, "@number.inner", "Previous number" },
+          ["]r"] = { move.goto_next_start, "@return.outer", "Next return" },
+          ["[r"] = { move.goto_previous_start, "@return.outer", "Previous return" },
         }
         for key, mapping in pairs(move_keymaps) do
           local fn, query, desc = mapping[1], mapping[2], mapping[3]
@@ -69,14 +94,6 @@ return {
             fn(query, "textobjects")
           end, { desc = desc })
         end
-
-        -- Swap keymaps
-        vim.keymap.set("n", "<leader>sn", function()
-          swap.swap_next("@parameter.inner")
-        end, { desc = "Swap parameter with next" })
-        vim.keymap.set("n", "<leader>sp", function()
-          swap.swap_previous("@parameter.inner")
-        end, { desc = "Swap parameter with previous" })
       end,
     },
   },
