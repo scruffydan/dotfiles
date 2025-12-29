@@ -371,6 +371,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>av` | Send visual selection |
 | `<leader>ae` | Explain this |
 | `<leader>ar` | Review file |
+| `<leader>ag` | Review git changes |
 | `<leader>aF` | Fix this |
 | `<leader>ad` | Fix diagnostics (buffer) |
 | `<leader>aD` | Fix diagnostics (all) |
