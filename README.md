@@ -210,6 +210,7 @@ Leader key is `<Space>`.
 | `<leader>r` | Resume last picker |
 | `<leader><space>` | Smart find files (buffers + recent + files) |
 | `<leader>/` | Search current buffer |
+| `<leader>u` | Undo history |
 
 ### LSP
 
