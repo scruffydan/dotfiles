@@ -333,6 +333,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
 | `<leader>th` | Toggle hidden files (Oil) |
 | `<leader>tc` | Cycle completion (copilot/native/off) |
+| `<leader>tm` | Toggle Markdown render |
 
 ### Completion (mini.completion)
 
