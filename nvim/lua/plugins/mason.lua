@@ -26,14 +26,9 @@ return {
     end
 
     -- Ensure registry is up to date before checking packages
-    if registry.refresh then
-      registry.refresh(function()
-        ensure_installed("tree-sitter-cli")
-        ensure_installed("copilot-language-server")
-      end)
-    else
+    -- Note: copilot-language-server is installed via mason-lspconfig in lsp.lua
+    registry.refresh(function()
       ensure_installed("tree-sitter-cli")
-      ensure_installed("copilot-language-server")
-    end
+    end)
   end,
 }
