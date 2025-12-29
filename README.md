@@ -193,6 +193,7 @@ Leader key is `<Space>`.
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
 | `<leader>fh` | Recent files |
+| `<leader>fm` | Man pages |
 | `<leader>fp` | Projects |
 | `<leader>fq` | Quickfix list |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
@@ -211,7 +212,6 @@ Leader key is `<Space>`.
 | `<leader>sj` | Jump list |
 | `<leader>sk` | Keymaps |
 | `<leader>sm` | Marks |
-| `<leader>sM` | Man pages |
 | `<leader>sn` | Notification history |
 | `<leader>sp` | Pickers (list all) |
 | `<leader>sr` | Registers |
