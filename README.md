@@ -240,7 +240,6 @@ Leader key is `<Space>`.
 | `<leader>lo` | Outgoing calls (what this calls) |
 | `<leader>ls` | Document symbols |
 | `<leader>lS` | Workspace symbols |
-| `<leader>lc` | Toggle CSV view |
 | `[d` | Previous diagnostic |
 | `]d` | Next diagnostic |
 
@@ -334,6 +333,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>th` | Toggle hidden files (Oil) |
 | `<leader>tc` | Cycle completion (copilot/native/off) |
 | `<leader>tm` | Toggle Markdown render |
+| `<leader>tv` | Toggle CSV view |
 
 ### Completion (mini.completion)
 
