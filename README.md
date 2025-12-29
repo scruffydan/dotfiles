@@ -183,7 +183,7 @@ Leader key is `<Space>`.
 | `<leader>th` | Toggle hidden files (in Oil) |
 | `<leader>cd` | Change directory (in Oil) |
 
-### Pickers (Snacks)
+### Pickers (Snacks) - Workspace
 
 | Keymap | Action |
 |--------|--------|
@@ -191,34 +191,34 @@ Leader key is `<Space>`.
 | `<leader>e` | File explorer (Snacks) |
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
-| `<leader>fG` | Grep open buffers |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
 | `<leader>fb` | Buffers |
 | `<leader>fh` | Recent files |
 | `<leader>fp` | Projects |
-| `<leader>fP` | Pickers (list all pickers) |
-| `<leader>fs` | Treesitter symbols |
-| `<leader>fn` | Notification history |
+| `<leader>fq` | Quickfix list |
+| `<leader>fd` | Diagnostics (workspace) |
 
-### Search (Snacks)
+### Search (Snacks) - Current/Open Buffers
 
 | Keymap | Action |
 |--------|--------|
 | `<leader>sb` | Search current buffer (lines) |
+| `<leader>sB` | Grep open buffers |
 | `<leader>sc` | Commands |
 | `<leader>sC` | Command history |
 | `<leader>sd` | Diagnostics (buffer) |
-| `<leader>sD` | Diagnostics (workspace) |
 | `<leader>sh` | Help tags |
 | `<leader>sj` | Jump list |
 | `<leader>sk` | Keymaps |
 | `<leader>sm` | Marks |
 | `<leader>sM` | Man pages |
-| `<leader>sq` | Quickfix list |
+| `<leader>sn` | Notification history |
+| `<leader>sp` | Pickers (list all) |
 | `<leader>sr` | Registers |
 | `<leader>sR` | Resume last picker |
-| `<leader>ss` | Spell suggestions |
+| `<leader>ss` | Treesitter symbols |
 | `<leader>su` | Undo history |
+| `<leader>sz` | Spell suggestions |
 
 ### LSP
 
