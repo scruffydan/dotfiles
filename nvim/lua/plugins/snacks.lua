@@ -92,7 +92,6 @@ return {
     { "<leader>e", function() Snacks.picker.explorer() end, desc = "File explorer" },
 
     -- Find (workspace)
-    { "<leader>sb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics (workspace)" },
     { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
     { "<leader>fg", function() Snacks.picker.grep() end, desc = "Live grep" },
@@ -102,11 +101,12 @@ return {
     { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Grep word", mode = { "n", "x" } },
 
     -- Search (buffer/local)
-    { "<leader>sg", function() Snacks.picker.lines() end, desc = "Grep buffer" },
-    { "<leader>sG", function() Snacks.picker.grep_buffers() end, desc = "Grep open buffers" },
+    { "<leader>sb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>sc", function() Snacks.picker.commands() end, desc = "Commands" },
     { "<leader>sC", function() Snacks.picker.command_history() end, desc = "Command history" },
     { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics (buffer)" },
+    { "<leader>sg", function() Snacks.picker.lines() end, desc = "Grep buffer" },
+    { "<leader>sG", function() Snacks.picker.grep_buffers() end, desc = "Grep open buffers" },
     { "<leader>sh", function() Snacks.picker.help() end, desc = "Help tags" },
     { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jump list" },
     { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },

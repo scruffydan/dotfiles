@@ -189,24 +189,24 @@ Leader key is `<Space>`.
 |--------|--------|
 | `<leader><space>` | Smart find files (buffers + recent + files) |
 | `<leader>e` | File explorer (Snacks) |
+| `<leader>fd` | Diagnostics (workspace) |
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
-| `<leader>fw` | Grep word under cursor (or visual selection) |
-| `<leader>sb` | Buffers |
 | `<leader>fh` | Recent files |
 | `<leader>fp` | Projects |
 | `<leader>fq` | Quickfix list |
-| `<leader>fd` | Diagnostics (workspace) |
+| `<leader>fw` | Grep word under cursor (or visual selection) |
 
 ### Search (Snacks) - Current/Open Buffers
 
 | Keymap | Action |
 |--------|--------|
-| `<leader>sg` | Grep buffer |
-| `<leader>sG` | Grep open buffers |
+| `<leader>sb` | Buffers |
 | `<leader>sc` | Commands |
 | `<leader>sC` | Command history |
 | `<leader>sd` | Diagnostics (buffer) |
+| `<leader>sg` | Grep buffer |
+| `<leader>sG` | Grep open buffers |
 | `<leader>sh` | Help tags |
 | `<leader>sj` | Jump list |
 | `<leader>sk` | Keymaps |
