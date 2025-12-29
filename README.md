@@ -187,31 +187,38 @@ Leader key is `<Space>`.
 
 | Keymap | Action |
 |--------|--------|
+| `<leader><space>` | Smart find files (buffers + recent + files) |
+| `<leader>e` | File explorer (Snacks) |
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
 | `<leader>fG` | Grep open buffers |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
 | `<leader>fb` | Buffers |
 | `<leader>fh` | Recent files |
-| `<leader>fr` | Registers |
-| `<leader>fk` | Keymaps |
-| `<leader>fm` | Man pages |
-| `<leader>f?` | Help tags |
-| `<leader>fq` | Quickfix list |
-| `<leader>fj` | Jump list |
-| `<leader>f'` | Marks |
 | `<leader>fp` | Projects |
-| `<leader>e` | File explorer (Snacks) |
 | `<leader>fP` | Pickers (list all pickers) |
-| `<leader>f:` | Command history |
 | `<leader>fs` | Treesitter symbols |
 | `<leader>fn` | Notification history |
-| `<leader>s` | Spell suggestions |
-| `<leader>c` | Commands |
-| `<leader>r` | Resume last picker |
-| `<leader><space>` | Smart find files (buffers + recent + files) |
-| `<leader>/` | Search current buffer |
-| `<leader>u` | Undo history |
+
+### Search (Snacks)
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>sb` | Search current buffer (lines) |
+| `<leader>sc` | Commands |
+| `<leader>sC` | Command history |
+| `<leader>sd` | Diagnostics (buffer) |
+| `<leader>sD` | Diagnostics (workspace) |
+| `<leader>sh` | Help tags |
+| `<leader>sj` | Jump list |
+| `<leader>sk` | Keymaps |
+| `<leader>sm` | Marks |
+| `<leader>sM` | Man pages |
+| `<leader>sq` | Quickfix list |
+| `<leader>sr` | Registers |
+| `<leader>sR` | Resume last picker |
+| `<leader>ss` | Spell suggestions |
+| `<leader>su` | Undo history |
 
 ### LSP
 
@@ -229,8 +236,6 @@ Leader key is `<Space>`.
 | `<leader>lr` | References (picker) |
 | `<leader>lR` | Rename symbol |
 | `<leader>ld` | Diagnostic float (at cursor) |
-| `<leader>lD` | Diagnostics picker (buffer) |
-| `<leader>lW` | Diagnostics picker (workspace) |
 | `<leader>li` | Incoming calls (who calls this) |
 | `<leader>lo` | Outgoing calls (what this calls) |
 | `<leader>ls` | Document symbols |

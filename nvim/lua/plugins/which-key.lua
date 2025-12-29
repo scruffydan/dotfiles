@@ -9,6 +9,7 @@ return {
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "GitHub" },
         { "<leader>l", group = "lsp" },
+        { "<leader>s", group = "search" },
         { "<leader>a", group = "ai/sidekick" },
         { "<leader>t", group = "toggle" },
         { "<leader>d", group = "diff" },
