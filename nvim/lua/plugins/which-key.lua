@@ -5,14 +5,14 @@ return {
     require("which-key").setup({
       preset = "helix",
       spec = {
-        { "<leader>f", group = "file/find" },
-        { "<leader>g", group = "git" },
-        { "<leader>gh", group = "GitHub" },
-        { "<leader>l", group = "lsp" },
-        { "<leader>s", group = "search" },
         { "<leader>a", group = "ai/sidekick" },
-        { "<leader>t", group = "toggle" },
         { "<leader>d", group = "diff" },
+        { "<leader>f", group = "find (workspace)" },
+        { "<leader>g", group = "git" },
+        { "<leader>gh", group = "github" },
+        { "<leader>l", group = "lsp" },
+        { "<leader>s", group = "search (buffer)" },
+        { "<leader>t", group = "toggle" },
       },
     })
   end,
