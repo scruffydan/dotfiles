@@ -199,6 +199,8 @@ bindkey "^[[B" history-beginning-search-forward-end
 ## Syntax highlighting ##
 #########################
 
+autoload -Uz add-zsh-hook
+
 # Lazy load syntax highlighting after first prompt
 function _load_syntax_highlighting() {
   source ~/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -217,7 +219,6 @@ function _load_syntax_highlighting() {
   add-zsh-hook -d precmd _load_syntax_highlighting
 }
 
-autoload -Uz add-zsh-hook
 add-zsh-hook precmd _load_syntax_highlighting
 
 
