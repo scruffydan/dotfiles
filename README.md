@@ -188,12 +188,27 @@ Leader key is `<Space>`.
 |--------|--------|
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
+| `<leader>fG` | Grep open buffers |
+| `<leader>fw` | Grep word under cursor (or visual selection) |
 | `<leader>fb` | Buffers |
 | `<leader>fh` | Recent files |
 | `<leader>fr` | Registers |
 | `<leader>fk` | Keymaps |
+| `<leader>fm` | Man pages |
+| `<leader>f?` | Help tags |
+| `<leader>fq` | Quickfix list |
+| `<leader>fj` | Jump list |
+| `<leader>f'` | Marks |
+| `<leader>fp` | Projects |
+| `<leader>e` | File explorer (Snacks) |
+| `<leader>fP` | Pickers (list all pickers) |
+| `<leader>f:` | Command history |
+| `<leader>fs` | Treesitter symbols |
 | `<leader>fn` | Notification history |
-| `<leader>fs` | Spell suggestions |
+| `<leader>s` | Spell suggestions |
+| `<leader>c` | Commands |
+| `<leader>r` | Resume last picker |
+| `<leader><space>` | Smart find files (buffers + recent + files) |
 | `<leader>/` | Search current buffer |
 
 ### LSP
@@ -208,9 +223,14 @@ Leader key is `<Space>`.
 | `K` | Hover documentation |
 | `<C-k>` | Signature help (normal and insert mode) |
 | `<leader>la` | Code action (normal and visual mode) |
-| `<leader>lr` | Rename symbol |
+| `<leader>lf` | Find definitions (picker) |
+| `<leader>lr` | References (picker) |
+| `<leader>lR` | Rename symbol |
 | `<leader>ld` | Diagnostic float (at cursor) |
 | `<leader>lD` | Diagnostics picker (buffer) |
+| `<leader>lW` | Diagnostics picker (workspace) |
+| `<leader>li` | Incoming calls (who calls this) |
+| `<leader>lo` | Outgoing calls (what this calls) |
 | `<leader>ls` | Document symbols |
 | `<leader>lS` | Workspace symbols |
 | `<leader>lc` | Toggle CSV view |
@@ -228,7 +248,7 @@ Leader key is `<Space>`.
 | `<leader>gl` | Git log |
 | `<leader>gL` | Git log (line) |
 | `<leader>gf` | Git log (file) |
-| `<leader>gD` | Git diff hunks picker |
+| `<leader>gd` | Git diff hunks picker |
 | `<leader>gS` | Git stash picker |
 | `<leader>gH` | Preview hunk |
 | `<leader>gb` | Git blame |
@@ -368,7 +388,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<M-]>` | Insert | Next suggestion |
 | `<M-[>` | Insert | Previous suggestion |
 | `<M-Esc>` | Insert | Dismiss suggestion |
-| `<leader>cp` | Normal | Open Copilot panel (shows up to 10 completions) |
+| `<leader>ghP` | Normal | Open Copilot panel (shows up to 10 completions) |
 
 ### Misc
 

@@ -62,7 +62,9 @@ return {
           -- Actions
           map("n", "<leader>la", vim.lsp.buf.code_action, "Code action")
           map("v", "<leader>la", vim.lsp.buf.code_action, "Code action")
-          map("n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol")
+          map("n", "<leader>lR", vim.lsp.buf.rename, "Rename symbol")
+          map("n", "<leader>lr", function() Snacks.picker.lsp_references() end, "References")
+          map("n", "<leader>lf", function() Snacks.picker.lsp_definitions() end, "Find definitions")
 
           -- Diagnostics
           map("n", "<leader>ld", vim.diagnostic.open_float, "Show diagnostics")

@@ -24,6 +24,6 @@ return {
     vim.keymap.set("i", "<M-Esc>", "<Plug>(copilot-dismiss)", { desc = "Dismiss Copilot suggestion" })
 
     -- Open Copilot panel (shows up to 10 completions)
-    vim.keymap.set("n", "<leader>cp", ":Copilot panel<CR>", { silent = true, desc = "Copilot panel" })
+    vim.keymap.set("n", "<leader>ghP", ":Copilot panel<CR>", { silent = true, desc = "Copilot panel" })
   end,
 }
