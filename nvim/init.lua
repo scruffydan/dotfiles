@@ -102,7 +102,7 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 
--- Whitespace display modes (used by lualine and toggle keymap)
+-- Whitespace display modes (toggle with <leader>tw)
 -- 1 = default (lead/trail/tab/eol), 2 = all spaces, 3 = off
 vim.g.whitespace_mode = 1
 
