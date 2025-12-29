@@ -192,7 +192,7 @@ Leader key is `<Space>`.
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
-| `<leader>fb` | Buffers |
+| `<leader>sb` | Buffers |
 | `<leader>fh` | Recent files |
 | `<leader>fp` | Projects |
 | `<leader>fq` | Quickfix list |
@@ -202,8 +202,8 @@ Leader key is `<Space>`.
 
 | Keymap | Action |
 |--------|--------|
-| `<leader>sb` | Search current buffer (lines) |
-| `<leader>sB` | Grep open buffers |
+| `<leader>sg` | Grep buffer |
+| `<leader>sG` | Grep open buffers |
 | `<leader>sc` | Commands |
 | `<leader>sC` | Command history |
 | `<leader>sd` | Diagnostics (buffer) |
