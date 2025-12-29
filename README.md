@@ -245,14 +245,14 @@ Leader key is `<Space>`.
 | `<leader>gg` | Open Neogit |
 | `<leader>gp` | Git pull |
 | `<leader>gs` | Git status picker |
-| `<leader>gB` | Git branches picker |
+| `<leader>gb` | Git branches picker |
 | `<leader>gl` | Git log |
 | `<leader>gL` | Git log (line) |
 | `<leader>gf` | Git log (file) |
 | `<leader>gd` | Git diff hunks picker |
 | `<leader>gS` | Git stash picker |
 | `<leader>gH` | Preview hunk |
-| `<leader>gb` | Git blame |
+| `<leader>gB` | Git blame |
 | `<leader>go` | Open in browser (GitHub) |
 | `<leader>ghi` | GitHub issues |
 | `<leader>ghp` | GitHub PRs |

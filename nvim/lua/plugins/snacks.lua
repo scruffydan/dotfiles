@@ -117,7 +117,7 @@ return {
     { "<leader>/", function() Snacks.picker.lines() end, desc = "Search buffer" },
     { "<leader>s", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
     { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git status" },
-    { "<leader>gB", function() Snacks.picker.git_branches() end, desc = "Git branches" },
+    { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git branches" },
     { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git log" },
     { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git log (line)" },
     { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git log (file)" },

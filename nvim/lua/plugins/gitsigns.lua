@@ -45,7 +45,7 @@ return {
 
         -- Actions
         map('n', '<leader>gH', gs.preview_hunk, {desc="Preview hunk"})
-        map('n', '<leader>gb', gs.blame, {desc="Git blame"})
+        map('n', '<leader>gB', gs.blame, {desc="Git blame"})
 
         -- Text object
         map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', {desc="Select hunk"})
