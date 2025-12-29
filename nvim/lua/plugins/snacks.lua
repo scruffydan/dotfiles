@@ -110,5 +110,7 @@ return {
     -- LSP
     { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
     { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
+    -- Undo
+    { "<leader>u", function() Snacks.picker.undo() end, desc = "Undo history" },
   },
 }
