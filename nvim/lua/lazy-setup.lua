@@ -34,6 +34,8 @@ local plugins = {
   require("plugins.sidekick"),
   require("plugins.copilot"),
   require("plugins.vscode-diff"),
+  require("plugins.render-markdown"),
+  require("plugins.bullets"),
 }
 
 require("lazy").setup(plugins, {
