@@ -89,23 +89,7 @@ vim.opt.clipboard = "unnamedplus"
 
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 
--- Highlight the cursor line with a subtle background when entering insert mode
-vim.api.nvim_create_autocmd('InsertEnter', {
-  group = augroup,
-  pattern = '*',
-  callback = function()
-    vim.cmd('highlight CursorLine guibg=#1D1E19 ctermbg=236')
-  end,
-})
 
--- Remove the cursor line highlight when leaving insert mode
-vim.api.nvim_create_autocmd('InsertLeave', {
-  group = augroup,
-  pattern = '*',
-  callback = function()
-    vim.cmd('highlight CursorLine guibg=NONE ctermbg=NONE')
-  end,
-})
 
 -- Tab settings (2 spaces)
 vim.opt.tabstop = 2
