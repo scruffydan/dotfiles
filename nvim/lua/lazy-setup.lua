@@ -36,6 +36,7 @@ local plugins = {
   require("plugins.vscode-diff"),
   require("plugins.render-markdown"),
   require("plugins.bullets"),
+  require("plugins.colorizer"),
 }
 
 require("lazy").setup(plugins, {
