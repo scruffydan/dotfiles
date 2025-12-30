@@ -1,3 +1,10 @@
+-- Filter directories to only those that exist
+local function existing_dirs(dirs)
+  return vim.tbl_filter(function(dir)
+    return vim.fn.isdirectory(vim.fn.expand(dir)) == 1
+  end, dirs)
+end
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -40,13 +47,13 @@ return {
       },
       sources = {
         projects = {
-          dev = { "~/Code" },
-          projects = {
+          dev = existing_dirs({ "~/Code" }),
+          projects = existing_dirs({
             "~/dotfiles",
             "~/Desktop",
             "~/Documents",
             "~/Downloads",
-          },
+          }),
         },
         spelling = {
           layout = {
