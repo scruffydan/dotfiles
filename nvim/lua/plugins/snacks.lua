@@ -39,6 +39,15 @@ return {
         },
       },
       sources = {
+        projects = {
+          dev = { "~/Code" },
+          projects = {
+            "~/dotfiles",
+            "~/Desktop",
+            "~/Documents",
+            "~/Downloads",
+          },
+        },
         spelling = {
           layout = {
             preset = "select",
