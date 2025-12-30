@@ -73,6 +73,35 @@ return {
         end,
       })
 
+      -- Toggle LSP globally (available in all buffers)
+      vim.g.lsp_enabled = true
+      vim.keymap.set("n", "<leader>tl", function()
+        if vim.g.lsp_enabled then
+          vim.lsp.stop_client(vim.lsp.get_clients())
+          vim.diagnostic.reset()
+          vim.g.lsp_enabled = false
+          vim.notify("LSP disabled globally", vim.log.levels.INFO)
+        else
+          vim.g.lsp_enabled = true
+          -- Trigger FileType event to re-attach LSP to all buffers
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
+              vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
+            end
+          end
+          -- Refresh display after LSP attaches and sends diagnostics
+          vim.defer_fn(function()
+            -- Trigger a text change event to request fresh diagnostics
+            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+              if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
+                vim.api.nvim_exec_autocmds("TextChanged", { buffer = buf })
+              end
+            end
+          end, 1000)
+          vim.notify("LSP enabled globally", vim.log.levels.INFO)
+        end
+      end, { desc = "Toggle LSP" })
+
       -- Source copilot config from dotfiles location
       local copilot_config_path = vim.fn.expand('~/dotfiles/nvim/lsp/copilot.lua')
       if vim.fn.filereadable(copilot_config_path) == 1 then
