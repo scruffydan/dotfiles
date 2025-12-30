@@ -46,6 +46,9 @@ return {
         },
       },
       sources = {
+        smart = {
+          transform = "unique_file",
+        },
         projects = {
           dev = existing_dirs({ "~/Code" }),
           projects = existing_dirs({
@@ -54,6 +57,7 @@ return {
             "~/Documents",
             "~/Downloads",
           }),
+          transform = "unique_file",
         },
         spelling = {
           layout = {
