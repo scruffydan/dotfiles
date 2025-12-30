@@ -172,6 +172,11 @@ bindkey -v
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
+# Edit current command in $EDITOR with Ctrl-e
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line
+
 # Enable command substitution
 setopt prompt_subst
 
