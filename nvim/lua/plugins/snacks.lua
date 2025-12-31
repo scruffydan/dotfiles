@@ -46,7 +46,17 @@ return {
         },
       },
       sources = {
+        files = {
+          hidden = true, -- Show hidden files
+          ignored = true, -- Show files ignored by .gitignore
+        },
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
         smart = {
+          hidden = true,
+          ignored = true,
           transform = "unique_file",
         },
         projects = {
