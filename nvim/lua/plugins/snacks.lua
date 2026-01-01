@@ -36,6 +36,7 @@ return {
       end,
     },
     picker = {
+      ui_select = true, -- Replace vim.ui.select with snacks picker
       matcher = {
         frecency = true, -- Boost recently/frequently accessed files
         sort_empty = true, -- Sort by frecency even before typing
