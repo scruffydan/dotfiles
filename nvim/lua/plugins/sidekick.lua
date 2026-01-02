@@ -37,7 +37,8 @@ return {
       function()
         -- In insert mode, first check for copilot.vim inline suggestion
         if vim.fn.mode() == "i" then
-          if vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
+          if vim.fn.exists("*copilot#GetDisplayedSuggestion") == 1
+            and vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
             return vim.fn["copilot#Accept"]()
           end
         end
