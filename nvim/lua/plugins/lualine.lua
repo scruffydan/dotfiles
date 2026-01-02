@@ -58,24 +58,29 @@ return {
           -- Sidekick NES status
           {
             function()
-              local ok, nes = pcall(require, "sidekick.nes")
-              if ok and nes.enabled then
-                local count = nes.get and nes.get() and #nes.get() or 0
-                if count > 0 then
-                  return "NES:" .. count
-                end
+              local nes = require("sidekick.nes")
+              if nes.enabled then
                 return "NES"
               end
               return ""
             end,
-            cond = function()
-              local ok, nes = pcall(require, "sidekick.nes")
-              return ok and nes.enabled
-            end,
-            color = { fg = "#a6e22e" },
+            color = "DiagnosticWarn",
           },
         },
         lualine_x = {
+          -- Sidekick CLI session status
+          {
+            function()
+              local status = require("sidekick.status").cli()
+              return " " .. (#status > 1 and #status or "")
+            end,
+            cond = function()
+              return #require("sidekick.status").cli() > 0
+            end,
+            color = function()
+              return "Special"
+            end,
+          },
           {
             function()
               return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
