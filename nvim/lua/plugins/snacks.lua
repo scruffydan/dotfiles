@@ -24,7 +24,7 @@ return {
       scope = {
         enabled = true,
         char = "│",
-        hl = "NonText",
+        hl = "SnacksIndentScope",
       },
       filter = function(buf)
         local exclude = { "help", "dashboard", "lazy", "mason", "oil" }
@@ -102,7 +102,7 @@ return {
   },
   init = function()
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
-    vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "NonText" })
+    vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "Comment" })
     vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
     -- Disable mini.completion in snacks picker/input buffers
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "InsertEnter" }, {
