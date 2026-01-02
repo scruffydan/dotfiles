@@ -26,19 +26,8 @@ return {
         },
         lualine_b = {
           {
-            "searchcount",
-            maxcount = 999,
-            timeout = 500,
-            cond = function()
-              return vim.v.hlsearch ~= 0
-            end,
-          },
-          {
             "filename",
             symbols = { modified = "● ", readonly = "", unnamed = "[No Name]" },
-            cond = function()
-              return vim.v.hlsearch == 0
-            end,
           },
           {
             function()
@@ -49,10 +38,26 @@ return {
           },
         },
         lualine_c = {
-          "branch",
+          {
+            "searchcount",
+            maxcount = 999,
+            timeout = 500,
+            cond = function()
+              return vim.v.hlsearch ~= 0
+            end,
+          },
+          {
+            "branch",
+            cond = function()
+              return vim.v.hlsearch == 0
+            end,
+          },
           {
             "diff",
             symbols = { added = "● ", modified = "● ", removed = "● " },
+            cond = function()
+              return vim.v.hlsearch == 0
+            end,
           },
           "diagnostics",
           -- Sidekick NES status
