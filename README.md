@@ -385,7 +385,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>ai` | Document this |
 | `<leader>az` | Optimize this |
 | `<leader>aT` | Write tests for this |
-| `<leader>an` | Toggle NES (Next Edit Suggestions) |
+| `<leader>tN` | Toggle NES (Next Edit Suggestions) |
 
 ### Copilot Inline Completion
 
