@@ -81,7 +81,7 @@ return {
         },
         registers = {
           -- Sort registers alphabetically by register name
-          sort = { fields = { "text" } },
+          sort = { fields = { "reg" } },
           matcher = { sort_empty = true },
           main = { current = true },
           format = "register",
