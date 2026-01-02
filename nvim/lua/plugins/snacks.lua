@@ -79,6 +79,15 @@ return {
             list = { border = "rounded" },
           },
         },
+        registers = {
+          -- Sort registers alphabetically by register name
+          sort = { fields = { "text" } },
+          matcher = { sort_empty = true },
+          main = { current = true },
+          format = "register",
+          preview = "preview",
+          confirm = { "copy", "close" },
+        },
       },
     },
     bigfile = {
