@@ -87,7 +87,6 @@ vim.keymap.set('t', '<Esc><Esc>', '<Esc>', { desc = 'Send Esc to terminal' })
 -- Use system clipboard (fails silently over SSH without clipboard provider)
 vim.opt.clipboard = "unnamedplus"
 
-local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 
 
 
