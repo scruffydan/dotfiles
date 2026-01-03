@@ -4,7 +4,7 @@ return {
   event = { "InsertEnter", "LspAttach" },
   config = function()
     -- Auto-pair brackets, quotes, etc.
-    require("mini.pairs").setup({})
+    --require("mini.pairs").setup({})
 
     -- LSP completion with signature help
     -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
