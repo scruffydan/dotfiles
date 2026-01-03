@@ -180,8 +180,9 @@ Leader key is `<Space>`.
 | `<S-Tab>` | Open Oil file explorer |
 | `<Tab>` | Select file/directory (in Oil) |
 | `<S-Tab>` | Go to parent directory (in Oil) |
-| `<leader>th` | Toggle hidden files (in Oil) |
-| `<leader>cd` | Change directory (in Oil) |
+| `g.` | Toggle hidden files (in Oil) |
+| `<leader>t.` | Toggle hidden files (in Oil) |
+| `<leader>cd` | Change CWD (in Oil) |
 
 ### Pickers (Snacks) - Workspace
 
@@ -330,7 +331,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>tn` | Toggle relative line numbers |
 | `<leader>ts` | Toggle spell checking |
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
-| `<leader>th` | Toggle hidden files (Oil) |
+| `<leader>t.` | Toggle hidden files (Oil) |
 | `<leader>tc` | Cycle completion (copilot/native/off) |
 | `<leader>tm` | Toggle Markdown render |
 | `<leader>tv` | Toggle CSV view |
