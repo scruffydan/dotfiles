@@ -22,7 +22,8 @@ return {
         border = "rounded",
       },
       keymaps = {
-        ["<leader>th"] = "actions.toggle_hidden",
+        ["g."] = "actions.toggle_hidden",
+        ["<leader>t."] = "actions.toggle_hidden",
         ["<Tab>"] = "actions.select", -- <S-Tab> global keymap in keys section
         ["<S-Tab>"] = "actions.parent",
         ["<leader>cd"] = "actions.cd",
