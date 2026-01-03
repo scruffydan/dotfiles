@@ -4,6 +4,7 @@ vim.g.maplocalleader = " "
 
 -- UI Settings
 vim.opt.number = true -- Add line numbers
+vim.opt.relativenumber = true -- Show relative line numbers
 -- Toggle relative line numbers
 vim.keymap.set('n', '<leader>tn', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
