@@ -3,7 +3,9 @@ return {
   lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<S-Tab>", "<CMD>Oil<CR>", mode = "n", desc = "Open oil" }, -- pairs with <Tab> in oil keymaps
+    -- Open oil file explorer with Shift+Tab in normal mode
+    -- (Insert mode Shift+Tab is handled by sidekick.lua for dedenting)
+    { "<S-Tab>", "<CMD>Oil<CR>", mode = "n", desc = "Open oil" },
   },
   config = function()
     require("oil").setup({
@@ -24,7 +26,11 @@ return {
       keymaps = {
         ["g."] = "actions.toggle_hidden",
         ["<leader>t."] = "actions.toggle_hidden",
-        ["<Tab>"] = "actions.select", -- <S-Tab> global keymap in keys section
+        -- Tab/Shift+Tab behavior within oil buffers:
+        -- Tab: Select file/directory (opens file or enters directory)
+        -- Shift+Tab: Go to parent directory
+        -- Note: In visual mode, Tab opens all selected files
+        ["<Tab>"] = "actions.select",
         ["<S-Tab>"] = "actions.parent",
         ["<leader>cd"] = "actions.cd",
       },

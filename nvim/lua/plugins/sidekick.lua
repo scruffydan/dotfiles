@@ -29,9 +29,15 @@ return {
     },
   },
   keys = {
-    -- Tab handling for both insert and normal mode
-    -- Insert: Accept copilot.vim suggestion > Apply NES > Normal Tab
-    -- Normal: Jump to/apply NES > Normal Tab
+    -- Tab/Shift+Tab handling for smart completion and navigation
+    -- Tab behavior:
+    --   Insert mode: Accept copilot.vim suggestion > Apply NES > Normal Tab
+    --   Normal mode: Jump to/apply NES > Normal Tab
+    --   Oil buffers: Select file/directory (oil.nvim takes over)
+    -- Shift+Tab behavior:
+    --   Insert mode: Dedent (unindent) current line
+    --   Normal mode: Open Oil file explorer (oil.lua mapping)
+    --   Oil buffers: Go to parent directory (oil.nvim takes over)
     {
       "<tab>",
       function()
@@ -54,21 +60,16 @@ return {
       desc = "Accept Copilot / Apply NES / Tab",
       mode = { "i", "n" },
     },
-    -- Shift+Tab for backwards navigation / dedent
+    -- Shift+Tab for dedent in insert mode only (normal mode handled by oil.lua)
     {
       "<s-tab>",
       function()
-        -- In insert mode, do dedent (unindent)
-        if vim.fn.mode() == "i" then
-          return vim.api.nvim_replace_termcodes("<C-d>", true, false, true)
-        end
-        -- In normal mode, just return shift-tab
-        return vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true)
+        return vim.api.nvim_replace_termcodes("<C-d>", true, false, true)
       end,
       expr = true,
       replace_keycodes = false,
-      desc = "Dedent / Shift-Tab",
-      mode = { "i", "n" },
+      desc = "Dedent",
+      mode = "i",
     },
     {
       "<leader>tN",

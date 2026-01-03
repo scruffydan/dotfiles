@@ -6,7 +6,10 @@ return {
     return vim.fn.executable("node") == 1
   end,
   init = function()
-    -- Disable default Tab mapping; Tab handling is consolidated in sidekick.lua
+    -- Disable default Tab mapping
+    -- Tab handling is consolidated in sidekick.lua for smart behavior:
+    --   Insert mode: Accept copilot suggestion > Apply NES > Normal Tab
+    --   Normal mode: Apply NES > Normal Tab
     vim.g.copilot_no_tab_map = true
     -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
     vim.g.copilot_enabled = (vim.g.completion_mode or "copilot") == "copilot"

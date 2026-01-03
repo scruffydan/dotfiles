@@ -408,6 +408,22 @@ Surround text objects with brackets, quotes, tags, and more. All actions are dot
 | `<leader>aT` | Write tests for this |
 | `<leader>tN` | Toggle NES (Next Edit Suggestions) |
 
+### Tab Key Behavior
+
+The Tab and Shift+Tab keys have smart, context-aware behavior:
+
+**Insert Mode:**
+- `<Tab>`: Accept Copilot suggestion → Apply NES → Normal Tab
+- `<S-Tab>`: Dedent (unindent) current line
+
+**Normal Mode:**
+- `<Tab>`: Apply NES → Normal Tab  
+- `<S-Tab>`: Open Oil file explorer
+
+**In Oil.nvim:**
+- `<Tab>`: Select file/directory
+- `<S-Tab>`: Go to parent directory
+
 ### Copilot Inline Completion
 
 | Keymap | Mode | Action |
