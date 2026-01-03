@@ -346,6 +346,26 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<C-e>` | Cancel completion |
 | `<C-Space>` | Trigger completion manually |
 
+### Surround (mini.surround)
+
+Surround text objects with brackets, quotes, tags, and more. All actions are dot-repeatable.
+
+| Keymap | Action |
+|--------|--------|
+| `sa` | Add surrounding (e.g., `saiw)` surround word with parens, `sa2j"` surround 2 lines with quotes) |
+| `sd` | Delete surrounding (e.g., `sd"` delete surrounding quotes, `sdf` delete surrounding function call) |
+| `sr` | Replace surrounding (e.g., `sr)"` replace parens with quotes, `sr({` replace parens with braces + space) |
+| `sf` | Find surrounding (to the right) |
+| `sF` | Find surrounding (to the left) |
+| `sh` | Highlight surrounding |
+
+**Surrounding characters:**
+- `(`, `)`, `[`, `]`, `{`, `}`, `<`, `>` - Bracket pairs (opening adds space, closing doesn't)
+- `'`, `"`, `` ` `` - Quote characters
+- `f` - Function call (prompts for function name when adding)
+- `t` - HTML/XML tag (prompts for tag name when adding)
+- `?` - Interactive (prompts for left and right parts)
+
 ### Terminal
 
 | Keymap | Action |

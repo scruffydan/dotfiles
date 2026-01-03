@@ -6,6 +6,12 @@ return {
     -- Auto-pair brackets, quotes, etc.
     --require("mini.pairs").setup({})
 
+    -- Surround text objects with brackets, quotes, tags, etc.
+    -- sa - add surround (saiw) to surround word, sa2j" to surround 2 lines)
+    -- sd - delete surround (sd" to delete quotes)
+    -- sr - replace surround (sr)" to replace parens with quotes)
+    require("mini.surround").setup({})
+
     -- LSP completion with signature help
     -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
     require("mini.completion").setup({
