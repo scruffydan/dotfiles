@@ -54,6 +54,22 @@ return {
       desc = "Accept Copilot / Apply NES / Tab",
       mode = { "i", "n" },
     },
+    -- Shift+Tab for backwards navigation / dedent
+    {
+      "<s-tab>",
+      function()
+        -- In insert mode, do dedent (unindent)
+        if vim.fn.mode() == "i" then
+          return vim.api.nvim_replace_termcodes("<C-d>", true, false, true)
+        end
+        -- In normal mode, just return shift-tab
+        return vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true)
+      end,
+      expr = true,
+      replace_keycodes = false,
+      desc = "Dedent / Shift-Tab",
+      mode = { "i", "n" },
+    },
     {
       "<leader>tN",
       function()
