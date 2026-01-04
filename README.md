@@ -78,46 +78,47 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 ## Tmux Keybindings
 
-Prefix key is `<C-a>`.
+**Prefix:** `<C-a>` (Ctrl+a)
 
 ### General
 
 | Keymap | Action |
 |--------|--------|
-| `<C-a>` | Prefix key |
-| `<C-a> <C-a>` | Send prefix to application |
-| `<C-a> r` | Reload tmux config and resync client |
-| `<C-a> m` | Toggle mouse mode |
+| `<prefix>` | Prefix key |
+| `<prefix> <prefix>` | Send prefix to application |
+| `<prefix> r` | Reload tmux config and resync client |
+| `<prefix> m` | Toggle mouse mode |
+| `<M-d>` | Display menu popup |
 
 ### Sessions
 
 | Keymap | Action |
 |--------|--------|
-| `<C-a> .` | Rename session |
+| `<prefix> .` | Rename session |
 
 ### Windows
 
 | Keymap | Action |
 |--------|--------|
-| `<C-a> c` | Create new window (in current directory) |
-| `<C-a> n` | Next window (repeatable) |
-| `<C-a> N` | Previous window (repeatable) |
-| `<C-a> ,` | Rename window (default tmux binding) |
+| `<prefix> c` | Create new window (in current directory) |
+| `<prefix> n` | Next window (repeatable) |
+| `<prefix> N` | Previous window (repeatable) |
+| `<prefix> ,` | Rename window (default tmux binding) |
 
 ### Panes
 
 | Keymap | Action |
 |--------|--------|
-| `<C-a> \|` or `<C-a> \` | Split pane vertically (in current directory) |
-| `<C-a> -` | Split pane horizontally (in current directory) |
-| `<C-a> h` | Select pane left (repeatable) |
-| `<C-a> j` | Select pane down (repeatable) |
-| `<C-a> k` | Select pane up (repeatable) |
-| `<C-a> l` | Select pane right (repeatable) |
-| `<C-a> H` | Resize pane left (repeatable) |
-| `<C-a> J` | Resize pane down (repeatable) |
-| `<C-a> K` | Resize pane up (repeatable) |
-| `<C-a> L` | Resize pane right (repeatable) |
+| `<prefix> \|` or `<prefix> \` | Split pane vertically (in current directory) |
+| `<prefix> -` | Split pane horizontally (in current directory) |
+| `<prefix> h` | Select pane left (repeatable) |
+| `<prefix> j` | Select pane down (repeatable) |
+| `<prefix> k` | Select pane up (repeatable) |
+| `<prefix> l` | Select pane right (repeatable) |
+| `<prefix> H` | Resize pane left (repeatable) |
+| `<prefix> J` | Resize pane down (repeatable) |
+| `<prefix> K` | Resize pane up (repeatable) |
+| `<prefix> L` | Resize pane right (repeatable) |
 
 ### Vim-Tmux Navigator Integration
 
@@ -133,9 +134,9 @@ Prefix key is `<C-a>`.
 
 | Keymap | Action |
 |--------|--------|
-| `<C-a> Escape` | Enter copy mode |
-| `<C-a> p` | Paste from buffer |
-| `<C-a> P` | Choose buffer to paste |
+| `<prefix> Escape` | Enter copy mode |
+| `<prefix> p` | Paste from buffer |
+| `<prefix> P` | Choose buffer to paste |
 | `v` (in copy mode) | Begin selection |
 | `y` (in copy mode) | Copy selection |
 | `<C-c>` (in copy mode) | Copy selection |
@@ -144,8 +145,8 @@ Prefix key is `<C-a>`.
 
 | Keymap | Action |
 |--------|--------|
-| `<C-a> `` ` | Display popup terminal (90% size, current directory) |
-| `<C-a> ~` | Display popup terminal (90% size, current directory) |
+| ``<prefix> ` ``  | Display popup terminal (90% size, current directory) |
+| `<prefix> ~` | Display popup terminal (90% size, current directory) |
 
 ## Neovim Keymaps
 
