@@ -129,6 +129,19 @@ return {
           },
         },
       })
+
+      -- Configure harper_ls (grammar checker)
+      vim.lsp.config("harper_ls", {
+        settings = {
+          ["harper-ls"] = {
+            userDictPath = vim.fn.expand("~/dotfiles/nvim/spell/en.utf-8.add"),
+            linters = {
+              SentenceCapitalization = false,
+              SpellCheck = true, -- Use custom dictionary
+            },
+          },
+        },
+      })
     end,
   },
   {
@@ -138,7 +151,7 @@ return {
       "neovim/nvim-lspconfig",
     },
     config = function()
-      local ensure_installed = { "lua_ls", "marksman" }
+      local ensure_installed = { "lua_ls", "marksman", "harper_ls" }
       if vim.fn.executable("node") == 1 then
         table.insert(ensure_installed, "copilot")
       end
