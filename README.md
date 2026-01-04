@@ -197,8 +197,25 @@ Leader key is `<Space>`.
 | `<leader>fh` | Recent files |
 | `<leader>fm` | Man pages |
 | `<leader>fp` | Projects |
-| `<leader>fq` | Quickfix list |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
+
+**Picker Actions** (available in any picker):
+
+| Keymap | Action |
+|--------|--------|
+| `<C-q>` | Send selected items (or all if none selected) to quickfix list |
+| `<Tab>` | Toggle selection on current item |
+| `<C-a>` | Select all items |
+
+### Quickfix List
+
+| Command | Action |
+|---------|--------|
+| `:cn` | Next quickfix item |
+| `:cp` | Previous quickfix item |
+| `:cnfile` | First quickfix item in next file |
+| `:cdo {cmd}` | Execute command on each quickfix item (e.g., `:cdo s/foo/bar/g`) |
+| `:cfdo {cmd}` | Execute command on each file in quickfix list (e.g., `:cfdo %s/foo/bar/g`) |
 
 ### Search (Snacks) - Current/Open Buffers
 
@@ -216,6 +233,7 @@ Leader key is `<Space>`.
 | `<leader>sm` | Marks |
 | `<leader>sn` | Notification history |
 | `<leader>sp` | Pickers (list all) |
+| `<leader>sq` | Quickfix list |
 | `<leader>sr` | Registers |
 | `<leader>sR` | Resume last picker |
 | `<leader>ss` | Treesitter symbols |

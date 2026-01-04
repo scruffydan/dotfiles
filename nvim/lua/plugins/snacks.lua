@@ -138,7 +138,6 @@ return {
     { "<leader>fh", function() Snacks.picker.recent() end, desc = "Recent files" },
     { "<leader>fm", function() Snacks.picker.man() end, desc = "Man pages" },
     { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-    { "<leader>fq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
     { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Grep word", mode = { "n", "x" } },
 
     -- Search (buffer/local)
@@ -154,6 +153,7 @@ return {
     { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
     { "<leader>sn", function() Snacks.notifier.show_history() end, desc = "Notification history" },
     { "<leader>sp", function() Snacks.picker.pickers() end, desc = "Pickers" },
+    { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
     { "<leader>sr", function() Snacks.picker.registers() end, desc = "Registers" },
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume last picker" },
     { "<leader>ss", function() Snacks.picker.treesitter() end, desc = "Treesitter symbols" },
