@@ -67,7 +67,12 @@ return {
         
         -- Additional diff features
         map('n', '<leader>dw', gs.toggle_word_diff, {desc="Toggle word diff"})
-        map('n', '<leader>di', gs.toggle_linehl, {desc="Toggle inline diff"})
+
+        -- Toggle inline hunk preview
+        -- Calling preview_hunk_inline() again clears the preview
+        map('n', '<leader>di', function()
+          gs.preview_hunk_inline()
+        end, {desc="Toggle inline diff"})
 
         -- Text object
         map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', {desc="Select hunk"})

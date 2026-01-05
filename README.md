@@ -355,7 +355,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>db` | Diff vs default branch (main/master) |
 | `<leader>dc` | Close diffview |
 | `<leader>dw` | Toggle word-level diff highlighting |
-| `<leader>di` | Preview hunk inline (virtual lines) |
+| `<leader>di` | Toggle inline diff (virtual lines) |
 | `]h` / `[h` | Next/previous hunk |
 | `do` | Get change from other buffer (in diff mode) |
 | `dp` | Put change to other buffer (in diff mode) |
@@ -371,6 +371,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>tn` | Toggle relative line numbers |
 | `<leader>ts` | Toggle spell checking (Vim built-in) |
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
+| `<leader>tW` | Toggle wrap (buffer) |
 | `<leader>t.` | Toggle hidden files (Oil) |
 | `<leader>tc` | Cycle completion (copilot/native/off) |
 | `<leader>tm` | Toggle Markdown render |
