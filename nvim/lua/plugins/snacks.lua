@@ -79,6 +79,12 @@ return {
             list = { border = "rounded" },
           },
         },
+        jumps = {
+          -- Keep original order (most recent jumps first)
+          sort = {
+            fields = { "idx" },  -- Preserve the order from jumplist
+          },
+        },
         marks = {
           -- Custom sort function for marks picker
           -- Order: ' " a-z A-Z . < > ^ 0-9 (everything else)
