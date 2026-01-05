@@ -2,7 +2,18 @@ return {
   "NeogitOrg/neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "sindrets/diffview.nvim",  -- Optional - enables diff popup in Neogit
+    {
+      "sindrets/diffview.nvim",
+      config = function()
+        require("diffview").setup({
+          hooks = {
+            diff_buf_read = function()
+              vim.opt_local.wrap = false
+            end,
+          },
+        })
+      end,
+    },
     "folke/snacks.nvim",
   },
   keys = {

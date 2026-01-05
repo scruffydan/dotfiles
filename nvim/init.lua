@@ -102,6 +102,12 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 
+-- Toggle wrap for current buffer only
+vim.keymap.set('n', '<leader>tW', function()
+  vim.wo.wrap = not vim.wo.wrap
+  vim.notify("Wrap: " .. (vim.wo.wrap and "on" or "off"), vim.log.levels.INFO)
+end, { desc = 'Toggle wrap (buffer)' })
+
 -- Whitespace display modes (toggle with <leader>tw)
 -- 1 = default (lead/trail/tab/eol), 2 = all spaces, 3 = off
 vim.g.whitespace_mode = 1
