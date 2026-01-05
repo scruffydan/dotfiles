@@ -2,8 +2,8 @@ return {
   "NeogitOrg/neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "folke/snacks.nvim",
     "sindrets/diffview.nvim",  -- Optional - enables diff popup in Neogit
+    "folke/snacks.nvim",
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
