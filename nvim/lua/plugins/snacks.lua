@@ -158,7 +158,7 @@ return {
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume last picker" },
     { "<leader>ss", function() Snacks.picker.treesitter() end, desc = "Treesitter symbols" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo history" },
-    { "<leader>sz", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
+    { "<leader>sw", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
 
     -- Git
     { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git branches" },
