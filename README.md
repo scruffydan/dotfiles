@@ -320,8 +320,8 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `a/`/`i/` | Outer/inner comment |
 | `ab`/`ib` | Outer/inner block |
 | `a=`/`i=` | Outer/inner assignment |
-| `in` | Number |
 | `ar`/`ir` | Outer/inner return statement |
+| `an`/`in` | Incremental selection (expand/shrink, built-in v0.12+) |
 
 **Movement** (jump between text objects, works in normal, visual, and operator-pending modes):
 

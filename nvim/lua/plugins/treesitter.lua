@@ -22,6 +22,7 @@ return {
         local move = require("nvim-treesitter-textobjects.move")
 
         -- Text object selection keymaps
+        -- Note: 'in' and 'an' are reserved for built-in incremental selection (expand/shrink)
         local select_keymaps = {
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
@@ -41,7 +42,6 @@ return {
           ["ib"] = "@block.inner",
           ["a="] = "@assignment.outer",
           ["i="] = "@assignment.inner",
-          ["in"] = "@number.inner",
           ["ar"] = "@return.outer",
           ["ir"] = "@return.inner",
         }
