@@ -79,6 +79,48 @@ return {
             list = { border = "rounded" },
           },
         },
+        marks = {
+          -- Custom sort function for marks picker
+          -- Order: ' " a-z A-Z . < > ^ 0-9 (everything else)
+          sort = function(a, b)
+            -- Assign priority based on mark type
+            local function mark_priority(label)
+              -- Special marks for cursor position (highest priority)
+              if label == "'" then return 1      -- Last jump position
+              elseif label == '"' then return 2  -- Last exit position
+              
+              -- User-defined buffer-local marks
+              elseif label:match("^[a-z]$") then return 3
+              
+              -- User-defined global marks
+              elseif label:match("^[A-Z]$") then return 4
+              
+              -- Special auto-set marks
+              elseif label == "." then return 5  -- Last change
+              elseif label == "<" then return 6  -- Visual selection start
+              elseif label == ">" then return 7  -- Visual selection end
+              elseif label == "^" then return 8  -- Last insert position
+              
+              -- Jump history (file positions from previous Vim sessions)
+              elseif label:match("^[0-9]$") then return 9  -- 0-9 exit positions
+              
+              -- Any other marks (lowest priority)
+              else return 10
+              end
+            end
+            
+            local priority_a = mark_priority(a.label)
+            local priority_b = mark_priority(b.label)
+            
+            -- Sort by priority first
+            if priority_a ~= priority_b then
+              return priority_a < priority_b
+            end
+            
+            -- Within same priority group, sort alphabetically/numerically
+            return a.label < b.label
+          end,
+        },
         registers = {
           -- Sort registers alphabetically by register name
           sort = { fields = { "reg" } },
