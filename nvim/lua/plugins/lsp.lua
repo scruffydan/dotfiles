@@ -138,14 +138,11 @@ return {
       "neovim/nvim-lspconfig",
     },
     config = function()
-      local ensure_installed = { "lua_ls", "marksman" }
-      if vim.fn.executable("node") == 1 then
-        table.insert(ensure_installed, "copilot")
-      end
-
+      -- Note: copilot LSP is not auto-installed; user must run :Copilot auth first,
+      -- then :MasonInstall copilot to enable NES (Next Edit Suggestions)
       require("mason-lspconfig").setup({
         automatic_enable = true, -- Auto-enable installed LSP servers
-        ensure_installed = ensure_installed,
+        ensure_installed = { "lua_ls", "marksman" },
       })
     end,
   },

@@ -65,7 +65,6 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 **Auto-installed LSPs:**
 - `lua_ls` - Lua language server
 - `marksman` - Markdown language server
-- `copilot` - GitHub Copilot language server (requires Node.js)
 
 **Adding more LSPs:**
 1. Open Mason UI: `:Mason`
@@ -77,10 +76,24 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 ### Optional Dependencies
 
-- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). If Node.js is not installed:
-  - Copilot LSP is automatically skipped (not added to Mason's install list)
-  - `copilot.vim` plugin shows a warning and doesn't load
-  - All other Neovim functionality works normally
+- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). If Node.js is not installed, `copilot.vim` shows a warning and doesn't load. All other Neovim functionality works normally.
+
+### GitHub Copilot Setup
+
+GitHub Copilot provides two features:
+- **Inline completions** - Ghost text suggestions as you type (via `copilot.vim`)
+- **NES (Next Edit Suggestions)** - Predictive multi-location edits (via `copilot-language-server`)
+
+**Setup steps:**
+1. Authenticate with GitHub: `:Copilot auth`
+2. Install the Copilot LSP for NES: `:MasonInstall copilot`
+3. Restart Neovim
+
+**Notes:**
+- Inline completions work immediately after step 1
+- NES requires both steps 1 and 2
+- Use `<leader>tc` to cycle completion modes (copilot/native/off)
+- Use `<leader>tN` to toggle NES on/off
 
 ## Tmux Keybindings
 
