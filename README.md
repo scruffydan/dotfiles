@@ -34,7 +34,13 @@ Seriously though, you're probably better off starting from scratch or finding a 
   - macOS: `brew install --cask font-sauce-code-pro-nerd-font`
   - Linux/Windows/FreeBSD: Download from [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
-### Ghostty Terminal
+### Terminal Requirements
+
+- **Kitty Graphics Protocol support** - Required for image previews in Neovim (Oil, Snacks image viewer)
+  - Supported terminals: ghostty, kitty, wezterm (limited)
+  - Your terminal (ghostty) supports this
+
+### Neovim Dependencies
 
 - **SauceCodePro Nerd Font** - Required for icons (same as Neovim requirement)
 - **ripgrep (rg)** - Required for snacks.nvim picker grep
@@ -44,7 +50,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
   - macOS/Linux: Auto-installed by Mason on first launch
   - FreeBSD: Install via `pkg` (Mason doesn't have FreeBSD binaries)
 - **git** - Required for lazy.nvim plugin manager and gitsigns
-- **ImageMagick** - Required for snacks.nvim image viewer (non-PNG formats)
+- **ImageMagick** - Required for snacks.nvim image rendering (non-PNG formats, enables image previews in Oil with `<C-p>`)
   - macOS: `brew install imagemagick`
   - FreeBSD: `pkg install ImageMagick7`
   - Ubuntu/Debian: `apt install imagemagick`
