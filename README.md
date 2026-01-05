@@ -65,7 +65,6 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 **Auto-installed LSPs:**
 - `lua_ls` - Lua language server
 - `marksman` - Markdown language server
-- `harper_ls` - Grammar checker (offline, privacy-first)
 - `copilot` - GitHub Copilot language server (requires Node.js)
 
 **Adding more LSPs:**
@@ -249,10 +248,6 @@ Leader key is `<Space>`.
 
 ### Spell Checking
 
-Neovim includes both built-in Vim spell checking and Harper grammar checking via LSP.
-
-**Vim Spell Checker:**
-
 | Keymap | Action |
 |--------|--------|
 | `<leader>ts` | Toggle spell checking on/off |
@@ -260,16 +255,9 @@ Neovim includes both built-in Vim spell checking and Harper grammar checking via
 | `z=` | Spell suggestions (classic Vim menu) |
 | `]s` | Jump to next misspelled word |
 | `[s` | Jump to previous misspelled word |
-| `zg` | Add word to dictionary |
+| `zg` | Add word to dictionary (`~/dotfiles/nvim/spell/en.utf-8.add`) |
 | `zug` | Undo adding word to dictionary |
 | `zw` | Mark word as incorrect |
-
-**Harper Grammar Checker (LSP):**
-- Runs automatically on text and markdown files
-- Checks grammar, repeated words, long sentences, and more
-- Uses same custom dictionary as Vim spell checker (`~/dotfiles/nvim/spell/en.utf-8.add`)
-- Fast, offline, privacy-first (< 10ms suggestions)
-- Restart after adding words: `:LspRestart harper_ls`
 
 ### LSP
 
