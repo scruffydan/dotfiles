@@ -3,10 +3,12 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "folke/snacks.nvim",
+    "sindrets/diffview.nvim",  -- Optional - enables diff popup in Neogit
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
     { "<leader>gp", "<cmd>Neogit pull<CR>", desc = "Git pull" },
+    { "<leader>dc", "<cmd>DiffviewClose<CR>", desc = "Close diffview" },
   },
   config = function()
     require("neogit").setup({
@@ -15,10 +17,8 @@ return {
       commit_editor = {
         staged_diff_split_kind = "auto",
       },
-      mappings = {
-        popup = {
-          ["d"] = false,  -- Disable built-in diff popup (use <leader>dd instead)
-        },
+      integrations = {
+        diffview = true,  -- Enable diffview integration (enables 'd' diff popup)
       },
     })
   end,

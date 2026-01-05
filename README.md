@@ -286,7 +286,7 @@ Leader key is `<Space>`.
 
 | Keymap | Action |
 |--------|--------|
-| `<leader>gg` | Open Neogit |
+| `<leader>gg` | Open Neogit (file explorer with inline diffs, press `<tab>` to expand files) |
 | `<leader>gp` | Git pull |
 | `<leader>gs` | Git status picker |
 | `<leader>gb` | Git branches picker |
@@ -345,22 +345,24 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `]n`/`[n` | Next/previous number |
 | `]r`/`[r` | Next/previous return |
 
-### Diff (vscode-diff.nvim)
+### Diff (Gitsigns)
 
 | Keymap | Action |
 |--------|--------|
-| `<leader>dd` | Diff explorer (git status) |
+| `<leader>dd` | Diff current file vs index (editable staging area) |
 | `<leader>df` | Diff current file vs HEAD |
 | `<leader>dh` | Diff current file vs HEAD~1 |
 | `<leader>db` | Diff vs default branch (main/master) |
-| `]c` or `]h` | Next hunk (in diff view) |
-| `[c` or `[h` | Previous hunk (in diff view) |
-| `]f` | Next file (in explorer) |
-| `[f` | Previous file (in explorer) |
-| `do` | Get change from other buffer |
-| `dp` | Put change to other buffer |
-| `e` | Toggle list/tree view (in explorer) |
-| `q` | Close diff view (in diff tab) |
+| `<leader>dc` | Close diffview |
+| `<leader>dw` | Toggle word-level diff highlighting |
+| `<leader>di` | Preview hunk inline (virtual lines) |
+| `]h` / `[h` | Next/previous hunk |
+| `do` | Get change from other buffer (in diff mode) |
+| `dp` | Put change to other buffer (in diff mode) |
+
+**Notes:** 
+- `<leader>dd` diffs against the index (staged changes). The comparison buffer is editable - saving changes updates the staging area!
+- In Neogit (`<leader>gg`), press `d` to open diffview popup for traditional side-by-side diffs
 
 ### Toggles
 
