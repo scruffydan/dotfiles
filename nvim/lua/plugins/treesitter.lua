@@ -165,9 +165,12 @@ return {
 
         local lang = vim.treesitter.language.get_lang(ft) or ft
 
-        -- Install parser if not already installed
+        -- Install parser if not already installed and supported
         if not pcall(vim.treesitter.language.inspect, lang) then
-          ts.install(lang)
+          local parsers = require("nvim-treesitter.parsers")
+          if parsers[lang] then
+            ts.install(lang)
+          end
         end
 
         -- Enable highlighting and indentation
