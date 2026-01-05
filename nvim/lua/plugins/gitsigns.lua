@@ -53,7 +53,7 @@ return {
         -- Actions
         map('n', '<leader>gH', gs.preview_hunk, {desc="Preview hunk"})
         map('n', '<leader>gB', gs.blame, {desc="Git blame"})
-        
+
         -- Diff commands (replacing vscode-diff functionality)
         map('n', '<leader>dd', function() gs.diffthis() end, {desc="Diff vs index"})
         map('n', '<leader>df', function() gs.diffthis('HEAD') end, {desc="Diff vs HEAD"})
@@ -64,15 +64,12 @@ return {
           local branch = vim.v.shell_error == 0 and "main" or "master"
           gs.diffthis(branch)
         end, {desc="Diff vs default branch"})
-        
+
         -- Additional diff features
         map('n', '<leader>dw', gs.toggle_word_diff, {desc="Toggle word diff"})
 
-        -- Toggle inline hunk preview
-        -- Calling preview_hunk_inline() again clears the preview
-        map('n', '<leader>di', function()
-          gs.preview_hunk_inline()
-        end, {desc="Toggle inline diff"})
+        -- Preview inline hunk (auto-clears on cursor move)
+        map('n', '<leader>di', gs.preview_hunk_inline, {desc="Preview inline diff"})
 
         -- Text object
         map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', {desc="Select hunk"})

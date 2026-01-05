@@ -355,7 +355,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>db` | Diff vs default branch (main/master) |
 | `<leader>dc` | Close diffview |
 | `<leader>dw` | Toggle word-level diff highlighting |
-| `<leader>di` | Toggle inline diff (virtual lines) |
+| `<leader>di` | Preview inline diff (auto-clears on cursor move) |
 | `]h` / `[h` | Next/previous hunk |
 | `do` | Get change from other buffer (in diff mode) |
 | `dp` | Put change to other buffer (in diff mode) |
