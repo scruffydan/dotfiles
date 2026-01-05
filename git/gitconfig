@@ -1,28 +1,45 @@
 [core]
   excludesfile = ~/dotfiles/git/gitignore_global
+
 [init]
   defaultBranch = main
+
 [push]
+  # Push only the current branch to upstream branch with same name (simple mode)
   default = simple
+
 [pull]
+  # Use merge instead of rebase when pulling (preserves commit history)
   rebase = false
+
 [diff]
+  # Highlight moved code blocks in diffs with different colors
   colorMoved = default
-[merge]
   tool = nvimdiff
-  conflictstyle = diff3
-[mergetool "nvimdiff"]
-  cmd = nvim -d $LOCAL $MERGED $REMOTE
-[mergetool]
-  prompt = false
-  keepBackup = false
-[diff]
-  tool = nvimdiff
+
 [difftool]
   prompt = false
+
+[merge]
+  tool = nvimdiff
+  # Show common ancestor (BASE) in addition to LOCAL and REMOTE during conflicts
+  # zdiff3 removes matching lines at conflict boundaries for cleaner diffs (requires Git 2.35+)
+  conflictstyle = zdiff3
+
+[mergetool "nvimdiff"]
+  # Launch nvim in diff mode with local, merged, and remote versions
+  cmd = nvim -d $LOCAL $MERGED $REMOTE
+
+[mergetool]
+  prompt = false
+  # Don't keep .orig backup files after merge
+  keepBackup = false
+
 [alias]
-  # Pretty log with train tracks.
+  # Pretty log with train tracks - shows graph, commit hash, branches, message, author, and date
   l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(green) %an, %ar%Creset'
+  # Short status output
   s = status -s
+  # Add all changes (new, modified, and deleted files)
   a = add -A
   g = gc --prune=now --aggressive
