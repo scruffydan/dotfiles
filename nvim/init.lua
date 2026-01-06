@@ -210,7 +210,10 @@ local function copilot_available()
   local ok, lazy_config = pcall(require, "lazy.core.config")
   if not ok then return false end
   local plugin = lazy_config.plugins["copilot.vim"]
-  return plugin and plugin._.cond ~= false
+  if not (plugin and plugin._.cond ~= false) then return false end
+
+  -- Check if copilot-language-server is installed (same as lsp/copilot.lua)
+  return vim.fn.executable("copilot-language-server") == 1
 end
 
 -- Initialize completion mode: preserve existing value, or default to "copilot" if available, else "native"

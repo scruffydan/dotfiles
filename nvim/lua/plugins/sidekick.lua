@@ -1,10 +1,6 @@
--- Check if Copilot is available and authenticated
+-- Check if Copilot LSP is installed
 local function copilot_nes_available()
-  if vim.fn.executable("copilot-language-server") ~= 1 then
-    return false
-  end
-  local copilot_config_dir = vim.fn.expand("~/.config/github-copilot")
-  return vim.fn.isdirectory(copilot_config_dir) == 1
+  return vim.fn.executable("copilot-language-server") == 1
 end
 
 return {
