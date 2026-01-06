@@ -6,9 +6,15 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     nes = {
-      -- Disable NES if copilot-language-server not available or not authenticated
+      -- Disable NES if copilot-language-server not available
       enabled = require("util").copilot_available(),
       debounce = 100, -- wait 100ms after typing stops before fetching suggestions
+    },
+    copilot = {
+      -- Disable copilot status notifications if copilot-language-server not available
+      status = {
+        enabled = require("util").copilot_available(),
+      },
     },
     cli = {
       watch = true, -- auto-reload files modified by AI CLI tools
