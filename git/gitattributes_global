@@ -1,0 +1,5 @@
+# Global git attributes for all repositories
+# Use default Myers algorithm for text and markdown files
+# (histogram is better for code, but Myers is faster for simple text)
+*.txt diff=default
+*.md diff=default

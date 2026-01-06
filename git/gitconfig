@@ -1,5 +1,6 @@
 [core]
   excludesfile = ~/dotfiles/git/gitignore_global
+  attributesfile = ~/dotfiles/git/gitattributes_global
 
 [init]
   defaultBranch = main
