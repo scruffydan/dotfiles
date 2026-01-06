@@ -1,3 +1,4 @@
+-- Inline color preview for hex codes, rgb values, etc.
 return {
   "norcalli/nvim-colorizer.lua",
   event = { "BufReadPre", "BufNewFile" },

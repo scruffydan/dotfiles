@@ -1,3 +1,4 @@
+-- SubMonokai colorscheme - loads immediately at startup
 return {
   "scruffydan/submonokai-nvim",
   lazy = false,
