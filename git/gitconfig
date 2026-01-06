@@ -16,15 +16,16 @@
   # Highlight moved code blocks in diffs with different colors
   colorMoved = default
   tool = nvimdiff
+  # Use histogram algorithm for better code diff quality (research-backed)
+  algorithm = histogram
 
 [difftool]
   prompt = false
 
 [merge]
   tool = nvimdiff
-  # Show common ancestor (BASE) in addition to LOCAL and REMOTE during conflicts
-  # zdiff3 removes matching lines at conflict boundaries for cleaner diffs (requires Git 2.35+)
-  conflictstyle = zdiff3
+  # Standard merge conflict style with conflict markers
+  conflictstyle = merge
 
 [mergetool "nvimdiff"]
   # Launch nvim in diff mode with local, merged, and remote versions
