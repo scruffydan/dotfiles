@@ -206,15 +206,7 @@ require('lazy-setup')
 
 -- Completion mode: "copilot" | "native" | "off"
 -- Default to copilot inline completions (if available)
-local function copilot_available()
-  local ok, lazy_config = pcall(require, "lazy.core.config")
-  if not ok then return false end
-  local plugin = lazy_config.plugins["copilot.vim"]
-  if not (plugin and plugin._.cond ~= false) then return false end
-
-  -- Check if copilot-language-server is installed (same as lsp/copilot.lua)
-  return vim.fn.executable("copilot-language-server") == 1
-end
+local copilot_available = require("util").copilot_available
 
 -- Initialize completion mode: preserve existing value, or default to "copilot" if available, else "native"
 vim.g.completion_mode = vim.g.completion_mode or (copilot_available() and "copilot" or "native")

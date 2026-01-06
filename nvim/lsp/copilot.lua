@@ -3,7 +3,7 @@
 -- Install with :MasonInstall copilot-language-server
 
 -- Requires copilot-language-server; skip if not available
-if vim.fn.executable("copilot-language-server") ~= 1 then
+if not require("util").copilot_available() then
   return {}
 end
 

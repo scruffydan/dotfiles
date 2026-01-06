@@ -1,8 +1,3 @@
--- Check if Copilot LSP is installed
-local function copilot_nes_available()
-  return vim.fn.executable("copilot-language-server") == 1
-end
-
 return {
   "folke/sidekick.nvim",
   dependencies = {
@@ -12,7 +7,7 @@ return {
   opts = {
     nes = {
       -- Disable NES if copilot-language-server not available or not authenticated
-      enabled = copilot_nes_available(),
+      enabled = require("util").copilot_available(),
       debounce = 100, -- wait 100ms after typing stops before fetching suggestions
     },
     cli = {
