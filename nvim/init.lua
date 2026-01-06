@@ -16,6 +16,8 @@ vim.keymap.set('n', '<leader>ts', function()
 end, { desc = 'Toggle spell checking' })
 -- Spell file location
 vim.opt.spellfile = vim.fn.expand('~/dotfiles/nvim/spell/en.utf-8.add')
+vim.opt.spelllang = "en_us" -- Set spellcheck language
+
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
 vim.opt.conceallevel = 0  -- Don't conceal characters
 vim.opt.cursorline = true  -- Highlight current line
