@@ -87,8 +87,9 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half page (centered)
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<Esc><Esc>', '<Esc>', { desc = 'Send Esc to terminal' })
 
--- Use system clipboard (fails silently over SSH without clipboard provider)
-vim.opt.clipboard = "unnamedplus"
+-- Yank to system clipboard (deletes stay in internal registers)
+vim.keymap.set({'n', 'v'}, 'y', '"+y', { desc = 'Yank to clipboard' })
+vim.keymap.set('n', 'Y', '"+y$', { desc = 'Yank to end of line to clipboard' })
 
 
 
