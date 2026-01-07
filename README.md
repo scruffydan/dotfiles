@@ -138,6 +138,8 @@ GitHub Copilot provides two features:
 | `<prefix> J` | Resize pane down (repeatable) |
 | `<prefix> K` | Resize pane up (repeatable) |
 | `<prefix> L` | Resize pane right (repeatable) |
+| `<prefix> {` | Swap pane up (repeatable) |
+| `<prefix> }` | Swap pane down (repeatable) |
 
 ### Vim-Tmux Navigator Integration
 
@@ -509,6 +511,20 @@ Yanks (`y`) go to the system clipboard, while deletes (`d`, `x`, `c`) stay in in
 |--------|--------|
 | `<Esc>` | Clear search highlights |
 | `<leader>?` | Buffer local keymaps |
+
+## Zsh Keybindings
+
+| Keymap | Action |
+|--------|--------|
+| `Ctrl+e` | Edit current command in `$EDITOR` |
+| `Up/Down` | Smart history search (type partial command first) |
+| `Delete` | Forward delete character |
+
+## Ghostty Keybindings
+
+| Keymap | Action |
+|--------|--------|
+| `` Cmd+` `` | Toggle quick terminal (dropdown from top) |
 
 ## Usage
 
