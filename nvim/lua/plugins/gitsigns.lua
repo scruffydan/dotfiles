@@ -59,11 +59,11 @@ return {
         map('n', '<leader>df', function() gs.diffthis('HEAD') end, {desc="Diff vs HEAD"})
         map('n', '<leader>dh', function() gs.diffthis('HEAD~1') end, {desc="Diff vs HEAD~1"})
         map('n', '<leader>db', function()
-          -- Detect default branch (main or master)
-          vim.fn.system("git rev-parse --verify main 2>/dev/null")
-          local branch = vim.v.shell_error == 0 and "main" or "master"
+          -- Detect default branch (origin/main or origin/master)
+          vim.fn.system("git rev-parse --verify origin/main 2>/dev/null")
+          local branch = vim.v.shell_error == 0 and "origin/main" or "origin/master"
           gs.diffthis(branch)
-        end, {desc="Diff vs default branch"})
+        end, {desc="Diff vs origin default branch"})
 
         -- Additional diff features
         map('n', '<leader>dw', gs.toggle_word_diff, {desc="Toggle word diff"})
