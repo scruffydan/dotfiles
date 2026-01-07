@@ -490,6 +490,17 @@ The Tab and Shift+Tab keys have smart, context-aware behavior:
 | `<M-Esc>` | Insert | Dismiss suggestion |
 | `<leader>ghP` | Normal | Open Copilot panel (shows up to 10 completions) |
 
+### Clipboard / Registers
+
+Yanks (`y`) go to the system clipboard, while deletes (`d`, `x`, `c`) stay in internal registers.
+
+| Keymap | Action |
+|--------|--------|
+| `y` | Yank to system clipboard |
+| `Y` | Yank to end of line to system clipboard |
+| `p` | Paste from internal register (last delete/yank) |
+| `"+p` | Paste from system clipboard |
+
 ### Misc
 
 | Keymap | Action |
