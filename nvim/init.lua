@@ -144,6 +144,12 @@ vim.opt.incsearch = true   -- Incremental search
 vim.opt.hlsearch = true    -- Highlight matches
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true })  -- Clear highlights
 
+-- Set working directory to current buffer's directory
+vim.keymap.set('n', '<leader>cd', function()
+  vim.cmd('cd %:h')
+  vim.notify(vim.fn.getcwd(), vim.log.levels.INFO)
+end, { desc = 'Set global CWD to buffer path' })
+
 -- Folding with treesitter
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"

@@ -204,7 +204,7 @@ Leader key is `<Space>`.
 | `<S-Tab>` | Go to parent directory (in Oil) |
 | `g.` | Toggle hidden files (in Oil) |
 | `<leader>t.` | Toggle hidden files (in Oil) |
-| `<leader>cd` | Change CWD (in Oil) |
+| `<leader>cd` | Change CWD to current directory (works globally and in Oil) |
 
 ### Pickers (Snacks) - Workspace
 
