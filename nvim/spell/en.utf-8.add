@@ -25,6 +25,7 @@ Moutal
 Neovide
 Okta
 OpenAI
+OpenCode
 Proxmox
 SAML
 SMB
@@ -60,4 +61,3 @@ sha256sum
 tmux
 treesitter
 wezterm
-OpenCode

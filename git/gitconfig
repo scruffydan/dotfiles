@@ -17,7 +17,7 @@
   # Highlight moved code blocks in diffs with different colors
   colorMoved = default
   tool = nvimdiff
-  # Use histogram algorithm for better code diff quality (research-backed)
+  # Use histogram algorithm for better code diff quality
   algorithm = histogram
 
 [difftool]
