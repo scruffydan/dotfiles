@@ -135,6 +135,13 @@ return {
           format = "register",
           preview = "preview",
           confirm = { "copy", "close" },
+          -- Filter out * register (PRIMARY selection on X11, same as + on macOS)
+          transform = function(item)
+            if item.reg == "*" then
+              return false -- Hide this register
+            end
+            return item -- Keep all others
+          end,
         },
       },
     },

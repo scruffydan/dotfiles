@@ -2,6 +2,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Add dotfiles nvim directory to runtime path and package path
+-- This allows nvim to find plugins and config files in ~/dotfiles/nvim
+-- even when nvim is started from a different directory
+vim.opt.rtp:prepend(vim.fn.expand('~/dotfiles/nvim'))
+package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
+
 -- UI Settings
 vim.opt.number = true -- Add line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
@@ -113,48 +119,13 @@ end, { desc = 'Toggle wrap (buffer)' })
 
 -- Whitespace display modes (toggle with <leader>tw)
 -- 1 = default (lead/trail/tab/eol), 2 = all spaces, 3 = off
-vim.g.whitespace_mode = 1
-
-local function set_whitespace_mode(mode)
-  vim.g.whitespace_mode = mode
-  if mode == 1 then
-    vim.opt.listchars = {
-      eol = '¬',
-      tab = '>·',
-      trail = '·',
-      extends = '>',
-      precedes = '<',
-      -- lead = '·'
-    }
-    vim.opt.list = true
-    vim.g.snacks_indent = true
-  elseif mode == 2 then
-    vim.opt.listchars = {
-      eol = '¬',
-      tab = '>·',
-      trail = '·',
-      extends = '>',
-      precedes = '<',
-      lead = '·',
-      space = '·'
-    }
-    vim.opt.list = true
-    vim.g.snacks_indent = true
-  else
-    vim.opt.list = false
-    vim.g.snacks_indent = false
-  end
-  -- Refresh snacks indent if available
-  pcall(function() require('snacks.indent').enable() end)
-end
-
 -- Initialize with default mode
-set_whitespace_mode(1)
+require("util").set_whitespace_mode(1)
 
 -- Toggle whitespace display
 vim.keymap.set('n', '<leader>tw', function()
   local next_mode = (vim.g.whitespace_mode % 3) + 1
-  set_whitespace_mode(next_mode)
+  require("util").set_whitespace_mode(next_mode)
   local labels = { "Whitespace: default", "Whitespace: all", "Whitespace: off" }
   vim.notify(labels[next_mode], vim.log.levels.INFO)
 end, { desc = 'Toggle whitespace display' })
@@ -197,12 +168,6 @@ vim.api.nvim_create_user_command('T4', function()
   vim.opt.shiftwidth = 4
   vim.opt.expandtab = true
 end, {})
-
--- Add dotfiles nvim directory to runtime path and package path
--- This allows nvim to find plugins and config files in ~/dotfiles/nvim
--- even when nvim is started from a different directory
-vim.opt.rtp:prepend(vim.fn.expand('~/dotfiles/nvim'))
-package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
 
 -- Load plugins
 require('lazy-setup')
