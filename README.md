@@ -370,6 +370,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>dw` | Toggle word-level diff highlighting |
 | `<leader>di` | Preview inline diff (auto-clears on cursor move) |
 | `]h` / `[h` | Next/previous hunk |
+| `ih` | Select hunk (text object, works with operators like `d`, `y`, `c`) |
 | `do` | Get change from other buffer (in diff mode) |
 | `dp` | Put change to other buffer (in diff mode) |
 
@@ -387,6 +388,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>tW` | Toggle wrap (buffer) |
 | `<leader>t.` | Toggle hidden files (Oil) |
 | `<leader>tc` | Cycle completion (copilot/native/off) |
+| `<leader>tl` | Toggle LSP globally |
 | `<leader>tm` | Toggle Markdown render |
 | `<leader>tv` | Toggle CSV view |
 
