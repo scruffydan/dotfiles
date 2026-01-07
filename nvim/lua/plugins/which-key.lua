@@ -8,6 +8,7 @@ return {
       spec = {
         { "<leader>a", group = "ai/sidekick" },
         { "<leader>d", group = "diff" },
+        { "<leader>dm", group = "diff vs main" },
         { "<leader>f", group = "find (workspace)" },
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "GitHub" },

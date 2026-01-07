@@ -367,7 +367,8 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>dd` | Diff current file vs index (editable staging area) |
 | `<leader>df` | Diff current file vs HEAD |
 | `<leader>dh` | Diff current file vs HEAD~1 |
-| `<leader>db` | Diff vs default branch (main/master) |
+| `<leader>dmo` | Diff vs origin/main (or origin/master) |
+| `<leader>dml` | Diff vs local main (or master) |
 | `<leader>dc` | Close diffview |
 | `<leader>dw` | Toggle word-level diff highlighting |
 | `<leader>di` | Preview inline diff (auto-clears on cursor move) |
