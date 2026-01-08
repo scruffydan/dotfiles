@@ -16,21 +16,23 @@
 [diff]
   # Highlight moved code blocks in diffs with different colors
   colorMoved = default
-  tool = nvimdiff
+  tool = codediff
   # Use histogram algorithm for better code diff quality
   algorithm = histogram
 
 [difftool]
   prompt = false
 
+[difftool "codediff"]
+  cmd = nvim -c "CodeDiff file \"$LOCAL\" \"$REMOTE\""
+
 [merge]
-  tool = nvimdiff
+  tool = codediff
   # Standard merge conflict style with conflict markers
   conflictstyle = merge
 
-[mergetool "nvimdiff"]
-  # Launch nvim in diff mode with local, merged, and remote versions
-  cmd = nvim -d $LOCAL $MERGED $REMOTE
+[mergetool "codediff"]
+  cmd = nvim "$MERGED" -c "CodeDiff merge \"$MERGED\""
 
 [mergetool]
   prompt = false
