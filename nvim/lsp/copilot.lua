@@ -4,10 +4,11 @@
 
 -- Requires copilot-language-server; skip if not available
 if not require("util").copilot_available() then
-  return {}
+  return
 end
 
-return {
+-- Configure and enable copilot LSP
+vim.lsp.config('copilot', {
   cmd = { 'copilot-language-server', '--stdio' },
   root_markers = { '.git' },
   init_options = {
@@ -25,4 +26,7 @@ return {
       telemetryLevel = 'off',
     },
   },
-}
+})
+
+-- Enable copilot LSP globally
+vim.lsp.enable('copilot')
