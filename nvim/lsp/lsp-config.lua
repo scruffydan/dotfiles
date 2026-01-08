@@ -90,7 +90,10 @@ require("mason-lspconfig").setup({
 })
 
 -- Load individual LSP server configurations
-local lsp_servers = { "lua_ls", "copilot" }
+local lsp_servers = {
+  "lua_ls",
+  "copilot",
+}
 for _, server in ipairs(lsp_servers) do
   local lsp_path = vim.fn.expand('~/dotfiles/nvim/lsp/' .. server .. '.lua')
   if vim.fn.filereadable(lsp_path) == 1 then
