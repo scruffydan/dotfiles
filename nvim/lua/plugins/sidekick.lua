@@ -6,6 +6,8 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     nes = {
+      -- NES (Next Edit Suggestions) is provided by copilot-language-server LSP
+      -- Sidekick manages the NES feature by connecting to that LSP
       -- Disable NES if copilot-language-server not available
       enabled = require("util").copilot_available(),
       debounce = 100, -- wait 100ms after typing stops before fetching suggestions

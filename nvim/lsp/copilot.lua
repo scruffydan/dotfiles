@@ -1,5 +1,10 @@
 -- Copilot Language Server configuration for NES (Next Edit Suggestions)
--- Inline completions are handled by github/copilot.vim plugin
+--
+-- This LSP provides the actual NES functionality (predictive edit suggestions).
+-- The sidekick plugin manages and controls NES by connecting to this LSP.
+-- NES can be toggled with <leader>tN and applied with <Tab>.
+--
+-- Note: Inline completions are handled separately by github/copilot.vim plugin
 -- Install with :MasonInstall copilot-language-server
 
 -- Requires copilot-language-server; skip if not available

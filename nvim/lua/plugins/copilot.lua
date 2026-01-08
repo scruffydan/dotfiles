@@ -1,3 +1,12 @@
+-- Copilot inline completion plugin (copilot.vim)
+--
+-- This provides inline code suggestions as you type in insert mode.
+-- Note: This is separate from NES (Next Edit Suggestions), which requires
+-- the copilot-language-server LSP configured in lsp/copilot.lua.
+--
+-- Install: Requires Node.js and GitHub Copilot subscription
+-- Setup: Run :Copilot setup on first use
+
 return {
   "github/copilot.vim",
   event = "InsertEnter",
