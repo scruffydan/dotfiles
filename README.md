@@ -383,6 +383,15 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `dp` | Put change to other buffer |
 | `<leader>b` | Toggle explorer panel |
 
+**Git Integration:**
+
+CodeDiff is also configured as the default `git difftool` and `git mergetool`:
+
+```bash
+git difftool           # Compare files using CodeDiff
+git mergetool          # Resolve merge conflicts using CodeDiff
+```
+
 ### Toggles
 
 | Keymap | Action |
