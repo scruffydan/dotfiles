@@ -1,6 +1,8 @@
 return {
   "esmuellert/codediff.nvim",
   dependencies = { "MunifTanjim/nui.nvim" },
+  -- Build from source on FreeBSD (no pre-built binaries available)
+  build = vim.uv.os_uname().sysname == "FreeBSD" and "./build.sh" or nil,
   cmd = "CodeDiff",
   keys = {
     { "<leader>dd", "<cmd>CodeDiff<CR>", desc = "Diff all changes" },
