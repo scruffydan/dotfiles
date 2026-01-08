@@ -83,33 +83,17 @@ vim.keymap.set("n", "<leader>tl", function()
   end
 end, { desc = "Toggle LSP" })
 
--- Configure lua_ls
-vim.lsp.config("lua_ls", {
-  settings = {
-    Lua = {
-      runtime = { version = "LuaJIT" },
-      workspace = {
-        checkThirdParty = false,
-        library = { vim.env.VIMRUNTIME },
-      },
-      completion = { callSnippet = "Replace" },
-      telemetry = { enable = false },
-      diagnostics = {
-        globals = { "vim", "Snacks" },
-        enable = true,
-      },
-    },
-  },
-})
-
 -- Configure mason-lspconfig
 require("mason-lspconfig").setup({
   automatic_enable = true, -- Auto-enable installed LSP servers
   ensure_installed = { "lua_ls", "marksman" },
 })
 
--- Load copilot LSP configuration
-local copilot_lsp_path = vim.fn.expand('~/dotfiles/nvim/lsp/copilot.lua')
-if vim.fn.filereadable(copilot_lsp_path) == 1 then
-  dofile(copilot_lsp_path)
+-- Load individual LSP server configurations
+local lsp_servers = { "lua_ls", "copilot" }
+for _, server in ipairs(lsp_servers) do
+  local lsp_path = vim.fn.expand('~/dotfiles/nvim/lsp/' .. server .. '.lua')
+  if vim.fn.filereadable(lsp_path) == 1 then
+    dofile(lsp_path)
+  end
 end
