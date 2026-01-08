@@ -54,7 +54,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
   - macOS: `brew install imagemagick`
   - FreeBSD: `pkg install ImageMagick7`
   - Ubuntu/Debian: `apt install imagemagick`
-- **bash** - Required on FreeBSD for vscode-diff.nvim build script
+- **bash** - Required on FreeBSD for codediff.nvim build script (no pre-built FreeBSD binaries)
   - FreeBSD: `pkg install bash`
 - **awk** - Used in tmux status bar (typically pre-installed on macOS, Linux, and FreeBSD)
 
@@ -360,26 +360,28 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `]n`/`[n` | Next/previous number |
 | `]r`/`[r` | Next/previous return |
 
-### Diff (Gitsigns)
+### Diff (CodeDiff)
 
 | Keymap | Action |
 |--------|--------|
-| `<leader>dd` | Diff current file vs index (editable staging area) |
-| `<leader>df` | Diff current file vs HEAD |
-| `<leader>dh` | Diff current file vs HEAD~1 |
-| `<leader>dmo` | Diff vs origin/main (or origin/master) |
-| `<leader>dml` | Diff vs local main (or master) |
-| `<leader>dc` | Close diffview |
+| `<leader>dd` | Diff all changes (explorer view) |
+| `<leader>dmo` | Diff all vs origin/main (or origin/master) |
+| `<leader>dml` | Diff all vs local main (or master) |
 | `<leader>dw` | Toggle word-level diff highlighting |
 | `<leader>di` | Preview inline diff (auto-clears on cursor move) |
 | `]h` / `[h` | Next/previous hunk |
 | `ih` | Select hunk (text object, works with operators like `d`, `y`, `c`) |
-| `do` | Get change from other buffer (in diff mode) |
-| `dp` | Put change to other buffer (in diff mode) |
 
-**Notes:** 
-- `<leader>dd` diffs against the index (staged changes). The comparison buffer is editable - saving changes updates the staging area!
-- In Neogit (`<leader>gg`), press `d` to open diffview popup for traditional side-by-side diffs
+**In CodeDiff view:**
+
+| Keymap | Action |
+|--------|--------|
+| `q` | Close diff view |
+| `]c` / `[c` | Next/previous change |
+| `]f` / `[f` | Next/previous file (explorer mode) |
+| `do` | Get change from other buffer |
+| `dp` | Put change to other buffer |
+| `<leader>b` | Toggle explorer panel |
 
 ### Toggles
 

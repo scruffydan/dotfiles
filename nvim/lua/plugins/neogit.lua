@@ -2,24 +2,11 @@ return {
   "NeogitOrg/neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    {
-      "sindrets/diffview.nvim",
-      config = function()
-        require("diffview").setup({
-          hooks = {
-            diff_buf_read = function()
-              vim.opt_local.wrap = false
-            end,
-          },
-        })
-      end,
-    },
     "folke/snacks.nvim",
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
     { "<leader>gp", "<cmd>Neogit pull<CR>", desc = "Git pull" },
-    { "<leader>dc", "<cmd>DiffviewClose<CR>", desc = "Close diffview" },
   },
   config = function()
     require("neogit").setup({
@@ -29,7 +16,12 @@ return {
         staged_diff_split_kind = "auto",
       },
       integrations = {
-        diffview = true,  -- Enable diffview integration (enables 'd' diff popup)
+        diffview = false,
+      },
+      mappings = {
+        popup = {
+          ["d"] = false,  -- Disable diff popup (requires diffview)
+        },
       },
     })
   end,

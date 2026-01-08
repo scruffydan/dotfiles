@@ -54,24 +54,7 @@ return {
         map('n', '<leader>gH', gs.preview_hunk, {desc="Preview hunk"})
         map('n', '<leader>gB', gs.blame, {desc="Git blame"})
 
-        -- Diff commands (replacing vscode-diff functionality)
-        map('n', '<leader>dd', function() gs.diffthis() end, {desc="Diff vs index"})
-        map('n', '<leader>df', function() gs.diffthis('HEAD') end, {desc="Diff vs HEAD"})
-        map('n', '<leader>dh', function() gs.diffthis('HEAD~1') end, {desc="Diff vs HEAD~1"})
-        map('n', '<leader>dmo', function()
-          -- Detect default branch (origin/main or origin/master)
-          vim.fn.system("git rev-parse --verify origin/main 2>/dev/null")
-          local branch = vim.v.shell_error == 0 and "origin/main" or "origin/master"
-          gs.diffthis(branch)
-        end, {desc="Diff vs origin/main"})
-        map('n', '<leader>dml', function()
-          -- Detect default branch (main or master)
-          vim.fn.system("git rev-parse --verify main 2>/dev/null")
-          local branch = vim.v.shell_error == 0 and "main" or "master"
-          gs.diffthis(branch)
-        end, {desc="Diff vs local main"})
-
-        -- Additional diff features
+        -- Toggle word diff highlighting
         map('n', '<leader>dw', gs.toggle_word_diff, {desc="Toggle word diff"})
 
         -- Preview inline hunk (auto-clears on cursor move)
