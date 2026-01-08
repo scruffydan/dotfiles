@@ -172,15 +172,11 @@ return {
     vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "Comment" })
     vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
     -- Disable mini.completion in snacks picker/input buffers
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "InsertEnter" }, {
-      pattern = "*",
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "snacks_*",
       callback = function()
-        local ft = vim.bo.filetype
-        local bt = vim.bo.buftype
-        if ft:match("^snacks") or bt == "prompt" then
-          vim.b.minicompletion_disable = true
-          vim.b.minipairs_disable = true
-        end
+        vim.b.minicompletion_disable = true
+        vim.b.minipairs_disable = true
       end,
     })
   end,
