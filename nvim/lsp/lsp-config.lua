@@ -95,7 +95,7 @@ local lsp_servers = {
   "copilot",
 }
 for _, server in ipairs(lsp_servers) do
-  local lsp_path = vim.fn.expand('~/dotfiles/nvim/lsp/' .. server .. '.lua')
+  local lsp_path = vim.g.dotfiles_nvim .. '/lsp/' .. server .. '.lua'
   if vim.fn.filereadable(lsp_path) == 1 then
     dofile(lsp_path)
   end

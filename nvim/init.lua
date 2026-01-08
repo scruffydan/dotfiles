@@ -2,11 +2,14 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Centralized dotfiles path
+vim.g.dotfiles_nvim = vim.fn.expand('~/dotfiles/nvim')
+
 -- Add dotfiles nvim directory to runtime path and package path
 -- This allows nvim to find plugins and config files in ~/dotfiles/nvim
 -- even when nvim is started from a different directory
-vim.opt.rtp:prepend(vim.fn.expand('~/dotfiles/nvim'))
-package.path = package.path .. ';' .. vim.fn.expand('~/dotfiles/nvim/lua/?.lua')
+vim.opt.rtp:prepend(vim.g.dotfiles_nvim)
+package.path = package.path .. ';' .. vim.g.dotfiles_nvim .. '/lua/?.lua'
 
 -- UI Settings
 vim.opt.number = true -- Add line numbers
@@ -21,7 +24,7 @@ vim.keymap.set('n', '<leader>ts', function()
   vim.notify(vim.wo.spell and "Spell: on" or "Spell: off", vim.log.levels.INFO)
 end, { desc = 'Toggle spell checking' })
 -- Spell file location
-vim.opt.spellfile = vim.fn.expand('~/dotfiles/nvim/spell/en.utf-8.add')
+vim.opt.spellfile = vim.g.dotfiles_nvim .. '/spell/en.utf-8.add'
 vim.opt.spelllang = "en_us" -- Set spellcheck language
 
 vim.opt.guicursor = ""  -- Prevent cursor from changing when switching modes
@@ -48,13 +51,13 @@ if vim.g.neovide then
   -- Cmd+= to zoom in, Cmd+- to zoom out, Cmd+0 to reset
   vim.keymap.set('n', '<D-=>', function()
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
-  end)
+  end, { desc = 'Zoom in' })
   vim.keymap.set('n', '<D-->', function()
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor / 1.1
-  end)
+  end, { desc = 'Zoom out' })
   vim.keymap.set('n', '<D-0>', function()
     vim.g.neovide_scale_factor = 1.0
-  end)
+  end, { desc = 'Reset zoom' })
   -- Cmd+V to paste from system clipboard
   vim.keymap.set({'n', 'v'}, '<D-v>', '"+p', { desc = 'Paste from clipboard' })
   vim.keymap.set('i', '<D-v>', '<C-r>+', { desc = 'Paste from clipboard' })
@@ -179,7 +182,7 @@ end, {})
 require('lazy-setup')
 
 -- Load LSP configuration from dotfiles location
-local lsp_config_path = vim.fn.expand('~/dotfiles/nvim/lsp/lsp-config.lua')
+local lsp_config_path = vim.g.dotfiles_nvim .. '/lsp/lsp-config.lua'
 if vim.fn.filereadable(lsp_config_path) == 1 then
   dofile(lsp_config_path)
 end
