@@ -78,6 +78,9 @@ return {
             input = { border = "rounded" },
             list = { border = "rounded" },
           },
+          -- Preserve spellsuggest order (sorted by likelihood)
+          sort = { fields = {} },
+          matcher = { sort_empty = false },
         },
         jumps = {
           -- Keep original order (most recent jumps first)
