@@ -26,7 +26,6 @@ local plugins = {
   require("plugins.gitsigns"),
   require("plugins.mason"),
   require("plugins.treesitter"),
-  require("plugins.lsp"),
   require("plugins.neogit"),
   require("plugins.codediff"),
   require("plugins.vim-tmux-navigator"),

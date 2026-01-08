@@ -5,30 +5,60 @@ if not vim.env.PATH:find(mason_bin, 1, true) then
   vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
 end
 
+-- Check if we're on a supported platform for Mason binaries
+local function is_supported_platform()
+  local uname = vim.loop.os_uname()
+  local sysname = uname.sysname:lower()
+  -- Mason provides binaries for Linux, macOS, and Windows
+  return sysname == "linux" or sysname == "darwin" or sysname:match("windows")
+end
+
+if not is_supported_platform() then
+  -- Return empty config on unsupported platforms (e.g., FreeBSD)
+  return {}
+end
+
 return {
-  "mason-org/mason.nvim",
-  lazy = false,
-  priority = 100, -- Load before plugins that depend on Mason-installed tools
-  config = function()
-    require("mason").setup({
-      ui = {
-        border = "rounded",
-      },
-    })
+  {
+    "mason-org/mason.nvim",
+    lazy = false,
+    priority = 100, -- Load before plugins that depend on Mason-installed tools
+    config = function()
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+        },
+      })
 
-    -- Auto-install tree-sitter-cli for nvim-treesitter
-    local registry = require("mason-registry")
-    local function ensure_installed(pkg_name)
-      local ok, pkg = pcall(registry.get_package, pkg_name)
-      if ok and not pkg:is_installed() then
-        pkg:install()
+      -- Auto-install tree-sitter-cli for nvim-treesitter
+      local registry = require("mason-registry")
+      local function ensure_installed(pkg_name)
+        local ok, pkg = pcall(registry.get_package, pkg_name)
+        if ok and not pkg:is_installed() then
+          pkg:install()
+        end
       end
-    end
 
-    -- Ensure registry is up to date before checking packages
-    -- Note: copilot-language-server is installed via mason-lspconfig in lsp.lua
-    registry.refresh(function()
-      ensure_installed("tree-sitter-cli")
-    end)
-  end,
+      -- Ensure registry is up to date before checking packages
+      -- Note: copilot-language-server is installed via mason-lspconfig in lsp/lsp-config.lua
+      registry.refresh(function()
+        ensure_installed("tree-sitter-cli")
+      end)
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
+    },
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
+  },
 }
