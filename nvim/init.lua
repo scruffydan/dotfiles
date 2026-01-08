@@ -48,13 +48,13 @@ if vim.g.neovide then
   -- Cmd+= to zoom in, Cmd+- to zoom out, Cmd+0 to reset
   vim.keymap.set('n', '<D-=>', function()
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
-  end)
+  end, { desc = 'Zoom in' })
   vim.keymap.set('n', '<D-->', function()
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor / 1.1
-  end)
+  end, { desc = 'Zoom out' })
   vim.keymap.set('n', '<D-0>', function()
     vim.g.neovide_scale_factor = 1.0
-  end)
+  end, { desc = 'Reset zoom' })
   -- Cmd+V to paste from system clipboard
   vim.keymap.set({'n', 'v'}, '<D-v>', '"+p', { desc = 'Paste from clipboard' })
   vim.keymap.set('i', '<D-v>', '<C-r>+', { desc = 'Paste from clipboard' })
