@@ -12,27 +12,19 @@ end
 -- mode 3: off
 function M.set_whitespace_mode(mode)
   vim.g.whitespace_mode = mode
+  local base_chars = {
+    eol = '¬',
+    tab = '>·',
+    trail = '·',
+    extends = '>',
+    precedes = '<',
+  }
   if mode == 1 then
-    vim.opt.listchars = {
-      eol = '¬',
-      tab = '>·',
-      trail = '·',
-      extends = '>',
-      precedes = '<',
-      -- lead = '·'
-    }
+    vim.opt.listchars = base_chars
     vim.opt.list = true
     vim.g.snacks_indent = true
   elseif mode == 2 then
-    vim.opt.listchars = {
-      eol = '¬',
-      tab = '>·',
-      trail = '·',
-      extends = '>',
-      precedes = '<',
-      lead = '·',
-      space = '·'
-    }
+    vim.opt.listchars = vim.tbl_extend("force", base_chars, { lead = '·', space = '·' })
     vim.opt.list = true
     vim.g.snacks_indent = true
   else
