@@ -5,6 +5,7 @@
 local lsp_servers = {
   "lua_ls",
   "copilot",
+  "harper_ls",
 }
 for _, server in ipairs(lsp_servers) do
   local lsp_path = vim.g.dotfiles_nvim .. '/lsp/' .. server .. '.lua'
