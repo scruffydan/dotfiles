@@ -100,11 +100,8 @@ require('neovide')
 -- Load plugins
 require('lazy-setup')
 
--- Load LSP configuration from dotfiles location
-local lsp_config_path = vim.g.dotfiles_nvim .. '/lsp/lsp-config.lua'
-if vim.fn.filereadable(lsp_config_path) == 1 then
-  dofile(lsp_config_path)
-end
+-- Load LSP configuration
+require('lsp')
 
 -- Completion mode: "copilot" | "native" | "off"
 -- Default to copilot inline completions (if available)
