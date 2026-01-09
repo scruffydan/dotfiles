@@ -13,6 +13,20 @@ for _, server in ipairs(lsp_servers) do
   end
 end
 
+-- Configure mason-lspconfig (only on supported platforms)
+local function is_supported_platform()
+  local uname = vim.loop.os_uname()
+  local sysname = uname.sysname:lower()
+  return sysname == "linux" or sysname == "darwin" or sysname:match("windows")
+end
+
+if is_supported_platform() then
+  require("mason-lspconfig").setup({
+    automatic_enable = true, -- Auto-enable installed LSP servers
+    ensure_installed = { "lua_ls", "marksman" },
+  })
+end
+
 -- Diagnostics configuration
 vim.diagnostic.config({
   virtual_text = false,
@@ -94,17 +108,3 @@ vim.keymap.set("n", "<leader>tl", function()
     vim.notify("LSP enabled globally", vim.log.levels.INFO)
   end
 end, { desc = "Toggle LSP" })
-
--- Configure mason-lspconfig (only on supported platforms)
-local function is_supported_platform()
-  local uname = vim.loop.os_uname()
-  local sysname = uname.sysname:lower()
-  return sysname == "linux" or sysname == "darwin" or sysname:match("windows")
-end
-
-if is_supported_platform() then
-  require("mason-lspconfig").setup({
-    automatic_enable = true, -- Auto-enable installed LSP servers
-    ensure_installed = { "lua_ls", "marksman" },
-  })
-end
