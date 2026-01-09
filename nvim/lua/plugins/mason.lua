@@ -40,7 +40,6 @@ return {
       end
 
       -- Ensure registry is up to date before checking packages
-      -- Note: copilot-language-server is installed via mason-lspconfig in lsp/lsp-config.lua
       registry.refresh(function()
         ensure_installed("tree-sitter-cli")
       end)
@@ -60,5 +59,11 @@ return {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
     },
+    config = function()
+      require("mason-lspconfig").setup({
+        automatic_enable = true, -- Auto-enable installed LSP servers
+        ensure_installed = { "lua_ls", "marksman" },
+      })
+    end,
   },
 }
