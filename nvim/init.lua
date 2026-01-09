@@ -14,6 +14,7 @@ package.path = package.path .. ';' .. vim.g.dotfiles_nvim .. '/lua/?.lua'
 -- UI Settings
 vim.opt.number = true -- Add line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
+vim.opt.spell = true -- Enable spell checking by default
 vim.opt.spellfile = vim.g.dotfiles_nvim .. '/spell/en.utf-8.add'
 vim.opt.spelllang = "en_us" -- Set spellcheck language
 
