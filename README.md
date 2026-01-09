@@ -241,11 +241,15 @@ Leader key is `<Space>`.
 
 | Command | Action |
 |---------|--------|
+| `:copen` | Open quickfix window |
+| `:cclose` | Close quickfix window |
+| `:cw` | Open quickfix window if there are entries |
 | `:cn` | Next quickfix item |
 | `:cp` | Previous quickfix item |
 | `:cnfile` | First quickfix item in next file |
 | `:cdo {cmd}` | Execute command on each quickfix item (e.g., `:cdo s/foo/bar/g`) |
 | `:cfdo {cmd}` | Execute command on each file in quickfix list (e.g., `:cfdo %s/foo/bar/g`) |
+| `:call setqflist([])` | Clear quickfix list |
 
 ### Search (Snacks) - Current/Open Buffers
 
