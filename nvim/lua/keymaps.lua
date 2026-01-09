@@ -82,3 +82,11 @@ vim.keymap.set('n', '<leader>cd', function()
   vim.cmd('cd %:h')
   vim.notify(vim.fn.getcwd(), vim.log.levels.INFO)
 end, { desc = 'Set global CWD to buffer path' })
+
+-- Quickfix
+vim.keymap.set('n', '<leader>qo', ':copen<CR>', { desc = 'Open quickfix list' })
+vim.keymap.set('n', '<leader>qc', ':cclose<CR>', { desc = 'Close quickfix window' })
+vim.keymap.set('n', '<leader>qC', function()
+  vim.fn.setqflist({})
+  vim.notify('Quickfix list cleared', vim.log.levels.INFO)
+end, { desc = 'Clear quickfix list' })

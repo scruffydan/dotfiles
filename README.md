@@ -232,6 +232,9 @@ Leader key is `<Space>`.
 
 | Keymap | Action |
 |--------|--------|
+| `<leader>qo` | Open quickfix list |
+| `<leader>qc` | Close quickfix window |
+| `<leader>qC` | Clear quickfix list |
 | `]q` | Next quickfix item |
 | `[q` | Previous quickfix item |
 | `]Q` | Last quickfix item |
