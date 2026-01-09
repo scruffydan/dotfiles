@@ -65,6 +65,7 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 **Auto-installed LSPs:**
 - `lua_ls` - Lua language server
 - `marksman` - Markdown language server
+- `harper_ls` - Grammar checker for comments and markdown
 
 **Adding more LSPs:**
 1. Open Mason UI: `:Mason`
@@ -279,9 +280,12 @@ Leader key is `<Space>`.
 
 ### Spell Checking
 
+Spell checking is enabled by default using Neovim's built-in spell checker. Harper LSP provides grammar checking (not spelling) for code comments and markdown.
+
 | Keymap | Action |
 |--------|--------|
 | `<leader>ts` | Toggle spell checking on/off |
+| `<leader>th` | Toggle Harper grammar checker |
 | `<leader>sw` | Spell suggestions (Snacks picker) |
 | `z=` | Spell suggestions (classic Vim menu) |
 | `]s` | Jump to next misspelled word |
@@ -418,6 +422,7 @@ git mergetool          # Resolve merge conflicts using CodeDiff
 | `<leader>tW` | Toggle wrap (buffer) |
 | `<leader>t.` | Toggle hidden files (Oil) |
 | `<leader>tc` | Cycle completion (copilot/native/off) |
+| `<leader>th` | Toggle Harper grammar checker |
 | `<leader>tl` | Toggle LSP globally |
 | `<leader>tm` | Toggle Markdown render |
 | `<leader>tv` | Toggle CSV view |
