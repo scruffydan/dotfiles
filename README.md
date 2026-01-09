@@ -230,6 +230,15 @@ Leader key is `<Space>`.
 
 ### Quickfix List
 
+| Keymap | Action |
+|--------|--------|
+| `]q` | Next quickfix item |
+| `[q` | Previous quickfix item |
+| `]Q` | Last quickfix item |
+| `[Q` | First quickfix item |
+
+**Commands:**
+
 | Command | Action |
 |---------|--------|
 | `:cn` | Next quickfix item |
