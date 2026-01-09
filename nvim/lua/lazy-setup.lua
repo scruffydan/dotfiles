@@ -18,7 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 -- Note: Using manual requires instead of auto-import due to custom dotfiles location
 local plugins = {
-  require("plugins.theme"),
+  require("theme"),
   require("plugins.oil"),
   require("plugins.mini"),
   require("plugins.which-key"),
