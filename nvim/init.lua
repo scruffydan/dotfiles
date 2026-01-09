@@ -101,7 +101,7 @@ require('neovide')
 require('lazy-setup')
 
 -- Load LSP configuration
-require('lsp')
+require('lsp-config')
 
 -- Completion mode: "copilot" | "native" | "off"
 -- Default to copilot inline completions (if available)
