@@ -14,16 +14,11 @@ vim.lsp.config("harper_ls", {
   },
 })
 
--- Toggle Harper grammar checker
+-- Toggle Harper grammar checker globally
+vim.g.harper_enabled = true
+
 vim.keymap.set("n", "<leader>th", function()
-  local clients = vim.lsp.get_clients({ name = "harper_ls" })
-  if #clients > 0 then
-    for _, client in ipairs(clients) do
-      vim.lsp.stop_client(client.id)
-    end
-    vim.notify("Harper disabled", vim.log.levels.INFO)
-  else
-    vim.cmd("LspStart harper_ls")
-    vim.notify("Harper enabled", vim.log.levels.INFO)
-  end
+  vim.g.harper_enabled = not vim.g.harper_enabled
+  vim.lsp.enable("harper_ls", vim.g.harper_enabled)
+  vim.notify("Harper " .. (vim.g.harper_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
 end, { desc = "Toggle Harper grammar checker" })
