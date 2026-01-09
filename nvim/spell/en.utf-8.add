@@ -11,6 +11,7 @@ BitLocker
 ChatGPT
 cli
 Cloudflare
+config
 Config
 Crowdstrike
 Ctrl
@@ -20,6 +21,7 @@ DNS
 dotfiles
 EDR
 enablement
+eol
 ESXi
 filesystem
 FreeBSD
@@ -37,12 +39,14 @@ Infosec
 Intune
 jailbroken
 Jira
-JSON
 json
+JSON
 Kandji
 keymap
+keymaps
 Kolide
 LogRocket
+LSP
 macOS
 MCP
 MDM
@@ -65,11 +69,13 @@ Proxmox
 repo
 runbook
 runbooks
+runtime
 Salesforce
 SAML
 SauceCodePro
 SDK
 sha256sum
+signcolumn
 SMB
 SSL
 SSO
@@ -79,6 +85,7 @@ TLS
 tmux
 TOTP
 treesitter
+UI
 Umut
 Virtualization
 VMware
@@ -88,6 +95,6 @@ wezterm
 Whitelist
 Whitelisted
 Whitespace
-Workspace
 workspace
+Workspace
 Zscaler
