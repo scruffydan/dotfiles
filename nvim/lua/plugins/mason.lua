@@ -62,7 +62,11 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         automatic_enable = true, -- Auto-enable installed LSP servers
-        ensure_installed = { "lua_ls", "marksman" },
+        ensure_installed = {
+          "lua_ls",
+          "marksman",
+          "harper_ls",
+        },
       })
     end,
   },
