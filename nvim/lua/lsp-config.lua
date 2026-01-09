@@ -1,6 +1,18 @@
 -- LSP Configuration
 -- This file contains LSP setup that runs after plugins are loaded
 
+-- Load individual LSP server configurations
+local lsp_servers = {
+  "lua_ls",
+  "copilot",
+}
+for _, server in ipairs(lsp_servers) do
+  local lsp_path = vim.g.dotfiles_nvim .. '/lsp/' .. server .. '.lua'
+  if vim.fn.filereadable(lsp_path) == 1 then
+    dofile(lsp_path)
+  end
+end
+
 -- Diagnostics configuration
 vim.diagnostic.config({
   virtual_text = false,
@@ -95,16 +107,4 @@ if is_supported_platform() then
     automatic_enable = true, -- Auto-enable installed LSP servers
     ensure_installed = { "lua_ls", "marksman" },
   })
-end
-
--- Load individual LSP server configurations
-local lsp_servers = {
-  "lua_ls",
-  "copilot",
-}
-for _, server in ipairs(lsp_servers) do
-  local lsp_path = vim.g.dotfiles_nvim .. '/lsp/' .. server .. '.lua'
-  if vim.fn.filereadable(lsp_path) == 1 then
-    dofile(lsp_path)
-  end
 end
