@@ -1,0 +1,84 @@
+-- Keymaps configuration
+-- All custom keymaps are defined here for easy reference and modification
+-- Plugin-specific keymaps are defined in their respective plugin files
+
+-- UI toggles
+vim.keymap.set('n', '<leader>tn', function()
+  vim.wo.relativenumber = not vim.wo.relativenumber
+end, { desc = 'Toggle relative line numbers' })
+
+vim.keymap.set('n', '<leader>ts', function()
+  vim.wo.spell = not vim.wo.spell
+  vim.notify(vim.wo.spell and "Spell: on" or "Spell: off", vim.log.levels.INFO)
+end, { desc = 'Toggle spell checking' })
+
+vim.keymap.set('n', '<leader>tW', function()
+  vim.wo.wrap = not vim.wo.wrap
+  vim.notify("Wrap: " .. (vim.wo.wrap and "on" or "off"), vim.log.levels.INFO)
+end, { desc = 'Toggle wrap (buffer)' })
+
+vim.keymap.set('n', '<leader>tw', function()
+  local next_mode = (vim.g.whitespace_mode % 3) + 1
+  require("util").set_whitespace_mode(next_mode)
+  local labels = { "Whitespace: default", "Whitespace: all", "Whitespace: off" }
+  vim.notify(labels[next_mode], vim.log.levels.INFO)
+end, { desc = 'Toggle whitespace display' })
+
+-- Completion mode toggle
+vim.keymap.set("n", "<leader>tc", function()
+  local copilot_available = require("util").copilot_available
+  local modes = copilot_available() and { "copilot", "native", "off" } or { "native", "off" }
+  local current = vim.g.completion_mode or "copilot"
+  local idx = 1
+  for i, mode in ipairs(modes) do
+    if mode == current then
+      idx = i
+      break
+    end
+  end
+  local next_mode = modes[(idx % #modes) + 1]
+  vim.g.completion_mode = next_mode
+
+  -- Update copilot and mini.completion states
+  if next_mode == "copilot" then
+    vim.g.copilot_enabled = true
+    vim.g.minicompletion_disable = true
+  elseif next_mode == "native" then
+    vim.g.copilot_enabled = false
+    vim.g.minicompletion_disable = false
+  else -- off
+    vim.g.copilot_enabled = false
+    vim.g.minicompletion_disable = true
+  end
+
+  vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
+end, { desc = "Cycle completion (copilot/native/off)" })
+
+-- Tabs
+vim.keymap.set('n', '<leader>T', '<cmd>tabnew<CR>', { desc = 'New tab' })
+
+-- Split creation
+vim.keymap.set('n', '<leader>-', '<C-w>s', { desc = 'Create horizontal split' })
+vim.keymap.set('n', '<leader>|', '<C-w>v', { desc = 'Create vertical split' })
+vim.keymap.set('n', '<leader>\\', '<C-w>v', { desc = 'Create vertical split' })
+
+-- Scrolling
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half page (centered)' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half page (centered)' })
+
+-- Terminal mode
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc><Esc>', '<Esc>', { desc = 'Send Esc to terminal' })
+
+-- Yank to system clipboard (deletes stay in internal registers)
+vim.keymap.set({'n', 'v'}, 'y', '"+y', { desc = 'Yank to clipboard' })
+vim.keymap.set('n', 'Y', '"+y$', { desc = 'Yank to end of line to clipboard' })
+
+-- Search
+vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true, desc = 'Clear search highlights' })
+
+-- Working directory
+vim.keymap.set('n', '<leader>cd', function()
+  vim.cmd('cd %:h')
+  vim.notify(vim.fn.getcwd(), vim.log.levels.INFO)
+end, { desc = 'Set global CWD to buffer path' })
