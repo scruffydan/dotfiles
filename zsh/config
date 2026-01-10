@@ -180,7 +180,7 @@ bindkey '^e' edit-command-line
 setopt prompt_subst
 
 # Enable Advanced Tab-completion
-autoload -U compinit 
+autoload -U compinit
 compinit
 setopt completealiases
 
