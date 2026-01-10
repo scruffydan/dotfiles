@@ -34,7 +34,7 @@ if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" th
 end
 
 -- GUI font for Neovide (and other GUI clients)
-vim.opt.guifont = "SauceCodePro NFM:h14"
+vim.opt.guifont = "SauceCodePro NFM:h16"
 
 -- Split behavior
 vim.opt.splitright = true  -- Open vertical splits to the right
