@@ -17,6 +17,10 @@ return {
         { "<leader>t", group = "toggle" },
       },
     })
+
+    -- Set WhichKey background to match line number background
+    local line_nr = vim.api.nvim_get_hl(0, { name = "LineNr" })
+    vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = line_nr.bg })
   end,
   keys = {
     {
