@@ -1,5 +1,4 @@
-#!/bin/sh
-set -euo pipefail
+#!/usr/bin/env sh
 
 # Deletes ALL ZFS snapshots recursively from the specified pool or dataset
 # Examples:
