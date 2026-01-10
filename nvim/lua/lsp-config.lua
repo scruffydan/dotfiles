@@ -1,6 +1,14 @@
 -- LSP Configuration
 -- This file contains LSP setup that runs after plugins are loaded
 
+-- Load all LSP server configurations from lsp/ directory
+local lsp_dir = vim.g.dotfiles_nvim .. '/lsp'
+for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
+  if file:match('%.lua$') then
+    dofile(lsp_dir .. '/' .. file)
+  end
+end
+
 -- Helper function to iterate over all normal file buffers
 -- Filters out special buffers (terminals, help, quickfix, etc.)
 local function for_each_normal_buffer(callback)
@@ -8,19 +16,6 @@ local function for_each_normal_buffer(callback)
     if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
       callback(buf)
     end
-  end
-end
-
--- Load individual LSP server configurations
-local lsp_servers = {
-  "lua_ls",
-  "copilot",
-  "harper_ls",
-}
-for _, server in ipairs(lsp_servers) do
-  local lsp_path = vim.g.dotfiles_nvim .. '/lsp/' .. server .. '.lua'
-  if vim.fn.filereadable(lsp_path) == 1 then
-    dofile(lsp_path)
   end
 end
 
