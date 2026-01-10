@@ -22,8 +22,8 @@ local plugins = {}
 -- Load theme.lua
 table.insert(plugins, require("theme"))
 
--- Load all plugins from plugins/ directory
-local plugins_dir = vim.g.dotfiles_nvim .. '/plugins'
+-- Load all plugins from lua/plugins/ directory
+local plugins_dir = vim.g.dotfiles_nvim .. '/lua/plugins'
 for _, file in ipairs(vim.fn.readdir(plugins_dir)) do
   if file:match('%.lua$') then
     local module_name = file:gsub('%.lua$', '')
