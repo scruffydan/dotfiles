@@ -1,9 +1,10 @@
 -- Shared utility functions for neovim config
 local M = {}
 
--- Check if copilot-language-server is installed (required for NES and copilot.vim)
+-- Check if copilot-language-server is installed and Node.js is available
+-- (copilot-language-server requires Node.js to run)
 function M.copilot_available()
-  return vim.fn.executable("copilot-language-server") == 1
+  return vim.fn.executable("copilot-language-server") == 1 and vim.fn.executable("node") == 1
 end
 
 -- Set whitespace display mode
