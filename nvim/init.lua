@@ -95,7 +95,7 @@ require('keymaps')
 require('neovide')
 
 -- Load plugins
-require('lazy')
+require('lazy-setup')
 
 -- Load LSP configuration
 require('lsp')
