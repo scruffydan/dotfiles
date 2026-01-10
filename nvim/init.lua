@@ -78,19 +78,15 @@ vim.opt.foldtext = ""  -- Show first line of fold as-is
 -- Custom commands for quick tab width switching
 -- :T2 switches to 2-space indentation (default for most projects)
 -- :T4 switches to 4-space indentation (useful for Python, Java, etc.)
-vim.api.nvim_create_user_command('T2', function()
-  vim.opt.tabstop = 2
-  vim.opt.softtabstop = 2
-  vim.opt.shiftwidth = 2
+local function set_tab_width(width)
+  vim.opt.tabstop = width
+  vim.opt.softtabstop = width
+  vim.opt.shiftwidth = width
   vim.opt.expandtab = true
-end, {})
+end
 
-vim.api.nvim_create_user_command('T4', function()
-  vim.opt.tabstop = 4
-  vim.opt.softtabstop = 4
-  vim.opt.shiftwidth = 4
-  vim.opt.expandtab = true
-end, {})
+vim.api.nvim_create_user_command('T2', function() set_tab_width(2) end, {})
+vim.api.nvim_create_user_command('T4', function() set_tab_width(4) end, {})
 
 -- Load keymaps
 require('keymaps')

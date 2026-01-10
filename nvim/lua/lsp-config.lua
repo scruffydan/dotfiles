@@ -1,6 +1,16 @@
 -- LSP Configuration
 -- This file contains LSP setup that runs after plugins are loaded
 
+-- Helper function to iterate over all normal file buffers
+-- Filters out special buffers (terminals, help, quickfix, etc.)
+local function for_each_normal_buffer(callback)
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
+      callback(buf)
+    end
+  end
+end
+
 -- Load individual LSP server configurations
 local lsp_servers = {
   "lua_ls",
@@ -78,19 +88,15 @@ vim.keymap.set("n", "<leader>tl", function()
   else
     vim.g.lsp_enabled = true
     -- Trigger FileType event to re-attach LSP to all buffers
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-      if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
-        vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
-      end
-    end
+    for_each_normal_buffer(function(buf)
+      vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
+    end)
     -- Refresh display after LSP attaches and sends diagnostics
     vim.defer_fn(function()
       -- Trigger a text change event to request fresh diagnostics
-      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
-          vim.api.nvim_exec_autocmds("TextChanged", { buffer = buf })
-        end
-      end
+      for_each_normal_buffer(function(buf)
+        vim.api.nvim_exec_autocmds("TextChanged", { buffer = buf })
+      end)
     end, 1000)
     vim.notify("LSP enabled globally", vim.log.levels.INFO)
   end
