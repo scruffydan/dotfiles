@@ -5,6 +5,16 @@ if not vim.env.PATH:find(mason_bin, 1, true) then
   vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
 end
 
+-- Packages to auto-install via Mason
+local ensure_installed = {
+  -- LSP servers
+  "lua-language-server",
+  "marksman",
+  "harper-ls",
+  -- Tree-sitter CLI
+  "tree-sitter-cli",
+}
+
 -- Check if we're on a supported platform for Mason binaries
 local function is_supported_platform()
   local uname = vim.loop.os_uname()
@@ -30,9 +40,9 @@ return {
         },
       })
 
-      -- Auto-install tree-sitter-cli for nvim-treesitter
+      -- Auto-install tools
       local registry = require("mason-registry")
-      local function ensure_installed(pkg_name)
+      local function install_package(pkg_name)
         local ok, pkg = pcall(registry.get_package, pkg_name)
         if ok and not pkg:is_installed() then
           pkg:install()
@@ -41,33 +51,10 @@ return {
 
       -- Ensure registry is up to date before checking packages
       registry.refresh(function()
-        ensure_installed("tree-sitter-cli")
+        for _, pkg_name in ipairs(ensure_installed) do
+          install_package(pkg_name)
+        end
       end)
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "mason-org/mason.nvim",
-      "mason-org/mason-lspconfig.nvim",
-    },
-  },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    dependencies = {
-      "mason-org/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    config = function()
-      require("mason-lspconfig").setup({
-        automatic_enable = true, -- Auto-enable installed LSP servers
-        ensure_installed = {
-          "lua_ls",
-          "marksman",
-          "harper_ls",
-        },
-      })
     end,
   },
 }
