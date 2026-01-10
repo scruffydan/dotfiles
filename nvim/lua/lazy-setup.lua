@@ -16,27 +16,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
--- Note: Using manual requires instead of auto-import due to custom dotfiles location
-local plugins = {
-  require("theme"),
-  require("plugins.oil"),
-  require("plugins.mini"),
-  require("plugins.which-key"),
-  require("plugins.lualine"),
-  require("plugins.gitsigns"),
-  require("plugins.mason"),
-  require("plugins.treesitter"),
-  require("plugins.neogit"),
-  require("plugins.codediff"),
-  require("plugins.vim-tmux-navigator"),
-  require("plugins.snacks"),
-  require("plugins.csvview"),
-  require("plugins.sidekick"),
-  require("plugins.copilot"),
-  require("plugins.render-markdown"),
-  require("plugins.bullets"),
-  require("plugins.colorizer"),
-}
+-- Auto-load all plugin specs from plugins/ directory and theme.lua
+local plugins = {}
+
+-- Load theme.lua
+table.insert(plugins, require("theme"))
+
+-- Load all plugins from plugins/ directory
+local plugins_dir = vim.g.dotfiles_nvim .. '/plugins'
+for _, file in ipairs(vim.fn.readdir(plugins_dir)) do
+  if file:match('%.lua$') then
+    local module_name = file:gsub('%.lua$', '')
+    table.insert(plugins, require("plugins." .. module_name))
+  end
+end
 
 require("lazy").setup(plugins, {
   ui = {
