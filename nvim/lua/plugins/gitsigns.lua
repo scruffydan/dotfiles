@@ -1,6 +1,5 @@
 return {
   "lewis6991/gitsigns.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("gitsigns").setup({
