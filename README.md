@@ -185,8 +185,29 @@ Leader key is `<Space>`.
 | `<C-\>` | Navigate to previous split/pane |
 | `<C-d>` | Scroll down half page (centered) |
 | `<C-u>` | Scroll up half page (centered) |
-| `<leader>-` | Create horizontal split |
-| `<leader>\|` or `<leader>\` | Create vertical split |
+
+### Window Management (Ctrl-W)
+
+| Keymap | Action |
+|--------|--------|
+| `<C-w>s` | Split window horizontally |
+| `<C-w>v` | Split window vertically |
+| `<C-w>w` | Cycle to next window |
+| `<C-w>W` | Cycle to previous window |
+| `<C-w>h/j/k/l` | Move to left/down/up/right window |
+| `<C-w>H/J/K/L` | Move window to far left/bottom/top/right |
+| `<C-w>r` | Rotate windows downward/rightward |
+| `<C-w>R` | Rotate windows upward/leftward |
+| `<C-w>x` | Exchange current window with next |
+| `<C-w>=` | Make all windows equal size |
+| `<C-w>_` | Maximize window height |
+| `<C-w>\|` | Maximize window width |
+| `<C-w>+` / `<C-w>-` | Increase/decrease window height |
+| `<C-w>>` / `<C-w><` | Increase/decrease window width |
+| `<C-w>o` | Close all other windows (`:only`) |
+| `<C-w>c` | Close current window |
+| `<C-w>q` | Quit current window |
+| `<C-w>T` | Move current window to new tab |
 
 ### Tabs
 

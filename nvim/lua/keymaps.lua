@@ -57,11 +57,6 @@ end, { desc = "Cycle completion (copilot/native/off)" })
 -- Tabs
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<CR>', { desc = 'New tab' })
 
--- Split creation
-vim.keymap.set('n', '<leader>-', '<C-w>s', { desc = 'Create horizontal split' })
-vim.keymap.set('n', '<leader>|', '<C-w>v', { desc = 'Create vertical split' })
-vim.keymap.set('n', '<leader>\\', '<C-w>v', { desc = 'Create vertical split' })
-
 -- Scrolling
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half page (centered)' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half page (centered)' })
