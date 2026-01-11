@@ -17,17 +17,13 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 -- Auto-load all plugin specs from plugins/ directory and theme.lua
-local plugins = {}
+local plugins = { require("theme") }
 
--- Load theme.lua
-table.insert(plugins, require("theme"))
-
--- Load all plugins from lua/plugins/ directory
-local plugins_dir = vim.g.dotfiles_nvim .. '/lua/plugins'
+local plugins_dir = vim.g.dotfiles_nvim .. "/lua/plugins"
 for _, file in ipairs(vim.fn.readdir(plugins_dir)) do
-  if file:match('%.lua$') then
-    local module_name = file:gsub('%.lua$', '')
-    table.insert(plugins, require("plugins." .. module_name))
+  if file:match("%.lua$") then
+    local module_name = file:gsub("%.lua$", "")
+    plugins[#plugins + 1] = require("plugins." .. module_name)
   end
 end
 
