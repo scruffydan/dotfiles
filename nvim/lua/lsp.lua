@@ -1,11 +1,31 @@
 -- LSP Configuration
 -- This file contains LSP setup that runs after plugins are loaded
 
--- Load all LSP server configurations from lsp/ directory
+-- Load custom LSP server configurations from lsp/ directory
+-- These override default settings for specific servers
 local lsp_dir = vim.g.dotfiles_nvim .. '/lsp'
 for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
   if file:match('%.lua$') then
     dofile(lsp_dir .. '/' .. file)
+  end
+end
+
+-- Auto-enable all Mason-installed LSP servers with default settings
+-- Custom configs in lsp/ directory take precedence
+local ok, registry = pcall(require, "mason-registry")
+if ok then
+  for _, pkg in ipairs(registry.get_installed_packages()) do
+    if pkg:get_type() == "lsp" then
+      -- Map Mason package names to LSP server names
+      local name_mapping = {
+        ["lua-language-server"] = "lua_ls",
+        ["harper-ls"] = "harper_ls",
+      }
+      local server_name = name_mapping[pkg.name] or pkg.name:gsub("%-", "_")
+      
+      -- Enable with default settings (custom configs already called enable)
+      pcall(vim.lsp.enable, server_name)
+    end
   end
 end
 
