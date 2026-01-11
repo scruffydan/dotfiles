@@ -59,16 +59,25 @@ return {
             end,
           },
           "diagnostics",
-          -- Sidekick NES status
+          -- Copilot LSP status (shows when attached, color indicates state)
           {
             function()
-              local nes = require("sidekick.nes")
-              if nes.enabled then
-                return "NES"
-              end
-              return ""
+              return "NES"
             end,
-            color = "DiagnosticWarn",
+            color = function()
+              local status = require("sidekick.status").get()
+              if status then
+                if status.kind == "Error" then
+                  return "DiagnosticError" -- red
+                elseif status.busy then
+                  return "DiagnosticWarn" -- orange
+                end
+              end
+              return "DiagnosticInfo" -- cyan (normal/ready)
+            end,
+            cond = function()
+              return require("sidekick.status").get() ~= nil
+            end,
           },
         },
         lualine_x = {
