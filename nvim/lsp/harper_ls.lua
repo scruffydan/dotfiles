@@ -2,6 +2,9 @@
 -- Grammar checker for comments and markdown
 
 vim.lsp.config("harper_ls", {
+  cmd = { "harper-ls", "--stdio" },
+  filetypes = { "markdown", "text" },
+  root_markers = { ".git" },
   settings = {
     ["harper-ls"] = {
       userDictPath = vim.g.dotfiles_nvim .. "/spell/en.utf-8.add",
