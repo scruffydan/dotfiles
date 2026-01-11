@@ -12,7 +12,6 @@ ChatGPT
 cli
 Cloudflare
 config
-Config
 Crowdstrike
 Ctrl
 Databricks
@@ -40,8 +39,6 @@ Intune
 jailbroken
 Jira
 json
-JSON
-json
 Kandji
 keymap
 keymaps
@@ -63,7 +60,6 @@ Okta
 onboarding
 OpenAI
 OpenCode
-opencode
 plugin
 Podman
 popup
@@ -98,5 +94,4 @@ Whitelist
 Whitelisted
 Whitespace
 workspace
-Workspace
 Zscaler
