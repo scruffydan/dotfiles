@@ -4,7 +4,6 @@
 
 return {
   cmd = { "copilot-language-server", "--stdio" },
-  root_markers = { ".git" },
   init_options = {
     editorInfo = {
       name = "Neovim",
@@ -12,7 +11,6 @@ return {
     },
     editorPluginInfo = {
       name = "sidekick.nvim",
-      version = "1.0.0",
     },
   },
   settings = {

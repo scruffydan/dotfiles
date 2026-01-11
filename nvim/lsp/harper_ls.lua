@@ -4,7 +4,6 @@
 
 return {
   cmd = { "harper-ls", "--stdio" },
-  root_markers = { ".git" },
   settings = {
     ["harper-ls"] = {
       userDictPath = vim.g.dotfiles_nvim .. "/spell/en.utf-8.add",
