@@ -1,6 +1,13 @@
 -- Mason package manager for LSP servers and tools
 -- Mason only handles installation; LSP config is in nvim/lsp/*.lua
 
+-- Prepend Mason bin to PATH at require time (before lazy.nvim processes cond checks)
+-- This allows other plugins to find Mason-installed tools like tree-sitter-cli
+local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
+if not vim.env.PATH:find(mason_bin, 1, true) then
+  vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+end
+
 -- Check if we're on a supported platform for Mason binaries
 local function is_supported_platform()
   local sysname = vim.uv.os_uname().sysname:lower()
