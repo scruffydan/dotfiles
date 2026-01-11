@@ -17,3 +17,6 @@ vim.lsp.config("lua_ls", {
     },
   },
 })
+
+-- Enable lua_ls for Lua files
+vim.lsp.enable("lua_ls")
