@@ -50,10 +50,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
 
-    -- Snacks picker integrations (leader mappings)
+    -- LSP actions (leader mappings)
+    map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
+    map("n", "<leader>lR", vim.lsp.buf.rename, "Rename symbol")
+
+    -- Snacks picker integrations
     map("n", "<leader>lr", function() Snacks.picker.lsp_references() end, "References")
     map("n", "<leader>lf", function() Snacks.picker.lsp_definitions() end, "Find definitions")
-    map("n", "<leader>li", function() Snacks.picker.lsp_implementations() end, "Implementations")
+    map("n", "<leader>li", function() Snacks.picker.lsp_incoming_calls() end, "Incoming calls")
+    map("n", "<leader>lo", function() Snacks.picker.lsp_outgoing_calls() end, "Outgoing calls")
+    map("n", "<leader>lI", function() Snacks.picker.lsp_implementations() end, "Implementations")
     map("n", "<leader>ly", function() Snacks.picker.lsp_type_definitions() end, "Type definitions")
     map("n", "<leader>ls", function() Snacks.picker.lsp_symbols() end, "Document symbols")
     map("n", "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
