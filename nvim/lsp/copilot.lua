@@ -4,7 +4,6 @@
 
 return {
   cmd = { "copilot-language-server", "--stdio" },
-  filetypes = {}, -- Attach to all filetypes (sidekick manages this)
   root_markers = { ".git" },
   init_options = {
     editorInfo = {
