@@ -12,22 +12,19 @@ end
 
 -- Auto-enable all Mason-installed LSP servers with default settings
 -- Custom configs in lsp/ directory take precedence
+-- Try to enable all Mason packages as LSPs; non-LSP packages will fail silently
 local ok, registry = pcall(require, "mason-registry")
 if ok then
   for _, pkg in ipairs(registry.get_installed_packages()) do
-    local pkg_name = pkg.name
-    -- Check if package name suggests it's an LSP server
-    if pkg_name:match("language%-server") or pkg_name:match("%-ls$") or pkg_name:match("^ls%-") then
-      -- Map Mason package names to LSP server names
-      local name_mapping = {
-        ["lua-language-server"] = "lua_ls",
-        ["harper-ls"] = "harper_ls",
-      }
-      local server_name = name_mapping[pkg_name] or pkg_name:gsub("%-", "_")
-      
-      -- Enable with default settings (custom configs already called enable)
-      pcall(vim.lsp.enable, server_name)
-    end
+    -- Map Mason package names to LSP server names
+    local name_mapping = {
+      ["lua-language-server"] = "lua_ls",
+      ["harper-ls"] = "harper_ls",
+    }
+    local server_name = name_mapping[pkg.name] or pkg.name:gsub("%-", "_")
+    
+    -- Try to enable (will silently fail for non-LSP packages)
+    pcall(vim.lsp.enable, server_name)
   end
 end
 
