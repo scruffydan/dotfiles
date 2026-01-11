@@ -347,7 +347,6 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 | `gD` | Go to declaration |
 | `gi` | Go to implementation |
 | `gy` | Go to type definition |
-| `gr` | References (Snacks picker) |
 | `<leader>la` | Code action (normal and visual mode) |
 | `<leader>lR` | Rename symbol |
 | `<leader>lf` | Find definitions (Snacks picker) |

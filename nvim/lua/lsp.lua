@@ -51,7 +51,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
     map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
     map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
-    map("n", "gr", function() Snacks.picker.lsp_references() end, "References")
 
     -- LSP actions (leader mappings)
     map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
@@ -74,8 +73,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Helper function to iterate over all normal file buffers
-local function for_each_normal_buffer(callback)
+-- Helper function to iterate over all file buffers (excludes terminals, help, quickfix, etc.)
+local function for_each_file_buffer(callback)
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
       callback(buf)
@@ -93,11 +92,11 @@ vim.keymap.set("n", "<leader>tl", function()
     vim.notify("LSP disabled globally", vim.log.levels.INFO)
   else
     vim.g.lsp_enabled = true
-    for_each_normal_buffer(function(buf)
+    for_each_file_buffer(function(buf)
       vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
     end)
     vim.defer_fn(function()
-      for_each_normal_buffer(function(buf)
+      for_each_file_buffer(function(buf)
         vim.api.nvim_exec_autocmds("TextChanged", { buffer = buf })
       end)
     end, 1000)
