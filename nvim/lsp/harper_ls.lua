@@ -4,7 +4,6 @@
 
 return {
   cmd = { "harper-ls", "--stdio" },
-  filetypes = { "markdown", "text" },
   root_markers = { ".git" },
   settings = {
     ["harper-ls"] = {
