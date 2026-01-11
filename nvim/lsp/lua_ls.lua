@@ -1,6 +1,7 @@
 -- Lua Language Server configuration
+-- Auto-discovered by Neovim 0.11+ from runtimepath/lsp/
 
-vim.lsp.config("lua_ls", {
+return {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
   root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
@@ -15,11 +16,7 @@ vim.lsp.config("lua_ls", {
       telemetry = { enable = false },
       diagnostics = {
         globals = { "vim", "Snacks" },
-        enable = true,
       },
     },
   },
-})
-
--- Enable lua_ls for Lua files
-vim.lsp.enable("lua_ls")
+}

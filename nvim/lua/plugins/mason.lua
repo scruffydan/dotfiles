@@ -1,60 +1,49 @@
--- Prepend Mason bin to PATH immediately during require()
--- This runs before lazy.nvim processes plugin specs, so cond checks can find Mason tools
+-- Mason package manager for LSP servers and tools
+-- Mason only handles installation; LSP config is in nvim/lsp/*.lua
+
+-- Prepend Mason bin to PATH at require time (before lazy.nvim processes cond checks)
+-- This allows other plugins to find Mason-installed tools like tree-sitter-cli
 local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
 if not vim.env.PATH:find(mason_bin, 1, true) then
   vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
 end
 
--- Packages to auto-install via Mason
-local ensure_installed = {
-  -- LSP servers
-  "lua-language-server",
-  "marksman",
-  "harper-ls",
-  -- Tree-sitter CLI
-  "tree-sitter-cli",
-}
-
 -- Check if we're on a supported platform for Mason binaries
 local function is_supported_platform()
-  local uname = vim.loop.os_uname()
-  local sysname = uname.sysname:lower()
-  -- Mason provides binaries for Linux, macOS, and Windows
+  local sysname = vim.uv.os_uname().sysname:lower()
   return sysname == "linux" or sysname == "darwin" or sysname:match("windows")
 end
 
+-- Skip Mason entirely on unsupported platforms (e.g., FreeBSD)
 if not is_supported_platform() then
-  -- Return empty config on unsupported platforms (e.g., FreeBSD)
   return {}
 end
 
 return {
-  {
-    "mason-org/mason.nvim",
-    lazy = false,
-    priority = 100, -- Load before plugins that depend on Mason-installed tools
-    config = function()
-      require("mason").setup({
-        ui = {
-          border = "rounded",
-        },
-      })
+  "mason-org/mason.nvim",
+  lazy = false,
+  opts = {
+    ui = { border = "rounded" },
+  },
+  config = function(_, opts)
+    require("mason").setup(opts)
 
-      -- Auto-install tools
-      local registry = require("mason-registry")
-      local function install_package(pkg_name)
-        local ok, pkg = pcall(registry.get_package, pkg_name)
+    -- Auto-install packages if not already installed
+    local ensure_installed = {
+      "lua-language-server",
+      "marksman",
+      "harper-ls",
+      "tree-sitter-cli",
+    }
+
+    local registry = require("mason-registry")
+    registry.refresh(function()
+      for _, name in ipairs(ensure_installed) do
+        local ok, pkg = pcall(registry.get_package, name)
         if ok and not pkg:is_installed() then
           pkg:install()
         end
       end
-
-      -- Ensure registry is up to date before checking packages
-      registry.refresh(function()
-        for _, pkg_name in ipairs(ensure_installed) do
-          install_package(pkg_name)
-        end
-      end)
-    end,
-  },
+    end)
+  end,
 }

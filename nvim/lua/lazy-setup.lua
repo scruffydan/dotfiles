@@ -35,4 +35,10 @@ require("lazy").setup(plugins, {
   ui = {
     border = "rounded",
   },
+  performance = {
+    rtp = {
+      -- Add dotfiles nvim dir to runtimepath for LSP config discovery (lsp/*.lua)
+      paths = { vim.g.dotfiles_nvim },
+    },
+  },
 })

@@ -1,9 +1,9 @@
 -- Harper Language Server configuration
 -- Grammar checker for comments and markdown
+-- Auto-discovered by Neovim 0.11+ from runtimepath/lsp/
 
-vim.lsp.config("harper_ls", {
+return {
   cmd = { "harper-ls", "--stdio" },
-  filetypes = { "markdown", "text" },
   root_markers = { ".git" },
   settings = {
     ["harper-ls"] = {
@@ -16,15 +16,4 @@ vim.lsp.config("harper_ls", {
       dialect = "American",
     },
   },
-})
-
--- Enable Harper by default
-vim.g.harper_enabled = true
-vim.lsp.enable("harper_ls")
-
--- Toggle Harper grammar checker globally
-vim.keymap.set("n", "<leader>th", function()
-  vim.g.harper_enabled = not vim.g.harper_enabled
-  vim.lsp.enable("harper_ls", vim.g.harper_enabled)
-  vim.notify("Harper " .. (vim.g.harper_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
-end, { desc = "Toggle Harper grammar checker" })
+}
