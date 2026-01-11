@@ -12,7 +12,6 @@ end
 
 -- Auto-enable all Mason-installed LSP servers with default settings
 -- Custom configs in lsp/ directory take precedence
--- Try to enable all Mason packages as LSPs; non-LSP packages will fail silently
 local ok, registry = pcall(require, "mason-registry")
 if ok then
   for _, pkg in ipairs(registry.get_installed_packages()) do
@@ -23,7 +22,17 @@ if ok then
     }
     local server_name = name_mapping[pkg.name] or pkg.name:gsub("%-", "_")
     
-    -- Try to enable (will silently fail for non-LSP packages)
+    -- Only configure if not already configured by custom lsp/*.lua file
+    if not vim.lsp.config[server_name] then
+      -- Set minimal default config (cmd and root_markers)
+      -- Server will auto-detect appropriate filetypes
+      vim.lsp.config(server_name, {
+        cmd = { pkg.name },  -- Use the Mason package name as the command
+        root_markers = { ".git" },
+      })
+    end
+    
+    -- Enable the server
     pcall(vim.lsp.enable, server_name)
   end
 end
