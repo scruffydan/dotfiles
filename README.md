@@ -68,10 +68,17 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 - `harper_ls` - Grammar checker for comments and markdown
 
 **Adding more LSPs:**
-1. Open Mason UI: `:Mason`
-2. Search for desired LSP (e.g., `/pyright`)
-3. Press `i` to install
-4. Restart Neovim - mason-lspconfig auto-enables installed servers
+1. Install the LSP server via Mason: `:Mason` -> search -> `i` to install
+2. Create a config file `nvim/lsp/<server_name>.lua` that returns a config table:
+   ```lua
+   return {
+     cmd = { "server-command" },
+     filetypes = { "filetype1", "filetype2" },
+     root_markers = { ".git" },
+   }
+   ```
+3. Add the server name to `vim.lsp.enable()` in `nvim/lua/lsp.lua`
+4. Restart Neovim
 
 **Note:** Most LSPs (pyright, ts_ls, bashls, jsonls, yamlls) require Node.js to be installed.
 
@@ -317,24 +324,34 @@ Spell checking is enabled by default using Neovim's built-in spell checker. Harp
 
 ### LSP
 
+Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/lua/lsp.lua`.
+
+**Built-in Keymaps (Neovim 0.11+ defaults):**
+
+| Keymap | Action |
+|--------|--------|
+| `K` | Hover documentation |
+| `gra` | Code action (normal and visual mode) |
+| `grn` | Rename symbol |
+| `grr` | References |
+| `gri` | Go to implementation |
+| `grt` | Go to type definition |
+| `gO` | Document symbols |
+| `<C-s>` | Signature help (insert mode) |
+
+**Custom Keymaps:**
+
 | Keymap | Action |
 |--------|--------|
 | `gd` | Go to definition |
 | `gD` | Go to declaration |
-| `gi` | Go to implementation |
-| `gy` | Go to type definition |
-| `gr` | References (picker) |
-| `K` | Hover documentation |
-| `<C-k>` | Signature help (normal and insert mode) |
-| `<leader>la` | Code action (normal and visual mode) |
-| `<leader>lf` | Find definitions (picker) |
-| `<leader>lr` | References (picker) |
-| `<leader>lR` | Rename symbol |
+| `<leader>lf` | Find definitions (Snacks picker) |
+| `<leader>lr` | References (Snacks picker) |
+| `<leader>li` | Implementations (Snacks picker) |
+| `<leader>ly` | Type definitions (Snacks picker) |
+| `<leader>ls` | Document symbols (Snacks picker) |
+| `<leader>lS` | Workspace symbols (Snacks picker) |
 | `<leader>ld` | Diagnostic float (at cursor) |
-| `<leader>li` | Incoming calls (who calls this) |
-| `<leader>lo` | Outgoing calls (what this calls) |
-| `<leader>ls` | Document symbols |
-| `<leader>lS` | Workspace symbols |
 | `[d` | Previous diagnostic |
 | `]d` | Next diagnostic |
 
