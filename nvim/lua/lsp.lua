@@ -49,6 +49,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Traditional navigation keymaps (in addition to defaults)
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+    map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+    map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
+    map("n", "gr", function() Snacks.picker.lsp_references() end, "References")
 
     -- LSP actions (leader mappings)
     map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
