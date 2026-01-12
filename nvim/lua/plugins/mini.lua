@@ -31,27 +31,28 @@ return {
     vim.keymap.set("x", "<C-b>", "saB", { remap = true, desc = "Add markdown bold" })
     vim.keymap.set("x", "<C-i>", "saI", { remap = true, desc = "Add markdown italic" })
 
-    -- LSP completion with signature help
-    -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
-    require("mini.completion").setup({
-      delay = {
-        completion = 1000,
-        info = 100,
-        signature = 50,
-      },
-      window = {
-        info = { border = "rounded" },
-        signature = { border = "rounded" },
-      },
-      lsp_completion = {
-        source_func = "omnifunc",
-        auto_setup = true,
-      },
-    })
+    -- LSP completion now handled by blink.cmp (see nvim/lua/plugins/blink.lua)
+    -- -- LSP completion with signature help
+    -- -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
+    -- require("mini.completion").setup({
+    --   delay = {
+    --     completion = 1000,
+    --     info = 100,
+    --     signature = 50,
+    --   },
+    --   window = {
+    --     info = { border = "rounded" },
+    --     signature = { border = "rounded" },
+    --   },
+    --   lsp_completion = {
+    --     source_func = "omnifunc",
+    --     auto_setup = true,
+    --   },
+    -- })
 
-    -- Use <C-Space> to trigger completion manually
-    vim.keymap.set("i", "<C-Space>", function()
-      return vim.fn.pumvisible() == 1 and "" or "<C-x><C-o>"
-    end, { expr = true, desc = "Trigger completion" })
+    -- -- Use <C-Space> to trigger completion manually
+    -- vim.keymap.set("i", "<C-Space>", function()
+    --   return vim.fn.pumvisible() == 1 and "" or "<C-x><C-o>"
+    -- end, { expr = true, desc = "Trigger completion" })
   end,
 }
