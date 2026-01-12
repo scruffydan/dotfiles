@@ -37,5 +37,18 @@ return {
 
     -- Open Copilot panel (shows up to 10 completions)
     vim.keymap.set("n", "<leader>ghP", ":Copilot panel<CR>", { silent = true, desc = "Copilot panel" })
+
+    -- Toggle Copilot ghost text (inline suggestions)
+    vim.keymap.set("n", "<leader>tgc", function()
+      if vim.g.copilot_enabled == false then
+        vim.cmd("Copilot enable")
+        vim.g.copilot_enabled = true
+        vim.notify("Copilot ghost text enabled", vim.log.levels.INFO)
+      else
+        vim.cmd("Copilot disable")
+        vim.g.copilot_enabled = false
+        vim.notify("Copilot ghost text disabled", vim.log.levels.INFO)
+      end
+    end, { desc = "Toggle Copilot ghost text" })
   end,
 }
