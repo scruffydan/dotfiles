@@ -62,6 +62,12 @@ return {
         ['<C-k>'] = { 'select_prev', 'fallback' },
       },
       completion = {
+        list = {
+          selection = {
+            preselect = false, -- Don't auto-select first item
+            auto_insert = false, -- Don't auto-insert on selection
+          },
+        },
         menu = {
           auto_show = true, -- Auto-show menu in command mode
         },
