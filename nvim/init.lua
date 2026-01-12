@@ -9,7 +9,6 @@ vim.g.dotfiles_nvim = vim.fn.expand('~/dotfiles/nvim')
 -- This allows nvim to find plugins and config files in ~/dotfiles/nvim
 -- even when nvim is started from a different directory
 vim.opt.rtp:prepend(vim.g.dotfiles_nvim)
-vim.opt.rtp:append(vim.g.dotfiles_nvim .. '/after')
 package.path = package.path .. ';' .. vim.g.dotfiles_nvim .. '/lua/?.lua'
 
 -- UI Settings

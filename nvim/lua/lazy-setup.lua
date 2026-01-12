@@ -33,8 +33,11 @@ require("lazy").setup(plugins, {
   },
   performance = {
     rtp = {
-      -- Add dotfiles nvim dir to runtimepath for LSP config discovery (lsp/*.lua)
-      paths = { vim.g.dotfiles_nvim },
+      -- Add dotfiles paths to runtimepath (lazy.nvim rebuilds rtp, so we must add here)
+      -- - Base dir: enables lsp/*.lua discovery for vim.lsp.enable()
+      -- - after/: enables ftplugin/*.lua for filetype-specific settings
+      -- Note: lazy.nvim only auto-handles after/ for plugins it manages, not custom paths
+      paths = { vim.g.dotfiles_nvim, vim.g.dotfiles_nvim .. "/after" },
     },
   },
 })
