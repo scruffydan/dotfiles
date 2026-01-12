@@ -40,14 +40,10 @@ vim.g.completion_mode = vim.g.completion_mode or "blink"
 
 -- Helper function to update completion states
 local function set_completion_mode(mode)
-  if mode == "blink" then
-    vim.g.blink_cmp_enabled = true
-  else -- off
-    vim.g.blink_cmp_enabled = false
-  end
+  vim.g.blink_cmp_enabled = (mode == "blink")
 end
 
--- Initialize blink.cmp state based on completion mode
+-- Initialize blink.cmp state (keymaps.lua loads before blink.lua)
 set_completion_mode(vim.g.completion_mode)
 
 -- Toggle completion mode

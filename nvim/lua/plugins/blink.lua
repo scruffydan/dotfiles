@@ -1,3 +1,17 @@
+-- Shared config for main and cmdline modes
+local keymap = {
+  preset = "enter",
+  ['<Tab>'] = { 'select_next', 'fallback' },
+  ['<S-Tab>'] = { 'select_prev', 'fallback' },
+  ['<C-j>'] = { 'select_next', 'fallback' },
+  ['<C-k>'] = { 'select_prev', 'fallback' },
+}
+
+local list_selection = {
+  preselect = false, -- Don't auto-select first item
+  auto_insert = false, -- Don't auto-insert on selection
+}
+
 return {
   "saghen/blink.cmp",
   version = "1.*",
@@ -23,13 +37,7 @@ return {
     -- Use Enter to accept completions
     -- Tab/S-Tab and C-j/C-k for navigation
     -- C-e to close menu and return to normal Tab behavior
-    keymap = {
-      preset = "enter",
-      ['<Tab>'] = { 'select_next', 'fallback' },
-      ['<S-Tab>'] = { 'select_prev', 'fallback' },
-      ['<C-j>'] = { 'select_next', 'fallback' },
-      ['<C-k>'] = { 'select_prev', 'fallback' },
-    },
+    keymap = keymap,
 
     -- Enable signature help (experimental feature, disabled by default)
     signature = {
@@ -53,10 +61,7 @@ return {
         },
       },
       list = {
-        selection = {
-          preselect = false, -- Don't auto-select first item
-          auto_insert = false, -- Don't auto-insert on selection
-        },
+        selection = list_selection,
       },
       documentation = {
         auto_show = true,
@@ -85,19 +90,10 @@ return {
     -- Command line completion
     cmdline = {
       enabled = true,
-      keymap = {
-        preset = "enter",
-        ['<Tab>'] = { 'select_next', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'fallback' },
-        ['<C-j>'] = { 'select_next', 'fallback' },
-        ['<C-k>'] = { 'select_prev', 'fallback' },
-      },
+      keymap = keymap,
       completion = {
         list = {
-          selection = {
-            preselect = false, -- Don't auto-select first item
-            auto_insert = false, -- Don't auto-insert on selection
-          },
+          selection = list_selection,
         },
         menu = {
           auto_show = true, -- Auto-show menu in command mode
