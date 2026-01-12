@@ -75,20 +75,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldtext = ""  -- Show first line of fold as-is
 
--- Custom commands for quick tab width switching
--- :T2 switches to 2-space indentation (default for most projects)
--- :T4 switches to 4-space indentation (useful for Python, Java, etc.)
-local function set_tab_width(width)
-  vim.opt.tabstop = width
-  vim.opt.softtabstop = width
-  vim.opt.shiftwidth = width
-  vim.opt.expandtab = true
-end
-
-vim.api.nvim_create_user_command('T2', function() set_tab_width(2) end, {})
-vim.api.nvim_create_user_command('T4', function() set_tab_width(4) end, {})
-
--- Load keymaps
+-- Load keymaps and commands
 require('keymaps')
 
 -- Load Neovide configuration
@@ -99,16 +86,4 @@ require('lazy-setup')
 
 -- Load LSP configuration
 require('lsp')
-
--- Completion mode: "copilot" | "native" | "off"
--- Default to copilot inline completions (if available)
-local copilot_available = require("util").copilot_available
-
--- Initialize completion mode: preserve existing value, or default to "copilot" if available, else "native"
-vim.g.completion_mode = vim.g.completion_mode or (copilot_available() and "copilot" or "native")
-
--- Disable mini.completion by default when in copilot mode
-if vim.g.completion_mode == "copilot" then
-  vim.g.minicompletion_disable = true
-end
 

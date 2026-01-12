@@ -1,8 +1,18 @@
--- Keymaps configuration
--- All custom keymaps are defined here for easy reference and modification
+-- Keymaps and commands configuration
+-- All custom keymaps and user commands are defined here
 -- Plugin-specific keymaps are defined in their respective plugin files
 
--- UI toggles
+-- Tab width commands (:T2, :T4)
+local function set_tab_width(width)
+  vim.opt.tabstop = width
+  vim.opt.softtabstop = width
+  vim.opt.shiftwidth = width
+  vim.opt.expandtab = true
+end
+vim.api.nvim_create_user_command('T2', function() set_tab_width(2) end, {})
+vim.api.nvim_create_user_command('T4', function() set_tab_width(4) end, {})
+
+-- Toggles (<leader>t*)
 vim.keymap.set('n', '<leader>tn', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = 'Toggle relative line numbers' })
@@ -24,9 +34,16 @@ vim.keymap.set('n', '<leader>tw', function()
   vim.notify(labels[next_mode], vim.log.levels.INFO)
 end, { desc = 'Toggle whitespace display' })
 
--- Completion mode toggle
+-- Completion mode: "copilot" | "native" | "off"
+-- Initialize: default to copilot if available, else native
+local copilot_available = require("util").copilot_available
+vim.g.completion_mode = vim.g.completion_mode or (copilot_available() and "copilot" or "native")
+if vim.g.completion_mode == "copilot" then
+  vim.g.minicompletion_disable = true
+end
+
+-- Toggle completion mode
 vim.keymap.set("n", "<leader>tc", function()
-  local copilot_available = require("util").copilot_available
   local modes = copilot_available() and { "copilot", "native", "off" } or { "native", "off" }
   local current = vim.g.completion_mode or "copilot"
   local idx = 1
