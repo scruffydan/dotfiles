@@ -1,9 +1,7 @@
--- Copilot Language Server configuration
--- Provides Next Edit Suggestions (NES) via sidekick.nvim
--- Auto-discovered by Neovim 0.11+ from runtimepath/lsp/
+-- Copilot Language Server - provides NES via sidekick.nvim
+-- Enabled conditionally in lsp.lua (requires auth + Node.js)
 
 return {
-  cmd = { "copilot-language-server", "--stdio" },
   init_options = {
     editorInfo = {
       name = "Neovim",
