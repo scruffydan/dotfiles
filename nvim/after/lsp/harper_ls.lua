@@ -6,7 +6,6 @@ return {
     ["harper-ls"] = {
       userDictPath = vim.g.dotfiles_nvim .. "/spell/en.utf-8.add",
       linters = {
-        SentenceCapitalization = false,
         SpellCheck = false,
       },
       diagnosticSeverity = "hint",
