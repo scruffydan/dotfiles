@@ -52,7 +52,12 @@ return {
         for _, name in ipairs(ensure_installed) do
           local ok, pkg = pcall(registry.get_package, name)
           if ok and not pkg:is_installed() then
-            pkg:install()
+            vim.notify("Mason: installing " .. name, vim.log.levels.INFO)
+            pkg:install():once("closed", function()
+              vim.schedule(function()
+                vim.notify("Mason: " .. name .. " installed", vim.log.levels.INFO)
+              end)
+            end)
           end
         end
       end)
