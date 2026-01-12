@@ -34,9 +34,9 @@ vim.keymap.set('n', '<leader>tw', function()
   vim.notify(labels[next_mode], vim.log.levels.INFO)
 end, { desc = 'Toggle whitespace display' })
 
--- Completion mode: "copilot" | "blink" | "off"
--- Initialize to copilot mode (will be adjusted by toggle if copilot not available)
-vim.g.completion_mode = vim.g.completion_mode or "copilot"
+-- Completion mode: "blink" | "copilot" | "off"
+-- Initialize to blink mode (includes copilot source when available)
+vim.g.completion_mode = vim.g.completion_mode or "blink"
 
 -- Helper function to update completion states
 local function set_completion_mode(mode)
@@ -58,7 +58,7 @@ set_completion_mode(vim.g.completion_mode)
 -- Toggle completion mode
 vim.keymap.set("n", "<leader>tc", function()
   local copilot_available = require("util").copilot_available
-  local modes = copilot_available() and { "copilot", "blink", "off" } or { "blink", "off" }
+  local modes = copilot_available() and { "blink", "copilot", "off" } or { "blink", "off" }
   local current = vim.g.completion_mode
   
   local idx = 1
