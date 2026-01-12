@@ -33,6 +33,8 @@ return {
       "lua-language-server",
       "marksman",
       "harper-ls",
+      "bash-language-server",
+      "shellcheck", -- Used by bash-language-server for diagnostics
       "tree-sitter-cli",
     }
 

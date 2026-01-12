@@ -66,19 +66,23 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 - `lua_ls` - Lua language server
 - `marksman` - Markdown language server
 - `harper_ls` - Grammar checker for comments and markdown
+- `bashls` - Bash language server (uses shellcheck for diagnostics)
+- `shellcheck` - Shell script linter (used by bashls)
 
 **Adding more LSPs:**
+
+LSP servers are automatically discovered from `nvim/lsp/*.lua` files - no manual registration needed.
+
 1. Install the LSP server via Mason: `:Mason` -> search -> `i` to install
 2. Create a config file `nvim/lsp/<server_name>.lua` that returns a config table:
    ```lua
    return {
      cmd = { "server-command" },
      filetypes = { "filetype1", "filetype2" },
-     root_markers = { ".git" },
+     root_markers = { ".git" }, -- Optional: only if different from global default
    }
    ```
-3. Add the server name to `vim.lsp.enable()` in `nvim/lua/lsp.lua`
-4. Restart Neovim
+3. Restart Neovim - the server will be auto-enabled
 
 **Note:** Most LSPs (pyright, ts_ls, bashls, jsonls, yamlls) require Node.js to be installed.
 

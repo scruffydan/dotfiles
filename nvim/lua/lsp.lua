@@ -6,9 +6,21 @@ vim.lsp.config("*", {
   root_markers = { ".git" },
 })
 
--- Enable configured LSP servers
+-- Automatically enable all LSP servers found in nvim/lsp/*.lua
 -- Servers attach automatically based on filetypes defined in their config
-vim.lsp.enable({ "lua_ls", "marksman", "harper_ls" })
+local lsp_dir = vim.g.dotfiles_nvim .. "/lsp"
+local lsp_servers = {}
+
+for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
+  if file:match("%.lua$") and file ~= "copilot.lua" then
+    local server_name = file:gsub("%.lua$", "")
+    lsp_servers[#lsp_servers + 1] = server_name
+  end
+end
+
+if #lsp_servers > 0 then
+  vim.lsp.enable(lsp_servers)
+end
 
 -- Enable Copilot LSP if available (provides NES via sidekick.nvim)
 if require("util").copilot_available() then
