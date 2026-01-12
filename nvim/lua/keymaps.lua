@@ -35,17 +35,32 @@ vim.keymap.set('n', '<leader>tw', function()
 end, { desc = 'Toggle whitespace display' })
 
 -- Completion mode: "copilot" | "native" | "off"
--- Initialize: default to copilot if available, else native
-local copilot_available = require("util").copilot_available
-vim.g.completion_mode = vim.g.completion_mode or (copilot_available() and "copilot" or "native")
-if vim.g.completion_mode == "copilot" then
-  vim.g.minicompletion_disable = true
+-- Initialize to copilot mode (will be adjusted by toggle if copilot not available)
+vim.g.completion_mode = vim.g.completion_mode or "copilot"
+
+-- Helper function to update completion states
+local function set_completion_mode(mode)
+  if mode == "copilot" then
+    vim.g.copilot_enabled = true
+    vim.g.minicompletion_disable = true
+  elseif mode == "native" then
+    vim.g.copilot_enabled = false
+    vim.g.minicompletion_disable = false
+  else -- off
+    vim.g.copilot_enabled = false
+    vim.g.minicompletion_disable = true
+  end
 end
+
+-- Initialize copilot and mini.completion states based on completion mode
+set_completion_mode(vim.g.completion_mode)
 
 -- Toggle completion mode
 vim.keymap.set("n", "<leader>tc", function()
+  local copilot_available = require("util").copilot_available
   local modes = copilot_available() and { "copilot", "native", "off" } or { "native", "off" }
-  local current = vim.g.completion_mode or "copilot"
+  local current = vim.g.completion_mode
+  
   local idx = 1
   for i, mode in ipairs(modes) do
     if mode == current then
@@ -53,20 +68,10 @@ vim.keymap.set("n", "<leader>tc", function()
       break
     end
   end
+  
   local next_mode = modes[(idx % #modes) + 1]
   vim.g.completion_mode = next_mode
-
-  -- Update copilot and mini.completion states
-  if next_mode == "copilot" then
-    vim.g.copilot_enabled = true
-    vim.g.minicompletion_disable = true
-  elseif next_mode == "native" then
-    vim.g.copilot_enabled = false
-    vim.g.minicompletion_disable = false
-  else -- off
-    vim.g.copilot_enabled = false
-    vim.g.minicompletion_disable = true
-  end
+  set_completion_mode(next_mode)
 
   vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
 end, { desc = "Cycle completion (copilot/native/off)" })
