@@ -171,11 +171,11 @@ return {
     vim.api.nvim_set_hl(0, "SnacksIndent", { link = "NonText" })
     vim.api.nvim_set_hl(0, "SnacksIndentScope", { link = "Comment" })
     vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
-    -- Disable mini.completion in snacks picker/input buffers
+    -- Disable blink.cmp in snacks picker/input buffers
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "snacks_*",
       callback = function()
-        vim.b.minicompletion_disable = true
+        vim.b.blink_cmp_enabled = false
         vim.b.minipairs_disable = true
       end,
     })

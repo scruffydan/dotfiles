@@ -34,7 +34,7 @@ vim.keymap.set('n', '<leader>tw', function()
   vim.notify(labels[next_mode], vim.log.levels.INFO)
 end, { desc = 'Toggle whitespace display' })
 
--- Completion mode: "copilot" | "native" | "off"
+-- Completion mode: "copilot" | "blink" | "off"
 -- Initialize to copilot mode (will be adjusted by toggle if copilot not available)
 vim.g.completion_mode = vim.g.completion_mode or "copilot"
 
@@ -42,23 +42,23 @@ vim.g.completion_mode = vim.g.completion_mode or "copilot"
 local function set_completion_mode(mode)
   if mode == "copilot" then
     vim.g.copilot_enabled = true
-    vim.g.minicompletion_disable = true
-  elseif mode == "native" then
+    vim.g.blink_cmp_enabled = false
+  elseif mode == "blink" then
     vim.g.copilot_enabled = false
-    vim.g.minicompletion_disable = false
+    vim.g.blink_cmp_enabled = true
   else -- off
     vim.g.copilot_enabled = false
-    vim.g.minicompletion_disable = true
+    vim.g.blink_cmp_enabled = false
   end
 end
 
--- Initialize copilot and mini.completion states based on completion mode
+-- Initialize copilot and blink.cmp states based on completion mode
 set_completion_mode(vim.g.completion_mode)
 
 -- Toggle completion mode
 vim.keymap.set("n", "<leader>tc", function()
   local copilot_available = require("util").copilot_available
-  local modes = copilot_available() and { "copilot", "native", "off" } or { "native", "off" }
+  local modes = copilot_available() and { "copilot", "blink", "off" } or { "blink", "off" }
   local current = vim.g.completion_mode
   
   local idx = 1
@@ -74,7 +74,7 @@ vim.keymap.set("n", "<leader>tc", function()
   set_completion_mode(next_mode)
 
   vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
-end, { desc = "Cycle completion (copilot/native/off)" })
+end, { desc = "Cycle completion (copilot/blink/off)" })
 
 -- Tabs
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<CR>', { desc = 'New tab' })
