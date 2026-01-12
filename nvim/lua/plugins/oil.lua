@@ -11,6 +11,7 @@ return {
     require("oil").setup({
       delete_to_trash = vim.fn.has("macunix") == 1,
       watch_for_changes = true,
+      cleanup_delay_ms = 0, -- Delete buffers immediately (oil opens fast enough)
       columns = {
         "icon",
       },
