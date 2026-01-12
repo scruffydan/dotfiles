@@ -1,19 +1,11 @@
 -- LSP Configuration for Neovim 0.11+
--- Server configs are auto-discovered from nvim/lsp/*.lua (on runtimepath)
+-- Default configs from nvim-lspconfig, overrides in nvim/after/lsp/*.lua
+-- Mason-installed servers are auto-enabled by mason-lspconfig
 
 -- Global defaults for all LSP servers
 vim.lsp.config("*", {
   root_markers = { ".git" },
 })
-
--- Automatically enable all LSP servers found in nvim/lsp/*.lua
--- Servers attach automatically based on filetypes defined in their config
-local lsp_dir = vim.g.dotfiles_nvim .. "/lsp"
-for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
-  if file:match("%.lua$") and file ~= "copilot.lua" then
-    vim.lsp.enable(file:sub(1, -5))
-  end
-end
 
 -- Enable Copilot LSP if available (provides NES via sidekick.nvim)
 if require("util").copilot_available() then

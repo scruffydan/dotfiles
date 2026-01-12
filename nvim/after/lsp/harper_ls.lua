@@ -1,9 +1,7 @@
--- Harper Language Server configuration
--- Grammar checker for comments and markdown
--- Auto-discovered by Neovim 0.11+ from runtimepath/lsp/
+-- Harper Language Server - grammar checker for comments and markdown
+-- Extends nvim-lspconfig defaults with custom settings
 
 return {
-  cmd = { "harper-ls", "--stdio" },
   settings = {
     ["harper-ls"] = {
       userDictPath = vim.g.dotfiles_nvim .. "/spell/en.utf-8.add",

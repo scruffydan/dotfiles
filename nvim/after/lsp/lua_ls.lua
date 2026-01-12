@@ -1,10 +1,7 @@
--- Lua Language Server configuration
--- Auto-discovered by Neovim 0.11+ from runtimepath/lsp/
+-- Lua Language Server - configured for Neovim development
+-- Extends nvim-lspconfig defaults with custom settings
 
 return {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
   settings = {
     Lua = {
       runtime = { version = "LuaJIT" },
