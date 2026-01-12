@@ -35,26 +35,32 @@ vim.keymap.set('n', '<leader>tw', function()
 end, { desc = 'Toggle whitespace display' })
 
 -- Completion mode: "copilot" | "blink" | "off"
--- Initialize: default to copilot if available, else blink
-local copilot_available = require("util").copilot_available
-vim.g.completion_mode = vim.g.completion_mode or (copilot_available() and "copilot" or "blink")
+-- Initialize to copilot mode (will be adjusted by toggle if copilot not available)
+vim.g.completion_mode = vim.g.completion_mode or "copilot"
+
+-- Helper function to update completion states
+local function set_completion_mode(mode)
+  if mode == "copilot" then
+    vim.g.copilot_enabled = true
+    vim.g.blink_cmp_enabled = false
+  elseif mode == "blink" then
+    vim.g.copilot_enabled = false
+    vim.g.blink_cmp_enabled = true
+  else -- off
+    vim.g.copilot_enabled = false
+    vim.g.blink_cmp_enabled = false
+  end
+end
 
 -- Initialize copilot and blink.cmp states based on completion mode
-if vim.g.completion_mode == "copilot" then
-  vim.g.copilot_enabled = true
-  vim.g.blink_cmp_enabled = false
-elseif vim.g.completion_mode == "blink" then
-  vim.g.copilot_enabled = false
-  vim.g.blink_cmp_enabled = true
-else -- off
-  vim.g.copilot_enabled = false
-  vim.g.blink_cmp_enabled = false
-end
+set_completion_mode(vim.g.completion_mode)
 
 -- Toggle completion mode
 vim.keymap.set("n", "<leader>tc", function()
+  local copilot_available = require("util").copilot_available
   local modes = copilot_available() and { "copilot", "blink", "off" } or { "blink", "off" }
-  local current = vim.g.completion_mode or "copilot"
+  local current = vim.g.completion_mode
+  
   local idx = 1
   for i, mode in ipairs(modes) do
     if mode == current then
@@ -62,20 +68,10 @@ vim.keymap.set("n", "<leader>tc", function()
       break
     end
   end
+  
   local next_mode = modes[(idx % #modes) + 1]
   vim.g.completion_mode = next_mode
-
-  -- Update copilot and blink.cmp states
-  if next_mode == "copilot" then
-    vim.g.copilot_enabled = true
-    vim.g.blink_cmp_enabled = false
-  elseif next_mode == "blink" then
-    vim.g.copilot_enabled = false
-    vim.g.blink_cmp_enabled = true
-  else -- off
-    vim.g.copilot_enabled = false
-    vim.g.blink_cmp_enabled = false
-  end
+  set_completion_mode(next_mode)
 
   vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
 end, { desc = "Cycle completion (copilot/blink/off)" })
