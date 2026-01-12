@@ -74,12 +74,20 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 LSP servers are automatically discovered from `nvim/lsp/*.lua` files - no manual registration needed.
 
 1. Install the LSP server via Mason: `:Mason` -> search -> `i` to install
-2. Create a config file `nvim/lsp/<server_name>.lua` that returns a config table:
+2. Create a config file `nvim/lsp/<server_name>.lua` - two options:
+
+   **Minimal (use all defaults):**
+   ```lua
+   return {}
+   ```
+
+   **With custom settings:**
    ```lua
    return {
      cmd = { "server-command" },
      filetypes = { "filetype1", "filetype2" },
      root_markers = { ".git" }, -- Optional: only if different from global default
+     settings = { ... },        -- Server-specific settings
    }
    ```
 3. Restart Neovim - the server will be auto-enabled
