@@ -2,7 +2,10 @@ return {
   "saghen/blink.cmp",
   version = "1.*",
   lazy = false,
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    "fang2hou/blink-copilot",
+  },
 
   opts = {
     -- FreeBSD compatibility: use Lua implementation on FreeBSD, Rust elsewhere
@@ -37,6 +40,14 @@ return {
     completion = {
       menu = {
         border = "rounded",
+        draw = {
+          columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
+          components = {
+            source_name = {
+              highlight = "DiagnosticInfo",
+            },
+          },
+        },
       },
       list = {
         selection = {
@@ -49,6 +60,21 @@ return {
         auto_show_delay_ms = 100,
         window = {
           border = "rounded",
+        },
+      },
+    },
+
+    -- Sources configuration
+    sources = {
+      default = { "lsp", "copilot", "path", "snippets", "buffer" },
+      providers = {
+        copilot = {
+          name = "copilot",
+          module = "blink-copilot",
+          async = true,
+          enabled = function()
+            return require("util").copilot_available()
+          end,
         },
       },
     },

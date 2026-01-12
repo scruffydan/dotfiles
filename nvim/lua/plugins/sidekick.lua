@@ -71,7 +71,7 @@ return {
       mode = "i",
     },
     {
-      "<leader>tN",
+      "<leader>tgn",
       function()
         local nes = require("sidekick.nes")
         nes.toggle()
