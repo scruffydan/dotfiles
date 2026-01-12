@@ -498,12 +498,16 @@ Surround text objects with brackets, quotes, tags, and more. All actions are dot
 | `sf` | Find surrounding (to the right) |
 | `sF` | Find surrounding (to the left) |
 | `sh` | Highlight surrounding |
+| `<C-b>` (visual) | Add markdown bold (`**text**`) |
+| `<C-i>` (visual) | Add markdown italic (`*text*`) |
 
 **Surrounding characters:**
 - `(`, `)`, `[`, `]`, `{`, `}`, `<`, `>` - Bracket pairs (opening adds space, closing doesn't)
 - `'`, `"`, `` ` `` - Quote characters
 - `f` - Function call (prompts for function name when adding)
 - `t` - HTML/XML tag (prompts for tag name when adding)
+- `B` - Markdown bold (`**text**`)
+- `I` - Markdown italic (`*text*`)
 - `?` - Interactive (prompts for left and right parts)
 
 ### Terminal
