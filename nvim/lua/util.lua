@@ -1,6 +1,14 @@
 -- Shared utility functions for neovim config
 local M = {}
 
+-- Platform detection
+local sysname = vim.uv.os_uname().sysname:lower()
+M.platform = sysname
+M.is_mac = sysname == "darwin"
+M.is_linux = sysname == "linux"
+M.is_freebsd = sysname == "freebsd"
+M.is_windows = sysname:match("windows") ~= nil
+
 -- Check if copilot-language-server is installed (Node.js is implied)
 function M.copilot_available()
   return vim.fn.executable("copilot-language-server") == 1

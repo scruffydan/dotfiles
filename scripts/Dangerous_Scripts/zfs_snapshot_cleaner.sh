@@ -26,7 +26,8 @@ echo "Snapshots found (recursive): $snapshot_count"
 echo ""
 echo "WARNING: This will delete ALL $snapshot_count snapshots for '$1' and its children"
 echo "Are You Sure?"
-read -r -p "Type 'YES' (all caps) to confirm [YES/NO] " input
+printf "Type 'YES' (all caps) to confirm [YES/NO] "
+read -r input
 
 case $input in
     YES)

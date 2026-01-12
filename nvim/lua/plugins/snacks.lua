@@ -228,9 +228,7 @@ return {
     { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
     { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
 
-    -- LSP
-    { "<leader>li", function() Snacks.picker.lsp_incoming_calls() end, desc = "Incoming calls" },
-    { "<leader>lo", function() Snacks.picker.lsp_outgoing_calls() end, desc = "Outgoing calls" },
+    -- LSP (additional keymaps in lsp.lua via LspAttach autocmd)
     { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
     { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
   },

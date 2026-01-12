@@ -24,7 +24,7 @@ return {
   opts = {
     -- FreeBSD compatibility: use Lua implementation on FreeBSD, Rust elsewhere
     fuzzy = {
-      implementation = vim.loop.os_uname().sysname == "FreeBSD"
+      implementation = require("util").is_freebsd
         and "lua"
         or "prefer_rust_with_warning"
     },

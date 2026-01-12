@@ -9,7 +9,7 @@ return {
   },
   config = function()
     require("oil").setup({
-      delete_to_trash = vim.fn.has("macunix") == 1,
+      delete_to_trash = require("util").is_mac,
       watch_for_changes = true,
       cleanup_delay_ms = 0, -- Delete buffers immediately (oil opens fast enough)
       columns = {

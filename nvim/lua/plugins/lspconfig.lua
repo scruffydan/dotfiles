@@ -12,8 +12,8 @@ end
 
 -- Check if we're on a supported platform for Mason binaries
 local function is_supported_platform()
-  local sysname = vim.uv.os_uname().sysname:lower()
-  return sysname == "linux" or sysname == "darwin" or sysname:match("windows")
+  local util = require("util")
+  return util.is_linux or util.is_mac or util.is_windows
 end
 
 -- Skip Mason plugins on unsupported platforms (e.g., FreeBSD)
