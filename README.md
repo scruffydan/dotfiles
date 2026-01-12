@@ -486,6 +486,8 @@ Blink.cmp provides the completion menu with sources from LSP, Copilot, snippets,
 | Keymap | Action |
 |--------|--------|
 | `<Enter>` | Accept completion |
+| `<Tab>` | Next item (when menu visible) |
+| `<S-Tab>` | Previous item (when menu visible) |
 | `<C-j>` | Next item |
 | `<C-k>` | Previous item |
 | `<C-e>` | Cancel completion |

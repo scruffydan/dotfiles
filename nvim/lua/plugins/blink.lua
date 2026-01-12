@@ -21,9 +21,12 @@ return {
     end,
 
     -- Use Enter to accept completions
-    -- Use C-j/C-k for navigation (C-j down, C-k up)
+    -- Tab/S-Tab and C-j/C-k for navigation
+    -- C-e to close menu and return to normal Tab behavior
     keymap = {
       preset = "enter",
+      ['<Tab>'] = { 'select_next', 'fallback' },
+      ['<S-Tab>'] = { 'select_prev', 'fallback' },
       ['<C-j>'] = { 'select_next', 'fallback' },
       ['<C-k>'] = { 'select_prev', 'fallback' },
     },
@@ -84,6 +87,8 @@ return {
       enabled = true,
       keymap = {
         preset = "enter",
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
         ['<C-k>'] = { 'select_prev', 'fallback' },
       },
