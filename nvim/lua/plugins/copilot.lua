@@ -20,8 +20,8 @@ return {
     --   Insert mode: Accept copilot suggestion > Apply NES > Normal Tab
     --   Normal mode: Apply NES > Normal Tab
     vim.g.copilot_no_tab_map = true
-    -- Enabled/disabled by completion mode toggle (<leader>tc) in init.lua
-    vim.g.copilot_enabled = (vim.g.completion_mode or "copilot") == "copilot"
+    -- Ghost text off by default, toggle with <leader>tgc
+    vim.g.copilot_enabled = false
   end,
   config = function()
     -- Partial accepts - useful for taking just part of a suggestion

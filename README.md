@@ -105,8 +105,9 @@ GitHub Copilot provides two features:
 **Notes:**
 - Inline completions work immediately after step 1
 - NES requires both steps 1 and 2
-- Use `<leader>tc` to cycle completion modes (copilot/native/off)
-- Use `<leader>tN` to toggle NES on/off
+- Use `<leader>tc` to toggle completion menu (blink/off)
+- Use `<leader>tgc` to toggle Copilot ghost text (inline suggestions)
+- Use `<leader>tgn` to toggle NES (Next Edit Suggestions)
 
 ## Tmux Keybindings
 
@@ -470,21 +471,37 @@ git mergetool          # Resolve merge conflicts using CodeDiff
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
 | `<leader>tW` | Toggle wrap (buffer) |
 | `<leader>t.` | Toggle hidden files (Oil) |
-| `<leader>tc` | Cycle completion (copilot/native/off) |
+| `<leader>tc` | Toggle completion menu (blink/off) |
+| `<leader>tgc` | Toggle Copilot ghost text |
+| `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
 | `<leader>th` | Toggle Harper grammar checker |
 | `<leader>tl` | Toggle LSP globally |
 | `<leader>tm` | Toggle Markdown render |
 | `<leader>tv` | Toggle CSV view |
 
-### Completion (mini.completion)
+### Completion (blink.cmp)
+
+Blink.cmp provides the completion menu with sources from LSP, Copilot, snippets, buffer text, and file paths. All sources are combined and ranked by relevance. The source name (LSP, copilot, Buffer, etc.) is shown next to each item.
 
 | Keymap | Action |
 |--------|--------|
-| `<C-n>` | Next item |
-| `<C-p>` | Previous item |
-| `<C-y>` | Confirm selection |
+| `<Enter>` | Accept completion |
+| `<C-j>` | Next item |
+| `<C-k>` | Previous item |
 | `<C-e>` | Cancel completion |
 | `<C-Space>` | Trigger completion manually |
+
+**Toggles:**
+| Keymap | Action |
+|--------|--------|
+| `<leader>tc` | Toggle completion menu (blink/off) |
+| `<leader>tgc` | Toggle Copilot ghost text (inline suggestions) |
+| `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
+
+**Notes:**
+- Copilot suggestions appear in the completion menu when `copilot-language-server` is installed
+- Copilot ghost text (inline suggestions) is off by default, toggle with `<leader>tgc`
+- NES (predictive multi-location edits) is provided by sidekick.nvim
 
 ### Surround (mini.surround)
 
@@ -550,7 +567,7 @@ Surround text objects with brackets, quotes, tags, and more. All actions are dot
 | `<leader>ai` | Document this |
 | `<leader>az` | Optimize this |
 | `<leader>aT` | Write tests for this |
-| `<leader>tN` | Toggle NES (Next Edit Suggestions) |
+| `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
 
 ### Tab Key Behavior
 

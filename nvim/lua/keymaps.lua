@@ -52,7 +52,6 @@ set_completion_mode(vim.g.completion_mode)
 
 -- Toggle completion mode
 vim.keymap.set("n", "<leader>tc", function()
-  local modes = { "blink", "off" }
   local current = vim.g.completion_mode
   local next_mode = current == "blink" and "off" or "blink"
   vim.g.completion_mode = next_mode
