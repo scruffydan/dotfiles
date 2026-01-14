@@ -130,24 +130,44 @@ return {
             return a.label < b.label
           end,
         },
-        registers = {
-          -- Sort registers alphabetically by register name
-          sort = { fields = { "reg" } },
-          matcher = { sort_empty = true },
-          main = { current = true },
-          format = "register",
-          preview = "preview",
-          confirm = { "copy", "close" },
-          -- Filter out * register (PRIMARY selection on X11, same as + on macOS)
-          transform = function(item)
-            if item.reg == "*" then
-              return false -- Hide this register
-            end
-            return item -- Keep all others
-          end,
-        },
-      },
-    },
+         registers = {
+           -- Sort registers alphabetically by register name
+           sort = { fields = { "reg" } },
+           matcher = { sort_empty = true },
+           main = { current = true },
+           format = "register",
+           preview = "preview",
+           confirm = { "copy", "close" },
+           -- Filter out * register (PRIMARY selection on X11, same as + on macOS)
+           transform = function(item)
+             if item.reg == "*" then
+               return false -- Hide this register
+             end
+             return item -- Keep all others
+           end,
+         },
+         filetype = {
+           items = (function()
+             -- Pre-compute filetypes at config time (outside fast event context)
+             local filetypes = vim.fn.getcompletion('', 'filetype')
+             local items = {}
+             for _, ft in ipairs(filetypes) do
+               table.insert(items, { text = ft })
+             end
+             return items
+           end)(),
+           format = "text",
+           preview = "none",
+           confirm = function(picker, item)
+             picker:close()
+             if item then
+               vim.bo.filetype = item.text
+               vim.notify("Filetype set to: " .. item.text, vim.log.levels.INFO)
+             end
+           end,
+         },
+       },
+     },
     bigfile = {
       size = 1024 * 1024, -- 1MB
     },
@@ -206,9 +226,10 @@ return {
     { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
     { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
     { "<leader>sn", function() Snacks.notifier.show_history() end, desc = "Notification history" },
-    { "<leader>sp", function() Snacks.picker.pickers() end, desc = "Pickers" },
-    { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
-    { "<leader>sr", function() Snacks.picker.registers() end, desc = "Registers" },
+     { "<leader>sf", function() Snacks.picker.pick("filetype") end, desc = "Set filetype" },
+     { "<leader>sp", function() Snacks.picker.pickers() end, desc = "Pickers" },
+     { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
+     { "<leader>sr", function() Snacks.picker.registers() end, desc = "Registers" },
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume last picker" },
     { "<leader>ss", function() Snacks.picker.treesitter() end, desc = "Treesitter symbols" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo history" },
