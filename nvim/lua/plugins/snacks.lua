@@ -146,6 +146,11 @@ return {
              return item -- Keep all others
            end,
          },
+         buffers = {
+           sort_lastused = true, -- Sort by last used time
+           matcher = { frecency = false }, -- Disable frecency for buffers only
+           current = false, -- Hide current buffer from list
+         },
          filetype = {
            items = (function()
              -- Pre-compute filetypes at config time (outside fast event context)
