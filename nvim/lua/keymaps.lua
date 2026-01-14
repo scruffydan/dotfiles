@@ -12,19 +12,6 @@ end
 vim.api.nvim_create_user_command('T2', function() set_tab_width(2) end, {})
 vim.api.nvim_create_user_command('T4', function() set_tab_width(4) end, {})
 
--- Set filetype command with autocomplete (:Set <filetype>)
-vim.api.nvim_create_user_command('Set', function(opts)
-  if opts.args == '' then
-    vim.notify('Usage: :Set <filetype>', vim.log.levels.WARN)
-    return
-  end
-  vim.bo.filetype = opts.args
-  vim.notify('Filetype set to: ' .. opts.args, vim.log.levels.INFO)
-end, {
-  nargs = 1,
-  complete = 'filetype',
-})
-
 -- Toggles (<leader>t*)
 vim.keymap.set('n', '<leader>tn', function()
   vim.wo.relativenumber = not vim.wo.relativenumber
