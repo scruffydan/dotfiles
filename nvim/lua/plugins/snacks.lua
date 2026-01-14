@@ -177,6 +177,30 @@ return {
             end
           end,
         },
+        lsp_clients = {
+          finder = function()
+            local clients = vim.lsp.get_clients({ bufnr = 0 })
+            local items = {}
+            for _, client in ipairs(clients) do
+              table.insert(items, {
+                text = client.name,
+                client_id = client.id,
+                client_name = client.name,
+              })
+            end
+            return items
+          end,
+          format = "text",
+          preview = "none",
+          layout = { preset = "select" },
+          confirm = function(picker, item)
+            picker:close()
+            if item then
+              vim.lsp.buf_detach_client(0, item.client_id)
+              vim.notify("Detached LSP: " .. item.client_name, vim.log.levels.INFO)
+            end
+          end,
+        },
       },
     },
     bigfile = {
@@ -261,6 +285,7 @@ return {
     { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
 
     -- LSP (additional keymaps in lsp.lua via LspAttach autocmd)
+    { "<leader>lc", function() Snacks.picker.pick("lsp_clients") end, desc = "Detach LSP client" },
     { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
     { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
   },
