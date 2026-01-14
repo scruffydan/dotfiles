@@ -15,6 +15,7 @@ return {
         { "<leader>l", group = "lsp" },
         { "<leader>s", group = "search (buffer)" },
         { "<leader>t", group = "toggle" },
+        { "<leader>q", group = "Quickfix List" }, 
       },
     })
 
