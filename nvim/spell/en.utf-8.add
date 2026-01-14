@@ -11,9 +11,12 @@ BitLocker
 ChatGPT
 cli
 Cloudflare
+cmd
 config
+configs
 Crowdstrike
 Ctrl
+customizations
 Databricks
 datacenter
 DNS
@@ -23,6 +26,7 @@ enablement
 eol
 ESXi
 filesystem
+filetypes
 FreeBSD
 GCM
 GCP
@@ -43,9 +47,12 @@ Kandji
 keymap
 keymaps
 Kolide
+linter
 LogRocket
 LSP
+LSPs
 macOS
+markdown
 MCP
 MDM
 Mikrotik
@@ -64,6 +71,7 @@ plugin
 Podman
 popup
 Proxmox
+quickfix
 repo
 runbook
 runbooks
