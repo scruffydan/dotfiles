@@ -61,19 +61,23 @@ return {
           hidden = true, -- Show hidden files
           ignored = true, -- Show files ignored by .gitignore
         },
+
         explorer = {
           hidden = true,
           ignored = true,
         },
+
         smart = {
           hidden = true,
           ignored = true,
           transform = "unique_file",
         },
+
         recent = {
           sort = { fields = { "idx" } }, -- Sort by recency
           matcher = { frecency = false, sort_empty = false }, -- Disable frecency
         },
+
         projects = {
           dev = existing_dirs({ "~/Code" }),
           projects = existing_dirs({
@@ -84,6 +88,7 @@ return {
           }),
           transform = "unique_file",
         },
+
         spelling = {
           layout = {
             preset = "select",
@@ -96,12 +101,14 @@ return {
           sort = { fields = {} },
           matcher = { sort_empty = false },
         },
+
         jumps = {
           -- Keep original order (most recent jumps first)
           sort = {
             fields = { "idx" },  -- Preserve the order from jumplist
           },
         },
+
         marks = {
           -- Custom sort function for marks picker
           -- Order: ' " a-z A-Z . < > ^ 0-9 (everything else)
@@ -143,7 +150,8 @@ return {
             -- Within same priority group, sort alphabetically/numerically
             return a.label < b.label
           end,
-         },
+        },
+
         registers = {
           -- Sort registers alphabetically by register name
           sort = { fields = { "reg" } },
@@ -160,11 +168,14 @@ return {
             return item -- Keep all others
           end,
         },
+
         buffers = {
           sort_lastused = true, -- Sort by recency
           matcher = { frecency = false, sort_empty = false }, -- Disable frecency
           current = false, -- Hide current buffer from list
         },
+
+        -- Set buffer filetype from available filetypes
         filetype = {
           items = get_filetype_items(),
           format = "text",
@@ -177,6 +188,8 @@ return {
             end
           end,
         },
+
+        -- Detach LSP clients from current buffer
         lsp_clients = {
           finder = function()
             local clients = vim.lsp.get_clients({ bufnr = 0 })
