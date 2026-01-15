@@ -494,6 +494,11 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `<leader>dd` | Diff all changes (explorer view) |
 | `<leader>dmo` | Diff all vs origin/main (or origin/master) |
 | `<leader>dml` | Diff all vs local main (or master) |
+| `<leader>d1` | Diff vs HEAD~1 |
+| `<leader>d2` | Diff vs HEAD~2 |
+| `<leader>d3` | Diff vs HEAD~3 |
+| `<leader>d4` | Diff vs HEAD~4 |
+| `<leader>d5` | Diff vs HEAD~5 |
 | `<leader>dw` | Toggle word-level diff highlighting |
 | `<leader>di` | Preview inline diff (auto-clears on cursor move) |
 | `]h` / `[h` | Next/previous hunk |

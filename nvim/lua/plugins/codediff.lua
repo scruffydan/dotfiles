@@ -23,6 +23,11 @@ return {
     { "<leader>dml", function()
       vim.cmd("CodeDiff " .. get_main_branch())
     end, desc = "Diff all vs local main" },
+    { "<leader>d1", "<cmd>CodeDiff HEAD~1<CR>", desc = "Diff vs HEAD~1" },
+    { "<leader>d2", "<cmd>CodeDiff HEAD~2<CR>", desc = "Diff vs HEAD~2" },
+    { "<leader>d3", "<cmd>CodeDiff HEAD~3<CR>", desc = "Diff vs HEAD~3" },
+    { "<leader>d4", "<cmd>CodeDiff HEAD~4<CR>", desc = "Diff vs HEAD~4" },
+    { "<leader>d5", "<cmd>CodeDiff HEAD~5<CR>", desc = "Diff vs HEAD~5" },
   },
   opts = {
     diff = {
