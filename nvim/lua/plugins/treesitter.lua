@@ -142,7 +142,6 @@ return {
       "jq",
       "jsdoc",
       "json",
-      "jsonc",
       "lua",
       "luadoc",
       "luap",
