@@ -289,6 +289,33 @@ Leader key is `<Space>`.
 | `:cfdo {cmd}` | Execute command on each file in quickfix list (e.g., `:cfdo %s/foo/bar/g`) |
 | `:call setqflist([])` | Clear quickfix list |
 
+### Trouble
+
+Trouble provides a pretty list for diagnostics, references, quickfix, and location lists.
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>xx` | Toggle all diagnostics |
+| `<leader>xX` | Toggle buffer diagnostics |
+| `<leader>xs` | Toggle document symbols (sidebar) |
+| `<leader>xl` | Toggle LSP definitions/references (right panel) |
+| `<leader>xL` | Toggle location list |
+| `<leader>xQ` | Toggle quickfix list |
+
+**In Trouble window:**
+
+| Keymap | Action |
+|--------|--------|
+| `q` | Close |
+| `<CR>` | Jump to item |
+| `o` | Jump and close |
+| `p` | Preview |
+| `P` | Toggle auto-preview |
+| `r` | Refresh |
+| `?` | Help |
+| `zo`/`zc` | Open/close fold |
+| `zM`/`zR` | Close/open all folds |
+
 ### Search (Snacks) - Current/Open Buffers
 
 | Keymap | Action |

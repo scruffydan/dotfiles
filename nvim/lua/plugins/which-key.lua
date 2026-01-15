@@ -16,7 +16,8 @@ return {
         { "<leader>s", group = "search (buffer)" },
         { "<leader>S", group = "search and replace" },
         { "<leader>t", group = "toggle" },
-        { "<leader>q", group = "Quickfix List" }, 
+        { "<leader>q", group = "Quickfix List" },
+        { "<leader>x", group = "trouble" },
       },
     })
 
