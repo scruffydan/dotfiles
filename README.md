@@ -43,7 +43,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
 ### Neovim Dependencies
 
 - **SauceCodePro Nerd Font** - Required for icons (same as Neovim requirement)
-- **ripgrep (rg)** - Required for snacks.nvim picker grep
+- **ripgrep (rg)** - Required for snacks.nvim picker grep and grug-far.nvim search/replace
 - **fd** - Required for snacks.nvim explorer picker
 - **C compiler** (gcc/clang) - Required for treesitter parser compilation (typically pre-installed on macOS and FreeBSD)
 - **tree-sitter-cli** (0.25.0 or later) - Required for nvim-treesitter main branch

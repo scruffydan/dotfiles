@@ -1,6 +1,6 @@
 -- Leader key
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\" -- Backslash (escaped in Lua string)
 
 -- Centralized dotfiles path
 vim.g.dotfiles_nvim = vim.fn.expand('~/dotfiles/nvim')
