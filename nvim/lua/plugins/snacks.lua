@@ -180,6 +180,7 @@ return {
           items = get_filetype_items(),
           format = "text",
           preview = "none",
+          layout = { preset = "select" },
           confirm = function(picker, item)
             picker:close()
             if item then
