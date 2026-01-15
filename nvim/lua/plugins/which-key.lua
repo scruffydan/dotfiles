@@ -14,6 +14,7 @@ return {
         { "<leader>gh", group = "GitHub" },
         { "<leader>l", group = "lsp" },
         { "<leader>s", group = "search (buffer)" },
+        { "<leader>S", group = "search and replace" },
         { "<leader>t", group = "toggle" },
         { "<leader>q", group = "Quickfix List" }, 
       },

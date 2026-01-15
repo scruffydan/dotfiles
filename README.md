@@ -297,6 +297,7 @@ Leader key is `<Space>`.
 | `<leader>sc` | Commands |
 | `<leader>sC` | Command history |
 | `<leader>sd` | Diagnostics (buffer) |
+| `<leader>sf` | Set filetype |
 | `<leader>sg` | Grep buffer |
 | `<leader>sG` | Grep open buffers |
 | `<leader>sh` | Help tags |
@@ -311,6 +312,35 @@ Leader key is `<Space>`.
 | `<leader>ss` | Treesitter symbols |
 | `<leader>su` | Undo history |
 | `<leader>sw` | Spell suggestions |
+
+### Search and Replace (grug-far)
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>Sr` | Search and replace |
+| `<leader>Sw` | Search and replace word under cursor |
+| `<leader>Sf` | Search and replace in current file |
+
+**In grug-far buffer** (using `<space>` as localleader):
+
+| Keymap | Action |
+|--------|--------|
+| `<space>r` | Execute replace |
+| `<space>q` | Send to quickfix list |
+| `<space>s` | Sync all changes |
+| `<space>l` | Sync current line |
+| `<space>c` | Close buffer |
+| `<space>t` | Open history |
+| `<space>a` | Add to history |
+| `<space>f` | Refresh search |
+| `<space>o` | Open location (keep focus) |
+| `<space>e` | Swap engine (ripgrep/ast-grep) |
+| `<space>w` | Toggle show command |
+| `<space>i` | Preview location |
+| `<enter>` | Go to location |
+| `<up>/<down>` | Open next/previous location |
+| `g?` | Show help |
+| `<tab>/<s-tab>` | Next/previous input field |
 
 ### Spell Checking
 
