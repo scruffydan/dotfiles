@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
     map("n", "<leader>lR", vim.lsp.buf.rename, "Rename symbol")
 
-    -- Snacks picker integrations
+    -- Snacks picker integrations (requires snacks.nvim plugin)
     map("n", "<leader>lr", function() Snacks.picker.lsp_references() end, "References")
     map("n", "<leader>lf", function() Snacks.picker.lsp_definitions() end, "Find definitions")
     map("n", "<leader>li", function() Snacks.picker.lsp_incoming_calls() end, "Incoming calls")

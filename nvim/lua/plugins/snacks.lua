@@ -180,6 +180,7 @@ return {
           items = get_filetype_items(),
           format = "text",
           preview = "none",
+          layout = { preset = "select" },
           confirm = function(picker, item)
             picker:close()
             if item then
@@ -297,9 +298,7 @@ return {
     { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
     { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
 
-    -- LSP (additional keymaps in lsp.lua via LspAttach autocmd)
+    -- LSP (most LSP picker keymaps are in lsp.lua via LspAttach autocmd)
     { "<leader>lc", function() Snacks.picker.pick("lsp_clients") end, desc = "Detach LSP client" },
-    { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
-    { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
   },
 }
