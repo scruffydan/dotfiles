@@ -13,6 +13,8 @@ return {
       watch_for_changes = true,
       cleanup_delay_ms = 0, -- Delete buffers immediately (oil opens fast enough)
       columns = {
+        { "size", highlight = "Comment", align = "right" },
+        { "permissions", highlight = "Comment" },
         "icon",
       },
       float = {
