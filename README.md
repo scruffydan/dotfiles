@@ -300,7 +300,7 @@ Trouble provides a pretty list for diagnostics, references, quickfix, and locati
 | `<leader>xs` | Toggle document symbols (sidebar) |
 | `<leader>xl` | Toggle LSP definitions/references (right panel) |
 | `<leader>xL` | Toggle location list |
-| `<leader>xQ` | Toggle quickfix list |
+| `<leader>xq` | Toggle quickfix list |
 
 **In Trouble window:**
 
