@@ -101,6 +101,19 @@ vim.keymap.set("n", "<leader>tl", function()
   end
 end, { desc = "Toggle LSP" })
 
+-- Toggle diagnostic virtual text
+vim.g.diagnostic_virtual_text_enabled = false
+vim.keymap.set("n", "<leader>td", function()
+  vim.g.diagnostic_virtual_text_enabled = not vim.g.diagnostic_virtual_text_enabled
+  vim.diagnostic.config({
+    virtual_text = vim.g.diagnostic_virtual_text_enabled and {
+      spacing = 4,
+      prefix = "●",
+    } or false,
+  })
+  vim.notify("Diagnostic virtual text " .. (vim.g.diagnostic_virtual_text_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
+end, { desc = "Toggle diagnostic virtual text" })
+
 -- Toggle Harper grammar checker
 vim.g.harper_enabled = true
 vim.keymap.set("n", "<leader>th", function()
