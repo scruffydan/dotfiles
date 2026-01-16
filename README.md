@@ -264,6 +264,17 @@ Leader key is `<Space>`.
 | `<Tab>` | Toggle selection on current item |
 | `<C-a>` | Select all items |
 
+**Delete Actions** (picker-specific):
+
+| Picker | Keymap | Action |
+|--------|--------|--------|
+| Buffers | `<C-x>`, `dd` | Delete buffer |
+| Marks | `<C-x>` | Delete mark |
+| Explorer | `d` | Delete file/directory |
+| Git Branches | `<C-x>` | Delete branch |
+
+Use `<Tab>` to select multiple items, then delete to remove them all at once.
+
 ### Quickfix List
 
 | Keymap | Action |
