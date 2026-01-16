@@ -237,8 +237,7 @@ Leader key is `<Space>`.
 | `<S-Tab>` | Open Oil file explorer |
 | `<Tab>` | Select file/directory (in Oil) |
 | `<S-Tab>` | Go to parent directory (in Oil) |
-| `g.` | Toggle hidden files (in Oil) |
-| `<leader>t.` | Toggle hidden files (in Oil) |
+| `<M-h>` | Toggle hidden files (in Oil) |
 | `<leader>cd` | Change CWD to current directory (works globally and in Oil) |
 
 ### Pickers (Snacks) - Workspace
@@ -255,10 +254,12 @@ Leader key is `<Space>`.
 | `<leader>fp` | Projects |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
 
-**Picker Actions** (available in any picker):
+**Picker Actions** (available in file-based pickers):
 
 | Keymap | Action |
 |--------|--------|
+| `<M-h>` | Toggle hidden files (dotfiles) |
+| `<M-i>` | Toggle ignored files (gitignored) |
 | `<C-q>` | Send selected items (or all if none selected) to quickfix list |
 | `<Tab>` | Toggle selection on current item |
 | `<C-a>` | Select all items |
@@ -532,7 +533,6 @@ git mergetool          # Resolve merge conflicts using CodeDiff
 | `<leader>ts` | Toggle spell checking (Vim built-in) |
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
 | `<leader>tW` | Toggle wrap (buffer) |
-| `<leader>t.` | Toggle hidden files (Oil) |
 | `<leader>tc` | Toggle completion menu (blink/off) |
 | `<leader>tgc` | Toggle Copilot ghost text |
 | `<leader>tgn` | Toggle NES (Next Edit Suggestions) |

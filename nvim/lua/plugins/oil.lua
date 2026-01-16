@@ -27,8 +27,7 @@ return {
         border = "rounded",
       },
       keymaps = {
-        ["g."] = "actions.toggle_hidden",
-        ["<leader>t."] = "actions.toggle_hidden",
+        ["<M-h>"] = "actions.toggle_hidden", -- Alt+h (same as snacks picker)
         -- Tab/Shift+Tab behavior within oil buffers:
         -- Tab: Select file/directory (opens file or enters directory)
         -- Shift+Tab: Go to parent directory
