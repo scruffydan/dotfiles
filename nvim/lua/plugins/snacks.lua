@@ -298,7 +298,15 @@ return {
     { "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub issues" },
     { "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub PRs" },
 
-    -- LSP (most LSP picker keymaps are in lsp.lua via LspAttach autocmd)
+    -- LSP
     { "<leader>lc", function() Snacks.picker.pick("lsp_clients") end, desc = "Detach LSP client" },
+    { "<leader>lf", function() Snacks.picker.lsp_definitions() end, desc = "Find definitions" },
+    { "<leader>li", function() Snacks.picker.lsp_incoming_calls() end, desc = "Incoming calls" },
+    { "<leader>lI", function() Snacks.picker.lsp_implementations() end, desc = "Implementations" },
+    { "<leader>lo", function() Snacks.picker.lsp_outgoing_calls() end, desc = "Outgoing calls" },
+    { "<leader>lr", function() Snacks.picker.lsp_references() end, desc = "References" },
+    { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
+    { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
+    { "<leader>ly", function() Snacks.picker.lsp_type_definitions() end, desc = "Type definitions" },
   },
 }

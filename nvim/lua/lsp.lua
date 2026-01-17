@@ -50,18 +50,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
 
     -- LSP actions (leader mappings)
+    -- Note: Snacks picker keymaps (<leader>lr, <leader>ls, etc.) are in plugins/snacks.lua
     map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
     map("n", "<leader>lR", vim.lsp.buf.rename, "Rename symbol")
-
-    -- Snacks picker integrations (requires snacks.nvim plugin)
-    map("n", "<leader>lr", function() Snacks.picker.lsp_references() end, "References")
-    map("n", "<leader>lf", function() Snacks.picker.lsp_definitions() end, "Find definitions")
-    map("n", "<leader>li", function() Snacks.picker.lsp_incoming_calls() end, "Incoming calls")
-    map("n", "<leader>lo", function() Snacks.picker.lsp_outgoing_calls() end, "Outgoing calls")
-    map("n", "<leader>lI", function() Snacks.picker.lsp_implementations() end, "Implementations")
-    map("n", "<leader>ly", function() Snacks.picker.lsp_type_definitions() end, "Type definitions")
-    map("n", "<leader>ls", function() Snacks.picker.lsp_symbols() end, "Document symbols")
-    map("n", "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
 
     -- Diagnostics
     map("n", "<leader>ld", vim.diagnostic.open_float, "Show diagnostics")
