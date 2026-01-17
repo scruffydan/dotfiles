@@ -12,6 +12,7 @@ return {
         { "<leader>f", group = "find (workspace)" },
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "GitHub" },
+        { "<leader>h", group = "git hunks" },
         { "<leader>l", group = "lsp" },
         { "<leader>s", group = "search (buffer)" },
         { "<leader>S", group = "search and replace" },
@@ -21,6 +22,7 @@ return {
         { "]", group = "next" },
         { "[", group = "prev" },
       },
+
     })
 
     -- Set WhichKey background to match line number background
