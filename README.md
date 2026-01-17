@@ -449,11 +449,14 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 | `<leader>gf` | Git log (file) |
 | `<leader>gd` | Git diff hunks picker |
 | `<leader>gS` | Git stash picker |
-| `<leader>gH` | Preview hunk |
+| `<leader>hh` | Preview hunk |
 | `<leader>gB` | Git blame |
 | `<leader>go` | Open in browser (GitHub) |
 | `<leader>ghi` | GitHub issues |
 | `<leader>ghp` | GitHub PRs |
+| `<leader>hs` | Stage hunk (buffer-local via gitsigns) |
+| `<leader>hr` | Reset hunk (buffer-local via gitsigns) |
+| `<leader>hu` | Undo stage hunk (buffer-local via gitsigns) |
 | `]h` | Next hunk |
 | `[h` | Previous hunk |
 

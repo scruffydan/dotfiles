@@ -50,8 +50,19 @@ return {
         end, {expr=true, desc="Previous hunk"})
 
         -- Actions
-        map('n', '<leader>gH', gs.preview_hunk, {desc="Preview hunk"})
+        map('n', '<leader>hh', gs.preview_hunk, {desc="Preview hunk"})
         map('n', '<leader>gB', gs.blame, {desc="Git blame"})
+
+        -- Stage/reset hunks
+        map('n', '<leader>hs', gs.stage_hunk, {desc="Stage hunk"})
+        map('v', '<leader>hs', function()
+          gs.stage_hunk({ vim.fn.line("'<"), vim.fn.line("'>") })
+        end, {desc="Stage selection"})
+        map('n', '<leader>hr', gs.reset_hunk, {desc="Reset hunk"})
+        map('v', '<leader>hr', function()
+          gs.reset_hunk({ vim.fn.line("'<"), vim.fn.line("'>") })
+        end, {desc="Reset selection"})
+        map('n', '<leader>hu', gs.undo_stage_hunk, {desc="Undo stage hunk"})
 
         -- Toggle word diff highlighting
         map('n', '<leader>dw', gs.toggle_word_diff, {desc="Toggle word diff"})
