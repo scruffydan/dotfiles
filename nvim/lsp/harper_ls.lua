@@ -7,6 +7,7 @@ return {
       userDictPath = vim.g.dotfiles_nvim .. "/spell/en.utf-8.add",
       linters = {
         SpellCheck = false,
+        SentenceCapitalization = false,
       },
       diagnosticSeverity = "hint",
       dialect = "American",
