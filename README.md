@@ -360,22 +360,22 @@ Trouble provides a pretty list for diagnostics, references, quickfix, and locati
 | `<leader>Sw` | Search and replace word under cursor |
 | `<leader>Sf` | Search and replace in current file |
 
-**In grug-far buffer** (using `<space>` as localleader):
+**In grug-far buffer** (mappings use `<localleader>`; your `maplocalleader` is set to `\\` by default in `nvim/init.lua`):
 
 | Keymap | Action |
 |--------|--------|
-| `<space>r` | Execute replace |
-| `<space>q` | Send to quickfix list |
-| `<space>s` | Sync all changes |
-| `<space>l` | Sync current line |
-| `<space>c` | Close buffer |
-| `<space>t` | Open history |
-| `<space>a` | Add to history |
-| `<space>f` | Refresh search |
-| `<space>o` | Open location (keep focus) |
-| `<space>e` | Swap engine (ripgrep/ast-grep) |
-| `<space>w` | Toggle show command |
-| `<space>i` | Preview location |
+| `<localleader>r` | Execute replace |
+| `<localleader>q` | Send to quickfix list |
+| `<localleader>s` | Sync all changes |
+| `<localleader>l` | Sync current line |
+| `<localleader>c` | Close buffer |
+| `<localleader>t` | Open history |
+| `<localleader>a` | Add to history |
+| `<localleader>f` | Refresh search |
+| `<localleader>o` | Open location (keep focus) |
+| `<localleader>e` | Swap engine (ripgrep/ast-grep) |
+| `<localleader>w` | Toggle show command |
+| `<localleader>i` | Preview location |
 | `<enter>` | Go to location |
 | `<up>/<down>` | Open next/previous location |
 | `g?` | Show help |
