@@ -12,7 +12,7 @@ return {
   event = "InsertEnter",
   cmd = { "Copilot" },
   cond = function()
-    return vim.fn.executable("node") == 1
+    return require("util").has_npm
   end,
   keys = {
     {

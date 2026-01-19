@@ -9,6 +9,9 @@ M.is_linux = sysname == "linux"
 M.is_freebsd = sysname == "freebsd"
 M.is_windows = sysname:match("windows") ~= nil
 
+-- Tool availability (cached at require time)
+M.has_npm = vim.fn.executable("npm") == 1
+
 -- Check if copilot-language-server is installed (Node.js is implied)
 function M.copilot_available()
   return vim.fn.executable("copilot-language-server") == 1

@@ -28,14 +28,21 @@ return {
     require("mason").setup(opts)
 
     -- Auto-install packages if not already installed
+    local util = require("util")
     local ensure_installed = {
       "lua-language-server",
       "marksman",
       "harper-ls",
-      "bash-language-server",
-      "shellcheck", -- Used by bash-language-server for diagnostics
       "tree-sitter-cli",
     }
+
+    -- npm-based packages (only install if npm is available)
+    if util.has_npm then
+      vim.list_extend(ensure_installed, {
+        "bash-language-server",
+        "shellcheck", -- Used by bash-language-server for diagnostics
+      })
+    end
 
     local registry = require("mason-registry")
     registry.refresh(function()
