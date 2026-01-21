@@ -5,6 +5,10 @@ if not vim.g.neovide then
   return
 end
 
+-- Equivalent to what 'brew shellenv' adds to PATH
+local homebrew_path = "/opt/homebrew/bin:/opt/homebrew/sbin:"
+vim.env.PATH = homebrew_path .. vim.env.PATH
+
 -- Settings
 vim.g.neovide_cursor_animation_length = 0
 
