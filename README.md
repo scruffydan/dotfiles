@@ -44,7 +44,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 - **tmux** (>= 3.2) - Required for popup support
 - **fzf** - Required for fuzzy finding sessions
-- **sed** & **grep** - Required for filtering session list (standard on most systems)
+- **grep** - Required for filtering session list (standard on most systems)
 
 ### Neovim Dependencies
 
@@ -127,7 +127,7 @@ GitHub Copilot provides two features:
 | `<prefix> <prefix>` | Send prefix to application |
 | `<prefix> r` | Reload tmux config and resync client |
 | `<prefix> m` | Toggle mouse mode |
-| `<M-d>` | Display menu popup |
+| `<prefix> <C-d>` | Display menu popup |
 
 ### Sessions
 
