@@ -127,7 +127,7 @@ GitHub Copilot provides two features:
 | `<prefix> <prefix>` | Send prefix to application |
 | `<prefix> r` | Reload tmux config and resync client |
 | `<prefix> m` | Toggle mouse mode |
-| `<prefix> <C-d>` | Display menu popup |
+| `<prefix> <C-q>` | Display menu popup |
 
 ### Sessions
 
