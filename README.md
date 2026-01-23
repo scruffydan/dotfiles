@@ -40,6 +40,12 @@ Seriously though, you're probably better off starting from scratch or finding a 
   - Supported terminals: ghostty, kitty, wezterm (limited)
   - Your terminal (ghostty) supports this
 
+### Tmux Requirements
+
+- **tmux** (>= 3.2) - Required for popup support
+- **fzf** - Required for fuzzy finding sessions
+- **sed** & **grep** - Required for filtering session list (standard on most systems)
+
 ### Neovim Dependencies
 
 - **SauceCodePro Nerd Font** - Required for icons (same as Neovim requirement)
@@ -128,6 +134,7 @@ GitHub Copilot provides two features:
 | Keymap | Action |
 |--------|--------|
 | `<prefix> .` | Rename session |
+| `<prefix> <C-s>` | Switch session (fuzzy finder) |
 
 ### Windows
 

@@ -498,6 +498,6 @@
 	<key>type</key>
 	<string>Window Settings</string>
 	<key>useOptionAsMetaKey</key>
-	<false/>
+	<true/>
 </dict>
 </plist>
