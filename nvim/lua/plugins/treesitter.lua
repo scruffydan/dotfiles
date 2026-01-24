@@ -1,3 +1,7 @@
+-- Treesitter configuration for syntax highlighting, indentation, and text objects
+-- Dependencies:
+--   - nvim-treesitter-context: Shows code context (function/class) at top of window
+--   - nvim-treesitter-textobjects: Adds text object selection and movement keymaps
 return {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
@@ -16,8 +20,8 @@ return {
         {
           "<leader>tC",
           function()
-            vim.cmd("TSContext toggle")
-            -- Check if context is enabled by trying to get the current state
+            local tsc = require("treesitter-context")
+            tsc.toggle()
             local enabled = require("treesitter-context.config").enabled
             vim.notify("Treesitter context: " .. (enabled and "on" or "off"), vim.log.levels.INFO)
           end,
@@ -47,6 +51,7 @@ return {
         local move = require("nvim-treesitter-textobjects.move")
 
         -- Text object selection keymaps
+        -- Pattern: 'a' = around (outer), 'i' = inside (inner)
         -- Note: 'in' and 'an' are reserved for built-in incremental selection (expand/shrink)
         local select_keymaps = {
           ["af"] = "@function.outer",
@@ -77,6 +82,7 @@ return {
         end
 
         -- Movement keymaps
+        -- Pattern: ']' = next, '[' = previous, lowercase = start, uppercase = end
         local move_keymaps = {
           ["]f"] = { move.goto_next_start, "@function.outer", "Next function start" },
           ["]F"] = { move.goto_next_end, "@function.outer", "Next function end" },
@@ -123,25 +129,31 @@ return {
     },
   },
   cond = function()
-    -- Requires tree-sitter-cli and a C compiler
-    local has_tree_sitter = vim.fn.executable("tree-sitter") == 1
-    local has_cc = vim.fn.executable("cc") == 1 or vim.fn.executable("gcc") == 1 or vim.fn.executable("clang") == 1
-    if not has_tree_sitter or not has_cc then
-      vim.defer_fn(function()
-        vim.notify("nvim-treesitter: missing requirements\n(tree-sitter-cli and/or C compiler)", vim.log.levels.WARN)
-      end, 100)
-      return false
+    local function has_executable(cmd)
+      return vim.fn.executable(cmd) == 1
     end
-    return true
+
+    -- Requires tree-sitter-cli and a C compiler
+    local has_tree_sitter = has_executable("tree-sitter")
+    local has_cc = has_executable("cc") or has_executable("gcc") or has_executable("clang")
+
+    if has_tree_sitter and has_cc then
+      return true
+    end
+
+    vim.defer_fn(function()
+      vim.notify("nvim-treesitter: missing requirements\n(tree-sitter-cli and/or C compiler)", vim.log.levels.WARN)
+    end, 100)
+    return false
   end,
   config = function()
-    local ts = require("nvim-treesitter")
+    local treesitter = require("nvim-treesitter")
 
     -- Setup treesitter (uses default install_dir)
-    ts.setup()
+    treesitter.setup()
 
     -- Pre-install common parsers
-    ts.install({
+    treesitter.install({
       "bash",
       "c",
       "css",
@@ -203,7 +215,7 @@ return {
         if not pcall(vim.treesitter.language.inspect, lang) then
           local parsers = require("nvim-treesitter.parsers")
           if parsers[lang] then
-            ts.install(lang)
+            treesitter.install(lang)
           end
         end
 
