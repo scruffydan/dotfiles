@@ -562,6 +562,7 @@ git mergetool          # Resolve merge conflicts using CodeDiff
 | `<leader>tw` | Toggle whitespace display (cycles: default → all → off) |
 | `<leader>tW` | Toggle wrap (buffer) |
 | `<leader>tc` | Toggle completion menu (blink/off) |
+| `<leader>tC` | Toggle treesitter context (sticky header) |
 | `<leader>td` | Toggle diagnostic virtual text (ghost text) |
 | `<leader>tgc` | Toggle Copilot ghost text |
 | `<leader>tgn` | Toggle NES (Next Edit Suggestions) |

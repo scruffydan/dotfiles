@@ -6,6 +6,31 @@ return {
   dependencies = {
     "mason-org/mason.nvim", -- Mason provides tree-sitter-cli
     {
+      "nvim-treesitter/nvim-treesitter-context",
+      opts = {
+        max_lines = 3,
+        min_window_height = 20,
+        multiline_threshold = 1,
+      },
+      keys = {
+        {
+          "<leader>tC",
+          function()
+            vim.cmd("TSContext toggle")
+            -- Check if context is enabled by trying to get the current state
+            local enabled = require("treesitter-context.config").enabled
+            vim.notify("Treesitter context: " .. (enabled and "on" or "off"), vim.log.levels.INFO)
+          end,
+          desc = "Toggle treesitter context",
+        },
+      },
+      config = function(_, opts)
+        require("treesitter-context").setup(opts)
+        -- Use same background as SignColumn
+        vim.api.nvim_set_hl(0, "TreesitterContext", { link = "SignColumn" })
+      end,
+    },
+    {
       "nvim-treesitter/nvim-treesitter-textobjects",
       branch = "main",
       config = function()
