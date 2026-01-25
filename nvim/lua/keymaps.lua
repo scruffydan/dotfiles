@@ -62,6 +62,15 @@ vim.keymap.set('n', '<leader>T', '<cmd>tabnew<CR>', { desc = 'New tab' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half page (centered)' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half page (centered)' })
 
+-- Add large j/k motions to the jumplist
+vim.keymap.set('n', 'j', function()
+  return vim.v.count > 8 and "m'" .. vim.v.count .. 'j' or 'j'
+end, { expr = true, desc = "Down with jumplist for large motions" })
+
+vim.keymap.set('n', 'k', function()
+  return vim.v.count > 8 and "m'" .. vim.v.count .. 'k' or 'k'
+end, { expr = true, desc = "Up with jumplist for large motions" })
+
 -- Terminal mode
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<Esc><Esc>', '<Esc>', { desc = 'Send Esc to terminal' })
