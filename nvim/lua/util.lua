@@ -9,6 +9,9 @@ M.is_linux = sysname == "linux"
 M.is_freebsd = sysname == "freebsd"
 M.is_windows = sysname:match("windows") ~= nil
 
+-- Mason binary support (FreeBSD not supported)
+M.is_mason_supported = M.is_linux or M.is_mac or M.is_windows
+
 -- Tool availability (cached at require time)
 M.has_npm = vim.fn.executable("npm") == 1
 

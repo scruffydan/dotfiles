@@ -7,14 +7,8 @@ if not vim.env.PATH:find(mason_bin, 1, true) then
   vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
 end
 
--- Check if we're on a supported platform for Mason binaries
-local function is_supported_platform()
-  local util = require("util")
-  return util.is_linux or util.is_mac or util.is_windows
-end
-
 -- Skip Mason on unsupported platforms (e.g., FreeBSD)
-if not is_supported_platform() then
+if not require("util").is_mason_supported then
   return {}
 end
 
