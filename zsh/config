@@ -140,13 +140,10 @@ export LS_COLORS="di=36:ln=33:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30
 
 # Make ls use LSCOLORS or LS_COLORS
 # Linux uses GNU ls with --color, BSD/macOS use BSD ls
-_uname=$(uname)
-if [[ $_uname == Linux ]]; then
-    alias ls="ls --color=always -F"
-elif [[ $_uname =~ (Darwin|FreeBSD) ]]; then
-    alias ls="ls -GF"
-fi
-unset _uname
+case $(uname) in
+  Linux) alias ls="ls --color=always -F" ;;
+  Darwin|FreeBSD) alias ls="ls -GF" ;;
+esac
 
 ##############
 ## Settings ##
