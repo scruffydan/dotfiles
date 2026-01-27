@@ -45,6 +45,9 @@ window-width = 110
 window-step-resize = true
 # Balance extra padding on all sides when window doesn't align to cell grid
 window-padding-balance = true
+# Remove all window padding
+window-padding-x = 0
+window-padding-y = 0
 shell-integration-features = ssh-env
 # Do not display a notification badge when the bell is triggered
 bell-features = no-attention
