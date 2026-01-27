@@ -2,9 +2,8 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    -- Hide native mode/command display (lualine handles these)
+    -- Hide native mode display (lualine handles it)
     vim.opt.showmode = false
-    vim.opt.cmdheight = 0
 
     require("lualine").setup({
       options = {
