@@ -73,16 +73,17 @@ return {
         -- Text object
         map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', {desc="Select hunk"})
 
-        -- Close blame window with 'q'
-        -- This needs to be set when the blame window opens, or globally for the filetype
-        -- Since gitsigns blame window has filetype 'gitsigns-blame', we can use an autocmd
-        vim.api.nvim_create_autocmd("FileType", {
-          pattern = "gitsigns-blame",
-          callback = function(event)
-            vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = event.buf, silent = true, desc = "Close blame window" })
-          end,
-        })
       end
+    })
+
+    -- Close blame window with 'q'
+    -- Since gitsigns blame window has filetype 'gitsigns-blame', we use an autocmd
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("GitsignsBlameClose", { clear = true }),
+      pattern = "gitsigns-blame",
+      callback = function(event)
+        vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = event.buf, silent = true, desc = "Close blame window" })
+      end,
     })
   end,
 }
