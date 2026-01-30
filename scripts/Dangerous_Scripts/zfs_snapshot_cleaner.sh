@@ -46,7 +46,7 @@ case $input in
         zfs list -H -o name -t snapshot -r "$1" | while IFS= read -r snap; do zfs destroy -v -- "$snap"; done
         ;;
     *)
-    echo "Cowardly refusing to proceed any further!"
-    exit 1
-    ;;
+        echo "Cowardly refusing to proceed any further!"
+        exit 1
+        ;;
 esac
