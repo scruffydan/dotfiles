@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -eu
 
 # Deletes ALL ZFS snapshots recursively from the specified pool or dataset
 # Examples:
@@ -11,6 +12,14 @@ if [ -z "${1:-}" ]; then
     echo "Usage: $(basename "$0") <pool_name|dataset>"
     exit 1
 fi
+
+# Validate input contains only valid ZFS name characters
+case "$1" in
+    *[!a-zA-Z0-9/_:-]*)
+        echo "Error: Invalid characters in pool/dataset name"
+        exit 1
+        ;;
+esac
 
 # Verify pool or dataset exists
 if ! zfs list -H "$1" >/dev/null 2>&1; then
