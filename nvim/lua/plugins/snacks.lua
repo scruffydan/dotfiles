@@ -205,35 +205,27 @@ return {
           layout = { preset = "select" },
           confirm = function(picker, item)
             picker:close()
-            if item then
-              vim.bo.filetype = item.text
-              vim.notify("Filetype set to: " .. item.text, vim.log.levels.INFO)
-            end
+            if not item then return end
+            vim.bo.filetype = item.text
+            vim.notify("Filetype set to: " .. item.text, vim.log.levels.INFO)
           end,
         },
 
         -- Detach LSP clients from current buffer
         lsp_clients = {
           finder = function()
-            local clients = vim.lsp.get_clients({ bufnr = 0 })
-            local items = {}
-            for _, client in ipairs(clients) do
-              table.insert(items, {
-                text = client.name,
-                client_id = client.id,
-              })
-            end
-            return items
+            return vim.tbl_map(function(client)
+              return { text = client.name, client_id = client.id }
+            end, vim.lsp.get_clients({ bufnr = 0 }))
           end,
           format = "text",
           preview = "none",
           layout = { preset = "select" },
           confirm = function(picker, item)
             picker:close()
-            if item then
-              vim.lsp.buf_detach_client(0, item.client_id)
-              vim.notify("Detached LSP: " .. item.text, vim.log.levels.INFO)
-            end
+            if not item then return end
+            vim.lsp.buf_detach_client(0, item.client_id)
+            vim.notify("Detached LSP: " .. item.text, vim.log.levels.INFO)
           end,
         },
       },
