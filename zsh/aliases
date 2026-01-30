@@ -29,16 +29,12 @@ alias brewup="brew update && brew upgrade"
 # Display all installed brew packages and their dependencies
 brewdeps() {
   echo "$fg[cyan]== Formulas ==$fg[white]"
-  brew list --formula | while read -r pkg; do
-    echo -n "$fg[green] $pkg $fg[white]"
-    brew deps "$pkg" 2>/dev/null | awk '{printf(" %s ", $0)}'
-    echo ""
+  brew deps --installed 2>/dev/null | while IFS=: read -r pkg deps; do
+    echo "$fg[green] $pkg $fg[white]$deps"
   done
   echo "\n$fg[cyan]== Casks ==$fg[white]"
-  brew list --cask | while read -r pkg; do
-    echo -n "$fg[green] $pkg $fg[white]"
-    brew deps --cask "$pkg" 2>/dev/null | awk '{printf(" %s ", $0)}'
-    echo ""
+  brew list --cask 2>/dev/null | while read -r pkg; do
+    echo "$fg[green] $pkg $fg[white](no deps)"
   done
 }
 
