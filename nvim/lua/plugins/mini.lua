@@ -1,5 +1,5 @@
 return {
-  "nvim-mini/mini.nvim",
+  "nvim-mini/mini.surround",
   version = "*",
   event = { "InsertEnter", "LspAttach" },
   config = function()
