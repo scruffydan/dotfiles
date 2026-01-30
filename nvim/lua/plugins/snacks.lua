@@ -221,7 +221,6 @@ return {
               table.insert(items, {
                 text = client.name,
                 client_id = client.id,
-                client_name = client.name,
               })
             end
             return items
@@ -233,7 +232,7 @@ return {
             picker:close()
             if item then
               vim.lsp.buf_detach_client(0, item.client_id)
-              vim.notify("Detached LSP: " .. item.client_name, vim.log.levels.INFO)
+              vim.notify("Detached LSP: " .. item.text, vim.log.levels.INFO)
             end
           end,
         },
