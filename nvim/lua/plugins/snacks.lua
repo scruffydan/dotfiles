@@ -5,6 +5,18 @@ local function existing_dirs(dirs)
   end, dirs)
 end
 
+-- Get all subdirectories of a given path
+local function get_subdirs(path)
+  local expanded = vim.fn.expand(path)
+  local dirs = {}
+  for name, type in vim.fs.dir(expanded) do
+    if type == "directory" then
+      table.insert(dirs, expanded .. "/" .. name)
+    end
+  end
+  return dirs
+end
+
 -- Get all available filetypes for picker
 local function get_filetype_items()
   local filetypes = vim.fn.getcompletion("", "filetype")
@@ -13,6 +25,27 @@ local function get_filetype_items()
     table.insert(items, { text = ft })
   end
   return items
+end
+
+local indent_exclude = {
+  help = true,
+  dashboard = true,
+  lazy = true,
+  mason = true,
+  oil = true,
+}
+
+local mark_priorities = {
+  ["'"] = 1, ['"'] = 2,
+  ["."] = 5, ["<"] = 6, [">"] = 7, ["^"] = 8,
+}
+
+local function get_mark_priority(label)
+  return mark_priorities[label]
+    or (label:match("^[a-z]$") and 3)
+    or (label:match("^[A-Z]$") and 4)
+    or (label:match("^[0-9]$") and 9)
+    or 10
 end
 
 return {
@@ -37,12 +70,10 @@ return {
         hl = "SnacksIndentScope",
       },
       filter = function(buf)
-        local exclude = { "help", "dashboard", "lazy", "mason", "oil" }
-        local ft = vim.bo[buf].filetype
         return vim.g.snacks_indent ~= false
           and vim.b[buf].snacks_indent ~= false
           and vim.bo[buf].buftype == ""
-          and not vim.tbl_contains(exclude, ft)
+          and not indent_exclude[vim.bo[buf].filetype]
       end,
     },
     picker = {
@@ -79,13 +110,15 @@ return {
         },
 
         projects = {
-          dev = existing_dirs({ "~/Code" }),
-          projects = existing_dirs({
-            "~/dotfiles",
-            "~/Desktop",
-            "~/Documents",
-            "~/Downloads",
-          }),
+          projects = vim.list_extend(
+            get_subdirs("~/Code"),
+            existing_dirs({
+              "~/dotfiles",
+              "~/Desktop",
+              "~/Documents",
+              "~/Downloads",
+            })
+          ),
           transform = "unique_file",
         },
 
@@ -110,45 +143,20 @@ return {
         },
 
         marks = {
-          -- Custom sort function for marks picker
-          -- Order: ' " a-z A-Z . < > ^ 0-9 (everything else)
-          sort = function(a, b)
-            -- Assign priority based on mark type
-            local function mark_priority(label)
-              -- Special marks for cursor position (highest priority)
-              if label == "'" then return 1      -- Last jump position
-              elseif label == '"' then return 2  -- Last exit position
+          -- Custom sort function: Group marks by type, then sort alphabetically
+          sort = function(mark_a, mark_b)
+            -- 1. Sort by Priority (Type)
+            -- Lower score = higher priority (e.g., cursor marks appear first)
+            local priority_a = get_mark_priority(mark_a.label)
+            local priority_b = get_mark_priority(mark_b.label)
 
-              -- User-defined buffer-local marks
-              elseif label:match("^[a-z]$") then return 3
-
-              -- User-defined global marks
-              elseif label:match("^[A-Z]$") then return 4
-
-              -- Special auto-set marks
-              elseif label == "." then return 5  -- Last change
-              elseif label == "<" then return 6  -- Visual selection start
-              elseif label == ">" then return 7  -- Visual selection end
-              elseif label == "^" then return 8  -- Last insert position
-
-              -- Jump history (file positions from previous Vim sessions)
-              elseif label:match("^[0-9]$") then return 9  -- 0-9 exit positions
-
-              -- Any other marks (lowest priority)
-              else return 10
-              end
-            end
-
-            local priority_a = mark_priority(a.label)
-            local priority_b = mark_priority(b.label)
-
-            -- Sort by priority first
             if priority_a ~= priority_b then
               return priority_a < priority_b
             end
 
-            -- Within same priority group, sort alphabetically/numerically
-            return a.label < b.label
+            -- 2. Tie-breaker: Sort Alphabetically
+            -- If types are the same (e.g. both are global marks 'A' and 'B')
+            return mark_a.label < mark_b.label
           end,
         },
 
