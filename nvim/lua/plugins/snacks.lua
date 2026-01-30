@@ -17,16 +17,6 @@ local function get_subdirs(path)
   return dirs
 end
 
--- Get all available filetypes for picker
-local function get_filetype_items()
-  local filetypes = vim.fn.getcompletion("", "filetype")
-  local items = {}
-  for _, ft in ipairs(filetypes) do
-    table.insert(items, { text = ft })
-  end
-  return items
-end
-
 local indent_exclude = {
   help = true,
   dashboard = true,
@@ -35,6 +25,9 @@ local indent_exclude = {
   oil = true,
 }
 
+-- Mark priority for picker sorting: lower = appears first
+-- 1-2: cursor marks (' "), 3: local (a-z), 4: global (A-Z),
+-- 5-8: special (. < > ^), 9: numbered (0-9), 10: other
 local mark_priorities = {
   ["'"] = 1, ['"'] = 2,
   ["."] = 5, ["<"] = 6, [">"] = 7, ["^"] = 8,
@@ -55,7 +48,7 @@ return {
   opts = {
     notifier = {
       enabled = true,
-      timeout = 3000,
+      timeout = 3000, -- ms
       style = "compact",
     },
     gitbrowse = {
@@ -120,6 +113,22 @@ return {
             })
           ),
           transform = "unique_file",
+          -- Custom format to show ~/path instead of ⋮reponame
+          format = function(item, picker)
+            local path = item.file or item.text
+            local name = vim.fn.fnamemodify(path, ":t")
+            local dir = vim.fn.fnamemodify(path, ":h")
+            local home = vim.fn.expand("~")
+            if dir:find(home, 1, true) == 1 then
+              dir = "~" .. dir:sub(#home + 1)
+            end
+            local icon = picker.opts.icons.files.dir or ""
+            return {
+              { icon, "Directory" },
+              { name .. " ", "SnacksPickerFile" },
+              { dir, "SnacksPickerDir" },
+            }
+          end,
         },
 
         spelling = {
@@ -185,7 +194,12 @@ return {
 
         -- Set buffer filetype from available filetypes
         filetype = {
-          items = get_filetype_items(),
+          -- Deferred to avoid vim.fn.getcompletion() at startup
+          finder = function()
+            return vim.tbl_map(function(ft)
+              return { text = ft }
+            end, vim.fn.getcompletion("", "filetype"))
+          end,
           format = "text",
           preview = "none",
           layout = { preset = "select" },
@@ -228,8 +242,8 @@ return {
     bigfile = {
       size = 1024 * 1024, -- 1MB
     },
-    input = {},
-    image = {},
+    input = {}, -- Enable with defaults
+    image = {}, -- Enable with defaults
     statuscolumn = {
       left = { "sign" }, -- Show diagnostic/other signs
       right = { "fold", "git" }, -- Git signs on right
