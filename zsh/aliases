@@ -57,8 +57,6 @@ bsdup() {
 
 }
 portup() {
-#    sudo portsnap fetch update
-
     echo "\e[1;32m[Updating Packages on Base System]:\e[0m"
     sudo pkg upgrade -y
     sudo pkg autoremove -y

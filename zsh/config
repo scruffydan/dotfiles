@@ -163,7 +163,7 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt HIST_FIND_NO_DUPS
-setopt share_history
+setopt SHARE_HISTORY
 
 # Enable Vi Bindings
 bindkey -v
