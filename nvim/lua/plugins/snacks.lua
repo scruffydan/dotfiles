@@ -103,16 +103,21 @@ return {
         },
 
         projects = {
-          projects = vim.list_extend(
-            get_subdirs("~/Code"),
-            existing_dirs({
-              "~/dotfiles",
-              "~/Desktop",
-              "~/Documents",
-              "~/Downloads",
-            })
-          ),
-          transform = "unique_file",
+          -- Use finder to defer filesystem I/O until picker opens
+          finder = function()
+            local dirs = vim.list_extend(
+              get_subdirs("~/Code"),
+              existing_dirs({
+                "~/dotfiles",
+                "~/Desktop",
+                "~/Documents",
+                "~/Downloads",
+              })
+            )
+            return vim.tbl_map(function(dir)
+              return { file = dir, text = dir }
+            end, dirs)
+          end,
           -- Custom format to show ~/path instead of ⋮reponame
           format = function(item, picker)
             local path = item.file or item.text
