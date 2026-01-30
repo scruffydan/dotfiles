@@ -15,6 +15,7 @@ return {
         max_lines = 3,
         min_window_height = 20,
         multiline_threshold = 1,
+        separator = "-",
       },
       keys = {
         {
