@@ -450,13 +450,13 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 | `<leader>gg` | Open Neogit (file explorer with inline diffs, press `<tab>` to expand files) |
 | `<leader>gp` | Git pull |
 | `<leader>gs` | Git status picker |
-| `<leader>gb` | Git branches picker |
+| `<leader>gB` | Git branches picker |
 | `<leader>gl` | Git log |
 | `<leader>gL` | Git log (line) |
 | `<leader>gf` | Git log (file) |
 | `<leader>gd` | Git diff hunks picker |
 | `<leader>gS` | Git stash picker |
-| `<leader>gB` | Git blame |
+| `<leader>gb` | Git blame |
 | `<leader>go` | Open in browser (GitHub) |
 | `<leader>ghi` | GitHub issues |
 | `<leader>ghp` | GitHub PRs |

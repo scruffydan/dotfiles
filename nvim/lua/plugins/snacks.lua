@@ -303,7 +303,7 @@ return {
     { "<leader>sw", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
 
     -- Git
-    { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git branches" },
+    { "<leader>gB", function() Snacks.picker.git_branches() end, desc = "Git branches" },
     { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git diff" },
     { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git log (file)" },
     { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git log" },

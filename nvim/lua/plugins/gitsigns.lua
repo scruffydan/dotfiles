@@ -51,7 +51,7 @@ return {
 
         -- Actions
         map('n', '<leader>hh', gs.preview_hunk, {desc="Preview hunk"})
-        map('n', '<leader>gB', gs.blame, {desc="Git blame"})
+        map('n', '<leader>gb', gs.blame, {desc="Git blame"})
 
         -- Stage/reset hunks
         map('n', '<leader>hs', gs.stage_hunk, {desc="Stage hunk"})
