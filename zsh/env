@@ -9,5 +9,6 @@ export PATH
 # May be required on FreeBSD or minimal server environments
 #export LANG=en_US.UTF-8
 
-# Set default editor to nvim, fallback to vim
-export EDITOR="$(command -v nvim || command -v vim || echo vi)"
+# Set default editor to nvim, fallback to vim, then vi
+# Uses zsh's $commands hash to avoid subshell overhead
+export EDITOR="${commands[nvim]:-${commands[vim]:-vi}}"
