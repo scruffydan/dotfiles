@@ -103,17 +103,25 @@ return {
         },
 
         projects = {
-          dev = { "~/Code" },
-          recent = true,
+          dev = { "~/Code" }, -- Scan ~/Code subdirs for projects
+          recent = true, -- Track recently opened git repos
           finder = function(opts, ctx)
             local default_finder = require("snacks.picker.source.recent").projects(opts, ctx)
-            local extra_dirs = existing_dirs({ "~/dotfiles", "~/Desktop", "~/Documents", "~/Downloads" })
+            local extra_dirs = existing_dirs({
+              "~/dotfiles",
+              "~/Desktop",
+              "~/Documents",
+              "~/Downloads",
+            })
+            -- Track seen paths to avoid duplicates
             local seen = {}
             return function(cb)
+              -- Yield default items (git repos) and mark as seen
               default_finder(function(item)
                 seen[item.file or item.text] = true
                 cb(item)
               end)
+              -- Yield extra dirs only if not already included
               for _, dir in ipairs(extra_dirs) do
                 if not seen[dir] then cb({ file = dir, text = dir, dir = true }) end
               end
