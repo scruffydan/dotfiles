@@ -103,36 +103,21 @@ return {
         },
 
         projects = {
-          -- Use finder to defer filesystem I/O until picker opens
-          finder = function()
-            local dirs = vim.list_extend(
-              get_subdirs("~/Code"),
-              existing_dirs({
-                "~/dotfiles",
-                "~/Desktop",
-                "~/Documents",
-                "~/Downloads",
-              })
-            )
-            return vim.tbl_map(function(dir)
-              return { file = dir, text = dir }
-            end, dirs)
-          end,
-          -- Custom format to show ~/path instead of ⋮reponame
-          format = function(item, picker)
-            local path = item.file or item.text
-            local name = vim.fn.fnamemodify(path, ":t")
-            local dir = vim.fn.fnamemodify(path, ":h")
-            local home = vim.fn.expand("~")
-            if dir:find(home, 1, true) == 1 then
-              dir = "~" .. dir:sub(#home + 1)
+          dev = { "~/Code" },
+          recent = true,
+          finder = function(opts, ctx)
+            local default_finder = require("snacks.picker.source.recent").projects(opts, ctx)
+            local extra_dirs = existing_dirs({ "~/dotfiles", "~/Desktop", "~/Documents", "~/Downloads" })
+            local seen = {}
+            return function(cb)
+              default_finder(function(item)
+                seen[item.file or item.text] = true
+                cb(item)
+              end)
+              for _, dir in ipairs(extra_dirs) do
+                if not seen[dir] then cb({ file = dir, text = dir, dir = true }) end
+              end
             end
-            local icon = picker.opts.icons.files.dir or ""
-            return {
-              { icon, "Directory" },
-              { name .. " ", "SnacksPickerFile" },
-              { dir, "SnacksPickerDir" },
-            }
           end,
         },
 
