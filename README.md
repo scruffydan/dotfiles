@@ -259,6 +259,8 @@ Leader key is `<Space>`.
 | `<leader>fh` | Recent files |
 | `<leader>fm` | Man pages |
 | `<leader>fp` | Projects |
+| `<leader>fP` | Pickers (list all) |
+| `<leader>fr` | Resume last picker |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
 
 **Picker Actions** (available in file-based pickers):
@@ -351,10 +353,8 @@ Trouble provides a pretty list for diagnostics, references, quickfix, and locati
 | `<leader>sk` | Keymaps |
 | `<leader>sm` | Marks |
 | `<leader>sn` | Notification history |
-| `<leader>sp` | Pickers (list all) |
 | `<leader>sq` | Quickfix list |
 | `<leader>sr` | Registers |
-| `<leader>sR` | Resume last picker |
 | `<leader>ss` | Treesitter symbols |
 | `<leader>su` | Undo history |
 | `<leader>sw` | Spell suggestions |
