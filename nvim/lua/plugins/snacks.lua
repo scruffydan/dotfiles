@@ -103,16 +103,17 @@ return {
         },
 
         projects = {
-          dev = { "~/Code" }, -- Scan ~/Code subdirs for projects
-          recent = true, -- Track recently opened git repos
+          dev = { "~/Code" },
+          recent = true,
           finder = function(opts, ctx)
             local default_finder = require("snacks.picker.source.recent").projects(opts, ctx)
-            local extra_dirs = existing_dirs({
+            -- Expand paths so deduplication works (default finder returns expanded paths)
+            local extra_dirs = vim.tbl_map(vim.fn.expand, existing_dirs({
               "~/dotfiles",
               "~/Desktop",
               "~/Documents",
               "~/Downloads",
-            })
+            }))
             -- Track seen paths to avoid duplicates
             local seen = {}
             return function(cb)
