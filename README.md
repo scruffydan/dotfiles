@@ -247,20 +247,28 @@ Leader key is `<Space>`.
 | `<M-h>` | Toggle hidden files (in Oil) |
 | `<leader>cd` | Change CWD to current directory (works globally and in Oil) |
 
-### Pickers (Snacks) - Workspace
+### Pickers - Find
 
 | Keymap | Action |
 |--------|--------|
 | `<leader><space>` | Smart find files (buffers + recent + files) |
 | `<leader>e` | File explorer (Snacks) |
+| `<leader>fc` | Commands |
+| `<leader>fC` | Command history |
 | `<leader>fd` | Diagnostics (workspace) |
 | `<leader>ff` | Find files |
 | `<leader>fg` | Live grep |
 | `<leader>fh` | Recent files |
-| `<leader>fm` | Man pages |
+| `<leader>fH` | Help tags |
+| `<leader>fj` | Jump list |
+| `<leader>fk` | Keymaps |
+| `<leader>fm` | Marks |
+| `<leader>fM` | Man pages |
 | `<leader>fp` | Projects |
 | `<leader>fP` | Pickers (list all) |
-| `<leader>fr` | Resume last picker |
+| `<leader>fq` | Quickfix list |
+| `<leader>fr` | Registers |
+| `<leader>fR` | Resume last picker |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
 
 **Picker Actions** (available in file-based pickers):
@@ -337,25 +345,17 @@ Trouble provides a pretty list for diagnostics, references, quickfix, and locati
 | `zo`/`zc` | Open/close fold |
 | `zM`/`zR` | Close/open all folds |
 
-### Search (Snacks) - Current/Open Buffers
+### Search - Buffer/Local
 
 | Keymap | Action |
 |--------|--------|
 | `<leader>sb` | Buffers |
-| `<leader>sc` | Commands |
-| `<leader>sC` | Command history |
 | `<leader>sd` | Diagnostics (buffer) |
 | `<leader>sf` | Set filetype |
 | `<leader>sg` | Grep buffer |
 | `<leader>sG` | Grep open buffers |
-| `<leader>sh` | Help tags |
-| `<leader>sj` | Jump list |
-| `<leader>sk` | Keymaps |
-| `<leader>sm` | Marks |
 | `<leader>sn` | Notification history |
-| `<leader>sq` | Quickfix list |
-| `<leader>sr` | Registers |
-| `<leader>ss` | Treesitter symbols |
+| `<leader>st` | Treesitter symbols |
 | `<leader>su` | Undo history |
 | `<leader>sw` | Spell suggestions |
 
