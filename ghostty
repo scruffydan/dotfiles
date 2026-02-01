@@ -42,7 +42,7 @@ font-thicken = true
 window-height = 47
 window-width = 110
 # Resize the window in discrete increments aligning with text cells
-window-step-resize = true
+window-step-resize = false
 # Balance extra padding on all sides when window doesn't align to cell grid
 window-padding-balance = true
 # Remove all window padding
