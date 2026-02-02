@@ -32,10 +32,6 @@ brewdeps() {
   brew deps --installed 2>/dev/null | while IFS=: read -r pkg deps; do
     echo "$fg[green] $pkg $fg[white]$deps"
   done
-  echo "\n$fg[cyan]== Casks ==$fg[white]"
-  brew list --cask 2>/dev/null | while read -r pkg; do
-    echo "$fg[green] $pkg $fg[white](no deps)"
-  done
 }
 
 # FreeBSD
