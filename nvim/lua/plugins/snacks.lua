@@ -1,22 +1,3 @@
--- Filter directories to only those that exist
-local function existing_dirs(dirs)
-  return vim.tbl_filter(function(dir)
-    return vim.fn.isdirectory(vim.fn.expand(dir)) == 1
-  end, dirs)
-end
-
--- Get all subdirectories of a given path
-local function get_subdirs(path)
-  local expanded = vim.fn.expand(path)
-  local dirs = {}
-  for name, type in vim.fs.dir(expanded) do
-    if type == "directory" then
-      table.insert(dirs, expanded .. "/" .. name)
-    end
-  end
-  return dirs
-end
-
 local indent_exclude = {
   help = true,
   dashboard = true,
@@ -103,28 +84,45 @@ return {
         },
 
         projects = {
-          dev = { "~/Code" },
+          dev = {},
           recent = true,
           finder = function(opts, ctx)
             local default_finder = require("snacks.picker.source.recent").projects(opts, ctx)
-            -- Expand paths so deduplication works (default finder returns expanded paths)
-            local extra_dirs = vim.tbl_map(vim.fn.expand, existing_dirs({
-              "~/dotfiles",
-              "~/Desktop",
-              "~/Documents",
-              "~/Downloads",
-            }))
-            -- Track seen paths to avoid duplicates
-            local seen = {}
+
+            -- Expand paths BEFORE entering async context (vim.fn.* not allowed there)
+            local home = vim.fn.expand("~")
+            local extra_dirs = {
+              home .. "/dotfiles",
+              home .. "/Desktop",
+              home .. "/Documents",
+              home .. "/Downloads",
+            }
+            local code = home .. "/Code"
+            if vim.fn.isdirectory(code) == 1 then
+              for name, type in vim.fs.dir(code) do
+                if type == "directory" then
+                  table.insert(extra_dirs, code .. "/" .. name)
+                end
+              end
+            end
+            -- Filter to existing directories only
+            extra_dirs = vim.tbl_filter(function(dir)
+              return vim.fn.isdirectory(dir) == 1
+            end, extra_dirs)
+
             return function(cb)
-              -- Yield default items (git repos) and mark as seen
+              local seen = {}
+              -- 1. Yield recent projects (and mark as seen)
               default_finder(function(item)
-                seen[item.file or item.text] = true
+                if item.file then seen[item.file] = true end
                 cb(item)
               end)
-              -- Yield extra dirs only if not already included
-              for _, dir in ipairs(extra_dirs) do
-                if not seen[dir] then cb({ file = dir, text = dir, dir = true }) end
+              -- 2. Yield extra dirs if not already seen
+              for _, path in ipairs(extra_dirs) do
+                if not seen[path] then
+                  seen[path] = true
+                  cb({ file = path, text = path, dir = true })
+                end
               end
             end
           end,
