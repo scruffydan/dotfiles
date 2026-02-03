@@ -86,42 +86,39 @@ return {
         projects = {
           dev = {},
           recent = true,
-          finder = function(opts, ctx)
-            local default_finder = require("snacks.picker.source.recent").projects(opts, ctx)
-
-            -- Expand paths BEFORE entering async context (vim.fn.* not allowed there)
-            local home = vim.fn.expand("~")
-            local extra_dirs = {
-              home .. "/dotfiles",
-              home .. "/Desktop",
-              home .. "/Documents",
-              home .. "/Downloads",
+          format = function(item)
+            local path = (item.file or item.text):gsub("^" .. vim.env.HOME, "~")
+            local icon, hl = Snacks.util.icon(path, "directory")
+            return {
+              { Snacks.picker.util.align(icon, 2), hl, virtual = true },
+              { vim.fn.fnamemodify(path, ":t"), "SnacksPickerDirectory" },
+              { " " },
+              { vim.fn.fnamemodify(path, ":h"), "SnacksPickerDir" },
             }
-            local code = home .. "/Code"
-            if vim.fn.isdirectory(code) == 1 then
-              for name, type in vim.fs.dir(code) do
-                if type == "directory" then
-                  table.insert(extra_dirs, code .. "/" .. name)
-                end
-              end
+          end,
+          finder = function(opts, ctx)
+            local home = vim.env.HOME
+            local dirs = { 
+              home .. "/dotfiles", 
+              home .. "/Desktop", 
+              home .. "/Documents", 
+              home .. "/Downloads" }
+            for name, type in vim.fs.dir(
+              home .. "/Code"
+            ) do
+              if type == "directory" then dirs[#dirs + 1] = home .. "/Code/" .. name end
             end
-            -- Filter to existing directories only
-            extra_dirs = vim.tbl_filter(function(dir)
-              return vim.fn.isdirectory(dir) == 1
-            end, extra_dirs)
 
+            local recent = require("snacks.picker.source.recent").projects(opts, ctx)
             return function(cb)
               local seen = {}
-              -- 1. Yield recent projects (and mark as seen)
-              default_finder(function(item)
-                if item.file then seen[item.file] = true end
+              recent(function(item)
+                seen[item.file] = true
                 cb(item)
               end)
-              -- 2. Yield extra dirs if not already seen
-              for _, path in ipairs(extra_dirs) do
-                if not seen[path] then
-                  seen[path] = true
-                  cb({ file = path, text = path, dir = true })
+              for _, dir in ipairs(dirs) do
+                if not seen[dir] and vim.fn.isdirectory(dir) == 1 then
+                  cb({ file = dir, text = dir, dir = true })
                 end
               end
             end
