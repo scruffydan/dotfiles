@@ -83,6 +83,8 @@ return {
           matcher = { frecency = false, sort_empty = false }, -- Disable frecency
         },
 
+        -- Projects picker: merges recent projects with static directories
+        -- Shows ~/dotfiles, Desktop, Documents, Downloads, and all ~/Code/* subdirs
         projects = {
           dev = {},
           recent = true,
@@ -98,15 +100,17 @@ return {
           end,
           finder = function(opts, ctx)
             local home = vim.env.HOME
-            local dirs = { 
-              home .. "/dotfiles", 
-              home .. "/Desktop", 
-              home .. "/Documents", 
-              home .. "/Downloads" }
-            for name, type in vim.fs.dir(
-              home .. "/Code"
-            ) do
-              if type == "directory" then dirs[#dirs + 1] = home .. "/Code/" .. name end
+            local dirs = {
+              home .. "/dotfiles",
+              home .. "/Desktop",
+              home .. "/Documents",
+              home .. "/Downloads",
+            }
+            local code_dir = home .. "/Code"
+            for name, entry_type in vim.fs.dir(code_dir) do
+              if entry_type == "directory" then
+                dirs[#dirs + 1] = code_dir .. "/" .. name
+              end
             end
 
             local recent = require("snacks.picker.source.recent").projects(opts, ctx)
