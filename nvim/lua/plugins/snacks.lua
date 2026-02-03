@@ -98,14 +98,17 @@ return {
               { vim.fn.fnamemodify(path, ":h"), "SnacksPickerDir" },
             }
           end,
+          -- Custom finder that merges recent projects with ~/Code directories
           finder = function(opts, ctx)
             local home = vim.env.HOME
+            -- Start with common directories that should always appear
             local dirs = {
               home .. "/dotfiles",
               home .. "/Desktop",
               home .. "/Documents",
               home .. "/Downloads",
             }
+            -- Collect all subdirectories from ~/Code
             local code_dir = home .. "/Code"
             for name, entry_type in vim.fs.dir(code_dir) do
               if entry_type == "directory" then
@@ -113,13 +116,18 @@ return {
               end
             end
 
+            -- Get the built-in recent projects source
             local recent = require("snacks.picker.source.recent").projects(opts, ctx)
+            -- Return an iterator function for the picker
             return function(cb)
+              -- Track seen paths to avoid duplicates
               local seen = {}
+              -- First, yield all recent projects (these appear at the top)
               recent(function(item)
                 seen[item.file] = true
                 cb(item)
               end)
+              -- Then, yield any ~/Code directories not already in recent list
               for _, dir in ipairs(dirs) do
                 if not seen[dir] and vim.fn.isdirectory(dir) == 1 then
                   cb({ file = dir, text = dir, dir = true })
