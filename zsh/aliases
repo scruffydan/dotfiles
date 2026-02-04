@@ -23,9 +23,6 @@ alias grep="grep --color=auto"
 # macOS flush DNS
 alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;echo "DNS flushed"'
 
-# Brew
-alias brewup="brew update && brew upgrade"
-
 # Display all installed brew packages and their dependencies
 brewdeps() {
   echo "$fg[cyan]== Formulas ==$fg[white]"
