@@ -500,8 +500,8 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 |--------|--------|
 | `]f`/`[f` | Next/previous function start |
 | `]F`/`[F` | Next/previous function end |
-| `]c`/`[c` | Next/previous class start |
-| `]C`/`[C` | Next/previous class end |
+| `]]`/`[[` | Next/previous class start |
+| `][`/`[]` | Next/previous class end |
 | `]p`/`[p` | Next/previous parameter |
 | `]a`/`[a` | Next/previous attribute |
 | `]b`/`[b` | Next/previous block start |
