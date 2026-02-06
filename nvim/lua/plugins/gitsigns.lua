@@ -36,18 +36,16 @@ return {
           vim.keymap.set(mode, l, r, opts)
         end
 
-        -- Navigation
-        map('n', ']h', function()
-          if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.nav_hunk('next') end)
-          return '<Ignore>'
-        end, {expr=true, desc="Next hunk"})
-
-        map('n', '[h', function()
-          if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.nav_hunk('prev') end)
-          return '<Ignore>'
-        end, {expr=true, desc="Previous hunk"})
+        -- Navigation helper: handles diff mode fallback
+        local function hunk_nav(direction, diff_key)
+          return function()
+            if vim.wo.diff then return diff_key end
+            vim.schedule(function() gs.nav_hunk(direction) end)
+            return '<Ignore>'
+          end
+        end
+        map('n', ']h', hunk_nav('next', ']c'), {expr=true, desc="Next hunk"})
+        map('n', '[h', hunk_nav('prev', '[c'), {expr=true, desc="Previous hunk"})
 
         -- Actions
         map('n', '<leader>hh', gs.preview_hunk, {desc="Preview hunk"})
