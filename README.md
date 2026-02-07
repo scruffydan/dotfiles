@@ -335,6 +335,34 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults.
 - Navigate results with `]q`/`[q` or `:cn`/`:cp`
 - Use `:cdo s/old/new/g` to replace across all matches
 
+**Search and Replace Workflow:**
+
+```vim
+" 1. Search for pattern
+:grep "old_function" .
+
+" 2. Review matches in quickfix (use <leader>qo to open)
+" 3. Replace in all matched files
+:cfdo %s/old_function/new_function/g | update
+```
+
+**Commands:**
+
+| Command | Action |
+|---------|--------|
+| `:grep "pattern"` | Search and populate quickfix |
+| `:copen` | Open quickfix to review matches |
+| `:cdo s/old/new/g` | Replace in each quickfix item individually |
+| `:cfdo %s/old/new/g` | Replace in each file containing matches |
+| `:cfdo %s/old/new/gc` | Replace with confirmation in each file |
+| `:cfdo %s/old/new/g \| update` | Replace and save all files |
+
+**Notes:**
+- `:cdo` runs on each quickfix entry (can run multiple times per file if multiple matches)
+- `:cfdo` runs on each file once (more efficient for whole-file replacements)
+- Always use `:copen` first to review matches before bulk replacing
+- The `\| update` saves files after replacing (optional)
+
 **Configuration:**
 - Hidden files are included by default
 - `.gitignore` is respected by default (toggle with `<leader>tg`)
