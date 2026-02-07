@@ -34,6 +34,22 @@ vim.keymap.set('n', '<leader>tw', function()
   vim.notify(labels[next_mode], vim.log.levels.INFO)
 end, { desc = 'Toggle whitespace display' })
 
+-- Toggle ripgrep mode (respect gitignore vs search all)
+if vim.fn.executable("rg") == 1 then
+  vim.keymap.set('n', '<leader>tg', function()
+    local current = vim.opt.grepprg:get()
+    if current:match("%-%-no%-ignore") then
+      -- Switch to default (respects .gitignore)
+      vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
+      vim.notify("Grep: respecting .gitignore", vim.log.levels.INFO)
+    else
+      -- Switch to all files (ignores .gitignore)
+      vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --hidden --no-ignore"
+      vim.notify("Grep: searching all files (including gitignored)", vim.log.levels.INFO)
+    end
+  end, { desc = 'Toggle grep gitignore respect' })
+end
+
 -- Completion mode: "blink" | "off"
 -- Initialize to blink mode (includes copilot source when available)
 vim.g.completion_mode = vim.g.completion_mode or "blink"
