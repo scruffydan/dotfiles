@@ -318,6 +318,28 @@ Use `<Tab>` to select multiple items, then delete to remove them all at once.
 | `:cfdo {cmd}` | Execute command on each file in quickfix list (e.g., `:cfdo %s/foo/bar/g`) |
 | `:call setqflist([])` | Clear quickfix list |
 
+### Grep (ripgrep)
+
+Uses ripgrep (`rg`) as the external grep program with sensible defaults.
+
+**Basic Usage:**
+
+| Command | Action |
+|---------|--------|
+| `:grep "pattern" .` | Search for pattern in current directory |
+| `:grep "pattern" src/` | Search in specific directory |
+| `:grep! "pattern"` | Search without auto-opening first result |
+
+**Tips:**
+- Results open in the quickfix list (use `<leader>qo` to open)
+- Navigate results with `]q`/`[q` or `:cn`/`:cp`
+- Use `:cdo s/old/new/g` to replace across all matches
+
+**Configuration:**
+- Hidden files are included by default
+- `.gitignore` is respected by default (toggle with `<leader>tg`)
+- Smart case matching (case-insensitive unless uppercase used)
+
 ### Trouble
 
 Trouble provides a pretty list for diagnostics, references, quickfix, and location lists.
@@ -564,6 +586,7 @@ git mergetool          # Resolve merge conflicts using CodeDiff
 | `<leader>tc` | Toggle completion menu (blink/off) |
 | `<leader>tC` | Toggle treesitter context (sticky header) |
 | `<leader>td` | Toggle diagnostic virtual text (ghost text) |
+| `<leader>tg` | Toggle grep gitignore respect (on/off) |
 | `<leader>tgc` | Toggle Copilot ghost text |
 | `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
 | `<leader>th` | Toggle Harper grammar checker |
