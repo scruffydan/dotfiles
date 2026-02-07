@@ -49,7 +49,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
 ### Neovim Dependencies
 
 - **SauceCodePro Nerd Font** - Required for icons (same as Neovim requirement)
-- **ripgrep (rg)** - Required for snacks.nvim picker grep and grug-far.nvim search/replace
+- **ripgrep (rg)** - Required for snacks.nvim picker grep and grug-far.nvim search/replace; optional for `:grep` command (falls back to system grep if not available)
 - **fd** - Required for snacks.nvim explorer picker
 - **C compiler** (gcc/clang) - Required for treesitter parser compilation (typically pre-installed on macOS and FreeBSD)
 - **tree-sitter-cli** (0.25.0 or later) - Required for nvim-treesitter main branch
@@ -320,7 +320,7 @@ Use `<Tab>` to select multiple items, then delete to remove them all at once.
 
 ### Grep (ripgrep)
 
-Uses ripgrep (`rg`) as the external grep program with sensible defaults.
+Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls back to system `grep` if ripgrep is not installed.
 
 **Basic Usage:**
 
