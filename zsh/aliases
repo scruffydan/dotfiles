@@ -8,6 +8,7 @@ alias :q='exit'
 alias pub-ip='dig +short myip.opendns.com @resolver1.opendns.com' # Get Public IP:
 # Clean all neovim data, state, and cache (useful after plugin issues)
 nvim-clean() {
+    [[ -z "$HOME" ]] && echo "HOME is not set" && return 1
     echo "This will delete nvim data, state, cache, and lazy-lock.json"
     read -q "?Continue? (y/n) " && echo && {
         rm -rf -- "$HOME/.local/share/nvim"
