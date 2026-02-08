@@ -153,6 +153,7 @@ bindkey "^[[3~" delete-char
 # History
 export HISTSIZE=25000
 export HISTFILE=~/.history
+[[ -f "$HISTFILE" ]] && chmod 600 "$HISTFILE"
 export SAVEHIST=25000
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
