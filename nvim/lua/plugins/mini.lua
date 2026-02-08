@@ -27,5 +27,5 @@ return {
     -- Visual mode shortcuts for markdown bold/italic
     vim.keymap.set("x", "<C-b>", "saB", { remap = true, desc = "Add markdown bold" })
     vim.keymap.set("x", "<C-i>", "saI", { remap = true, desc = "Add markdown italic" })
- end,
+  end,
 }

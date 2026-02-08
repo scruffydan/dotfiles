@@ -1,5 +1,5 @@
 return {
-  'christoomey/vim-tmux-navigator',
+  "christoomey/vim-tmux-navigator",
   lazy = false,
   init = function()
     vim.g.tmux_navigator_no_wrap = 1

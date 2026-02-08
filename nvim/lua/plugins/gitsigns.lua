@@ -18,7 +18,7 @@ return {
       word_diff  = false,
       current_line_blame = false,
       preview_config = {
-        border = 'rounded',
+        border = "rounded",
       },
       diff_opts = {
         algorithm = "histogram",  -- Better diff algorithm
