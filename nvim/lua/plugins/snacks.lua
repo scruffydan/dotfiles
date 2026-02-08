@@ -198,6 +198,24 @@ return {
           current = false, -- Hide current buffer from list
         },
 
+        -- Buffer diagnostics picker at bottom
+        diagnostics_buffer = {
+          layout = {
+            preset = "bottom",
+            preview = "main",
+          },
+        },
+
+        -- LSP symbols picker with sidebar layout in document order
+        lsp_symbols = {
+          layout = {
+            preset = "sidebar",
+            layout = { position = "right" },
+          },
+          -- Disable picker sorting to preserve document order (line/column position)
+          sort = { fields = {} },
+        },
+
         -- Set buffer filetype from available filetypes
         filetype = {
           -- Deferred to avoid vim.fn.getcompletion() at startup
@@ -286,6 +304,7 @@ return {
     { "<leader>fh", function() Snacks.picker.recent() end, desc = "Recent files" },
     { "<leader>fj", function() Snacks.picker.jumps() end, desc = "Jump list" },
     { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+    { "<leader>fL", function() Snacks.picker.loclist() end, desc = "Location list" },
     { "<leader>fm", function() Snacks.picker.marks() end, desc = "Marks" },
     { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
     { "<leader>fq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
