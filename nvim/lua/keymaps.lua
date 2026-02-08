@@ -34,8 +34,12 @@ vim.keymap.set('n', '<leader>tw', function()
   vim.notify(labels[next_mode], vim.log.levels.INFO)
 end, { desc = 'Toggle whitespace display' })
 
--- Toggle ripgrep mode (respect gitignore vs search all)
+-- Configure ripgrep as grep program (if available)
 if vim.fn.executable("rg") == 1 then
+  vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
+  vim.opt.grepformat = "%f:%l:%c:%m"
+
+  -- Toggle ripgrep mode (respect gitignore vs search all)
   vim.keymap.set('n', '<leader>tG', function()
     local current = vim.opt.grepprg:get()
     if current:match("%-%-no%-ignore") then

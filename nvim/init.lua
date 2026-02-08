@@ -67,12 +67,6 @@ vim.opt.smartcase = true   -- Unless uppercase used
 vim.opt.incsearch = true   -- Incremental search
 vim.opt.hlsearch = true    -- Highlight matches
 
--- Configure ripgrep as grep program (if available)
-if vim.fn.executable("rg") == 1 then
-  vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
-  vim.opt.grepformat = "%f:%l:%c:%m"
-end
-
 -- Folding with treesitter
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
