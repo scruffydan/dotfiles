@@ -2,9 +2,8 @@
 ## Prompt ##
 ############
 # Enable colors and advanced prompt support
-autoload -U colors promptinit
+autoload -U colors
 colors
-promptinit
 
 # Updates editor information when the keymap changes.
 function zle-keymap-select() {
@@ -151,7 +150,7 @@ esac
 # Enable forward delete
 bindkey "^[[3~" delete-char
 
-#History
+# History
 export HISTSIZE=25000
 export HISTFILE=~/.history
 export SAVEHIST=25000
