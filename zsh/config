@@ -180,9 +180,15 @@ bindkey '^e' edit-command-line
 # Enable command substitution in prompts (e.g., $(vi_mode_prompt_info) gets evaluated each time)
 setopt prompt_subst
 
-# Enable Advanced Tab-completion
+# Enable Advanced Tab-completion (cached — only regenerate dump once per hour)
+# Glob qualifier: (#q) = glob qualifiers, N = nullglob, . = regular file,
+# mh+1 = modified more than 1 hour ago
 autoload -U compinit
-compinit
+if [[ -n ~/.zcompdump(#qN.mh+1) ]]; then
+  compinit
+else
+  compinit -C
+fi
 setopt completealiases
 
 # Enable Zsh spelling correction
