@@ -230,10 +230,10 @@ add-zsh-hook precmd _load_syntax_highlighting
 #####################
 ## Man page colors ##
 #####################
-export LESS_TERMCAP_mb=$'\e[1;32m' #Green
-export LESS_TERMCAP_md=$'\e[1;32m' #Green
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[0m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\e[1;31m' #Red
+export LESS_TERMCAP_mb=$'\e[1;32m' # Green
+export LESS_TERMCAP_md=$'\e[1;32m' # Green
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[0m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;31m' # Red
