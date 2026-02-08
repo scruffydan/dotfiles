@@ -374,7 +374,7 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 
 **Configuration:**
 - Hidden files are included by default
-- `.gitignore` is respected by default (toggle with `<leader>tg`)
+- `.gitignore` is respected by default (toggle with `<leader>tG`)
 - Smart case matching (case-insensitive unless uppercase used)
 
 ### Search - Buffer/Local
@@ -596,7 +596,7 @@ git mergetool          # Resolve merge conflicts using CodeDiff
 | `<leader>tc` | Toggle completion menu (blink/off) |
 | `<leader>tC` | Toggle treesitter context (sticky header) |
 | `<leader>td` | Toggle diagnostic virtual text (ghost text) |
-| `<leader>tg` | Toggle grep gitignore respect (on/off) |
+| `<leader>tG` | Toggle grep gitignore respect (on/off) |
 | `<leader>tgc` | Toggle Copilot ghost text |
 | `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
 | `<leader>th` | Toggle Harper grammar checker |

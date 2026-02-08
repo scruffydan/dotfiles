@@ -36,7 +36,7 @@ end, { desc = 'Toggle whitespace display' })
 
 -- Toggle ripgrep mode (respect gitignore vs search all)
 if vim.fn.executable("rg") == 1 then
-  vim.keymap.set('n', '<leader>tg', function()
+  vim.keymap.set('n', '<leader>tG', function()
     local current = vim.opt.grepprg:get()
     if current:match("%-%-no%-ignore") then
       -- Switch to default (respects .gitignore)
