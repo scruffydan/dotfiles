@@ -114,3 +114,9 @@ vim.keymap.set('n', '<leader>qC', function()
   vim.fn.setqflist({})
   vim.notify('Quickfix list cleared', vim.log.levels.INFO)
 end, { desc = 'Clear quickfix list' })
+
+-- Quickfix navigation
+vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
+vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
+vim.keymap.set('n', '[Q', vim.cmd.cfirst, { desc = 'First quickfix' })
+vim.keymap.set('n', ']Q', vim.cmd.clast, { desc = 'Last quickfix' })
