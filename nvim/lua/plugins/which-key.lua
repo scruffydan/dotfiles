@@ -18,7 +18,6 @@ return {
         { "<leader>S", group = "search and replace" },
         { "<leader>t", group = "toggle" },
         { "<leader>q", group = "Quickfix List" },
-        { "<leader>x", group = "trouble" },
         { "]", group = "next" },
         { "[", group = "prev" },
       },
