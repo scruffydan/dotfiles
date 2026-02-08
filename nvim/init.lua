@@ -70,7 +70,7 @@ vim.opt.hlsearch = true    -- Highlight matches
 -- Configure ripgrep as grep program (if available)
 if vim.fn.executable("rg") == 1 then
   vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
-  vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+  vim.opt.grepformat = "%f:%l:%m"
 end
 
 -- Folding with treesitter

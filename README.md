@@ -333,7 +333,8 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 **Tips:**
 - Results open in the quickfix list (use `<leader>qo` to open)
 - Navigate results with `]q`/`[q` or `:cn`/`:cp`
-- Use `:cdo s/old/new/g` to replace across all matches
+- Use `:cdo s/old/new/gc` to replace across all matches with confirmation
+- Note: grepformat is configured to navigate to line only (not exact column) for better `:cdo` compatibility
 
 **Search and Replace Workflow:**
 
@@ -342,8 +343,9 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 :grep "old_function" .
 
 " 2. Review matches in quickfix (use <leader>qo to open)
-" 3. Replace in all matched files
-:cfdo %s/old_function/new_function/g | update
+" 3. Replace in all matched files with confirmation
+:cdo s/old_function/new_function/gc
+:wa
 ```
 
 **Commands:**
@@ -352,9 +354,9 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 |---------|--------|
 | `:grep "pattern"` | Search and populate quickfix |
 | `:copen` | Open quickfix to review matches |
-| `:cdo s/old/new/g` | Replace in each quickfix item individually |
-| `:cfdo %s/old/new/g` | Replace in each file containing matches |
-| `:cfdo %s/old/new/gc` | Replace with confirmation in each file |
+| `:cdo s/old/new/gc` | Replace in each quickfix item with confirmation |
+| `:cdo s/old/new/gc \| update` | Replace in each quickfix item with confirmation and save all files |
+| `:cfdo %s/old/new/g` | Replace in each file containing matches (no confirmation) |
 | `:cfdo %s/old/new/g \| update` | Replace and save all files |
 
 **Notes:**
