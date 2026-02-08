@@ -48,4 +48,5 @@
   s = status -s
   # Add all changes (new, modified, and deleted files)
   a = add -A
+  # Aggressive garbage collection (slow — recomputes all deltas)
   g = gc --prune=now --aggressive
