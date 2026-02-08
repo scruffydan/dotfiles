@@ -304,6 +304,12 @@ Use `<Tab>` to select multiple items, then delete to remove them all at once.
 | `]Q` | Last quickfix item |
 | `[Q` | First quickfix item |
 
+**In Quickfix Window:**
+
+| Keymap | Action |
+|--------|--------|
+| `dd` | Delete item under cursor (auto-closes window if list becomes empty) |
+
 **Commands:**
 
 | Command | Action |
