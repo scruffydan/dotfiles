@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
 
     -- LSP actions (leader mappings)
-    -- Note: Snacks picker keymaps (<leader>lr, <leader>ls, etc.) are in plugins/snacks.lua
+    -- Note: Snacks picker keymaps (<leader>lr, <leader>lf, etc.) are in plugins/snacks.lua
     map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
     map("n", "<leader>lR", vim.lsp.buf.rename, "Rename symbol")
 

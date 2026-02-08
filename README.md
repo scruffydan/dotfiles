@@ -270,6 +270,7 @@ Leader key is `<Space>`.
 | `<leader>fq` | Quickfix list |
 | `<leader>fr` | Registers |
 | `<leader>fR` | Resume last picker |
+| `<leader>fs` | Workspace symbols |
 | `<leader>fw` | Grep word under cursor (or visual selection) |
 
 **Picker Actions** (available in file-based pickers):
@@ -387,6 +388,7 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 | `<leader>sg` | Grep buffer |
 | `<leader>sG` | Grep open buffers |
 | `<leader>sn` | Notification history |
+| `<leader>ss` | Document symbols (Snacks sidebar, right side, document order) |
 | `<leader>st` | Treesitter symbols |
 | `<leader>su` | Undo history |
 | `<leader>sw` | Spell suggestions |
@@ -469,8 +471,6 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 | `<leader>lo` | Outgoing calls (what this calls) |
 | `<leader>lI` | Implementations (Snacks picker) |
 | `<leader>ly` | Type definitions (Snacks picker) |
-| `<leader>ls` | Document symbols (Snacks sidebar, right side, document order) |
-| `<leader>lS` | Workspace symbols (Snacks picker) |
 | `<leader>ld` | Diagnostic float (at cursor) |
 | `[d` | Previous diagnostic |
 | `]d` | Next diagnostic |
