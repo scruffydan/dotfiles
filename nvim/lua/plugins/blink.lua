@@ -90,7 +90,15 @@ return {
     -- Command line completion
     cmdline = {
       enabled = true,
-      keymap = keymap,
+      keymap = {
+        preset = "none", -- Disable default cmdline preset to allow native up/down history
+        ['<Tab>'] = { 'show_and_insert', 'select_next' },
+        ['<S-Tab>'] = { 'select_prev' },
+        ['<C-j>'] = { 'select_next', 'fallback' },
+        ['<C-k>'] = { 'select_prev', 'fallback' },
+        ['<Up>'] = { 'fallback' },
+        ['<Down>'] = { 'fallback' },
+      },
       completion = {
         list = {
           selection = list_selection,
