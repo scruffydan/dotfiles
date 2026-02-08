@@ -2,9 +2,9 @@
 -- Provides a visual interface for reviewing git changes with split panes
 
 -- Helper function to detect main branch (main vs master)
-local function get_main_branch(prefix)
-  local main = prefix and prefix .. "/main" or "main"
-  local master = prefix and prefix .. "/master" or "master"
+local function get_main_branch(remote)
+  local main = remote and remote .. "/main" or "main"
+  local master = remote and remote .. "/master" or "master"
   vim.fn.system("git rev-parse --verify " .. main .. " 2>/dev/null")
   return vim.v.shell_error == 0 and main or master
 end

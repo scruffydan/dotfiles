@@ -65,14 +65,10 @@ return {
             end,
             color = function()
               local status = require("sidekick.status").get()
-              if status then
-                if status.kind == "Error" then
-                  return "DiagnosticError" -- red
-                elseif status.busy then
-                  return "DiagnosticWarn" -- orange
-                end
-              end
-              return "DiagnosticInfo" -- cyan (normal/ready)
+              if not status then return "DiagnosticInfo" end
+              if status.kind == "Error" then return "DiagnosticError" end
+              if status.busy then return "DiagnosticWarn" end
+              return "DiagnosticInfo"
             end,
             cond = function()
               return require("sidekick.status").get() ~= nil
@@ -89,9 +85,7 @@ return {
             cond = function()
               return #require("sidekick.status").cli() > 0
             end,
-            color = function()
-              return "Special"
-            end,
+            color = "Special",
           },
           {
             function()
