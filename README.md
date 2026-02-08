@@ -262,6 +262,7 @@ Leader key is `<Space>`.
 | `<leader>fH` | Help tags |
 | `<leader>fj` | Jump list |
 | `<leader>fk` | Keymaps |
+| `<leader>fL` | Location list |
 | `<leader>fm` | Marks |
 | `<leader>fM` | Man pages |
 | `<leader>fp` | Projects |
@@ -376,39 +377,12 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 - `.gitignore` is respected by default (toggle with `<leader>tg`)
 - Smart case matching (case-insensitive unless uppercase used)
 
-### Trouble
-
-Trouble provides a pretty list for diagnostics, references, quickfix, and location lists.
-
-| Keymap | Action |
-|--------|--------|
-| `<leader>xx` | Toggle all diagnostics |
-| `<leader>xX` | Toggle buffer diagnostics |
-| `<leader>xs` | Toggle document symbols (sidebar) |
-| `<leader>xl` | Toggle LSP definitions/references (right panel) |
-| `<leader>xL` | Toggle location list |
-| `<leader>xq` | Toggle quickfix list |
-
-**In Trouble window:**
-
-| Keymap | Action |
-|--------|--------|
-| `q` | Close |
-| `<CR>` | Jump to item |
-| `o` | Jump and close |
-| `p` | Preview |
-| `P` | Toggle auto-preview |
-| `r` | Refresh |
-| `?` | Help |
-| `zo`/`zc` | Open/close fold |
-| `zM`/`zR` | Close/open all folds |
-
 ### Search - Buffer/Local
 
 | Keymap | Action |
 |--------|--------|
 | `<leader>sb` | Buffers |
-| `<leader>sd` | Diagnostics (buffer) |
+| `<leader>sd` | Diagnostics (buffer) - bottom panel with main preview |
 | `<leader>sf` | Set filetype |
 | `<leader>sg` | Grep buffer |
 | `<leader>sG` | Grep open buffers |
@@ -495,7 +469,7 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 | `<leader>lo` | Outgoing calls (what this calls) |
 | `<leader>lI` | Implementations (Snacks picker) |
 | `<leader>ly` | Type definitions (Snacks picker) |
-| `<leader>ls` | Document symbols (Snacks picker) |
+| `<leader>ls` | Document symbols (Snacks sidebar, right side, document order) |
 | `<leader>lS` | Workspace symbols (Snacks picker) |
 | `<leader>ld` | Diagnostic float (at cursor) |
 | `[d` | Previous diagnostic |
