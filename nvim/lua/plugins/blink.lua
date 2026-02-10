@@ -5,6 +5,7 @@ local keymap = {
   ['<S-Tab>'] = { 'select_prev', 'fallback' },
   ['<C-j>'] = { 'select_next', 'fallback' },
   ['<C-k>'] = { 'select_prev', 'fallback' },
+  ['<Esc>'] = { 'cancel', 'fallback' },
 }
 
 local list_selection = {
@@ -92,12 +93,14 @@ return {
       enabled = true,
       keymap = {
         preset = "none", -- Disable default cmdline preset to allow native up/down history
+        ['<CR>'] = { 'accept', 'fallback' },
         ['<Tab>'] = { 'show_and_insert', 'select_next' },
         ['<S-Tab>'] = { 'select_prev' },
         ['<C-j>'] = { 'select_next', 'fallback' },
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<Up>'] = { 'fallback' },
         ['<Down>'] = { 'fallback' },
+        ['<Esc>'] = { 'cancel', 'fallback' },
       },
       completion = {
         list = {
