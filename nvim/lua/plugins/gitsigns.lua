@@ -74,6 +74,20 @@ return {
       end
     })
 
+    -- Global diff navigation fallback for non-git buffers
+    -- When in diff mode but gitsigns isn't attached (e.g., :diffsplit or CodeDiff with non-git files),
+    -- fall back to native vim ]c/[c navigation
+    local function global_hunk_nav(direction, diff_key)
+      return function()
+        if vim.wo.diff then
+          return diff_key
+        end
+        return "<Ignore>"
+      end
+    end
+    vim.keymap.set("n", "]h", global_hunk_nav("next", "]c"), { expr = true, desc = "Next hunk/change" })
+    vim.keymap.set("n", "[h", global_hunk_nav("prev", "[c"), { expr = true, desc = "Previous hunk/change" })
+
     -- Close blame window with 'q'
     -- Since gitsigns blame window has filetype 'gitsigns-blame', we use an autocmd
     vim.api.nvim_create_autocmd("FileType", {

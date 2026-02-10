@@ -498,7 +498,7 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 
 | Keymap | Action |
 |--------|--------|
-| `]h` / `[h` | Next/previous hunk |
+| `]h` / `[h` | Next/previous hunk (also works in diff mode for non-git files via `]c`/`[c` fallback) |
 | `<leader>hh` | Preview hunk |
 | `<leader>hs` | Stage hunk (normal); in visual: stage selection (buffer-local via gitsigns) |
 | `<leader>hr` | Reset hunk (normal); in visual: reset selection (buffer-local via gitsigns) |
