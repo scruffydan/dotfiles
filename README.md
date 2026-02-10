@@ -257,6 +257,7 @@ Leader key is `<Space>`.
 | `<leader>fC` | Command history |
 | `<leader>fd` | Diagnostics (workspace) |
 | `<leader>ff` | Find files |
+| `<leader>fn` | Notification history |
 | `<leader>fg` | Live grep |
 | `<leader>fh` | Recent files |
 | `<leader>fH` | Help tags |
@@ -387,7 +388,6 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 | `<leader>sf` | Set filetype |
 | `<leader>sg` | Grep buffer |
 | `<leader>sG` | Grep open buffers |
-| `<leader>sn` | Notification history |
 | `<leader>ss` | Document symbols (Snacks sidebar, right side, document order) |
 | `<leader>st` | Treesitter symbols |
 | `<leader>su` | Undo history |
