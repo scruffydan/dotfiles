@@ -5,7 +5,6 @@ local keymap = {
   ['<S-Tab>'] = { 'select_prev', 'fallback' },
   ['<C-j>'] = { 'select_next', 'fallback' },
   ['<C-k>'] = { 'select_prev', 'fallback' },
-  ['<Esc>'] = { 'cancel', 'fallback' },
 }
 
 local list_selection = {
@@ -100,7 +99,6 @@ return {
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<Up>'] = { 'fallback' },
         ['<Down>'] = { 'fallback' },
-        ['<Esc>'] = { 'cancel', 'fallback' },
       },
       completion = {
         list = {
