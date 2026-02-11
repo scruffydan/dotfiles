@@ -50,3 +50,12 @@
   a = add -A
   # Aggressive garbage collection (slow — recomputes all deltas)
   g = gc --prune=now --aggressive
+  # Delete local branches whose upstream is gone (after fetch -p)
+  prune-branches = "!f() { \
+    git fetch -p || exit 1; \
+    branches=$(git for-each-ref --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads | grep .); \
+    if [ -z \"$branches\" ]; then echo 'No stale branches to prune.'; exit 0; fi; \
+    echo 'Branches to prune:'; echo \"$branches\"; \
+    printf 'Delete these branches? [y/N] '; read confirm; \
+    [ \"$confirm\" = 'y' ] && echo \"$branches\" | xargs git branch -d; \
+  }; f"
