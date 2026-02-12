@@ -53,7 +53,7 @@
   # Delete local branches whose upstream is gone (after fetch -p)
   prune-branches = "!f() { \
     git fetch -p || exit 1; \
-    branches=$(git for-each-ref --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads | grep .); \
+    branches=$(git for-each-ref --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname:strip=2)%(end)' refs/heads | grep .); \
     if [ -z \"$branches\" ]; then echo 'No stale branches to prune.'; exit 0; fi; \
     echo 'Branches to prune:'; echo \"$branches\"; \
     printf 'Delete these branches? [y/N] '; read confirm; \
