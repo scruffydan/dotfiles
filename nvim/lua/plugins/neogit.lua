@@ -3,6 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "folke/snacks.nvim",
+    "esmuellert/codediff.nvim",
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
@@ -15,14 +16,7 @@ return {
       commit_editor = {
         staged_diff_split_kind = "auto",
       },
-      integrations = {
-        diffview = false,
-      },
-      mappings = {
-        popup = {
-          ["d"] = false,  -- Disable diff popup (requires diffview)
-        },
-      },
+      diff_viewer = "codediff",
     })
   end,
 }
