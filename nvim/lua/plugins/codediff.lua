@@ -33,6 +33,13 @@ return {
     diff = {
       disable_inlay_hints = true,
     },
+    highlights = {
+      -- More visible diff colors using SubMonokai palette
+      line_insert = "#2d5a27",   -- Brighter green background for added lines
+      line_delete = "#5a2727",   -- Brighter red background for deleted lines
+      char_insert = "#3d7a37",   -- Brighter green for character-level changes
+      char_delete = "#7a3737",   -- Brighter red for character-level changes
+    },
     keymaps = {
       view = {
         quit = "q",
