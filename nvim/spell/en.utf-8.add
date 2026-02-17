@@ -11,6 +11,7 @@ BitLocker
 ChatGPT
 cli
 Cloudflare
+Cloudflare
 cmd
 config
 configs
@@ -34,6 +35,7 @@ GeoComply
 GeoGuard
 ghostty
 gitsigns
+hardcoded
 hostname
 https
 IdP
@@ -88,6 +90,7 @@ SSL
 SSO
 Starlink
 submodule
+Terraform
 TLS
 tmux
 TOTP
