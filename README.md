@@ -72,6 +72,7 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 - `lua_ls` - Lua language server
 - `marksman` - Markdown language server
 - `harper_ls` - Grammar checker for comments and markdown
+- `terraformls` - Terraform language server
 - `bashls` - Bash language server (uses shellcheck for diagnostics)
 - `shellcheck` - Shell script linter (used by bashls)
 
@@ -760,4 +761,3 @@ Yanks (`y`) go to the system clipboard, while deletes (`d`, `x`, `c`) stay in in
 ## Usage
 
 This repository is managed as my personal configuration. If you're me and setting up a new machine, you know what to do. If you're not me, you probably want to look elsewhere.
-

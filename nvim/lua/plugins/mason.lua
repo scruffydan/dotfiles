@@ -27,6 +27,7 @@ return {
       "lua-language-server",
       "marksman",
       "harper-ls",
+      "terraform-ls",
       "tree-sitter-cli",
     }
 
