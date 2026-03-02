@@ -180,6 +180,7 @@ return {
       "jinja",
       "jinja_inline",
       "jq",
+      "just",
       "jsdoc",
       "json",
       "lua",
