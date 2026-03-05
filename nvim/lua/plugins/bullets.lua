@@ -22,8 +22,7 @@ return {
     -- Custom <CR> that respects blink.cmp completion selection
     vim.keymap.set("i", "<CR>", function()
       local blink_ok, blink = pcall(require, "blink.cmp")
-      -- Only accept if menu is visible AND an item is selected
-      if blink_ok and blink.is_visible() and blink.get_selected_item() then
+      if blink_ok and blink.get_selected_item() then
         blink.accept()
       else
         -- Use bullets.vim's newline behavior
