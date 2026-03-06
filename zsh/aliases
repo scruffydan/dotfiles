@@ -81,13 +81,20 @@ alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
 
 # Find and remove Homebrew casks whose .app files no longer exist
 brew-cleanup-casks() {
-  local orphaned=()
-  while IFS=$'\t' read -r cask apps; do
-    [[ -z "$apps" ]] && continue
-    local found=false
-    for app in ${(s:|:)apps}; do [[ -d "/Applications/$app" || -d "$HOME/Applications/$app" ]] && found=true && break; done
+  local line cask path app found
+  local -a orphaned apps
+  while IFS= read -r line; do
+    cask="${line%% *}"
+    apps=()
+    while IFS= read -r path; do
+      [[ "$path" == *.app ]] || continue
+      apps+=("${path:t}")
+    done < <(brew list --cask "$cask" 2>/dev/null)
+    (( ${#apps[@]} == 0 )) && continue
+    found=false
+    for app in "${apps[@]}"; do [[ -d "/Applications/$app" || -d "$HOME/Applications/$app" ]] && found=true && break; done
     [[ "$found" = false ]] && orphaned+=("$cask")
-  done < <(brew info --cask --json=v2 --installed 2>/dev/null | LC_ALL=C tr -d '\000-\037' | jq -r '.casks[] | [.token, ([.artifacts[]?.app?[]?] | join("|"))] | @tsv')
+  done < <(brew list --cask --versions 2>/dev/null)
   (( ${#orphaned[@]} == 0 )) && echo "No orphaned casks." && return
   printf "Orphaned: %s\n" "${orphaned[@]}"
   echo "" && read -q "?Remove all? " && echo && brew uninstall --cask --force "${orphaned[@]}" || echo " Skipped."
