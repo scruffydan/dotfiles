@@ -380,13 +380,19 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 - `.gitignore` is respected by default (toggle with `<leader>tG`)
 - Smart case matching (case-insensitive unless uppercase used)
 
+### Change
+
+| Keymap | Action |
+|--------|--------|
+| `<leader>cd` | Change CWD to current directory (works globally and in Oil) |
+| `<leader>cf` | Set filetype |
+
 ### Search - Buffer/Local
 
 | Keymap | Action |
 |--------|--------|
 | `<leader>sb` | Buffers |
 | `<leader>sd` | Diagnostics (buffer) - bottom panel with main preview |
-| `<leader>sf` | Set filetype |
 | `<leader>sg` | Grep buffer |
 | `<leader>sG` | Grep open buffers |
 | `<leader>ss` | Document symbols (Snacks sidebar, right side, document order) |

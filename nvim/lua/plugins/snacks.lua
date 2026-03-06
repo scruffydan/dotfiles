@@ -313,10 +313,12 @@ return {
     { "<leader>fr", function() Snacks.picker.registers() end, desc = "Registers" },
     { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Grep word", mode = { "n", "x" } },
 
+    -- Change (buffer/local)
+    { "<leader>cf", function() Snacks.picker.pick("filetype") end, desc = "Set filetype" },
+
     -- Search (buffer/local)
     { "<leader>sb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics (buffer)" },
-    { "<leader>sf", function() Snacks.picker.pick("filetype") end, desc = "Set filetype" },
     { "<leader>sg", function() Snacks.picker.lines() end, desc = "Grep buffer" },
     { "<leader>sG", function() Snacks.picker.grep_buffers() end, desc = "Grep open buffers" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
