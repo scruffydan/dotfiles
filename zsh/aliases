@@ -78,3 +78,17 @@ tmux-start() {
 # Common folders (some do a short git status check)
 alias dotfiles="cd ~/dotfiles && git status -s"
 alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
+
+# Find and remove Homebrew casks whose .app files no longer exist
+brew-cleanup-casks() {
+  local orphaned=()
+  while IFS=$'\t' read -r cask apps; do
+    [[ -z "$apps" ]] && continue
+    local found=false
+    for app in ${(s:|:)apps}; do [[ -d "/Applications/$app" || -d "$HOME/Applications/$app" ]] && found=true && break; done
+    [[ "$found" = false ]] && orphaned+=("$cask")
+  done < <(brew info --cask --json=v2 --installed 2>/dev/null | LC_ALL=C tr -d '\000-\037' | jq -r '.casks[] | [.token, ([.artifacts[]?.app?[]?] | join("|"))] | @tsv')
+  (( ${#orphaned[@]} == 0 )) && echo "No orphaned casks." && return
+  printf "Orphaned: %s\n" "${orphaned[@]}"
+  echo "" && read -q "?Remove all? " && echo && brew uninstall --cask --force "${orphaned[@]}" || echo " Skipped."
+}
