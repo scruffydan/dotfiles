@@ -28,6 +28,7 @@ for _, file in ipairs(vim.fn.readdir(plugins_dir)) do
 end
 
 require("lazy").setup(plugins, {
+  lockfile = vim.g.dotfiles_nvim .. "/lazy-lock.json",
   ui = {
     border = "rounded",
   },
