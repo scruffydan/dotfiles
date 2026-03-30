@@ -1,7 +1,16 @@
 -- Shared config for main and cmdline modes
 local keymap = {
   preset = "enter",
-  ['<Tab>'] = { 'select_next', 'fallback' },
+  ['<Tab>'] = {
+    -- Accept inline completion (copilot ghost text) before scrolling menu
+    function()
+      if vim.lsp.inline_completion.get() then
+        return true
+      end
+    end,
+    'select_next',
+    'fallback',
+  },
   ['<S-Tab>'] = { 'select_prev', 'fallback' },
   ['<C-j>'] = { 'select_next', 'fallback' },
   ['<C-k>'] = { 'select_prev', 'fallback' },
