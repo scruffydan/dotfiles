@@ -96,24 +96,23 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 ### Optional Dependencies
 
-- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). If Node.js is not installed, `copilot.vim` shows a warning and doesn't load. All other Neovim functionality works normally.
+- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). If Node.js is not installed, copilot-language-server is skipped. All other Neovim functionality works normally.
 
 ### GitHub Copilot Setup
 
-GitHub Copilot provides two features:
-- **Inline completions** - Ghost text suggestions as you type (via `copilot.vim`)
-- **NES (Next Edit Suggestions)** - Predictive multi-location edits (via `copilot-language-server`)
+GitHub Copilot provides two features, both via `copilot-language-server`:
+- **Inline completions** - Ghost text suggestions as you type (native `vim.lsp.inline_completion`)
+- **NES (Next Edit Suggestions)** - Predictive multi-location edits (via `sidekick.nvim`)
 
 **Setup steps:**
-1. Authenticate with GitHub: `:Copilot auth`
-2. Install the Copilot LSP for NES: `:MasonInstall copilot`
-3. Restart Neovim
+1. Install the Copilot LSP: `:MasonInstall copilot`
+2. Restart Neovim
+3. Authenticate with GitHub (first time only): run `:lua vim.lsp.buf_request(0, 'signIn', {}, function(_, result) print(vim.inspect(result)) end)` with copilot attached, then follow the device flow
 
 **Notes:**
-- Inline completions work immediately after step 1
-- NES requires both steps 1 and 2
+- Auth token is stored in `~/.config/github-copilot/apps.json` (shared across tools)
 - Use `<leader>tc` to toggle completion menu (blink/off)
-- Use `<leader>tgc` to toggle Copilot ghost text (inline suggestions)
+- Use `<leader>tgc` to toggle Copilot ghost text (inline suggestions, off by default)
 - Use `<leader>tgn` to toggle NES (Next Edit Suggestions)
 
 ## Tmux Keybindings
@@ -635,7 +634,7 @@ Blink.cmp provides the completion menu with sources from LSP, Copilot, snippets,
 
 **Notes:**
 - Copilot suggestions appear in the completion menu when `copilot-language-server` is installed
-- Copilot ghost text (inline suggestions) is off by default, toggle with `<leader>tgc`
+- Copilot ghost text (inline suggestions via native `vim.lsp.inline_completion`) is off by default, toggle with `<leader>tgc`
 - NES (predictive multi-location edits) is provided by sidekick.nvim
 
 ### Surround (mini.surround)
@@ -709,7 +708,7 @@ Surround text objects with brackets, quotes, tags, and more. All actions are dot
 The Tab and Shift+Tab keys have smart, context-aware behavior:
 
 **Insert Mode:**
-- `<Tab>`: Accept Copilot suggestion → Apply NES → Normal Tab
+- `<Tab>`: Accept inline completion → Apply NES → Normal Tab
 - `<S-Tab>`: Dedent (unindent) current line
 
 **Normal Mode:**
@@ -722,15 +721,14 @@ The Tab and Shift+Tab keys have smart, context-aware behavior:
 
 ### Copilot Inline Completion
 
+Uses Neovim's native `vim.lsp.inline_completion` with `copilot-language-server`. Off by default.
+
 | Keymap | Mode | Action |
 |--------|------|--------|
 | `<Tab>` | Insert | Accept full completion (or NES, or normal Tab) |
-| `<M-w>` | Insert | Accept next word only |
-| `<M-l>` | Insert | Accept next line only |
 | `<M-]>` | Insert | Next suggestion |
 | `<M-[>` | Insert | Previous suggestion |
-| `<M-Esc>` | Insert | Dismiss suggestion |
-| `<leader>ghP` | Normal | Open Copilot panel (shows up to 10 completions) |
+| `<leader>tgc` | Normal | Toggle Copilot ghost text on/off |
 
 ### Clipboard / Registers
 

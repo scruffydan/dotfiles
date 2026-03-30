@@ -40,9 +40,25 @@ local function set_lsp_enabled(enabled)
   end
 end
 
--- Enable Copilot LSP if available (provides NES via sidekick.nvim)
+-- Enable Copilot LSP if available (provides inline completion + NES via sidekick.nvim)
+-- Inline completion is off by default; toggle with <leader>tgc
 if util.copilot_available() then
   vim.lsp.enable("copilot")
+
+  -- Toggle inline completion (ghost text from copilot-language-server)
+  vim.keymap.set("n", "<leader>tgc", function()
+    local enabled = not vim.lsp.inline_completion.is_enabled()
+    vim.lsp.inline_completion.enable(enabled)
+    vim.notify("Copilot ghost text " .. (enabled and "enabled" or "disabled"), vim.log.levels.INFO)
+  end, { desc = "Toggle Copilot ghost text" })
+
+  -- Cycle between inline completion candidates
+  vim.keymap.set("i", "<M-]>", function()
+    vim.lsp.inline_completion.select({ count = 1 })
+  end, { desc = "Next inline completion" })
+  vim.keymap.set("i", "<M-[>", function()
+    vim.lsp.inline_completion.select({ count = -1 })
+  end, { desc = "Previous inline completion" })
 end
 
 -- Diagnostics configuration

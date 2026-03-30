@@ -30,7 +30,7 @@ return {
   keys = {
     -- Tab/Shift+Tab handling for smart completion and navigation
     -- Tab behavior:
-    --   Insert mode: Accept copilot.vim suggestion > Apply NES > Normal Tab
+    --   Insert mode: Accept inline completion (copilot ghost text) > Apply NES > Normal Tab
     --   Normal mode: Jump to/apply NES > Normal Tab
     --   Oil buffers: Select file/directory (oil.nvim takes over)
     -- Shift+Tab behavior:
@@ -40,11 +40,10 @@ return {
     {
       "<tab>",
       function()
-        -- In insert mode, first check for copilot.vim inline suggestion
+        -- In insert mode, first check for native inline completion (copilot ghost text)
         if vim.fn.mode() == "i" then
-          if vim.fn.exists("*copilot#GetDisplayedSuggestion") == 1
-            and vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
-            return vim.fn["copilot#Accept"]()
+          if vim.lsp.inline_completion.get() then
+            return ""
           end
         end
         -- Then check sidekick NES (works in both insert and normal mode)
@@ -56,7 +55,7 @@ return {
       end,
       expr = true,
       replace_keycodes = false,
-      desc = "Accept Copilot / Apply NES / Tab",
+      desc = "Accept inline completion / Apply NES / Tab",
       mode = { "i", "n" },
     },
     -- Shift+Tab for dedent in insert mode only (normal mode handled by oil.lua)
