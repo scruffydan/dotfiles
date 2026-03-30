@@ -90,7 +90,7 @@ vim.diagnostic.config({
 
 -- Custom LSP keymaps (beyond Neovim 0.11+ defaults)
 -- Built-in defaults: K (hover), gra (code action), grn (rename), grr (references),
---                    gri (implementation), grt (type def), gO (symbols), <C-s> (signature)
+--                    gri (implementation), grt (type def), grx (codelens), gO (symbols), <C-s> (signature)
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
   callback = function(ev)
@@ -102,8 +102,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Traditional navigation keymaps (in addition to defaults)
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-    map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-    map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
 
     -- LSP actions (leader mappings)
     -- Note: Snacks picker keymaps (<leader>lr, <leader>lf, etc.) are in plugins/snacks.lua

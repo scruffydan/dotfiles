@@ -447,9 +447,9 @@ Spell checking is enabled by default using Neovim's built-in spell checker. Harp
 
 ### LSP
 
-Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/lua/lsp.lua`.
+Neovim 0.12+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/lua/lsp.lua`.
 
-**Built-in Keymaps (Neovim 0.11+ defaults):**
+**Built-in Keymaps (Neovim 0.12+ defaults):**
 
 | Keymap | Action |
 |--------|--------|
@@ -459,6 +459,7 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 | `grr` | References |
 | `gri` | Go to implementation |
 | `grt` | Go to type definition |
+| `grx` | Run code lens |
 | `gO` | Document symbols |
 | `<C-s>` | Signature help (insert mode) |
 
@@ -468,8 +469,6 @@ Neovim 0.11+ provides built-in LSP keymaps. Custom keymaps are defined in `nvim/
 |--------|--------|
 | `gd` | Go to definition |
 | `gD` | Go to declaration |
-| `gi` | Go to implementation |
-| `gy` | Go to type definition |
 | `<leader>la` | Code action (normal and visual mode) |
 | `<leader>lc` | Detach LSP client (Snacks picker) |
 | `<leader>lR` | Rename symbol |
