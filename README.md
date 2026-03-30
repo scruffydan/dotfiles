@@ -608,6 +608,7 @@ git mergetool          # Resolve merge conflicts using CodeDiff
 | `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
 | `<leader>th` | Toggle Harper grammar checker |
 | `<leader>tl` | Toggle LSP globally |
+| `<leader>tL` | Toggle codelens (buffer, run with `grx`) |
 | `<leader>tm` | Toggle Markdown render |
 | `<leader>tv` | Toggle CSV view |
 
