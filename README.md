@@ -530,7 +530,7 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 | `ab`/`ib` | Outer/inner block |
 | `a=`/`i=` | Outer/inner assignment |
 | `ar`/`ir` | Outer/inner return statement |
-| `an`/`in` | Incremental selection (expand/shrink, built-in v0.12+) |
+| `an`/`in` | Incremental selection expand/shrink (LSP `selectionRange`, built-in 0.12+) |
 
 **Movement** (jump between text objects, works in normal, visual, and operator-pending modes):
 
