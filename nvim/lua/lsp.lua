@@ -8,53 +8,30 @@ vim.g.lsp_enabled = true
 vim.g.diagnostic_virtual_text_enabled = false
 vim.g.harper_enabled = true
 
-local function managed_lsp_configs()
-  local names = {}
-  local seen = {}
-
-  local function add(name)
-    if not name or seen[name] then
-      return
-    end
-    seen[name] = true
-    names[#names + 1] = name
-  end
-
-  if util.is_mason_supported then
-    local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-    if ok then
-      -- Toggle the same Mason-managed configs that automatic_enable would touch.
-      for _, name in ipairs(mason_lspconfig.get_installed_servers()) do
-        add(name)
-      end
-    end
-  end
-
-  if util.copilot_available() then
-    add("copilot")
-  end
-
-  table.sort(names)
-  return names
-end
-
-local function lsp_config_enabled(name)
-  -- Copilot is optional, so the global toggle should only re-enable it when
-  -- the binary is available.
-  if name == "copilot" then
-    return util.copilot_available()
-  end
-
-  return true
-end
+-- Snapshot of enabled LSP configs, used to restore after toggle off/on.
+local enabled_configs = {}
 
 local function set_lsp_enabled(enabled)
   vim.g.lsp_enabled = enabled
 
-  -- Use config-level enable/disable so Neovim starts and stops clients using
-  -- the 0.12-supported LSP lifecycle instead of manually replaying autocmds.
-  for _, name in ipairs(managed_lsp_configs()) do
-    vim.lsp.enable(name, enabled and lsp_config_enabled(name) or false)
+  if not enabled then
+    -- Snapshot currently enabled configs before disabling them.
+    enabled_configs = {}
+    for _, config in ipairs(vim.lsp.get_configs()) do
+      if vim.lsp.is_enabled(config.name) then
+        enabled_configs[config.name] = true
+        vim.lsp.enable(config.name, false)
+      end
+    end
+  else
+    -- Restore previously enabled configs.
+    for name, _ in pairs(enabled_configs) do
+      if name == "copilot" and not util.copilot_available() then
+        goto continue
+      end
+      vim.lsp.enable(name, true)
+      ::continue::
+    end
   end
 
   vim.diagnostic.enable(enabled)
