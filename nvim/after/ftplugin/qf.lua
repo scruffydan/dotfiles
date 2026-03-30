@@ -19,4 +19,4 @@ vim.keymap.set("n", "dd", function()
   else
     vim.fn.cursor(math.min(line, #qf_list), 1)
   end
-end, { buffer = true, silent = true, desc = "Delete quickfix item" })
+end, { buf = true, silent = true, desc = "Delete quickfix item" })

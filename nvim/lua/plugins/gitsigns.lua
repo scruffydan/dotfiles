@@ -32,7 +32,7 @@ return {
 
         local function map(mode, l, r, opts)
           opts = opts or {}
-          opts.buffer = bufnr
+          opts.buf = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
 
@@ -94,7 +94,7 @@ return {
       group = vim.api.nvim_create_augroup("GitsignsBlameClose", { clear = true }),
       pattern = "gitsigns-blame",
       callback = function(event)
-        vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = event.buf, silent = true, desc = "Close blame window" })
+        vim.keymap.set("n", "q", "<cmd>close<CR>", { buf = event.buf, silent = true, desc = "Close blame window" })
       end,
     })
   end,
