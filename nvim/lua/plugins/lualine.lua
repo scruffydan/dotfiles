@@ -58,7 +58,7 @@ return {
             end,
           },
           "diagnostics",
-          -- Copilot LSP status (shows when attached, color indicates state)
+          -- Copilot LSP status (shows when NES is enabled and attached, color indicates state)
           {
             function()
               return "NES"
@@ -71,7 +71,7 @@ return {
               return "DiagnosticInfo"
             end,
             cond = function()
-              return require("sidekick.status").get() ~= nil
+              return require("sidekick.nes").enabled and require("sidekick.status").get() ~= nil
             end,
           },
         },
