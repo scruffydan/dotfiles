@@ -1,14 +1,70 @@
--- LSP Configuration for Neovim 0.11+
--- Default configs from nvim-lspconfig, overrides in nvim/after/lsp/*.lua
+-- LSP Configuration for Neovim 0.12+
+-- Default configs come from nvim-lspconfig, with local overrides in nvim/lsp/*.lua
 -- Mason-installed servers are auto-enabled by mason-lspconfig
 
--- Global defaults for all LSP servers
-vim.lsp.config("*", {
-  root_markers = { ".git" },
-})
+local util = require("util")
+
+vim.g.lsp_enabled = true
+vim.g.diagnostic_virtual_text_enabled = false
+vim.g.harper_enabled = true
+
+local function managed_lsp_configs()
+  local names = {}
+  local seen = {}
+
+  local function add(name)
+    if not name or seen[name] then
+      return
+    end
+    seen[name] = true
+    names[#names + 1] = name
+  end
+
+  if util.is_mason_supported then
+    local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+    if ok then
+      -- Toggle the same Mason-managed configs that automatic_enable would touch.
+      for _, name in ipairs(mason_lspconfig.get_installed_servers()) do
+        add(name)
+      end
+    end
+  end
+
+  if util.copilot_available() then
+    add("copilot")
+  end
+
+  table.sort(names)
+  return names
+end
+
+local function lsp_config_enabled(name)
+  -- Copilot is optional, so the global toggle should only re-enable it when
+  -- the binary is available.
+  if name == "copilot" then
+    return util.copilot_available()
+  end
+
+  return true
+end
+
+local function set_lsp_enabled(enabled)
+  vim.g.lsp_enabled = enabled
+
+  -- Use config-level enable/disable so Neovim starts and stops clients using
+  -- the 0.12-supported LSP lifecycle instead of manually replaying autocmds.
+  for _, name in ipairs(managed_lsp_configs()) do
+    vim.lsp.enable(name, enabled and lsp_config_enabled(name) or false)
+  end
+
+  vim.diagnostic.enable(enabled)
+  if not enabled then
+    vim.diagnostic.reset()
+  end
+end
 
 -- Enable Copilot LSP if available (provides NES via sidekick.nvim)
-if require("util").copilot_available() then
+if util.copilot_available() then
   vim.lsp.enable("copilot")
 end
 
@@ -38,7 +94,7 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
   callback = function(ev)
-    local opts = { buffer = ev.buf }
+    local opts = { buf = ev.buf }
     local function map(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, vim.tbl_extend("force", opts, { desc = desc }))
     end
@@ -61,39 +117,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Helper function to iterate over all file buffers (excludes terminals, help, quickfix, etc.)
-local function for_each_file_buffer(callback)
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
-      callback(buf)
-    end
-  end
-end
-
 -- Toggle LSP globally
-vim.g.lsp_enabled = true
 vim.keymap.set("n", "<leader>tl", function()
-  if vim.g.lsp_enabled then
-    vim.lsp.stop_client(vim.lsp.get_clients())
-    vim.diagnostic.reset()
-    vim.g.lsp_enabled = false
-    vim.notify("LSP disabled globally", vim.log.levels.INFO)
-  else
-    vim.g.lsp_enabled = true
-    for_each_file_buffer(function(buf)
-      vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
-    end)
-    vim.defer_fn(function()
-      for_each_file_buffer(function(buf)
-        vim.api.nvim_exec_autocmds("TextChanged", { buffer = buf })
-      end)
-    end, 1000)
-    vim.notify("LSP enabled globally", vim.log.levels.INFO)
-  end
+  set_lsp_enabled(not vim.g.lsp_enabled)
+  vim.notify("LSP " .. (vim.g.lsp_enabled and "enabled" or "disabled") .. " globally", vim.log.levels.INFO)
 end, { desc = "Toggle LSP" })
 
 -- Toggle diagnostic virtual text
-vim.g.diagnostic_virtual_text_enabled = false
 vim.keymap.set("n", "<leader>td", function()
   vim.g.diagnostic_virtual_text_enabled = not vim.g.diagnostic_virtual_text_enabled
   vim.diagnostic.config({
@@ -106,9 +136,8 @@ vim.keymap.set("n", "<leader>td", function()
 end, { desc = "Toggle diagnostic virtual text" })
 
 -- Toggle Harper grammar checker
-vim.g.harper_enabled = true
 vim.keymap.set("n", "<leader>th", function()
   vim.g.harper_enabled = not vim.g.harper_enabled
-  vim.lsp.enable("harper_ls", vim.g.harper_enabled)
+  vim.lsp.enable("harper_ls", vim.g.lsp_enabled and vim.g.harper_enabled)
   vim.notify("Harper " .. (vim.g.harper_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
 end, { desc = "Toggle Harper grammar checker" })
