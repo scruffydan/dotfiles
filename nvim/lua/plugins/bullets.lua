@@ -29,6 +29,6 @@ return {
         local key = vim.api.nvim_replace_termcodes("<Plug>(bullets-newline)", true, false, true)
         vim.api.nvim_feedkeys(key, "m", false)
       end
-    end, { buf = false, desc = "Smart CR: blink accept or bullets newline" })
+    end, { desc = "Smart CR: blink accept or bullets newline" })
   end,
 }

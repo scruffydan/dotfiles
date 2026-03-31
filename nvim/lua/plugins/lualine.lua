@@ -71,7 +71,9 @@ return {
               return "DiagnosticInfo"
             end,
             cond = function()
-              return require("sidekick.nes").enabled and require("sidekick.status").get() ~= nil
+              local nes = package.loaded["sidekick.nes"]
+              local status = package.loaded["sidekick.status"]
+              return nes and nes.enabled and status and status.get() ~= nil
             end,
           },
         },
