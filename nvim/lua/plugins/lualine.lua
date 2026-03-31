@@ -57,6 +57,14 @@ return {
             end,
           },
           "diagnostics",
+          {
+            function()
+              return vim.ui.progress_status() or ""
+            end,
+            cond = function()
+              return vim.ui.progress_status() ~= nil
+            end,
+          },
           -- Copilot LSP status (shows when NES is enabled and attached, color indicates state)
           {
             function()
