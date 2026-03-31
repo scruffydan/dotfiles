@@ -24,6 +24,7 @@ vim.opt.cursorline = true  -- Highlight current line
 vim.opt.scrolloff = 8  -- Keep 8 lines visible above/below cursor
 vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
 vim.opt.signcolumn = "yes"  -- Always show signcolumn
+vim.opt.winborder = "rounded"  -- Rounded border on floating windows
 vim.opt.pumborder = "rounded"  -- Rounded border on completion popup
 
 -- GUI font for Neovide (and other GUI clients)

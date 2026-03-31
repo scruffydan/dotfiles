@@ -141,10 +141,6 @@ return {
           layout = {
             preset = "select",
           },
-          win = {
-            input = { border = "rounded" },
-            list = { border = "rounded" },
-          },
           -- Preserve spellsuggest order (sorted by likelihood)
           sort = { fields = {} },
           matcher = { sort_empty = false },

@@ -51,15 +51,11 @@ return {
     -- Enable signature help (experimental feature, disabled by default)
     signature = {
       enabled = true,
-      window = {
-        border = "rounded",
-      },
     },
 
     -- Completion menu and documentation
     completion = {
       menu = {
-        border = "rounded",
         draw = {
           columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
           components = {
@@ -75,9 +71,6 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 100,
-        window = {
-          border = "rounded",
-        },
       },
     },
 

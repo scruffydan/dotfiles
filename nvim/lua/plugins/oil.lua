@@ -17,15 +17,6 @@ return {
         { "permissions", highlight = "Comment" },
         "icon",
       },
-      float = {
-        border = "rounded",
-      },
-      confirmation = {
-        border = "rounded",
-      },
-      progress = {
-        border = "rounded",
-      },
       keymaps = {
         ["<M-h>"] = "actions.toggle_hidden", -- Alt+h (same as snacks picker)
         -- Tab/Shift+Tab behavior within oil buffers:

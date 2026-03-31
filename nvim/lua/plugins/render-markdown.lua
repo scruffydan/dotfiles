@@ -9,9 +9,6 @@ return {
     heading = {
       border = false,
     },
-    code = {
-      border = "rounded",
-    },
   },
   keys = {
     { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },

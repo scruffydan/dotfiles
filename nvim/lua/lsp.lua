@@ -76,7 +76,6 @@ vim.diagnostic.config({
   update_in_insert = false, -- Only update diagnostics after leaving insert mode
   severity_sort = true,
   float = {
-    border = "rounded",
     source = true,
   },
 })
