@@ -110,5 +110,12 @@ return {
         lualine_z = { "location" },
       },
     })
+
+    vim.api.nvim_create_autocmd({ "Progress", "LspProgress" }, {
+      group = vim.api.nvim_create_augroup("LualineProgressRefresh", { clear = true }),
+      callback = function()
+        vim.cmd.redrawstatus()
+      end,
+    })
   end,
 }
