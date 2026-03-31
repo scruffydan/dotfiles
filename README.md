@@ -96,7 +96,7 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 ### Optional Dependencies
 
-- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). If Node.js is not installed, copilot-language-server is skipped. All other Neovim functionality works normally.
+- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). Copilot support is enabled only when the `copilot-language-server` executable is available; otherwise it is skipped. All other Neovim functionality works normally.
 
 ### GitHub Copilot Setup
 
