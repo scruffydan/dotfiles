@@ -26,11 +26,6 @@ vim.opt.sidescrolloff = 8  -- Keep 8 columns visible left/right
 vim.opt.signcolumn = "yes"  -- Always show signcolumn
 vim.opt.pumborder = "rounded"  -- Rounded border on completion popup
 
--- Enable true color only if terminal supports it
-if os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit" then
-  vim.opt.termguicolors = true
-end
-
 -- GUI font for Neovide (and other GUI clients)
 vim.opt.guifont = "SauceCodePro NFM:h16"
 
@@ -84,4 +79,3 @@ require('lazy-setup')
 
 -- Load LSP configuration
 require('lsp')
-
