@@ -397,7 +397,7 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 | `<leader>ss` | Document symbols (Snacks sidebar, right side, document order) |
 | `<leader>st` | Treesitter symbols |
 | `<leader>su` | Undo history |
-| `<leader>sw` | Spell suggestions |
+| `<leader>sz` | Spell suggestions |
 
 ### Search and Replace (grug-far)
 
@@ -436,7 +436,7 @@ Spell checking is enabled by default using Neovim's built-in spell checker. Harp
 |--------|--------|
 | `<leader>ts` | Toggle spell checking on/off |
 | `<leader>th` | Toggle Harper grammar checker |
-| `<leader>sw` | Spell suggestions (Snacks picker) |
+| `<leader>sz` | Spell suggestions (Snacks picker) |
 | `z=` | Spell suggestions (classic Vim menu) |
 | `]s` | Jump to next misspelled word |
 | `[s` | Jump to previous misspelled word |
