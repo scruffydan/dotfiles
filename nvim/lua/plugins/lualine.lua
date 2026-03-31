@@ -38,7 +38,6 @@ return {
         lualine_c = {
           {
             "searchcount",
-            maxcount = 999,
             timeout = 500,
             cond = function()
               return vim.v.hlsearch ~= 0
