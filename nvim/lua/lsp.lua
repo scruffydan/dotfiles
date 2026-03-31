@@ -1,15 +1,64 @@
--- LSP Configuration for Neovim 0.11+
--- Default configs from nvim-lspconfig, overrides in nvim/after/lsp/*.lua
+-- LSP Configuration for Neovim 0.12+
+-- Default configs come from nvim-lspconfig, with local overrides in nvim/lsp/*.lua
 -- Mason-installed servers are auto-enabled by mason-lspconfig
 
--- Global defaults for all LSP servers
-vim.lsp.config("*", {
-  root_markers = { ".git" },
-})
+local util = require("util")
 
--- Enable Copilot LSP if available (provides NES via sidekick.nvim)
-if require("util").copilot_available() then
+vim.g.lsp_enabled = true
+vim.g.diagnostic_virtual_text_enabled = false
+vim.g.harper_enabled = true
+
+-- Snapshot of enabled LSP configs, used to restore after toggle off/on.
+local enabled_configs = {}
+
+local function set_lsp_enabled(enabled)
+  vim.g.lsp_enabled = enabled
+
+  if not enabled then
+    -- Snapshot currently enabled configs before disabling them.
+    enabled_configs = {}
+    for _, config in ipairs(vim.lsp.get_configs()) do
+      if vim.lsp.is_enabled(config.name) then
+        enabled_configs[config.name] = true
+        vim.lsp.enable(config.name, false)
+      end
+    end
+  else
+    -- Restore previously enabled configs.
+    for name, _ in pairs(enabled_configs) do
+      if name == "copilot" and not util.copilot_available() then
+        goto continue
+      end
+      vim.lsp.enable(name, true)
+      ::continue::
+    end
+  end
+
+  vim.diagnostic.enable(enabled)
+  if not enabled then
+    vim.diagnostic.reset()
+  end
+end
+
+-- Enable Copilot LSP if available (provides inline completion + NES via sidekick.nvim)
+-- Inline completion is off by default; toggle with <leader>tgc
+if util.copilot_available() then
   vim.lsp.enable("copilot")
+
+  -- Toggle inline completion (ghost text from copilot-language-server)
+  vim.keymap.set("n", "<leader>tgc", function()
+    local enabled = not vim.lsp.inline_completion.is_enabled()
+    vim.lsp.inline_completion.enable(enabled)
+    vim.notify("Copilot ghost text " .. (enabled and "enabled" or "disabled"), vim.log.levels.INFO)
+  end, { desc = "Toggle Copilot ghost text" })
+
+  -- Cycle between inline completion candidates
+  vim.keymap.set("i", "<M-]>", function()
+    vim.lsp.inline_completion.select({ count = 1 })
+  end, { desc = "Next inline completion" })
+  vim.keymap.set("i", "<M-[>", function()
+    vim.lsp.inline_completion.select({ count = -1 })
+  end, { desc = "Previous inline completion" })
 end
 
 -- Diagnostics configuration
@@ -34,11 +83,11 @@ vim.diagnostic.config({
 
 -- Custom LSP keymaps (beyond Neovim 0.11+ defaults)
 -- Built-in defaults: K (hover), gra (code action), grn (rename), grr (references),
---                    gri (implementation), grt (type def), gO (symbols), <C-s> (signature)
+--                    gri (implementation), grt (type def), grx (codelens), gO (symbols), <C-s> (signature)
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
   callback = function(ev)
-    local opts = { buffer = ev.buf }
+    local opts = { buf = ev.buf }
     local function map(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, vim.tbl_extend("force", opts, { desc = desc }))
     end
@@ -46,8 +95,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Traditional navigation keymaps (in addition to defaults)
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-    map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-    map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
 
     -- LSP actions (leader mappings)
     -- Note: Snacks picker keymaps (<leader>lr, <leader>lf, etc.) are in plugins/snacks.lua
@@ -61,39 +108,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Helper function to iterate over all file buffers (excludes terminals, help, quickfix, etc.)
-local function for_each_file_buffer(callback)
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
-      callback(buf)
-    end
-  end
-end
-
 -- Toggle LSP globally
-vim.g.lsp_enabled = true
 vim.keymap.set("n", "<leader>tl", function()
-  if vim.g.lsp_enabled then
-    vim.lsp.stop_client(vim.lsp.get_clients())
-    vim.diagnostic.reset()
-    vim.g.lsp_enabled = false
-    vim.notify("LSP disabled globally", vim.log.levels.INFO)
-  else
-    vim.g.lsp_enabled = true
-    for_each_file_buffer(function(buf)
-      vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
-    end)
-    vim.defer_fn(function()
-      for_each_file_buffer(function(buf)
-        vim.api.nvim_exec_autocmds("TextChanged", { buffer = buf })
-      end)
-    end, 1000)
-    vim.notify("LSP enabled globally", vim.log.levels.INFO)
-  end
+  set_lsp_enabled(not vim.g.lsp_enabled)
+  vim.notify("LSP " .. (vim.g.lsp_enabled and "enabled" or "disabled") .. " globally", vim.log.levels.INFO)
 end, { desc = "Toggle LSP" })
 
 -- Toggle diagnostic virtual text
-vim.g.diagnostic_virtual_text_enabled = false
 vim.keymap.set("n", "<leader>td", function()
   vim.g.diagnostic_virtual_text_enabled = not vim.g.diagnostic_virtual_text_enabled
   vim.diagnostic.config({
@@ -106,9 +127,15 @@ vim.keymap.set("n", "<leader>td", function()
 end, { desc = "Toggle diagnostic virtual text" })
 
 -- Toggle Harper grammar checker
-vim.g.harper_enabled = true
 vim.keymap.set("n", "<leader>th", function()
   vim.g.harper_enabled = not vim.g.harper_enabled
-  vim.lsp.enable("harper_ls", vim.g.harper_enabled)
+  vim.lsp.enable("harper_ls", vim.g.lsp_enabled and vim.g.harper_enabled)
   vim.notify("Harper " .. (vim.g.harper_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
 end, { desc = "Toggle Harper grammar checker" })
+
+-- Toggle codelens (0.12+ built-in, run with grx)
+vim.keymap.set("n", "<leader>tL", function()
+  local enabled = not vim.lsp.codelens.is_enabled({ bufnr = 0 })
+  vim.lsp.codelens.enable(enabled, { bufnr = 0 })
+  vim.notify("Codelens " .. (enabled and "enabled" or "disabled") .. " (buffer)", vim.log.levels.INFO)
+end, { desc = "Toggle codelens (buffer)" })
