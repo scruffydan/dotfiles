@@ -2,6 +2,20 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
+    local in_tmux = vim.env.TMUX ~= nil
+    local ui = vim.api.nvim_list_uis()[1]
+    -- tmux passthrough only works when Neovim is attached to a tty-backed UI.
+    local can_tmux_passthrough = in_tmux and ui and ui.stdout_tty
+
+    local function tmux_progress_send(sequence)
+      if not can_tmux_passthrough then
+        return
+      end
+
+      -- Wrap OSC 9;4 in tmux's DCS passthrough so Ghostty can see it outside tmux.
+      vim.api.nvim_ui_send("\027Ptmux;\027\027]" .. sequence .. "\007\027\\")
+    end
+
     -- Hide native mode display (lualine handles it)
     vim.opt.showmode = false
 
@@ -117,5 +131,20 @@ return {
         vim.cmd.redrawstatus()
       end,
     })
+
+    if can_tmux_passthrough then
+      vim.api.nvim_create_autocmd("Progress", {
+        group = vim.api.nvim_create_augroup("TmuxGhosttyProgress", { clear = true }),
+        desc = "Forward Neovim progress to the outer terminal through tmux",
+        callback = function(ev)
+          -- Match Neovim's builtin OSC 9;4 behavior, but send it through tmux.
+          if ev.data.status == "running" then
+            tmux_progress_send(string.format("9;4;1;%d", ev.data.percent or 0))
+          else
+            tmux_progress_send("9;4;0;0")
+          end
+        end,
+      })
+    end
   end,
 }
