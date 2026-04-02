@@ -137,8 +137,14 @@ return {
         group = vim.api.nvim_create_augroup("TmuxGhosttyProgress", { clear = true }),
         desc = "Forward Neovim progress to the outer terminal through tmux",
         callback = function(ev)
+          local status = ev.data.status
+
           -- Match Neovim's builtin OSC 9;4 behavior, but send it through tmux.
-          if ev.data.status == "running" then
+          if status == nil and ev.data.percent == nil then
+            return
+          end
+
+          if status == nil or status == "running" then
             tmux_progress_send(string.format("9;4;1;%d", ev.data.percent or 0))
           else
             tmux_progress_send("9;4;0;0")
