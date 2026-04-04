@@ -229,6 +229,37 @@ Leader key is `<Space>`.
 | `<C-w>q` | Quit current window |
 | `<C-w>T` | Move current window to new tab |
 
+### Folding
+
+**Expanding Folds**
+
+| Keymap | Action |
+|--------|--------|
+| `zo` | Open the fold under the cursor |
+| `zO` | Open all folds under the cursor recursively |
+| `zr` | Reduce folding by opening one more level throughout the buffer |
+| `zR` | Open all folds in the current buffer |
+| `zv` | Open just enough folds to make the cursor line visible |
+
+**Collapsing Folds**
+
+| Keymap | Action |
+|--------|--------|
+| `zc` | Close the fold under the cursor |
+| `zC` | Close all folds under the cursor recursively |
+| `zm` | Fold more by closing one more level throughout the buffer |
+| `zM` | Close all folds in the current buffer |
+
+**Toggle and Navigation**
+
+| Keymap | Action |
+|--------|--------|
+| `za` | Toggle the fold under the cursor |
+| `zA` | Toggle the fold under the cursor and all nested folds within it |
+| `zi` | Toggle folding on or off for the current window |
+| `zj` | Jump to the start of the next fold |
+| `zk` | Jump to the start of the previous fold |
+
 ### Tabs
 
 | Keymap | Action |
