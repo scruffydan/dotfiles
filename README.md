@@ -260,6 +260,25 @@ Leader key is `<Space>`.
 | `zj` | Jump to the start of the next fold |
 | `zk` | Jump to the start of the previous fold |
 
+### Undo/Redo
+
+| Keymap | Action |
+|--------|--------|
+| `u` | Undo latest change |
+| `<C-r>` | Redo latest undone change |
+| `g-` | Go to older text state |
+| `g+` | Go to newer text state |
+| `<leader>su` | Toggle native undo tree (`:Undotree`) |
+
+**Commands:**
+
+| Command | Action |
+|---------|--------|
+| `:earlier {count}` | Go to an older text state by count or time |
+| `:later {count}` | Go to a newer text state by count or time |
+| `:undolist` | Show undo tree leaves and change numbers |
+| `:undo {N}` | Jump to change number `N` |
+
 ### Tabs
 
 | Keymap | Action |
@@ -427,7 +446,6 @@ Uses ripgrep (`rg`) as the external grep program with sensible defaults. Falls b
 | `<leader>sG` | Grep open buffers |
 | `<leader>ss` | Document symbols (Snacks sidebar, right side, document order) |
 | `<leader>st` | Treesitter symbols |
-| `<leader>su` | Undo history |
 | `<leader>sz` | Spell suggestions |
 
 ### Search and Replace (grug-far)

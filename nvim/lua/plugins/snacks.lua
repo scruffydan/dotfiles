@@ -319,7 +319,6 @@ return {
     { "<leader>sG", function() Snacks.picker.grep_buffers() end, desc = "Grep open buffers" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Document symbols" },
     { "<leader>st", function() Snacks.picker.treesitter() end, desc = "Treesitter symbols" },
-    { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo history" },
     { "<leader>sz", function() Snacks.picker.spelling() end, desc = "Spell suggestions" },
 
     -- Git

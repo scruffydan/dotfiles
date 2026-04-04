@@ -104,6 +104,10 @@ vim.keymap.set('n', 'Y', '"+y$', { desc = 'Yank to end of line to clipboard' })
 
 -- Search
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', { silent = true, desc = 'Clear search highlights' })
+vim.keymap.set('n', '<leader>su', function()
+  vim.cmd('packadd nvim.undotree')
+  vim.cmd.Undotree()
+end, { desc = 'Undo tree' })
 
 -- Working directory
 vim.keymap.set('n', '<leader>cd', function()
