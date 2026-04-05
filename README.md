@@ -633,11 +633,12 @@ Provides syntax-aware text objects using treesitter. These work with any operato
 
 **Git Integration:**
 
-CodeDiff is also configured as the default `git difftool` and `git mergetool`:
+CodeDiff is configured inside Neovim and used by Neogit as the diff viewer.
+Git CLI difftool and mergetool use built-in `nvimdiff`:
 
 ```bash
-git difftool           # Compare files using CodeDiff
-git mergetool          # Resolve merge conflicts using CodeDiff
+git difftool           # Compare files using nvimdiff
+git mergetool          # Resolve merge conflicts using nvimdiff
 ```
 
 ### Toggles

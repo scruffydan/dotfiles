@@ -108,6 +108,16 @@ vim.keymap.set('n', '<leader>su', function()
   vim.cmd('packadd nvim.undotree')
   vim.cmd.Undotree()
 end, { desc = 'Undo tree' })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'nvim-undotree',
+  callback = function(ev)
+    vim.keymap.set('n', 'q', '<Cmd>close<CR>', {
+      buffer = ev.buf,
+      silent = true,
+      desc = 'Close undo tree',
+    })
+  end,
+})
 
 -- Working directory
 vim.keymap.set('n', '<leader>cd', function()
