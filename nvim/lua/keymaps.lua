@@ -55,7 +55,7 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- Completion mode: "blink" | "off"
--- Initialize to blink mode (includes copilot source when available)
+-- Initialize to blink mode
 vim.g.completion_mode = vim.g.completion_mode or "blink"
 
 -- Helper function to update completion states

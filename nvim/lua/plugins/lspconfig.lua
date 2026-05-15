@@ -21,12 +21,5 @@ return {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
     },
-    opts = {
-      -- Auto-enable Mason-installed servers via vim.lsp.enable()
-      -- Exclude copilot - enabled conditionally in lsp.lua
-      automatic_enable = {
-        exclude = { "copilot" },
-      },
-    },
   },
 }

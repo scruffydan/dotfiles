@@ -5,19 +5,6 @@ return {
   },
   event = { "BufReadPre", "BufNewFile" },
   opts = {
-    nes = {
-      -- NES (Next Edit Suggestions) is provided by copilot-language-server LSP
-      -- Sidekick manages the NES feature by connecting to that LSP
-      -- Disable NES if copilot-language-server not available
-      enabled = require("util").copilot_available(),
-      debounce = 100, -- wait 100ms after typing stops before fetching suggestions
-    },
-    copilot = {
-      -- Disable copilot status notifications if copilot-language-server not available
-      status = {
-        enabled = require("util").copilot_available(),
-      },
-    },
     cli = {
       watch = true, -- auto-reload files modified by AI CLI tools
       mux = {
@@ -28,36 +15,6 @@ return {
     },
   },
   keys = {
-    -- Tab/Shift+Tab handling for smart completion and navigation
-    -- Tab behavior:
-    --   Insert mode: Accept inline completion (copilot ghost text) > Apply NES > Normal Tab
-    --   Normal mode: Jump to/apply NES > Normal Tab
-    --   Oil buffers: Select file/directory (oil.nvim takes over)
-    -- Shift+Tab behavior:
-    --   Insert mode: Dedent (unindent) current line
-    --   Normal mode: Open Oil file explorer (oil.lua mapping)
-    --   Oil buffers: Go to parent directory (oil.nvim takes over)
-    {
-      "<tab>",
-      function()
-        -- In insert mode, first check for native inline completion (copilot ghost text)
-        if vim.fn.mode() == "i" then
-          if vim.lsp.inline_completion.get() then
-            return ""
-          end
-        end
-        -- Then check sidekick NES (works in both insert and normal mode)
-        if require("sidekick").nes_jump_or_apply() then
-          return ""
-        end
-        -- Fall back to normal tab
-        return vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
-      end,
-      expr = true,
-      replace_keycodes = false,
-      desc = "Accept inline completion / Apply NES / Tab",
-      mode = { "i", "n" },
-    },
     -- Shift+Tab for dedent in insert mode only (normal mode handled by oil.lua)
     {
       "<s-tab>",
@@ -68,15 +25,6 @@ return {
       replace_keycodes = false,
       desc = "Dedent",
       mode = "i",
-    },
-    {
-      "<leader>tgn",
-      function()
-        local nes = require("sidekick.nes")
-        nes.toggle()
-        vim.notify("NES " .. (nes.enabled and "enabled" or "disabled"), vim.log.levels.INFO)
-      end,
-      desc = "Toggle NES (Next Edit Suggestions)",
     },
     -- Toggle sidekick CLI
     {
