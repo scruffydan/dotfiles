@@ -94,27 +94,6 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 **Note:** Most LSPs (pyright, ts_ls, bashls, jsonls, yamlls) require Node.js to be installed.
 
-### Optional Dependencies
-
-- **Node.js** - Required for GitHub Copilot (both LSP and inline completions). Copilot support is enabled only when the `copilot-language-server` executable is available; otherwise it is skipped. All other Neovim functionality works normally.
-
-### GitHub Copilot Setup
-
-GitHub Copilot provides two features, both via `copilot-language-server`:
-- **Inline completions** - Ghost text suggestions as you type (native `vim.lsp.inline_completion`)
-- **NES (Next Edit Suggestions)** - Predictive multi-location edits (via `sidekick.nvim`)
-
-**Setup steps:**
-1. Install the Copilot LSP: `:MasonInstall copilot`
-2. Restart Neovim
-3. Authenticate with GitHub (first time only): run `:lua vim.lsp.buf_request(0, 'signIn', {}, function(_, result) print(vim.inspect(result)) end)` with copilot attached, then follow the device flow
-
-**Notes:**
-- Auth token is stored in `~/.config/github-copilot/apps.json` (shared across tools)
-- Use `<leader>tc` to toggle completion menu (blink/off)
-- Use `<leader>tgc` to toggle Copilot ghost text (inline suggestions, off by default)
-- Use `<leader>tgn` to toggle NES (Next Edit Suggestions)
-
 ## Tmux Keybindings
 
 **Prefix:** `<C-a>` (Ctrl+a)
@@ -653,8 +632,6 @@ git mergetool          # Resolve merge conflicts using nvimdiff
 | `<leader>tC` | Toggle treesitter context (sticky header) |
 | `<leader>td` | Toggle diagnostic virtual text (ghost text) |
 | `<leader>tG` | Toggle grep gitignore respect (on/off) |
-| `<leader>tgc` | Toggle Copilot ghost text |
-| `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
 | `<leader>th` | Toggle Harper grammar checker |
 | `<leader>tl` | Toggle LSP globally |
 | `<leader>tL` | Toggle codelens (buffer, run with `grx`) |
@@ -663,7 +640,7 @@ git mergetool          # Resolve merge conflicts using nvimdiff
 
 ### Completion (blink.cmp)
 
-Blink.cmp provides the completion menu with sources from LSP, Copilot, snippets, buffer text, and file paths. All sources are combined and ranked by relevance. The source name (LSP, copilot, Buffer, etc.) is shown next to each item.
+Blink.cmp provides the completion menu with sources from LSP, snippets, buffer text, and file paths. All sources are combined and ranked by relevance. The source name (LSP, Buffer, etc.) is shown next to each item.
 
 | Keymap | Action |
 |--------|--------|
@@ -679,13 +656,6 @@ Blink.cmp provides the completion menu with sources from LSP, Copilot, snippets,
 | Keymap | Action |
 |--------|--------|
 | `<leader>tc` | Toggle completion menu (blink/off) |
-| `<leader>tgc` | Toggle Copilot ghost text (inline suggestions) |
-| `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
-
-**Notes:**
-- Copilot suggestions appear in the completion menu when `copilot-language-server` is installed
-- Copilot ghost text (inline suggestions via native `vim.lsp.inline_completion`) is off by default, toggle with `<leader>tgc`
-- NES (predictive multi-location edits) is provided by sidekick.nvim
 
 ### Surround (mini.surround)
 
@@ -751,34 +721,22 @@ Surround text objects with brackets, quotes, tags, and more. All actions are dot
 | `<leader>ai` | Document this |
 | `<leader>az` | Optimize this |
 | `<leader>aT` | Write tests for this |
-| `<leader>tgn` | Toggle NES (Next Edit Suggestions) |
 
 ### Tab Key Behavior
 
 The Tab and Shift+Tab keys have smart, context-aware behavior:
 
 **Insert Mode:**
-- `<Tab>`: Accept inline completion → Apply NES → Normal Tab
+- `<Tab>`: Next completion item when the menu is visible, otherwise normal Tab
 - `<S-Tab>`: Dedent (unindent) current line
 
 **Normal Mode:**
-- `<Tab>`: Apply NES → Normal Tab  
+- `<Tab>`: Normal Tab
 - `<S-Tab>`: Open Oil file explorer
 
 **In Oil.nvim:**
 - `<Tab>`: Select file/directory
 - `<S-Tab>`: Go to parent directory
-
-### Copilot Inline Completion
-
-Uses Neovim's native `vim.lsp.inline_completion` with `copilot-language-server`. Off by default.
-
-| Keymap | Mode | Action |
-|--------|------|--------|
-| `<Tab>` | Insert | Accept full completion (or NES, or normal Tab) |
-| `<M-]>` | Insert | Next suggestion |
-| `<M-[>` | Insert | Previous suggestion |
-| `<leader>tgc` | Normal | Toggle Copilot ghost text on/off |
 
 ### Clipboard / Registers
 

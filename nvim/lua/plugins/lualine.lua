@@ -65,24 +65,6 @@ return {
               return vim.ui.progress_status() ~= nil
             end,
           },
-          -- Copilot LSP status (shows when NES is enabled and attached, color indicates state)
-          {
-            function()
-              return "NES"
-            end,
-            color = function()
-              local status = require("sidekick.status").get()
-              if not status then return "DiagnosticInfo" end
-              if status.kind == "Error" then return "DiagnosticError" end
-              if status.busy then return "DiagnosticWarn" end
-              return "DiagnosticInfo"
-            end,
-            cond = function()
-              local nes = package.loaded["sidekick.nes"]
-              local status = package.loaded["sidekick.status"]
-              return nes and nes.enabled and status and status.get() ~= nil
-            end,
-          },
         },
         lualine_x = {
           -- Sidekick CLI session status

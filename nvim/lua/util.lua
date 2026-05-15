@@ -15,11 +15,6 @@ M.is_mason_supported = M.is_linux or M.is_mac or M.is_windows
 -- Tool availability (cached at require time)
 M.has_npm = vim.fn.executable("npm") == 1
 
--- Check if copilot-language-server is installed (Node.js is implied)
-function M.copilot_available()
-  return vim.fn.executable("copilot-language-server") == 1
-end
-
 -- Set whitespace display mode
 -- mode 1: default (eol, tab, trail)
 -- mode 2: all spaces visible

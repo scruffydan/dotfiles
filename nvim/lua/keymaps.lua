@@ -55,7 +55,7 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- Completion mode: "blink" | "off"
--- Initialize to blink mode (includes copilot source when available)
+-- Initialize to blink mode
 vim.g.completion_mode = vim.g.completion_mode or "blink"
 
 -- Helper function to update completion states
@@ -74,6 +74,10 @@ vim.keymap.set("n", "<leader>tc", function()
   set_completion_mode(next_mode)
   vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
 end, { desc = "Toggle completion (blink/off)" })
+
+vim.keymap.set("i", "<S-Tab>", function()
+  return vim.api.nvim_replace_termcodes("<C-d>", true, false, true)
+end, { expr = true, replace_keycodes = false, desc = "Dedent" })
 
 -- Tabs
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<CR>', { desc = 'New tab' })

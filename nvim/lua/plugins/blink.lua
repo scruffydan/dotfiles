@@ -1,16 +1,7 @@
 -- Shared config for main and cmdline modes
 local keymap = {
   preset = "enter",
-  ['<Tab>'] = {
-    -- Accept inline completion (copilot ghost text) before scrolling menu
-    function()
-      if vim.lsp.inline_completion.get() then
-        return true
-      end
-    end,
-    'select_next',
-    'fallback',
-  },
+  ['<Tab>'] = { 'select_next', 'fallback' },
   ['<S-Tab>'] = { 'select_prev', 'fallback' },
   ['<C-j>'] = { 'select_next', 'fallback' },
   ['<C-k>'] = { 'select_prev', 'fallback' },
@@ -27,7 +18,6 @@ return {
   lazy = false,
   dependencies = {
     "rafamadriz/friendly-snippets",
-    "fang2hou/blink-copilot",
   },
 
   opts = {
@@ -76,17 +66,7 @@ return {
 
     -- Sources configuration
     sources = {
-      default = { "lsp", "copilot", "path", "snippets", "buffer" },
-      providers = {
-        copilot = {
-          name = "copilot",
-          module = "blink-copilot",
-          async = true,
-          enabled = function()
-            return require("util").copilot_available()
-          end,
-        },
-      },
+      default = { "lsp", "path", "snippets", "buffer" },
     },
 
     -- Command line completion
