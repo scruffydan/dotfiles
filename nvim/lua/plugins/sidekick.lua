@@ -15,17 +15,6 @@ return {
     },
   },
   keys = {
-    -- Shift+Tab for dedent in insert mode only (normal mode handled by oil.lua)
-    {
-      "<s-tab>",
-      function()
-        return vim.api.nvim_replace_termcodes("<C-d>", true, false, true)
-      end,
-      expr = true,
-      replace_keycodes = false,
-      desc = "Dedent",
-      mode = "i",
-    },
     -- Toggle sidekick CLI
     {
       "<c-.>",

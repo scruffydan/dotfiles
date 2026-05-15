@@ -75,6 +75,10 @@ vim.keymap.set("n", "<leader>tc", function()
   vim.notify("Completion: " .. next_mode, vim.log.levels.INFO)
 end, { desc = "Toggle completion (blink/off)" })
 
+vim.keymap.set("i", "<S-Tab>", function()
+  return vim.api.nvim_replace_termcodes("<C-d>", true, false, true)
+end, { expr = true, replace_keycodes = false, desc = "Dedent" })
+
 -- Tabs
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew<CR>', { desc = 'New tab' })
 
