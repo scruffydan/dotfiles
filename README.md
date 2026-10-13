@@ -42,7 +42,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ### Tmux Requirements
 
-- **tmux** (>= 3.4) - Required for popup support and `allow-passthrough all`
+- **tmux** (>= 3.8) - Required for the popup, menu, and tree view styling
 - **fzf** - Required for fuzzy finding sessions
 - **grep** - Required for filtering session list (standard on most systems)
 
