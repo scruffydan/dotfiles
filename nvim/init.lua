@@ -27,6 +27,9 @@ vim.opt.signcolumn = "yes"  -- Always show signcolumn
 vim.opt.winborder = "rounded"  -- Rounded border on floating windows
 vim.opt.pumborder = "rounded"  -- Rounded border on completion popup
 
+-- Show long plugin messages without blocking for Enter; keep history in :messages
+require("vim._core.ui2").enable({})
+
 -- GUI font for Neovide (and other GUI clients)
 vim.opt.guifont = "SauceCodePro NFM:h16"
 
