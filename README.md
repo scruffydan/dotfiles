@@ -42,7 +42,7 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ### Tmux Requirements
 
-- **tmux** (>= 3.8) - Required for the popup, menu, and tree view styling
+- **tmux** (>= 3.7) - Uses the terminal palette; 3.8-only theme and border options are skipped on 3.7
 - **fzf** - Required for fuzzy finding sessions
 - **grep** - Required for filtering session list (standard on most systems)
 
