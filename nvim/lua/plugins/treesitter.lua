@@ -196,7 +196,6 @@ return {
       "rust",
       "ssh_config",
       "terraform",
-      "tmux",
       "toml",
       "tsx",
       "typescript",
