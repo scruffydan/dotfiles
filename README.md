@@ -95,6 +95,8 @@ synchronization is not verified.
 - **fzf** - Required for fuzzy finding sessions
 - **grep** - Required for filtering session list (standard on most systems)
 
+The **Move Window to Session** menu shows names and targets sessions by ID.
+
 ### Neovim Dependencies
 
 - **SauceCodePro Nerd Font** - Required for icons (same as Neovim requirement)
