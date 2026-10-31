@@ -96,11 +96,6 @@ synchronization is not verified.
 - **grep** - Required for filtering session list (standard on most systems)
 
 The **Move Window to Session** menu shows names and targets sessions by ID.
-Run its regression checks with command stubs (no connection to a tmux server):
-
-```sh
-python3 -m unittest discover -s tests -p test_tmux_move_window.py
-```
 
 ### Neovim Dependencies
 
