@@ -1,7 +1,7 @@
 return {
   "nvim-mini/mini.surround",
   version = "*",
-  event = { "InsertEnter", "LspAttach" },
+  lazy = false,
   config = function()
     -- Surround text objects with brackets, quotes, tags, etc.
     -- sa - add surround (saiw) to surround word, sa2j" to surround 2 lines)
