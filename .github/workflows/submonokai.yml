@@ -1,0 +1,63 @@
+name: SubMonokai
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - .github/workflows/submonokai.yml
+      - scripts/sync-submonokai.sh
+      - tests/test_submonokai.py
+      - submonokai/**
+      - ghostty
+      - ghostty-install.sh
+  pull_request:
+    paths:
+      - .github/workflows/submonokai.yml
+      - scripts/sync-submonokai.sh
+      - tests/test_submonokai.py
+      - submonokai/**
+      - ghostty
+      - ghostty-install.sh
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest discover -s tests -v
+      - run: |
+          sh -n ghostty-install.sh
+          sh -n scripts/sync-submonokai.sh
+
+  sync:
+    needs: verify
+    if: github.repository == 'scruffydan/dotfiles' && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: sync-submonokai
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Update subtree
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          sh scripts/sync-submonokai.sh
+      - name: Verify updated themes
+        run: python3 -m unittest discover -s tests -v
+      - name: Push update
+        run: git push origin HEAD:master

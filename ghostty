@@ -4,7 +4,7 @@
 ### Theme ###
 #############
 # Shared with Rex and iTerm2: https://github.com/scruffydan/submonokai
-theme = SubMonokai
+theme = ~/dotfiles/submonokai/SubMonokai.ghostty
 
 # Font
 font-family = SauceCodePro Nerd Font Mono

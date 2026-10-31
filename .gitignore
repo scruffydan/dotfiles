@@ -34,3 +34,6 @@ $RECYCLE.BIN/
 *.nvimlog
 .nvimlog
 
+# Python test caches
+__pycache__/
+

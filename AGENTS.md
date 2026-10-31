@@ -94,7 +94,7 @@ my_function() {
 Uses SubMonokai theme across all tools. Key colors defined in:
 - Neovim: https://github.com/scruffydan/submonokai-nvim
 - Tmux: Palette variables at top of tmux.conf
-- Ghostty/Rex/iTerm2: https://github.com/scruffydan/submonokai (`SubMonokai.ghostty` and `Submonokai.itermcolors`)
+- Ghostty/Rex/iTerm2: `submonokai/`, a Git subtree of https://github.com/scruffydan/submonokai (`SubMonokai.ghostty` and `Submonokai.itermcolors`)
 
 ## Important Notes
 
@@ -102,3 +102,4 @@ Uses SubMonokai theme across all tools. Key colors defined in:
 2. **SubMonokai.terminal** is for macOS Terminal.app export - rarely used
 3. Most install scripts **append** to existing files - run only once per machine. `ghostty-install.sh` is safe to rerun.
 4. When modifying terminal colors, update tmux.conf and the shared SubMonokai theme repo to keep them in sync
+5. Edit SubMonokai upstream, not inside the subtree. The SubMonokai workflow syncs it hourly; `sh scripts/sync-submonokai.sh` refreshes it locally. Never squash away Git subtree metadata commits when merging a subtree import/update PR.
