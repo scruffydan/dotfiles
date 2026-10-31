@@ -70,9 +70,10 @@ metadata; do not squash or rebase them.
 
 For Rex, run **Import Theme File** in its command palette and select
 `submonokai/SubMonokai.ghostty`. For iTerm2, import
-`submonokai/Submonokai.itermcolors`. Imports are separate from the Git sync;
-re-import to apply colour changes. Automatic app-level synchronization is not
-verified.
+`submonokai/Submonokai.itermcolors`. For macOS Terminal, import
+`submonokai/SubMonokai.terminal` in **Settings → Profiles**. Imports are separate
+from the Git sync; re-import to apply theme changes. Automatic app-level
+synchronization is not verified.
 
 ## Requirements
 
