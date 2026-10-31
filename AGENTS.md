@@ -93,11 +93,12 @@ my_function() {
 
 Uses SubMonokai theme across all tools. Key colors defined in:
 - Neovim: https://github.com/scruffydan/submonokai-nvim
-- Tmux/Ghostty: Palette variables at top of config files
+- Tmux: Palette variables at top of tmux.conf
+- Ghostty/Rex/iTerm2: https://github.com/scruffydan/submonokai (`SubMonokai.ghostty` and `Submonokai.itermcolors`)
 
 ## Important Notes
 
 1. **zsh-syntax-highlighting/** is a git submodule - do not modify directly
 2. **SubMonokai.terminal** is for macOS Terminal.app export - rarely used
-3. Install scripts **append** to existing files - run only once per machine
-4. When modifying colors, update both tmux.conf and ghostty to keep them in sync
+3. Most install scripts **append** to existing files - run only once per machine. `ghostty-install.sh` is safe to rerun.
+4. When modifying terminal colors, update tmux.conf and the shared SubMonokai theme repo to keep them in sync
