@@ -28,23 +28,51 @@ Seriously though, you're probably better off starting from scratch or finding a 
 
 ## Ghostty Theme
 
-The colour scheme lives in [scruffydan/submonokai](https://github.com/scruffydan/submonokai)
-as `SubMonokai.ghostty`, shared with Rex and the matching iTerm2 export.
+The [SubMonokai theme repository](https://github.com/scruffydan/submonokai) is
+bundled in `submonokai/` as a Git subtree, including its other app themes and fonts.
+A normal clone or pull includes the committed theme files; no separate checkout,
+submodule setup, or theme symlink is needed.
 
 ```sh
-# Clone once, then install the theme and include this repo's Ghostty config.
-git clone https://github.com/scruffydan/submonokai.git ~/Code/submonokai
+# With dotfiles cloned at ~/dotfiles, include its Ghostty config once.
 ./ghostty-install.sh
 ```
 
-If the theme repo is elsewhere, pass its path: `./ghostty-install.sh /path/to/submonokai`.
-The installer symlinks the theme into `~/.config/ghostty/themes/SubMonokai`
-(respecting `XDG_CONFIG_HOME`) and preserves existing local config settings.
-It is safe to rerun. Keep the theme checkout in place and reload Ghostty after
-pulling colour changes.
+Ghostty loads `~/dotfiles/submonokai/SubMonokai.ghostty` directly. The installer
+preserves local config settings, respects `XDG_CONFIG_HOME`, and is safe to rerun.
+An older `themes/SubMonokai` symlink can remain; this config no longer uses it.
+
+### Automatic updates
+
+Make theme changes in the standalone SubMonokai repository and merge them into
+its `master` branch. The **SubMonokai** GitHub Actions workflow checks that branch
+hourly and commits subtree updates directly to this repository's `master` branch.
+It uses the built-in `GITHUB_TOKEN`; no additional secret is required.
+
+After the workflow succeeds, pull dotfiles normally and reload Ghostty to use the
+updated theme. The scheduled check is not instantaneous and GitHub can delay it.
+You can also run the workflow from the Actions tab. GitHub disables schedules in
+public repositories after 60 days without activity; re-enable the workflow there
+if needed. Automation starts once its workflow is merged into `master`.
+
+To refresh the subtree locally instead, start with a clean working tree and run:
+
+```sh
+sh scripts/sync-submonokai.sh
+```
+
+This creates local subtree commits when upstream has changed; review and push
+them normally. Edit themes upstream rather than inside the bundled copy to avoid
+merge conflicts. If synchronization fails, the last committed version stays
+available; check the workflow logs before expecting newer colours from a pull.
+Merge subtree import/update PRs with a merge commit so Git retains their subtree
+metadata; do not squash or rebase them.
 
 For Rex, run **Import Theme File** in its command palette and select
-`SubMonokai.ghostty` from the theme repo. Re-import after colour changes.
+`submonokai/SubMonokai.ghostty`. For iTerm2, import
+`submonokai/Submonokai.itermcolors`. Imports are separate from the Git sync;
+re-import to apply colour changes. Automatic app-level synchronization is not
+verified.
 
 ## Requirements
 
