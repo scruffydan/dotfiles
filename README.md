@@ -26,6 +26,26 @@ Seriously though, you're probably better off starting from scratch or finding a 
 - Git settings
 - Other development environment customizations
 
+## Ghostty Theme
+
+The colour scheme lives in [scruffydan/submonokai](https://github.com/scruffydan/submonokai)
+as `SubMonokai.ghostty`, shared with Rex and the matching iTerm2 export.
+
+```sh
+# Clone once, then install the theme and include this repo's Ghostty config.
+git clone https://github.com/scruffydan/submonokai.git ~/Code/submonokai
+./ghostty-install.sh
+```
+
+If the theme repo is elsewhere, pass its path: `./ghostty-install.sh /path/to/submonokai`.
+The installer symlinks the theme into `~/.config/ghostty/themes/SubMonokai`
+(respecting `XDG_CONFIG_HOME`) and preserves existing local config settings.
+It is safe to rerun. Keep the theme checkout in place and reload Ghostty after
+pulling colour changes.
+
+For Rex, run **Import Theme File** in its command palette and select
+`SubMonokai.ghostty` from the theme repo. Re-import after colour changes.
+
 ## Requirements
 
 ### Neovim Configuration
