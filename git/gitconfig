@@ -20,6 +20,9 @@
   # Use histogram algorithm for better code diff quality
   algorithm = histogram
 
+[diff "default"]
+  algorithm = myers
+
 [difftool]
   prompt = false
 
