@@ -43,9 +43,14 @@ return {
         local ok, pkg = pcall(registry.get_package, name)
         if ok and not pkg:is_installed() then
           vim.notify("Mason: installing " .. name, vim.log.levels.INFO)
-          pkg:install():once("closed", function()
+          -- The completion callback reports the result; a closed handle does not.
+          pkg:install({}, function(success)
             vim.schedule(function()
-              vim.notify("Mason: " .. name .. " installed", vim.log.levels.INFO)
+              if success then
+                vim.notify("Mason: " .. name .. " installed", vim.log.levels.INFO)
+              else
+                vim.notify("Mason: " .. name .. " failed to install", vim.log.levels.ERROR)
+              end
             end)
           end)
         end
