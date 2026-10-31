@@ -31,18 +31,10 @@ See the [T3-Code appearance guide](https://github.com/pingdotgg/t3code/blob/main
 
 ### Ghostty
 
-Clone this repository and install a symlink to the theme:
-
-```sh
-git clone https://github.com/scruffydan/submonokai.git ~/Code/submonokai
-cd ~/Code/submonokai
-sh ./install-ghostty.sh
-```
-
-The installer links `SubMonokai.ghostty` to `~/.config/ghostty/themes/SubMonokai`
-(or `$XDG_CONFIG_HOME/ghostty/themes/SubMonokai` when set). It is safe to rerun
-and refuses to overwrite an existing theme from another source. Keep the checkout
-in place; pulling changes updates the linked theme.
+Download `SubMonokai.ghostty` and save it as
+`~/.config/ghostty/themes/SubMonokai` (or
+`$XDG_CONFIG_HOME/ghostty/themes/SubMonokai` when set). Create the `themes`
+directory if needed.
 
 Add this line to your Ghostty config, then reload the configuration:
 
@@ -53,8 +45,9 @@ theme = SubMonokai
 Remove any inline colour overrides if you want the complete theme to apply.
 Fonts, keybindings, and window settings stay in your own config.
 
-For a standalone installation, download `SubMonokai.ghostty` and save it as
-`~/.config/ghostty/themes/SubMonokai` instead.
+For the owner's [dotfiles](https://github.com/scruffydan/dotfiles), run
+`ghostty-install.sh` at that repository's root alongside the other installers.
+Those dotfiles bundle this theme and load it directly; no theme copy is needed.
 
 [Ghostty theme guide](https://ghostty.org/docs/features/theme)
 
@@ -65,7 +58,7 @@ For a standalone installation, download `SubMonokai.ghostty` and save it as
 3. Select `SubMonokai.ghostty` and apply the imported theme.
 
 Re-import the file after changing its colours; the import is separate from
-Ghostty's symlink installation.
+Ghostty's installation.
 
 ### Terminal on macOS
 
