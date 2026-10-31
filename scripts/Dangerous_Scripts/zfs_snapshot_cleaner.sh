@@ -8,27 +8,29 @@ set -eu
 # Use with extreme care!
 
 # Validate pool/dataset parameter
-if [ -z "${1:-}" ]; then
+if [ "$#" -ne 1 ] || [ -z "$1" ]; then
     echo "Usage: $(basename "$0") <pool_name|dataset>"
     exit 1
 fi
 
-# Validate input contains only valid ZFS name characters
+# Require a letter-led pool name, valid characters, and nonempty dataset
+# components other than '.' or '..'. This also rejects option-like targets.
+# ZFS checks existence and any remaining platform-specific name restrictions.
 case "$1" in
-    *[!a-zA-Z0-9/_:-]*)
-        echo "Error: Invalid characters in pool/dataset name"
+    [!a-zA-Z]*|*[!a-zA-Z0-9/_.:\ -]*|*/|*//*|*/.|*/./*|*/..|*/../*)
+        echo "Error: Invalid pool/dataset name"
         exit 1
         ;;
 esac
 
 # Verify pool or dataset exists
-if ! zfs list -H "$1" >/dev/null 2>&1; then
+if ! zfs list -H -- "$1" >/dev/null 2>&1; then
     echo "Error: ZFS pool or dataset '$1' does not exist"
     exit 1
 fi
 
 # Count snapshots to be deleted
-snapshot_count=$(zfs list -H -o name -t snapshot -r "$1" 2>/dev/null | wc -l | tr -d ' ')
+snapshot_count=$(zfs list -H -o name -t snapshot -r -- "$1" 2>/dev/null | wc -l | tr -d ' ')
 
 echo "Target: $1"
 echo "Snapshots found (recursive): $snapshot_count"
@@ -43,7 +45,7 @@ case $input in
         echo ""
         echo "WARNING: Deleting all snapshots in 10 seconds. Hit Ctrl+C to cancel"
         sleep 10
-        zfs list -H -o name -t snapshot -r "$1" | while IFS= read -r snap; do zfs destroy -v -- "$snap"; done
+        zfs list -H -o name -t snapshot -r -- "$1" | while IFS= read -r snap; do zfs destroy -v -- "$snap"; done
         ;;
     *)
         echo "Cowardly refusing to proceed any further!"
