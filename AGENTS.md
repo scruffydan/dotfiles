@@ -1,5 +1,7 @@
 # Dotfiles Agent Guide
 
+This is a personal project maintained for the repository owner's own use.
+
 This repository contains personal configuration files (dotfiles) for zsh, tmux, neovim, git, and ghostty terminal.
 
 ## Testing Changes
