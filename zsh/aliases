@@ -81,14 +81,14 @@ alias articles="cd ~/Dropbox/Documents/Articles && git status -s"
 
 # Find and remove Homebrew casks whose .app files no longer exist
 brew-cleanup-casks() {
-  local line cask path app found
+  local line cask cask_file app found
   local -a orphaned apps
   while IFS= read -r line; do
     cask="${line%% *}"
     apps=()
-    while IFS= read -r path; do
-      [[ "$path" == *.app ]] || continue
-      apps+=("${path:t}")
+    while IFS= read -r cask_file; do
+      [[ "$cask_file" == *.app ]] || continue
+      apps+=("${cask_file:t}")
     done < <(brew list --cask "$cask" 2>/dev/null)
     (( ${#apps[@]} == 0 )) && continue
     found=false
