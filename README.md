@@ -75,6 +75,19 @@ For Rex, run **Import Theme File** in its command palette and select
 from the Git sync; re-import to apply theme changes. Automatic app-level
 synchronization is not verified.
 
+## Tmux Theme
+
+`tmux.conf` sources `~/dotfiles/submonokai/SubMonokai.tmux.conf` for its palette,
+status colours and window labels, pane backgrounds and focus dimming, menus,
+popups, and borders. Keybindings, terminal capabilities, status position, and
+other behaviour stay in `tmux.conf`.
+
+Edit the tmux export in the standalone [SubMonokai repository](https://github.com/scruffydan/submonokai),
+then use the same subtree sync described above to bring it into dotfiles.
+Reload tmux with `<prefix> r` after pulling an update. The terminal's SubMonokai
+ANSI colours and tmux's explicit RGB styles are intentionally used together;
+replacing RGB accents with named ANSI colours can change the appearance.
+
 ## Requirements
 
 ### Neovim Configuration
