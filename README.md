@@ -84,9 +84,17 @@ other behaviour stay in `tmux.conf`.
 
 Edit the tmux export in the standalone [SubMonokai repository](https://github.com/scruffydan/submonokai),
 then use the same subtree sync described above to bring it into dotfiles.
-Reload tmux with `<prefix> r` after pulling an update. The terminal's SubMonokai
-ANSI colours and tmux's explicit RGB styles are intentionally used together;
-replacing RGB accents with named ANSI colours can change the appearance.
+Reload tmux with `<prefix> r` after pulling an update. tmux 3.8+ uses SubMonokai's
+native dark palette for built-in UI roles, with custom status colours and pane
+backgrounds. Earlier versions retain the ANSI/explicit RGB fallback.
+
+The native palette gives the normal active border SubMonokai green, uses charcoal
+menus/popups with muted borders, and uses red/blue tree-preview accents and orange
+copy-mode marks. The orange active-window tab, status colours, pane backgrounds,
+and focus dimming stay the same. See the bundled theme's README for details.
+
+Run `python3 -m unittest discover -s submonokai/tests -v` to check the theme in
+isolated tmux servers. Native-palette checks require tmux 3.8+.
 
 ## Requirements
 
@@ -104,7 +112,7 @@ replacing RGB accents with named ANSI colours can change the appearance.
 
 ### Tmux Requirements
 
-- **tmux** (>= 3.4) - Required for popup support and `allow-passthrough all`; newer colour options are skipped when unavailable
+- **tmux** (>= 3.4) - Required for popup support and `allow-passthrough all`; 3.8+ uses the native theme palette, with a fallback for older versions
 - **fzf** - Required for fuzzy finding sessions
 - **grep** - Required for filtering session list (standard on most systems)
 
