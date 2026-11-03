@@ -75,6 +75,22 @@ For Rex, run **Import Theme File** in its command palette and select
 from the Git sync; re-import to apply theme changes. Automatic app-level
 synchronization is not verified.
 
+## Tmux Theme
+
+`tmux.conf` sources `~/dotfiles/submonokai/SubMonokai.tmux.conf` for its palette,
+status colours and window labels, pane backgrounds and focus dimming, menus,
+popups, and borders. Keybindings, terminal capabilities, status position, and
+other behaviour stay in `tmux.conf`.
+
+Edit the tmux export in the standalone [SubMonokai repository](https://github.com/scruffydan/submonokai),
+then use the same subtree sync described above to bring it into dotfiles.
+Reload tmux with `<prefix> r` after pulling an update. Requires tmux 3.8+.
+The native dark palette supplies named colours, while explicit styles preserve
+the original appearance: dim charcoal menus/popups with bright borders, yellow
+normal active pane borders, orange/cyan tree previews, and red copy-mode marks.
+The orange active-window tab, status colours, pane backgrounds, and focus dimming
+also stay the same. See the bundled theme's README for details.
+
 ## Requirements
 
 ### Neovim Configuration
@@ -91,7 +107,7 @@ synchronization is not verified.
 
 ### Tmux Requirements
 
-- **tmux** (>= 3.4) - Required for popup support and `allow-passthrough all`; newer colour options are skipped when unavailable
+- **tmux** (>= 3.8) - Required for the native theme palette
 - **fzf** - Required for fuzzy finding sessions
 - **grep** - Required for filtering session list (standard on most systems)
 

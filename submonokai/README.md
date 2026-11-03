@@ -11,6 +11,7 @@ A dark colour theme inspired by Sublime Text's Monokai, adapted for terminals, w
 | [T3-Code](#t3-code) | [SubMonokai-T3-Code.json](SubMonokai-T3-Code.json) |
 | [Ghostty](#ghostty) | [SubMonokai.ghostty](SubMonokai.ghostty) |
 | [Rex](#rex) | [SubMonokai.ghostty](SubMonokai.ghostty) |
+| [tmux](#tmux) | [SubMonokai.tmux.conf](SubMonokai.tmux.conf) |
 | [Terminal on macOS](#terminal-on-macos) | [SubMonokai.terminal](SubMonokai.terminal) |
 | [iTerm2](#iterm2) | [Submonokai.itermcolors](Submonokai.itermcolors) |
 | [Blink Shell](#blink-shell) | [SubMonokai-Blink.js](SubMonokai-Blink.js) |
@@ -59,6 +60,42 @@ Those dotfiles bundle this theme and load it directly; no theme copy is needed.
 
 Re-import the file after changing its colours; the import is separate from
 Ghostty's installation.
+
+### tmux
+
+Requires tmux 3.8 or newer. Download `SubMonokai.tmux.conf` to
+`~/.config/tmux/SubMonokai.tmux.conf`, creating the directory if needed, then add
+these lines after any appearance settings in `~/.tmux.conf`:
+
+```tmux
+set -g focus-events on
+source-file ~/.config/tmux/SubMonokai.tmux.conf
+```
+
+Reload with `tmux source-file ~/.tmux.conf`. If focus events were previously off,
+detach and reattach existing clients to enable focus dimming.
+
+The export styles the status bar and window labels, pane backgrounds and borders,
+copy-mode marks, menus, popups, and tree previews. Focus hooks dim the active pane
+when the terminal loses focus. Keybindings, status position, status content outside
+window labels, and terminal capabilities stay in your own config.
+
+The export selects the native dark theme and defines its ten `dark-theme-*`
+palette slots. Explicit styles preserve the original appearance: dim charcoal
+menus and popups with bright borders, orange selections and active-window tabs,
+yellow normal active pane borders, orange/cyan tree previews, and red copy-mode
+marks. Status colours, pane backgrounds, and focus dimming are also preserved.
+The native yellow slot holds orange for selections; the shared palette's yellow
+is used explicitly for the status bar and normal active pane border.
+
+Native palette values use tmux's literal-format modifier (`#{l:...}`), because
+tmux otherwise interprets a leading `#F` in a hex colour as window flags. Palette
+constants are hidden from child-process environments. Use a SubMonokai terminal
+theme for matching default foreground/background colours and application ANSI
+colours. The export does not change the terminal palette.
+
+The owner's [dotfiles](https://github.com/scruffydan/dotfiles) bundle this export
+and source it directly. Edit it here and sync the subtree to update those dotfiles.
 
 ### Terminal on macOS
 
