@@ -63,7 +63,7 @@ Ghostty's installation.
 
 ### tmux
 
-Requires tmux 3.4 or newer. Download `SubMonokai.tmux.conf` to
+Requires tmux 3.8 or newer. Download `SubMonokai.tmux.conf` to
 `~/.config/tmux/SubMonokai.tmux.conf`, creating the directory if needed, then add
 these lines after any appearance settings in `~/.tmux.conf`:
 
@@ -80,30 +80,25 @@ copy-mode marks, menus, popups, and tree previews. Focus hooks dim the active pa
 when the terminal loses focus. Keybindings, status position, status content outside
 window labels, and terminal capabilities stay in your own config.
 
-On tmux 3.8+, the export selects the native dark theme and defines its ten
-`dark-theme-*` palette slots. Built-in menus, popups, prompts, copy-mode
-highlights, and pane/tree borders inherit those colours. tmux has no orange
-slot, so the theme's yellow slot is assigned SubMonokai orange (`#FF9800`) for
-selections and prompts. The shared palette's yellow (`#E6DC6D`) stays in the
-custom status bar. Palette constants are hidden from child-process environments.
+The export selects the native dark theme and defines its ten `dark-theme-*`
+palette slots. Explicit styles preserve the original appearance: dim charcoal
+menus and popups with bright borders, orange selections and active-window tabs,
+yellow normal active pane borders, orange/cyan tree previews, and red copy-mode
+marks. Status colours, pane backgrounds, and focus dimming are also preserved.
+The native yellow slot holds orange for selections; the shared palette's yellow
+is used explicitly for the status bar and normal active pane border.
+
 Native palette values use tmux's literal-format modifier (`#{l:...}`), because
-tmux otherwise interprets a leading `#F` in a hex colour as window flags.
+tmux otherwise interprets a leading `#F` in a hex colour as window flags. Palette
+constants are hidden from child-process environments. Use a SubMonokai terminal
+theme for matching default foreground/background colours and application ANSI
+colours. The export does not change the terminal palette.
 
-Compared with the previous terminal-palette styling, the normal active border
-becomes green (`#B3E435`), menus/popups use the main charcoal background
-(`#272822`) with muted borders (`#75715E`), tree previews use red/blue accents,
-and copy-mode marked lines use orange. tmux's native active border also indicates
-marked and modal panes. The orange active-window tab, status colours, pane
-backgrounds, and focus dimming are preserved. Reloading clears the previous
-export's global overrides for the UI roles now owned by the native palette.
-
-tmux 3.4-3.7 uses the original ANSI/explicit RGB fallback. A SubMonokai terminal
-theme is recommended for matching application text and the fallback's ANSI
-colours. Neither path changes the terminal palette or colours set by applications.
-
-To verify the export in isolated tmux servers, run
-`python3 -m unittest discover -s tests -v`. Native-theme tests require tmux 3.8+;
-the focus/reload check also applies to the older-version fallback.
+Run `python3 -m unittest discover -s tests -v` with tmux 3.8+ installed. The tests
+check resolved palette colours and capture colour codes emitted to an attached
+client in a disposable pseudo-terminal, including menus, popup borders, pane
+backgrounds, selections, and repeated reloads. Missing or older tmux fails the
+suite instead of skipping native-theme coverage.
 
 The owner's [dotfiles](https://github.com/scruffydan/dotfiles) bundle this export
 and source it directly. Edit it here and sync the subtree to update those dotfiles.
