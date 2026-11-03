@@ -84,17 +84,17 @@ other behaviour stay in `tmux.conf`.
 
 Edit the tmux export in the standalone [SubMonokai repository](https://github.com/scruffydan/submonokai),
 then use the same subtree sync described above to bring it into dotfiles.
-Reload tmux with `<prefix> r` after pulling an update. tmux 3.8+ uses SubMonokai's
-native dark palette for built-in UI roles, with custom status colours and pane
-backgrounds. Earlier versions retain the ANSI/explicit RGB fallback.
-
-The native palette gives the normal active border SubMonokai green, uses charcoal
-menus/popups with muted borders, and uses red/blue tree-preview accents and orange
-copy-mode marks. The orange active-window tab, status colours, pane backgrounds,
-and focus dimming stay the same. See the bundled theme's README for details.
+Reload tmux with `<prefix> r` after pulling an update. Requires tmux 3.8+.
+The native dark palette supplies named colours, while explicit styles preserve
+the original appearance: dim charcoal menus/popups with bright borders, yellow
+normal active pane borders, orange/cyan tree previews, and red copy-mode marks.
+The orange active-window tab, status colours, pane backgrounds, and focus dimming
+also stay the same. See the bundled theme's README for details.
 
 Run `python3 -m unittest discover -s submonokai/tests -v` to check the theme in
-isolated tmux servers. Native-palette checks require tmux 3.8+.
+isolated tmux servers and attached pseudo-terminal clients. The tests check exact
+emitted colours and reload behaviour. CI builds a pinned upstream tmux 3.8 release
+so native-theme coverage runs; missing or older tmux fails instead of skipping.
 
 ## Requirements
 
@@ -112,7 +112,7 @@ isolated tmux servers. Native-palette checks require tmux 3.8+.
 
 ### Tmux Requirements
 
-- **tmux** (>= 3.4) - Required for popup support and `allow-passthrough all`; 3.8+ uses the native theme palette, with a fallback for older versions
+- **tmux** (>= 3.8) - Required for the native theme palette
 - **fzf** - Required for fuzzy finding sessions
 - **grep** - Required for filtering session list (standard on most systems)
 

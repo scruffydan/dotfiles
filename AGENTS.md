@@ -25,9 +25,9 @@ Prefer simple, maintainable changes.
   `sh scripts/sync-submonokai.sh`. Preserve subtree metadata: do not squash or
   rebase subtree import/update PRs.
 - Ghostty and tmux source their bundled SubMonokai exports directly. Keep the
-  palette at the top of the upstream tmux export. tmux 3.8+ uses native dark-theme
-  slots; retain the ANSI/RGB fallback for older supported versions and the custom
-  status and pane styles shared by both paths.
+  palette at the top of the upstream tmux export. Require tmux 3.8+ and use native
+  dark-theme slots with explicit styles preserving the original appearance.
+  Keep the rendered-colour and reload tests passing; CI installs pinned tmux 3.8.
   Neovim's theme is https://github.com/scruffydan/submonokai-nvim.
 
 ## Verification
