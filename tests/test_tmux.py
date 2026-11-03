@@ -55,8 +55,6 @@ class TmuxThemeTests(unittest.TestCase):
             self.tmux("set", "-g", name, "fg=#123456,bg=#654321")
         self.source_theme()
         self.assertEqual(self.tmux("show-options", "-sv", "theme"), "dark")
-        self.assertEqual(self.tmux("show-options", "-sv", "dark-theme-green"), "#B3E435")
-        self.assertEqual(self.tmux("show-options", "-sv", "dark-theme-yellow"), "#FF9800")
         for name, expected in defaults.items():
             with self.subTest(option=name):
                 self.assertEqual(self.tmux("show-options", "-gv", name), expected)
@@ -83,6 +81,26 @@ class TmuxThemeTests(unittest.TestCase):
             "bg=#272822",
         )
         self.assertEqual(self.tmux("show-hooks", "-g"), hooks)
+
+    def test_native_palette_resolves_to_exact_rgb_values(self):
+        if not self.tmux("show-options", "-sqv", "theme"):
+            self.skipTest("native theme palette requires tmux 3.8+")
+        expected = {
+            "black": "#1D1E19", "white": "#F8F8F2",
+            "dark-grey": "#272822", "light-grey": "#75715E",
+            "red": "#ED3A2C", "green": "#B3E435", "yellow": "#FF9800",
+            "blue": "#0097F3", "magenta": "#FB2B71", "cyan": "#00DFF3",
+        }
+        for marked in (False, True):
+            if marked:
+                self.tmux("select-pane", "-m")
+            self.source_theme()
+            for slot, rgb in expected.items():
+                with self.subTest(slot=slot, marked=marked):
+                    self.assertEqual(
+                        self.tmux("display-message", "-p", "#{E:dark-theme-" + slot + "}"),
+                        rgb,
+                    )
 
 
 if __name__ == "__main__":

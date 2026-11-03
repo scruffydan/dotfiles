@@ -86,6 +86,8 @@ highlights, and pane/tree borders inherit those colours. tmux has no orange
 slot, so the theme's yellow slot is assigned SubMonokai orange (`#FF9800`) for
 selections and prompts. The shared palette's yellow (`#E6DC6D`) stays in the
 custom status bar. Palette constants are hidden from child-process environments.
+Native palette values use tmux's literal-format modifier (`#{l:...}`), because
+tmux otherwise interprets a leading `#F` in a hex colour as window flags.
 
 Compared with the previous terminal-palette styling, the normal active border
 becomes green (`#B3E435`), menus/popups use the main charcoal background
