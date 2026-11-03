@@ -58,7 +58,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           sh scripts/sync-submonokai.sh
       - name: Verify updated themes
-        run: |
-          python3 -m unittest discover -s tests -v
+        run: python3 -m unittest discover -s tests -v
       - name: Push update
         run: git push origin HEAD:master
