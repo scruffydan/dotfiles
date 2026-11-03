@@ -91,11 +91,6 @@ normal active pane borders, orange/cyan tree previews, and red copy-mode marks.
 The orange active-window tab, status colours, pane backgrounds, and focus dimming
 also stay the same. See the bundled theme's README for details.
 
-Run `python3 -m unittest discover -s submonokai/tests -v` to check the theme in
-isolated tmux servers and attached pseudo-terminal clients. The tests check exact
-emitted colours and reload behaviour. CI builds a pinned upstream tmux 3.8 release
-so native-theme coverage runs; missing or older tmux fails instead of skipping.
-
 ## Requirements
 
 ### Neovim Configuration

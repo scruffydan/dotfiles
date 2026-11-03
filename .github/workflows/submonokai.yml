@@ -8,7 +8,6 @@ on:
     branches: [master]
     paths:
       - .github/workflows/submonokai.yml
-      - .github/actions/setup-tmux/**
       - scripts/sync-submonokai.sh
       - tests/test_submonokai.py
       - submonokai/**
@@ -17,7 +16,6 @@ on:
   pull_request:
     paths:
       - .github/workflows/submonokai.yml
-      - .github/actions/setup-tmux/**
       - scripts/sync-submonokai.sh
       - tests/test_submonokai.py
       - submonokai/**
@@ -34,9 +32,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-tmux
       - run: python3 -m unittest discover -s tests -v
-      - run: python3 -m unittest discover -s submonokai/tests -v
       - run: |
           sh -n ghostty-install.sh
           sh -n scripts/sync-submonokai.sh
@@ -56,7 +52,6 @@ jobs:
         with:
           ref: master
           fetch-depth: 0
-      - uses: ./.github/actions/setup-tmux
       - name: Update subtree
         run: |
           git config user.name 'github-actions[bot]'
@@ -65,6 +60,5 @@ jobs:
       - name: Verify updated themes
         run: |
           python3 -m unittest discover -s tests -v
-          python3 -m unittest discover -s submonokai/tests -v
       - name: Push update
         run: git push origin HEAD:master

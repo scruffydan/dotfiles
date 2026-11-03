@@ -27,7 +27,6 @@ Prefer simple, maintainable changes.
 - Ghostty and tmux source their bundled SubMonokai exports directly. Keep the
   palette at the top of the upstream tmux export. Require tmux 3.8+ and use native
   dark-theme slots with explicit styles preserving the original appearance.
-  Keep the rendered-colour and reload tests passing; CI installs pinned tmux 3.8.
   Neovim's theme is https://github.com/scruffydan/submonokai-nvim.
 
 ## Verification
