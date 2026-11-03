@@ -11,6 +11,7 @@ A dark colour theme inspired by Sublime Text's Monokai, adapted for terminals, w
 | [T3-Code](#t3-code) | [SubMonokai-T3-Code.json](SubMonokai-T3-Code.json) |
 | [Ghostty](#ghostty) | [SubMonokai.ghostty](SubMonokai.ghostty) |
 | [Rex](#rex) | [SubMonokai.ghostty](SubMonokai.ghostty) |
+| [tmux](#tmux) | [SubMonokai.tmux.conf](SubMonokai.tmux.conf) |
 | [Terminal on macOS](#terminal-on-macos) | [SubMonokai.terminal](SubMonokai.terminal) |
 | [iTerm2](#iterm2) | [Submonokai.itermcolors](Submonokai.itermcolors) |
 | [Blink Shell](#blink-shell) | [SubMonokai-Blink.js](SubMonokai-Blink.js) |
@@ -59,6 +60,34 @@ Those dotfiles bundle this theme and load it directly; no theme copy is needed.
 
 Re-import the file after changing its colours; the import is separate from
 Ghostty's installation.
+
+### tmux
+
+Requires tmux 3.4 or newer. Download `SubMonokai.tmux.conf` to
+`~/.config/tmux/SubMonokai.tmux.conf`, creating the directory if needed, then add
+these lines after any appearance settings in `~/.tmux.conf`:
+
+```tmux
+set -g focus-events on
+source-file ~/.config/tmux/SubMonokai.tmux.conf
+```
+
+Reload with `tmux source-file ~/.tmux.conf`. If focus events were previously off,
+detach and reattach existing clients to enable focus dimming.
+
+The export styles the status bar and window labels, pane backgrounds and borders,
+copy-mode marks, menus, popups, and tree previews. Focus hooks dim the active pane
+when the terminal loses focus. Keybindings, status position, status content outside
+window labels, and terminal capabilities stay in your own config.
+
+Use a SubMonokai terminal theme for matching ANSI colours. tmux 3.8's built-in UI
+uses terminal ANSI colours; explicit RGB styles preserve the selected SubMonokai
+accents and backgrounds. The two palettes are intentionally distinct: ANSI green
+is `#E6DC6D`, while the shared palette's green is `#B3E435`. Newer optional style
+settings are skipped on older tmux versions.
+
+The owner's [dotfiles](https://github.com/scruffydan/dotfiles) bundle this export
+and source it directly. Edit it here and sync the subtree to update those dotfiles.
 
 ### Terminal on macOS
 
