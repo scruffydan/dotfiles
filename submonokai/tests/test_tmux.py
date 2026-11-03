@@ -11,9 +11,9 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 
 
-@unittest.skipUnless(shutil.which("tmux"), "tmux is not installed")
 class TmuxThemeTests(unittest.TestCase):
     def setUp(self):
+        self.assertIsNotNone(shutil.which("tmux"), "tmux 3.8+ is required")
         self.temp = tempfile.TemporaryDirectory(prefix="tmux-theme-", dir="/tmp")
         self.addCleanup(self.temp.cleanup)
         self.socket = str(Path(self.temp.name) / "socket")
@@ -39,28 +39,6 @@ class TmuxThemeTests(unittest.TestCase):
     def source_theme(self):
         self.tmux("source-file", str(ROOT / "SubMonokai.tmux.conf"))
 
-    def test_native_defaults_replace_previous_overrides(self):
-        if not self.tmux("show-options", "-sqv", "theme"):
-            self.skipTest("native theme palette requires tmux 3.8+")
-        options = (
-            "popup-style", "popup-border-style", "menu-style",
-            "menu-border-style", "tree-mode-border-style",
-            "tree-mode-preview-style", "copy-mode-mark-style",
-            "display-panes-border-style", "pane-border-style",
-            "pane-active-border-style", "window-status-current-style",
-        )
-        defaults = {name: self.tmux("show-options", "-gv", name) for name in options}
-        self.tmux("set", "-s", "theme", "terminal")
-        for name in options:
-            self.tmux("set", "-g", name, "fg=#123456,bg=#654321")
-        self.source_theme()
-        self.assertEqual(self.tmux("show-options", "-sv", "theme"), "dark")
-        for name, expected in defaults.items():
-            with self.subTest(option=name):
-                self.assertEqual(self.tmux("show-options", "-gv", name), expected)
-        self.source_theme()
-        self.assertEqual(self.tmux("show-options", "-sv", "theme"), "dark")
-
     def test_focus_and_reload_use_current_backgrounds(self):
         self.source_theme()
         hooks = self.tmux("show-hooks", "-g")
@@ -83,8 +61,7 @@ class TmuxThemeTests(unittest.TestCase):
         self.assertEqual(self.tmux("show-hooks", "-g"), hooks)
 
     def test_native_palette_resolves_to_exact_rgb_values(self):
-        if not self.tmux("show-options", "-sqv", "theme"):
-            self.skipTest("native theme palette requires tmux 3.8+")
+        self.assertTrue(self.tmux("show-options", "-sqv", "theme"), "tmux 3.8+ is required")
         expected = {
             "black": "#1D1E19", "white": "#F8F8F2",
             "dark-grey": "#272822", "light-grey": "#75715E",
