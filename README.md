@@ -80,11 +80,28 @@ copy-mode marks, menus, popups, and tree previews. Focus hooks dim the active pa
 when the terminal loses focus. Keybindings, status position, status content outside
 window labels, and terminal capabilities stay in your own config.
 
-Use a SubMonokai terminal theme for matching ANSI colours. tmux 3.8's built-in UI
-uses terminal ANSI colours; explicit RGB styles preserve the selected SubMonokai
-accents and backgrounds. The two palettes are intentionally distinct: ANSI green
-is `#E6DC6D`, while the shared palette's green is `#B3E435`. Newer optional style
-settings are skipped on older tmux versions.
+On tmux 3.8+, the export selects the native dark theme and defines its ten
+`dark-theme-*` palette slots. Built-in menus, popups, prompts, copy-mode
+highlights, and pane/tree borders inherit those colours. tmux has no orange
+slot, so the theme's yellow slot is assigned SubMonokai orange (`#FF9800`) for
+selections and prompts. The shared palette's yellow (`#E6DC6D`) stays in the
+custom status bar. Palette constants are hidden from child-process environments.
+
+Compared with the previous terminal-palette styling, the normal active border
+becomes green (`#B3E435`), menus/popups use the main charcoal background
+(`#272822`) with muted borders (`#75715E`), tree previews use red/blue accents,
+and copy-mode marked lines use orange. tmux's native active border also indicates
+marked and modal panes. The orange active-window tab, status colours, pane
+backgrounds, and focus dimming are preserved. Reloading clears the previous
+export's global overrides for the UI roles now owned by the native palette.
+
+tmux 3.4-3.7 uses the original ANSI/explicit RGB fallback. A SubMonokai terminal
+theme is recommended for matching application text and the fallback's ANSI
+colours. Neither path changes the terminal palette or colours set by applications.
+
+To verify the export in isolated tmux servers, run
+`python3 -m unittest discover -s tests -v`. Native-theme tests require tmux 3.8+;
+the focus/reload check also applies to the older-version fallback.
 
 The owner's [dotfiles](https://github.com/scruffydan/dotfiles) bundle this export
 and source it directly. Edit it here and sync the subtree to update those dotfiles.
