@@ -94,12 +94,6 @@ constants are hidden from child-process environments. Use a SubMonokai terminal
 theme for matching default foreground/background colours and application ANSI
 colours. The export does not change the terminal palette.
 
-Run `python3 -m unittest discover -s tests -v` with tmux 3.8+ installed. The tests
-check resolved palette colours and capture colour codes emitted to an attached
-client in a disposable pseudo-terminal, including menus, popup borders, pane
-backgrounds, selections, and repeated reloads. Missing or older tmux fails the
-suite instead of skipping native-theme coverage.
-
 The owner's [dotfiles](https://github.com/scruffydan/dotfiles) bundle this export
 and source it directly. Edit it here and sync the subtree to update those dotfiles.
 
