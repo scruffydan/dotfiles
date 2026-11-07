@@ -91,6 +91,28 @@ normal active pane borders, orange/cyan tree previews, and red copy-mode marks.
 The orange active-window tab, status colours, pane backgrounds, and focus dimming
 also stay the same. See the bundled theme's README for details.
 
+## Zen Picture-in-Picture Sync (macOS only)
+
+Quit Zen, then opt its automatic picture-in-picture setting into Settings sync:
+
+```sh
+./zen-macos-install.sh
+```
+
+This macOS-only installer updates every profile under
+`~/Library/Application Support/zen/Profiles/`. For a custom macOS profile, pass
+the profile directory shown in `about:support` (multiple directories are accepted):
+
+```sh
+./zen-macos-install.sh "/path/to/zen/profile"
+```
+
+Run this once on each Mac with Settings sync enabled, then reopen Zen. The
+script preserves existing `user.js` entries and is safe to rerun. It enables
+syncing only; enable `media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled`
+in `about:config` on one device to sync its value. The sync opt-in is reapplied
+at startup through `user.js`.
+
 ## Requirements
 
 ### Neovim Configuration
