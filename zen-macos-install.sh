@@ -1,15 +1,16 @@
 #!/usr/bin/env sh
-# Quit Zen before running. Optional arguments are explicit Zen profile directories.
+# macOS-only Zen picture-in-picture sync setup.
+# Usage: ./zen-macos-install.sh [profile-directory ...]
+# Quit Zen before running, then reopen it afterward.
 set -eu
 
+if [ "$(uname -s)" != 'Darwin' ]; then
+  printf 'This installer supports macOS only.\n' >&2
+  exit 1
+fi
+
 if [ "$#" -eq 0 ]; then
-  case "$(uname -s)" in
-    Darwin) set -- "$HOME/Library/Application Support/zen/Profiles/"*/ ;;
-    *)
-      printf 'Pass your Zen profile directory from about:support as an argument.\n' >&2
-      exit 1
-      ;;
-  esac
+  set -- "$HOME/Library/Application Support/zen/Profiles/"*/
 fi
 
 pref_name='services.sync.prefs.sync.media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled'
