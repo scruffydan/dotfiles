@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# macOS-only Zen shortcut and picture-in-picture sync setup.
+# macOS-only Zen shortcut, workspace container, and picture-in-picture sync setup.
 # Usage: ./zen-macos-install.sh [profile-directory ...]
 # Quit Zen before running, then reopen it afterward.
 set -eu
@@ -13,8 +13,6 @@ if [ "$#" -eq 0 ]; then
   set -- "$HOME/Library/Application Support/zen/Profiles/"*/
 fi
 
-pref_name='services.sync.prefs.sync.media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled'
-pref="user_pref(\"$pref_name\", true);"
 profiles=0
 custom_keys_tmp=''
 trap '[ -z "$custom_keys_tmp" ] || rm -f "$custom_keys_tmp"' 0
@@ -42,17 +40,23 @@ for profile do
   custom_keys_tmp=''
 
   user_js="$profile/user.js"
-  last_pref=''
-  if [ -f "$user_js" ]; then
-    last_pref=$(awk -v key="\"$pref_name\"" '
-      /^[[:space:]]*user_pref[[:space:]]*\(/ && index($0, key) { last = $0 }
-      END { print last }
-    ' "$user_js")
-  fi
-  if [ "$last_pref" != "$pref" ]; then
-    printf '\n%s\n' "$pref" >> "$user_js"
-  fi
+  for pref_name in \
+    'zen.workspaces.force-container-workspace' \
+    'services.sync.prefs.sync.media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled'
+  do
+    pref="user_pref(\"$pref_name\", true);"
+    last_pref=''
+    if [ -f "$user_js" ]; then
+      last_pref=$(awk -v key="\"$pref_name\"" '
+        /^[[:space:]]*user_pref[[:space:]]*\(/ && index($0, key) { last = $0 }
+        END { print last }
+      ' "$user_js")
+    fi
+    if [ "$last_pref" != "$pref" ]; then
+      printf '\n%s\n' "$pref" >> "$user_js"
+    fi
+  done
   profiles=$((profiles + 1))
 done
 
-printf 'Set Command-Shift-N for private windows and enabled PiP preference syncing in %s profile(s). Reopen Zen to apply.\n' "$profiles"
+printf 'Configured private-window shortcuts, workspace containers, and PiP preference syncing in %s profile(s). Reopen Zen to apply.\n' "$profiles"

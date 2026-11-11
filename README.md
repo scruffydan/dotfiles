@@ -93,8 +93,8 @@ also stay the same. See the bundled theme's README for details.
 
 ## Zen Setup (macOS only)
 
-Quit Zen, then configure its private-window shortcut and opt its automatic
-picture-in-picture setting into Settings sync:
+Quit Zen, then configure its private-window shortcut and workspace container
+routing, and opt its automatic picture-in-picture setting into Settings sync:
 
 ```sh
 ./zen-macos-install.sh
@@ -114,6 +114,10 @@ Run this once on each Mac, then reopen Zen. The script is safe to rerun and:
   It clears the conflicting New Blank Window shortcut and preserves other
   custom shortcuts in `customKeys.json`. These shortcuts are local to each
   profile and do not sync, so run the installer on every Mac where you want them.
+- Enables `zen.workspaces.force-container-workspace` through `user.js` so tabs
+  opened in a container use the workspace assigned to that container.
+  In Zen 1.24.1b, moving an existing tab between workspaces does not change
+  its container.
 - Enables PiP preference syncing through `user.js`, preserving existing entries.
   Settings sync must be enabled for this preference to sync.
 
