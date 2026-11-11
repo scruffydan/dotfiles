@@ -91,9 +91,10 @@ normal active pane borders, orange/cyan tree previews, and red copy-mode marks.
 The orange active-window tab, status colours, pane backgrounds, and focus dimming
 also stay the same. See the bundled theme's README for details.
 
-## Zen Picture-in-Picture Sync (macOS only)
+## Zen Setup (macOS only)
 
-Quit Zen, then opt its automatic picture-in-picture setting into Settings sync:
+Quit Zen, then configure its private-window shortcut and opt its automatic
+picture-in-picture setting into Settings sync:
 
 ```sh
 ./zen-macos-install.sh
@@ -107,9 +108,17 @@ the profile directory shown in `about:support` (multiple directories are accepte
 ./zen-macos-install.sh "/path/to/zen/profile"
 ```
 
-Run this once on each Mac with Settings sync enabled, then reopen Zen. The
-script preserves existing `user.js` entries and is safe to rerun. It enables
-syncing only; enable `media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled`
+Run this once on each Mac, then reopen Zen. The script is safe to rerun and:
+
+- Sets **Command-Shift-N** to open a private window, replacing Command-Shift-P.
+  It clears the conflicting New Blank Window shortcut and preserves other
+  custom shortcuts in `customKeys.json`. These shortcuts are local to each
+  profile and do not sync, so run the installer on every Mac where you want them.
+- Enables PiP preference syncing through `user.js`, preserving existing entries.
+  Settings sync must be enabled for this preference to sync.
+
+For PiP, the script enables syncing only; enable
+`media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled`
 in `about:config` on one device to sync its value. The sync opt-in is reapplied
 at startup through `user.js`.
 
