@@ -42,6 +42,7 @@ for profile do
   user_js="$profile/user.js"
   for pref_name in \
     'zen.workspaces.force-container-workspace' \
+    'services.sync.prefs.sync.zen.workspaces.force-container-workspace' \
     'services.sync.prefs.sync.media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled'
   do
     pref="user_pref(\"$pref_name\", true);"
@@ -59,4 +60,4 @@ for profile do
   profiles=$((profiles + 1))
 done
 
-printf 'Configured private-window shortcuts, workspace containers, and PiP preference syncing in %s profile(s). Reopen Zen to apply.\n' "$profiles"
+printf 'Configured private-window shortcuts, workspace containers, and preference syncing in %s profile(s). Reopen Zen to apply.\n' "$profiles"

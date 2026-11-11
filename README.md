@@ -93,8 +93,8 @@ also stay the same. See the bundled theme's README for details.
 
 ## Zen Setup (macOS only)
 
-Quit Zen, then configure its private-window shortcut and workspace container
-routing, and opt its automatic picture-in-picture setting into Settings sync:
+Quit Zen, then configure its private-window shortcut, workspace container
+routing, and preference syncing:
 
 ```sh
 ./zen-macos-install.sh
@@ -115,16 +115,19 @@ Run this once on each Mac, then reopen Zen. The script is safe to rerun and:
   custom shortcuts in `customKeys.json`. These shortcuts are local to each
   profile and do not sync, so run the installer on every Mac where you want them.
 - Enables `zen.workspaces.force-container-workspace` through `user.js` so tabs
-  opened in a container use the workspace assigned to that container.
+  opened in a container use the workspace assigned to that container, and opts
+  the setting into Settings sync.
   In Zen 1.24.1b, moving an existing tab between workspaces does not change
   its container.
 - Enables PiP preference syncing through `user.js`, preserving existing entries.
-  Settings sync must be enabled for this preference to sync.
+
+Settings sync must be enabled on each Mac. Run the installer on each Mac to
+allow both preferences to sync.
 
 For PiP, the script enables syncing only; enable
 `media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled`
-in `about:config` on one device to sync its value. The sync opt-in is reapplied
-at startup through `user.js`.
+in `about:config` on one device to sync its value. Both sync opt-ins are reapplied
+at startup through `user.js`, along with enabling workspace container routing.
 
 ## Requirements
 
