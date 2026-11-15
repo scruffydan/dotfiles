@@ -28,6 +28,13 @@ Open the file for your app and use GitHub's **Download raw file** button to save
 2. Open **Settings → Appearance** in T3-Code and import the JSON as a custom theme.
 3. Select **SubMonokai** and choose dark appearance.
 
+The terminal background, foreground, cursor, and selection background match the
+Ghostty export. T3-Code's custom theme format does not expose the 16 ANSI palette
+colours or selection foreground, so those settings are not included.
+
+This export is for desktop and web. The native iOS app currently supports only
+built-in themes.
+
 See the [T3-Code appearance guide](https://github.com/pingdotgg/t3code/blob/main/docs/user/appearance.md) for more theme settings.
 
 ### Ghostty
