@@ -61,8 +61,8 @@
     "sidebarBorder": "#1D1E19",
     "terminalBackground": "#272822",
     "terminalForeground": "#F8F8F2",
-    "terminalCursor": "#383830",
-    "terminalSelection": "#49483E",
+    "terminalCursor": "#F8F8F2",
+    "terminalSelection": "#39382F",
     "terminalScrollbar": "#49483E",
     "terminalScrollbarHover": "#75715E"
   }
