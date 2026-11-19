@@ -90,8 +90,15 @@ With dotfiles checked out at `~/dotfiles`, the installer adds a Lua
 `dofile()` include to `${XDG_CONFIG_HOME:-$HOME/.config}/rex/init.lua`.
 It is safe to rerun. Any existing settings in that file run after the
 shared bindings. If `init.lua` is already a symlink, replace it with a
-regular config file before running the installer. Import SubMonokai as
-described above.
+regular config file before running the installer.
+
+On macOS the installer also applies the [Rex app preferences](rex/macos-preferences.js).
+Quit and reopen Rex to pick them up. They include the Classic tinted interface,
+compact panes, a 15 pt left sidebar, smooth scrolling and resizing, copy on
+selection, and the Warp cursor shader. Auto appearance uses Merino Light and
+SubMonokai with both extended palettes enabled. On a new Mac, use **Import
+Theme File** to add and select the bundled SubMonokai theme as described above.
+Later installer runs select the existing import by name.
 
 Rex uses `Ctrl-a` as its prefix. A few familiar tmux keys apply to Rex tabs
 and panes:

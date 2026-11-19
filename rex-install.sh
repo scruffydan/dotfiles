@@ -29,22 +29,24 @@ if [ "$config_dir_real" = "$shared_dir_real" ]; then
   printf 'Rex config must be a separate regular file: %s\n' "$target" >&2
   exit 1
 fi
-if [ -f "$target" ] && grep -Fqx "$include" "$target"; then
-  exit 0
-fi
+if [ ! -f "$target" ] || ! grep -Fqx "$include" "$target"; then
+  staged=$(mktemp "$config_dir/.init.lua.XXXXXX")
+  trap 'rm -f "$staged"' EXIT
+  trap 'exit 1' HUP INT TERM
 
-staged=$(mktemp "$config_dir/.init.lua.XXXXXX")
-trap 'rm -f "$staged"' EXIT
-trap 'exit 1' HUP INT TERM
-
-if [ -f "$target" ]; then
-  cp -p "$target" "$staged"
-fi
-{
-  printf '%s\n' "$include"
   if [ -f "$target" ]; then
-    printf '\n'
-    cat "$target"
+    cp -p "$target" "$staged"
   fi
-} > "$staged"
-mv -f "$staged" "$target"
+  {
+    printf '%s\n' "$include"
+    if [ -f "$target" ]; then
+      printf '\n'
+      cat "$target"
+    fi
+  } > "$staged"
+  mv -f "$staged" "$target"
+fi
+
+if [ "$(uname -s)" = Darwin ]; then
+  /usr/bin/osascript -l JavaScript "$HOME/dotfiles/rex/macos-preferences.js"
+fi
