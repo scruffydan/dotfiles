@@ -111,6 +111,12 @@ and panes:
 Move between Neovim splits with `Ctrl-w h/j/k/l` and return to the previous
 split with `Ctrl-w p`. Sidekick opens its CLI in a Neovim terminal.
 
+Opening an interactive zsh in Rex ensures a session named `main` exists,
+using `jq` to check the session list. A new `main` starts in your home
+directory. Your other sessions keep their names. To create `main` before
+opening the Mac app, run `~/dotfiles/scripts/rex-ensure-main` from a shell
+with `rex` on its PATH. Use `Ctrl-a Ctrl-s` to switch sessions.
+
 ### Remote tmux from Rex
 
 Connect over SSH and attach to or create a tmux session on the server:
