@@ -9,8 +9,8 @@ return {
       watch = true, -- auto-reload files modified by AI CLI tools
       mux = {
         backend = "tmux",
-        enabled = true,
-        create = "split",
+        enabled = vim.env.TMUX ~= nil,
+        create = vim.env.TMUX and "split" or "terminal",
       },
     },
   },

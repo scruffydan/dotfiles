@@ -1,6 +1,6 @@
 # Dotfiles Agent Guide
 
-Personal dotfiles for the owner's own use: zsh, tmux, Neovim, Git, and Ghostty.
+Personal dotfiles for the owner's own use: zsh, tmux, Neovim, Git, Ghostty, and Rex.
 Prefer simple, maintainable changes.
 
 ## Project conventions
@@ -10,6 +10,8 @@ Prefer simple, maintainable changes.
   one lazy-loaded plugin spec per file in `nvim/lua/plugins/`, keymap `desc`,
   and rounded UI borders.
 - Zsh: 2-space indentation, quote variables, use `name() { }` and `[[ ]]`.
+- Rex: keep Lua key sequences in `rex/init.lua` and use `rex-install.sh` to link
+  the config. Leave bare pane-navigation keys available to SSH and Neovim.
 - Tmux: palette and appearance live in the upstream `SubMonokai.tmux.conf` export;
   keep bindings grouped by function and use `bind -r` for navigation.
   macOS clipboard settings live in `tmux/tmux.mac.conf`.
@@ -33,4 +35,6 @@ Prefer simple, maintainable changes.
 
 - Zsh: start `zsh` or reload with `source ~/.zshrc`.
 - Neovim: restart and run `:checkhealth` when relevant.
+- Rex: run `rex config check` and `rex config reload`, then try the shortcuts in
+  the Mac client.
 - Tmux: reload with `Ctrl-a r`.
