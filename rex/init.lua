@@ -54,45 +54,4 @@ bind("escape", "pane.copy_mode.enter")
 bind("`", "pane.new_floating")
 bind("shift+`", "pane.new_floating")
 
--- Server calls need an action context. Run this once after the config loads.
-rex.action({
-  name = "dotfiles_ensure_main",
-  title = "Ensure main is the first session",
-  run = function()
-    local sessions = rex.call("session.list").sessions
-    local first = sessions[1]
-    if first and first.label == "main" then return end
-
-    local main_id
-    for _, session in ipairs(sessions) do
-      if session.label == "main" then
-        main_id = session.session_id
-        break
-      end
-    end
-    if not main_id then
-      main_id = rex.call("session.create", {
-        label = "main",
-        initial_windows = {{
-          layout = { block = {
-            flavor = "com.superlogical.terminal.shell",
-            options = { cwd = os.getenv("HOME") },
-          } },
-        }},
-      }).session_id
-    end
-    -- The app may have created a session while the shell was starting.
-    first = rex.call("session.list").sessions[1]
-    if first and first.session_id ~= main_id then
-      rex.call("session.attach", { session_id = main_id })
-      rex.call("session.move", { session_id = main_id, before_session_id = first.session_id })
-    end
-  end,
-})
-
--- Finder may launch Rex without its bundled CLI on PATH.
-local bundled_cli_dir = "/Applications/Rex Beta.app/Contents/Helpers/Rex Server.rex/Contents/MacOS"
-assert(rex.exec.start({ "rex", "--autostart=false", "do", "dotfiles_ensure_main" }, {
-  detach = true,
-  env = { PATH = (os.getenv("PATH") or "/usr/bin:/bin") .. ":" .. bundled_cli_dir },
-}))
+dofile(os.getenv("HOME") .. "/dotfiles/rex/ensure-main.lua")
