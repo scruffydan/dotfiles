@@ -37,8 +37,6 @@ vim.opt.guifont = "SauceCodePro NFM:h16"
 vim.opt.splitright = true  -- Open vertical splits to the right
 vim.opt.splitbelow = true  -- Open horizontal splits below
 
--- Split navigation handled by vim-tmux-navigator plugin
-
 -- Tab settings (2 spaces)
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

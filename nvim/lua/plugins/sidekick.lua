@@ -8,9 +8,7 @@ return {
     cli = {
       watch = true, -- auto-reload files modified by AI CLI tools
       mux = {
-        backend = "tmux",
-        enabled = true,
-        create = "split",
+        enabled = false,
       },
     },
   },

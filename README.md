@@ -75,6 +75,57 @@ For Rex, run **Import Theme File** in its command palette and select
 from the Git sync; re-import to apply theme changes. Automatic app-level
 synchronization is not verified.
 
+## Rex Setup
+
+Rex can replace Ghostty and tmux for local work on macOS. Install the
+[Rex Mac client](https://www.superlogical.com/rex/docs/installation), then run:
+
+```sh
+./rex-install.sh
+rex config check
+rex config reload
+```
+
+With dotfiles checked out at `~/dotfiles`, the installer adds a Lua
+`dofile()` include to `${XDG_CONFIG_HOME:-$HOME/.config}/rex/init.lua`.
+It is safe to rerun. Any existing settings in that file run after the
+shared bindings. If `init.lua` is already a symlink, replace it with a
+regular config file before running the installer. Import SubMonokai as
+described above.
+
+Rex uses `Ctrl-a` as its prefix. A few familiar tmux keys apply to Rex tabs
+and panes:
+
+| Keys after `Ctrl-a` | Action |
+|---|---|
+| `c`, `n`, `N`, `,` | New, next, previous, or rename tab |
+| Backslash or pipe, `-` | Split right or down |
+| `h/j/k/l`, `H/J/K/L`, `z` | Focus, resize, or zoom a pane |
+| `.`, `Ctrl-s`, `Ctrl-q` | Rename session, switch session, or open the command palette |
+| `Esc` | Enter copy mode |
+| Backtick or tilde | Open a floating terminal |
+| `Ctrl-a` | Send a literal `Ctrl-a` to the active terminal |
+
+Move between Neovim splits with `Ctrl-w h/j/k/l` and return to the previous
+split with `Ctrl-w p`. Sidekick opens its CLI in a Neovim terminal.
+
+### Remote tmux from Rex
+
+Connect over SSH and attach to or create a tmux session on the server:
+
+```sh
+ssh -t server 'tmux new-session -A -s main'
+```
+
+With these dotfiles on the server, press `Ctrl-a Ctrl-a` to send the remote
+tmux prefix, then press the tmux command key. Stock tmux uses `Ctrl-b`.
+If the host cannot resolve Rex's `xterm-rex` terminal type, run the SSH
+command with `TERM=xterm-256color`.
+
+Existing tmux servers retain the old bare navigation bindings after a
+config reload. A fresh tmux server starts with native Neovim split
+navigation and the prefix-based tmux pane bindings.
+
 ## Tmux Theme
 
 `tmux.conf` sources `~/dotfiles/submonokai/SubMonokai.tmux.conf` for its palette,
@@ -231,6 +282,9 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 ### Panes
 
+Use `Ctrl-a` followed by `h`, `j`, `k`, or `l` to move between tmux
+panes. These bindings stop at the edge of the layout.
+
 | Keymap | Action |
 |--------|--------|
 | `<prefix> \|` or `<prefix> \` | Split pane vertically (in current directory) |
@@ -245,16 +299,6 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 | `<prefix> L` | Resize pane right (repeatable) |
 | `<prefix> {` | Swap pane up (repeatable) |
 | `<prefix> }` | Swap pane down (repeatable) |
-
-### Vim-Tmux Navigator Integration
-
-| Keymap | Action |
-|--------|--------|
-| `<C-h>` | Navigate to left pane/split (vim-aware) |
-| `<C-j>` | Navigate to pane/split below (vim-aware) |
-| `<C-k>` | Navigate to pane/split above (vim-aware) |
-| `<C-l>` | Navigate to right pane/split (vim-aware) |
-| `<C-\>` | Navigate to previous pane/split (vim-aware) |
 
 ### Copy Mode (Vi)
 
@@ -280,13 +324,15 @@ Leader key is `<Space>`.
 
 ### Navigation
 
+Neovim uses its built-in `Ctrl-w` commands to move between splits.
+
 | Keymap | Action |
 |--------|--------|
-| `<C-h>` | Navigate to left split/pane |
-| `<C-j>` | Navigate to split/pane below |
-| `<C-k>` | Navigate to split/pane above |
-| `<C-l>` | Navigate to right split/pane |
-| `<C-\>` | Navigate to previous split/pane |
+| `<C-w>h` | Move to the split on the left |
+| `<C-w>j` | Move to the split below |
+| `<C-w>k` | Move to the split above |
+| `<C-w>l` | Move to the split on the right |
+| `<C-w>p` | Return to the last focused split |
 | `<C-d>` | Scroll down half page (centered) |
 | `<C-u>` | Scroll up half page (centered) |
 
@@ -298,7 +344,6 @@ Leader key is `<Space>`.
 | `<C-w>v` | Split window vertically |
 | `<C-w>w` | Cycle to next window |
 | `<C-w>W` | Cycle to previous window |
-| `<C-w>h/j/k/l` | Move to left/down/up/right window |
 | `<C-w>H/J/K/L` | Move window to far left/bottom/top/right |
 | `<C-w>r` | Rotate windows downward/rightward |
 | `<C-w>R` | Rotate windows upward/leftward |
