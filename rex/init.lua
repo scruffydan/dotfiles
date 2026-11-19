@@ -54,4 +54,10 @@ bind("escape", "pane.copy_mode.enter")
 bind("`", "pane.new_floating")
 bind("shift+`", "pane.new_floating")
 
-dofile(os.getenv("HOME") .. "/dotfiles/rex/ensure-main.lua")
+local dotfiles = os.getenv("HOME") .. "/dotfiles"
+rex.action({
+  name = "dotfiles_ensure_main",
+  title = "Ensure main is the first session",
+  run = function() dofile(dotfiles .. "/rex/ensure-main.lua") end,
+})
+assert(rex.exec.start({ dotfiles .. "/scripts/rex-watch-main" }, { detach = true }))

@@ -111,11 +111,13 @@ and panes:
 Move between Neovim splits with `Ctrl-w h/j/k/l` and return to the previous
 split with `Ctrl-w p`. Sidekick opens its CLI in a Neovim terminal.
 
-When Rex loads the config, it puts `main` first in the session list. If
-missing, Rex creates it with a shell in your home directory. Other sessions
-keep their names. Running `rex config check` also loads the file and can
-create or reorder `main` on a running server. Use `Ctrl-a Ctrl-s` to switch
-sessions.
+The first session on an empty Rex server becomes `main`, even if you create
+it with an explicit name such as `rex new work`. It keeps its shell and tabs.
+Rex exposes the resulting label without saying who chose it. To explicitly
+name the first session, rename it once it opens (`Ctrl-a .`). Opening later
+sessions preserves that choice and their names. If Rex restores an existing `main`, it
+moves that session first. A local `rex do --all` process watches for new
+sessions while the server runs.
 
 ### Remote tmux from Rex
 

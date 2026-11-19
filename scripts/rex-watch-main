@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+# A config check or reload can launch this again. Keep one listener per server.
+set -eu
+path+=("/Applications/Rex Beta.app/Contents/Helpers/Rex Server.rex/Contents/MacOS")
+lock_dir="${XDG_CACHE_HOME:-$HOME/.cache}/rex"
+mkdir -p "$lock_dir"
+server_key=$(printf '%s' "${REX_SERVER:-local}" | cksum)
+lock_file="$lock_dir/watch-main-${server_key%% *}.lock"
+: >> "$lock_file"
+zmodload zsh/system
+zsystem flock -t 0 "$lock_file" || exit 0
+
+rex --autostart=false do --all "$HOME/dotfiles/rex/ensure-main.lua" watch=true
