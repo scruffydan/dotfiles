@@ -107,8 +107,7 @@ and panes:
 | `Ctrl-a` | Send a literal `Ctrl-a` to the active terminal |
 
 Move between Neovim splits with `Ctrl-w h/j/k/l` and return to the previous
-split with `Ctrl-w p`. Sidekick opens in a Neovim terminal outside tmux and
-uses a tmux split inside tmux.
+split with `Ctrl-w p`. Sidekick opens its CLI in a Neovim terminal.
 
 ### Remote tmux from Rex
 
