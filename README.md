@@ -98,6 +98,7 @@ and panes:
 
 | Keys after `Ctrl-a` | Action |
 |---|---|
+| `r` | Reload Rex config |
 | `c`, `n`, `N`, `,` | New, next, previous, or rename tab |
 | Backslash or pipe, `-` | Split right or down |
 | `h/j/k/l`, `H/J/K/L`, `z` | Focus, resize, or zoom a pane |

@@ -4,6 +4,7 @@ end
 
 -- Forward the prefix to remote tmux or another terminal program.
 bind("ctrl+a", "pane.send_key", { key = "ctrl+a" })
+bind("r", "client.config.reload")
 
 -- Tabs correspond to tmux windows.
 bind("c", "client.tab.new")
