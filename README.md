@@ -86,10 +86,11 @@ rex config check
 rex config reload
 ```
 
-The installer links the checkout's `rex/init.lua` into
-`${XDG_CONFIG_HOME:-$HOME/.config}/rex/init.lua`. It is safe to rerun and
-preserves an existing config. If you have one, merge the bindings into it
-or move it aside before rerunning the installer. Import SubMonokai as
+With dotfiles checked out at `~/dotfiles`, the installer adds a Lua
+`dofile()` include to `${XDG_CONFIG_HOME:-$HOME/.config}/rex/init.lua`.
+It is safe to rerun. Any existing settings in that file run after the
+shared bindings. If `init.lua` is already a symlink, replace it with a
+regular config file before running the installer. Import SubMonokai as
 described above.
 
 Rex uses `Ctrl-a` as its prefix. A few familiar tmux keys apply to Rex tabs
