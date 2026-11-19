@@ -53,3 +53,16 @@ bind("escape", "pane.copy_mode.enter")
 -- Open a floating terminal with backtick or tilde.
 bind("`", "pane.new_floating")
 bind("shift+`", "pane.new_floating")
+
+local main_script = os.getenv("HOME") .. "/dotfiles/rex/ensure-main.lua"
+rex.action({
+  name = "dotfiles_ensure_main",
+  title = "Ensure main is the first session",
+  run = function() dofile(main_script) end,
+})
+-- Finder may launch Rex without its bundled CLI on PATH.
+local bundled_cli_dir = "/Applications/Rex Beta.app/Contents/Helpers/Rex Server.rex/Contents/MacOS"
+assert(rex.exec.start({ "rex", "--autostart=false", "do", "--all", main_script, "watch=true" }, {
+  detach = true,
+  env = { PATH = (os.getenv("PATH") or "/usr/bin:/bin") .. ":" .. bundled_cli_dir },
+}))
