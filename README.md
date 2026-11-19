@@ -813,6 +813,7 @@ Surround text objects with brackets, quotes, tags, and more. All actions are dot
 | `<leader>ao` | Open OpenCode |
 | `<leader>ac` | Open Claude |
 | `<leader>aC` | Open Codex |
+| `<leader>aP` | Open Pi |
 | `<leader>as` | Select CLI tool |
 | `<leader>ap` | Select prompt |
 | `<leader>at` | Send this (selection/position) |
