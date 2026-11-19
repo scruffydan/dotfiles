@@ -283,9 +283,12 @@ LSP (Language Server Protocol) support is available on macOS, Linux, and Windows
 
 ### Panes
 
+Use `Ctrl-a` followed by `h`, `j`, `k`, or `l` to move between tmux
+panes. These bindings stop at the edge of the layout.
+
 | Keymap | Action |
 |--------|--------|
-| `<prefix> \|` or `<prefix> \` | Split pane vertically (in current directory) |
+| `<prefix>` then pipe or backslash | Split pane vertically (in current directory) |
 | `<prefix> -` | Split pane horizontally (in current directory) |
 | `<prefix> h` | Select pane left (repeatable) |
 | `<prefix> j` | Select pane down (repeatable) |
@@ -322,8 +325,15 @@ Leader key is `<Space>`.
 
 ### Navigation
 
+Neovim uses its built-in `Ctrl-w` commands to move between splits.
+
 | Keymap | Action |
 |--------|--------|
+| `<C-w>h` | Move to the split on the left |
+| `<C-w>j` | Move to the split below |
+| `<C-w>k` | Move to the split above |
+| `<C-w>l` | Move to the split on the right |
+| `<C-w>p` | Return to the last focused split |
 | `<C-d>` | Scroll down half page (centered) |
 | `<C-u>` | Scroll up half page (centered) |
 
@@ -335,8 +345,6 @@ Leader key is `<Space>`.
 | `<C-w>v` | Split window vertically |
 | `<C-w>w` | Cycle to next window |
 | `<C-w>W` | Cycle to previous window |
-| `<C-w>h/j/k/l` | Move to left/down/up/right window |
-| `<C-w>p` | Go to the previous window |
 | `<C-w>H/J/K/L` | Move window to far left/bottom/top/right |
 | `<C-w>r` | Rotate windows downward/rightward |
 | `<C-w>R` | Rotate windows upward/leftward |
