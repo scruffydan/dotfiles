@@ -20,11 +20,30 @@ bind("h", "pane.focus.left")
 bind("j", "pane.focus.down")
 bind("k", "pane.focus.up")
 bind("l", "pane.focus.right")
-bind("shift+h", "pane.resize", { direction = "left" })
-bind("shift+j", "pane.resize", { direction = "down" })
-bind("shift+k", "pane.resize", { direction = "up" })
-bind("shift+l", "pane.resize", { direction = "right" })
 bind("z", "pane.zoom")
+
+-- Resize once on entry, then keep resizing without repeating the prefix.
+-- Escape exits the mode and restores normal terminal input.
+rex.mode("resize", { exclusive = true })
+for _, binding in ipairs({
+  { "h", "left" },
+  { "j", "down" },
+  { "k", "up" },
+  { "l", "right" },
+}) do
+  local key, direction = binding[1], binding[2]
+  local action = "dotfiles_resize_" .. direction
+  rex.action({
+    name = action,
+    title = "Start pane resize " .. direction,
+    run = function()
+      rex.client.queue("pane.resize", { direction = direction })
+      rex.client.queue("client.mode.enter", { name = "resize" })
+    end,
+  })
+  bind("shift+" .. key, action)
+  rex.bind("resize/shift+" .. key, "pane.resize", { direction = direction })
+end
 
 bind(".", "session.rename")
 bind("ctrl+s", "session.switch")

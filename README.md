@@ -101,7 +101,8 @@ and panes:
 | `r` | Reload Rex config |
 | `c`, `n`, `N`, `,` | New, next, previous, or rename tab |
 | Backslash or pipe, `-` | Split right or down |
-| `h/j/k/l`, `H/J/K/L`, `z` | Focus, resize, or zoom a pane |
+| `h/j/k/l`, `z` | Focus or zoom a pane |
+| `H/J/K/L` | Resize left/down/up/right. Repeat without the prefix, then press `Esc` to exit resize mode. |
 | `.`, `Ctrl-s`, `Ctrl-q` | Rename session, switch session, or open the command palette |
 | `Esc` | Enter copy mode |
 | Backtick or tilde | Open a floating terminal |
