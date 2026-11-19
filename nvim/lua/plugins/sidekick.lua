@@ -62,6 +62,11 @@ return {
       function() require("sidekick.cli").show({ name = "claude", focus = true }) end,
       desc = "Open Claude",
     },
+    {
+      "<leader>aC",
+      function() require("sidekick.cli").show({ name = "codex", focus = true }) end,
+      desc = "Open Codex",
+    },
     -- Context-aware prompts (similar to opencode.nvim)
     {
       "<leader>ae",
