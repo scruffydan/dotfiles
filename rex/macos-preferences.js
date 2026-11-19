@@ -29,6 +29,8 @@ function run() {
     lightUsesExtendedThemePalette: true,
     darkUsesExtendedThemePalette: true,
 
+    terminalFontName: "SauceCodePro Nerd Font Mono",
+    terminalFontPointSize: 16,
     terminalSmoothScrolling: true,
     smoothResizeEnabled: true,
     terminalCopyOnSelect: true,

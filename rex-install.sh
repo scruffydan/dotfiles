@@ -48,5 +48,8 @@ if [ ! -f "$target" ] || ! grep -Fqx "$include" "$target"; then
 fi
 
 if [ "$(uname -s)" = Darwin ]; then
+  font_dir="$HOME/Library/Fonts"
+  mkdir -p "$font_dir"
+  /usr/bin/rsync --ignore-existing "$HOME/dotfiles/submonokai/Fonts/SauceCodePro"/SauceCodeProNerdFontMono-*.ttf "$font_dir/"
   /usr/bin/osascript -l JavaScript "$HOME/dotfiles/rex/macos-preferences.js"
 fi

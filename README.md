@@ -93,7 +93,9 @@ shared bindings. If `init.lua` is already a symlink, replace it with a
 regular config file before running the installer.
 
 On macOS the installer also applies the [Rex app preferences](rex/macos-preferences.js).
-Quit and reopen Rex to pick them up. They include the Classic tinted interface,
+It installs missing faces of the bundled SauceCodePro Nerd Font Mono in
+`~/Library/Fonts` and sets the terminal font to that family at 16 pt.
+Quit and reopen Rex to pick up the settings. They include the Classic tinted interface,
 an always-visible top toolbar, and compact panes with headers on hover. The active
 pane has a moving 10% edge highlight. Inactive panes fade both surface and content,
 and fading also applies in inactive windows. Terminal settings include smooth
