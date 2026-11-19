@@ -288,7 +288,7 @@ panes. These bindings stop at the edge of the layout.
 
 | Keymap | Action |
 |--------|--------|
-| `<prefix>` then pipe or backslash | Split pane vertically (in current directory) |
+| `<prefix> \|` or `<prefix> \` | Split pane vertically (in current directory) |
 | `<prefix> -` | Split pane horizontally (in current directory) |
 | `<prefix> h` | Select pane left (repeatable) |
 | `<prefix> j` | Select pane down (repeatable) |
