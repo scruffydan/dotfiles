@@ -22,6 +22,12 @@ bind("k", "pane.focus.up")
 bind("l", "pane.focus.right")
 bind("z", "pane.zoom")
 
+-- Rearrange panes with the same prefix and arrows as tmux.
+bind("ctrl+shift+left", "pane.move.left")
+bind("ctrl+shift+down", "pane.move.down")
+bind("ctrl+shift+up", "pane.move.up")
+bind("ctrl+shift+right", "pane.move.right")
+
 -- Resize once on entry, then keep resizing without repeating the prefix.
 -- Escape exits the mode and restores normal terminal input.
 rex.mode("resize", { exclusive = true })

@@ -113,11 +113,14 @@ and panes:
 | `c`, `n`, `N`, `,` | New, next, previous, or rename tab |
 | Backslash or pipe, `-` | Split right or down |
 | `h/j/k/l`, `z` | Focus or zoom a pane |
+| `Ctrl+Shift+Arrow` | Move the active pane in the arrow's direction |
 | `H/J/K/L` | Resize left/down/up/right. Repeat without the prefix, then press `Esc` to exit resize mode. |
 | `.`, `Ctrl-s`, `Ctrl-q` | Rename session, switch session, or open the command palette |
 | `Esc` | Enter copy mode |
 | Backtick or tilde | Open a floating terminal |
 | `Ctrl-a` | Send a literal `Ctrl-a` to the active terminal |
+
+Rex also has native Mac shortcuts for moving panes with `Option+Shift+Command+Arrow`.
 
 Move between Neovim splits with `Ctrl-w h/j/k/l` and return to the previous
 split with `Ctrl-w p`. Sidekick opens its CLI in a Neovim terminal.
@@ -318,8 +321,11 @@ panes. These bindings stop at the edge of the layout.
 | `<prefix> J` | Resize pane down (repeatable) |
 | `<prefix> K` | Resize pane up (repeatable) |
 | `<prefix> L` | Resize pane right (repeatable) |
-| `<prefix> {` | Swap pane up (repeatable) |
-| `<prefix> }` | Swap pane down (repeatable) |
+| `<prefix> Ctrl+Shift+Arrow` | Swap the active pane with its neighbor in that direction, keeping focus on the moved pane |
+| `<prefix> {` | Swap with the previous pane in pane order (repeatable) |
+| `<prefix> }` | Swap with the next pane in pane order (repeatable) |
+
+Directional swaps stop at the edge of the layout.
 
 ### Copy Mode (Vi)
 
