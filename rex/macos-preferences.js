@@ -17,8 +17,8 @@ function run() {
     activePaneBorderColor: "yellow", // SubMonokai renders ANSI yellow as orange.
     activePaneBorderOpacity: 0.1,
     activePaneBorderTransition: "move",
-    inactivePaneFadeMode: "both",
-    usesStandardInactiveWindowPaneStyles: true,
+    inactivePaneFadeMode: "styling", // Surface in Rex Settings.
+    usesStandardInactiveWindowPaneStyles: false,
     sidebarTextPointSize: 15,
     preservesWindowWidthOnSidebarToggle: true,
     sidebarSwipe: "swipe",

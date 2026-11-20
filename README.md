@@ -97,8 +97,8 @@ It installs missing faces of the bundled SauceCodePro Nerd Font Mono in
 `~/Library/Fonts` and sets the terminal font to that family at 16 pt.
 Quit and reopen Rex to pick up the settings. They include the Classic tinted interface,
 an always-visible top toolbar, and compact panes with headers on hover. The active
-pane has a moving 10% edge highlight. Inactive panes fade both surface and content,
-and fading also applies in inactive windows. Terminal settings include smooth
+pane has a moving 10% edge highlight. Inactive panes fade their surfaces only, and
+window focus has no effect on pane fading. Terminal settings include smooth
 scrolling and resizing, copy on selection, and the Warp cursor shader. Auto appearance uses Merino Light and
 SubMonokai with both extended palettes enabled. On a new Mac, use **Import
 Theme File** to add and select the bundled SubMonokai theme as described above.
