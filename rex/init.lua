@@ -32,6 +32,7 @@ for _, binding in ipairs({
   { "l", "right" },
 }) do
   local key, direction = binding[1], binding[2]
+  bind("ctrl+" .. key, "pane.move." .. direction)
   local action = "dotfiles_resize_" .. direction
   rex.action({
     name = action,
@@ -50,9 +51,9 @@ bind("ctrl+s", "session.switch")
 bind("ctrl+q", "client.palette.toggle")
 bind("escape", "pane.copy_mode.enter")
 
--- Open a floating terminal with backtick or tilde.
-bind("`", "pane.new_floating")
-bind("shift+`", "pane.new_floating")
+-- Float or dock the focused pane with backtick or tilde.
+bind("`", "pane.float")
+bind("shift+`", "pane.float")
 
 local main_script = os.getenv("HOME") .. "/dotfiles/rex/ensure-main.lua"
 rex.action({

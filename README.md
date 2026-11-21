@@ -113,10 +113,11 @@ and panes:
 | `c`, `n`, `N`, `,` | New, next, previous, or rename tab |
 | Backslash or pipe, `-` | Split right or down |
 | `h/j/k/l`, `z` | Focus or zoom a pane |
+| `Ctrl-h/j/k/l` | Move the focused pane left/down/up/right |
 | `H/J/K/L` | Resize left/down/up/right. Repeat without the prefix, then press `Esc` to exit resize mode. |
 | `.`, `Ctrl-s`, `Ctrl-q` | Rename session, switch session, or open the command palette |
 | `Esc` | Enter copy mode |
-| Backtick or tilde | Open a floating terminal |
+| Backtick or tilde | Float or dock the focused pane |
 | `Ctrl-a` | Send a literal `Ctrl-a` to the active terminal |
 
 Move between Neovim splits with `Ctrl-w h/j/k/l` and return to the previous
@@ -314,6 +315,7 @@ panes. These bindings stop at the edge of the layout.
 | `<prefix> j` | Select pane down (repeatable) |
 | `<prefix> k` | Select pane up (repeatable) |
 | `<prefix> l` | Select pane right (repeatable) |
+| `<prefix>` then `Ctrl-h/j/k/l` | Move the active pane left/down/up/right (repeatable) |
 | `<prefix> H` | Resize pane left (repeatable) |
 | `<prefix> J` | Resize pane down (repeatable) |
 | `<prefix> K` | Resize pane up (repeatable) |
