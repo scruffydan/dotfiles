@@ -62,27 +62,13 @@ rex.action({
   title = "Toggle floating panes",
   run = function(ctx)
     local view = rex.call("session.view", { session_id = ctx.session_id })
-    local layers = {}
     for _, window in ipairs(view.windows) do
-      if window.window_id == view.active_window_id then layers = window.layers end
-    end
-    local function set_state(layer, state, focus)
-      rex.call("session.set_layer_state", {
-        session_id = ctx.session_id, layer_id = layer.layer_id, state = state, focus = focus,
-      })
-    end
-
-    -- Layers run back to front, and the first one is the tiled layout.
-    local visible = false
-    for i = 2, #layers do
-      visible = visible or layers[i].state ~= "minimized"
-    end
-    if #layers < 2 then
-      rex.client.queue("pane.new_floating")
-    elseif visible then
-      for i = 2, #layers do set_state(layers[i], "minimized") end
-    else
-      set_state(layers[#layers], "normal", true)
+      if window.window_id == view.active_window_id then
+        -- The first layer is the tiled layout. Any others are floating panes.
+        -- Rex's minimize action also restores them when they're hidden.
+        local has_floating = #window.layers > 1
+        rex.client.queue(has_floating and "pane.minimize_all_floating" or "pane.new_floating")
+      end
     end
   end,
 })
