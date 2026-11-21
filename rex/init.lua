@@ -22,27 +22,19 @@ bind("k", "pane.focus.up")
 bind("l", "pane.focus.right")
 bind("z", "pane.zoom")
 
--- Resize once on entry, then keep resizing without repeating the prefix.
+-- Move with the prefix, or resize with the same direction keys in resize mode.
 -- Escape exits the mode and restores normal terminal input.
 rex.mode("resize", { exclusive = true })
+bind("shift+r", "client.mode.enter", { name = "resize" })
 for _, binding in ipairs({
   { "h", "left" },
   { "j", "down" },
   { "k", "up" },
   { "l", "right" },
 }) do
-  local key, direction = binding[1], binding[2]
-  local action = "dotfiles_resize_" .. direction
-  rex.action({
-    name = action,
-    title = "Start pane resize " .. direction,
-    run = function()
-      rex.client.queue("pane.resize", { direction = direction })
-      rex.client.queue("client.mode.enter", { name = "resize" })
-    end,
-  })
-  bind("shift+" .. key, action)
-  rex.bind("resize/shift+" .. key, "pane.resize", { direction = direction })
+  local key, direction = "shift+" .. binding[1], binding[2]
+  bind(key, "pane.move." .. direction)
+  rex.bind("resize/" .. key, "pane.resize", { direction = direction })
 end
 
 bind(".", "session.rename")
@@ -50,9 +42,9 @@ bind("ctrl+s", "session.switch")
 bind("ctrl+q", "client.palette.toggle")
 bind("escape", "pane.copy_mode.enter")
 
--- Open a floating terminal with backtick or tilde.
-bind("`", "pane.new_floating")
-bind("shift+`", "pane.new_floating")
+-- Float or dock the focused pane with backtick or tilde.
+bind("`", "pane.float")
+bind("shift+`", "pane.float")
 
 local main_script = os.getenv("HOME") .. "/dotfiles/rex/ensure-main.lua"
 rex.action({
