@@ -55,8 +55,43 @@ bind("ctrl+s", "session.switch")
 bind("ctrl+q", "client.palette.toggle")
 bind("escape", "pane.copy_mode.enter")
 
--- Open a new floating pane with backtick, or float the focused pane with tilde.
-bind("`", "pane.new_floating")
+-- Backtick opens a floating pane, then hides and shows it. Tilde floats the
+-- focused pane.
+rex.action({
+  name = "dotfiles_toggle_floating",
+  title = "Toggle floating panes",
+  run = function(ctx)
+    local view = rex.call("session.view", { session_id = ctx.session_id })
+    local floating, visible = {}, false
+    for _, window in ipairs(view.windows or {}) do
+      if window.window_id == view.active_window_id then
+        for _, layer in ipairs(window.layers or {}) do
+          if layer.kind ~= "tiled" then
+            table.insert(floating, layer)
+            visible = visible or layer.state ~= "minimized"
+          end
+        end
+      end
+    end
+
+    if #floating == 0 then
+      rex.client.queue("pane.new_floating")
+      return
+    end
+    for i, layer in ipairs(floating) do
+      -- When all are hidden, bring back the front one and focus it.
+      if visible or i == #floating then
+        rex.call("session.set_layer_state", {
+          session_id = ctx.session_id,
+          layer_id = layer.layer_id,
+          state = visible and "minimized" or "normal",
+          focus = not visible,
+        })
+      end
+    end
+  end,
+})
+bind("`", "dotfiles_toggle_floating")
 bind("shift+`", "pane.float")
 
 local main_script = os.getenv("HOME") .. "/dotfiles/rex/ensure-main.lua"
