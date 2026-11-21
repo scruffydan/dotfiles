@@ -22,10 +22,9 @@ bind("k", "pane.focus.up")
 bind("l", "pane.focus.right")
 bind("z", "pane.zoom")
 
--- Ctrl-h/j/k/l after the prefix moves panes. Shift-h/j/k/l resizes in resize mode.
+-- Resize once on entry, then keep resizing without repeating the prefix.
 -- Escape exits the mode and restores normal terminal input.
 rex.mode("resize", { exclusive = true })
-bind("shift+r", "client.mode.enter", { name = "resize" })
 for _, binding in ipairs({
   { "h", "left" },
   { "j", "down" },
@@ -34,6 +33,16 @@ for _, binding in ipairs({
 }) do
   local key, direction = binding[1], binding[2]
   bind("ctrl+" .. key, "pane.move." .. direction)
+  local action = "dotfiles_resize_" .. direction
+  rex.action({
+    name = action,
+    title = "Start pane resize " .. direction,
+    run = function()
+      rex.client.queue("pane.resize", { direction = direction })
+      rex.client.queue("client.mode.enter", { name = "resize" })
+    end,
+  })
+  bind("shift+" .. key, action)
   rex.bind("resize/shift+" .. key, "pane.resize", { direction = direction })
 end
 

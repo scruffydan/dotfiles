@@ -114,7 +114,7 @@ and panes:
 | Backslash or pipe, `-` | Split right or down |
 | `h/j/k/l`, `z` | Focus or zoom a pane |
 | `Ctrl-h/j/k/l` | Move the focused pane left/down/up/right |
-| `R` | Enter resize mode. Use `H/J/K/L` without the prefix to resize, then press `Esc` to exit. |
+| `H/J/K/L` | Resize left/down/up/right. Repeat without the prefix, then press `Esc` to exit resize mode. |
 | `.`, `Ctrl-s`, `Ctrl-q` | Rename session, switch session, or open the command palette |
 | `Esc` | Enter copy mode |
 | Backtick or tilde | Float or dock the focused pane |
