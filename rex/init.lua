@@ -51,8 +51,8 @@ bind("ctrl+s", "session.switch")
 bind("ctrl+q", "client.palette.toggle")
 bind("escape", "pane.copy_mode.enter")
 
--- Float or dock the focused pane with backtick or tilde.
-bind("`", "pane.float")
+-- Open a new floating pane with backtick, or float the focused pane with tilde.
+bind("`", "pane.new_floating")
 bind("shift+`", "pane.float")
 
 local main_script = os.getenv("HOME") .. "/dotfiles/rex/ensure-main.lua"

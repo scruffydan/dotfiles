@@ -117,7 +117,8 @@ and panes:
 | `H/J/K/L` | Resize left/down/up/right. Repeat without the prefix, then press `Esc` to exit resize mode. |
 | `.`, `Ctrl-s`, `Ctrl-q` | Rename session, switch session, or open the command palette |
 | `Esc` | Enter copy mode |
-| Backtick or tilde | Float or dock the focused pane |
+| Backtick | Open a new floating pane |
+| Tilde | Float or dock the focused pane |
 | `Ctrl-a` | Send a literal `Ctrl-a` to the active terminal |
 
 Move between Neovim splits with `Ctrl-w h/j/k/l` and return to the previous
