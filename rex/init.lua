@@ -11,6 +11,10 @@ bind("c", "client.tab.new")
 bind("n", "client.tab.next")
 bind("shift+n", "client.tab.previous")
 bind(",", "client.tab.rename")
+-- Tabs count from 1, matching tmux's base-index 1.
+for index = 1, 9 do
+  bind(tostring(index), "client.tab.goto", { index = index })
+end
 
 -- Leave bare Ctrl-h/j/k/l available to terminal applications and SSH.
 bind("\\", "pane.split", { direction = "right" })
