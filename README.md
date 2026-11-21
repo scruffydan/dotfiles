@@ -315,6 +315,7 @@ panes. These bindings stop at the edge of the layout.
 | `<prefix> j` | Select pane down (repeatable) |
 | `<prefix> k` | Select pane up (repeatable) |
 | `<prefix> l` | Select pane right (repeatable) |
+| `<prefix>` then `Ctrl-h/j/k/l` | Move the active pane left/down/up/right (repeatable) |
 | `<prefix> H` | Resize pane left (repeatable) |
 | `<prefix> J` | Resize pane down (repeatable) |
 | `<prefix> K` | Resize pane up (repeatable) |
