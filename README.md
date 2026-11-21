@@ -113,7 +113,7 @@ and panes:
 | `c`, `n`, `N`, `,` | New, next, previous, or rename tab |
 | Backslash or pipe, `-` | Split right or down |
 | `h/j/k/l`, `z` | Focus or zoom a pane |
-| `H/J/K/L` | Move the focused pane left/down/up/right |
+| `Ctrl-h/j/k/l` | Move the focused pane left/down/up/right |
 | `R` | Enter resize mode. Use `H/J/K/L` without the prefix to resize, then press `Esc` to exit. |
 | `.`, `Ctrl-s`, `Ctrl-q` | Rename session, switch session, or open the command palette |
 | `Esc` | Enter copy mode |

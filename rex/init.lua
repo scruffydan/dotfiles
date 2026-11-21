@@ -22,7 +22,7 @@ bind("k", "pane.focus.up")
 bind("l", "pane.focus.right")
 bind("z", "pane.zoom")
 
--- Move with the prefix, or resize with the same direction keys in resize mode.
+-- Ctrl-h/j/k/l after the prefix moves panes. Shift-h/j/k/l resizes in resize mode.
 -- Escape exits the mode and restores normal terminal input.
 rex.mode("resize", { exclusive = true })
 bind("shift+r", "client.mode.enter", { name = "resize" })
@@ -32,9 +32,9 @@ for _, binding in ipairs({
   { "k", "up" },
   { "l", "right" },
 }) do
-  local key, direction = "shift+" .. binding[1], binding[2]
-  bind(key, "pane.move." .. direction)
-  rex.bind("resize/" .. key, "pane.resize", { direction = direction })
+  local key, direction = binding[1], binding[2]
+  bind("ctrl+" .. key, "pane.move." .. direction)
+  rex.bind("resize/shift+" .. key, "pane.resize", { direction = direction })
 end
 
 bind(".", "session.rename")
